@@ -1,6 +1,11 @@
-# better-comments README
+# Better Comments
 
-This is the README for your extension "better-comments". After writing up a brief description, we recommend including the following sections.
+The Better Comments extension will help you create more human-friendly comments in your code.
+With this extension, you will be able to categorise your annotations into:
+* Alerts
+* Queries
+* TODOs
+* Removed code will also be styled to make it clear the code shouldn't be there!
 
 ## Features
 
@@ -8,9 +13,9 @@ Describe specific features of your extension including screenshots of your exten
 
 For example if there is an image subfolder under your extension project workspace:
 
-\!\[feature X\]\(images/feature-x.png\)
+![Annotated code](images/better-comments.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+> Tip: A list of `TODO` messages in your project can be found on the `Tasks` output window
 
 ## Requirements
 
@@ -33,19 +38,9 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+Better Comments is currently in development
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+### 0.0.1
 
 -----------------------------------------------------------------------------------------------------------
 
