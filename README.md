@@ -13,7 +13,7 @@ Describe specific features of your extension including screenshots of your exten
 
 For example if there is an image subfolder under your extension project workspace:
 
-![Annotated code](images/better-comments.png)
+![Annotated code](images/better-comments.PNG)
 
 > Tip: A list of `TODO` messages in your project can be found on the `Tasks` output window
 
