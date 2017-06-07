@@ -4,22 +4,12 @@ import * as vscode from 'vscode';
 
 // this method is called when vs code is activated
 export function activate(context: vscode.ExtensionContext) {
+	const contributions = vscode.workspace.getConfiguration('better-comments');
 
-	const alert_decorationType = vscode.window.createTextEditorDecorationType({
-		color: '#FF2D00'
-	});
-
-	const question_decorationType = vscode.window.createTextEditorDecorationType({
-		color: '#3498DB'
-	});
-
-	const removed_decorationType = vscode.window.createTextEditorDecorationType({
-		textDecoration: 'line-through'
-	});
-
-	const todo_decorationType = vscode.window.createTextEditorDecorationType({
-		color: '#FF8C00'
-	});
+	const alert_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.alertColor });
+	const question_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.questionColor });
+	const removed_decorationType = vscode.window.createTextEditorDecorationType({ textDecoration: 'line-through' });
+	const todo_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.todoColor });
 
 	function updateDecorations() {
 		if (!activeEditor) return;
@@ -86,15 +76,13 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	}, null, context.subscriptions);
 
-	var timeout = null;
+	var timeout: NodeJS.Timer;
 	function triggerUpdateDecorations() {
 		if (timeout) {
 			clearTimeout(timeout);
 		}
-		timeout = setTimeout(updateDecorations, 500);
+		timeout = setTimeout(updateDecorations, 200);
 	}
 }
 
-// this method is called when your extension is deactivated
-export function deactivate() {
-}
+export function deactivate() {}

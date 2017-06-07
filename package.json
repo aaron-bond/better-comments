@@ -1,18 +1,31 @@
 {
 	"name": "better-comments",
 	"displayName": "Better Comments",
+	"icon": "images/icon.png",
 	"description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
 	"version": "0.0.1",
 	"publisher": "aaron-bond",
-	"engines": {
-		"vscode": "^1.10.0"
+	"author": {
+		"name": "Aaron Bond"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aaron-bond/better-comments"
+	},
+	"bugs": "https://github.com/aaron-bond/better-comments/issues",
 	"categories": [
 		"Other"
 	],
+	"engines": {
+		"vscode": "^1.8.0"
+	},
 	"activationEvents": [
 		"*"
 	],
+	"galleryBanner": {
+		"color": "#e3f4ff",
+		"theme": "light"
+	},
 	"main": "./out/src/extension",
 	"scripts": {
 		"vscode:prepublish": "tsc -p ./",
@@ -20,8 +33,28 @@
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"test": "node ./node_modules/vscode/bin/test"
 	},
+	"contributes": {
+		"configuration": {
+			"title": "Better Comments configuration",
+			"properties": {
+				"better-comments.alertColor": {
+					"type": "string",
+					"default": "#FF2D00"
+				},
+				"better-comments.questionColor": {
+					"type": "string",
+					"default": "#3498DB"
+				},
+				"better-comments.todoColor": {
+					"type": "string",
+					"default": "#FF8C00"
+				}
+			}
+		}
+	},
 	"devDependencies": {
 		"typescript": "^2.0.3",
+		"vsce": "^1.22.0",
 		"vscode": "^1.0.0",
 		"mocha": "^2.3.3",
 		"@types/node": "^6.0.40",
