@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const alert_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.alertColor });
 	const question_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.questionColor });
-	const removed_decorationType = vscode.window.createTextEditorDecorationType({ textDecoration: 'line-through' });
+	const removed_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.removedColor, textDecoration: 'line-through' });
 	const todo_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.todoColor });
 
 	function updateDecorations() {
@@ -81,7 +81,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (timeout) {
 			clearTimeout(timeout);
 		}
-		timeout = setTimeout(updateDecorations, 200);
+		timeout = setTimeout(updateDecorations, 500);
 	}
 }
 

@@ -9,14 +9,14 @@ import * as Assert from 'assert';
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
 import * as vscode from 'vscode';
-import * as bc from '../src/extension';
+import * as bc from '../extension';
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("Better Comments tests", () => {
 
     // Defines a Mocha unit test
-    test("Something 1", () => {
-        Assert.equal(-1, [1, 2, 3].indexOf(5));
-        Assert.equal(-1, [1, 2, 3].indexOf(0));
-    });
+    test("should take default alert color from config", () => { });
+	test("should take default question color from config", () => { });
+	test("should take default removed color from config", () => { });
+	test("should take default todo color from config", () => { });
 });

@@ -1,7 +1,7 @@
 {
 	"name": "better-comments",
 	"displayName": "Better Comments",
-	"icon": "images/icon.png",
+	"icon": "icon.png",
 	"description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
 	"version": "0.0.1",
 	"publisher": "aaron-bond",
@@ -20,13 +20,22 @@
 		"vscode": "^1.8.0"
 	},
 	"activationEvents": [
-		"*"
+		"onLanguage:cpp",
+		"onLanguage:csharp",
+		"onLanguage:css",
+		"onLanguage:java",
+		"onLanguage:javascript",
+		"onLanguage:less",
+		"onLanguage:lua",
+		"onLanguage:php",
+		"onLanguage:rust",
+		"onLanguage:typescript"
 	],
 	"galleryBanner": {
 		"color": "#e3f4ff",
 		"theme": "light"
 	},
-	"main": "./out/src/extension",
+	"main": "./out/extension",
 	"scripts": {
 		"vscode:prepublish": "tsc -p ./",
 		"compile": "tsc -watch -p ./",
@@ -39,14 +48,22 @@
 			"properties": {
 				"better-comments.alertColor": {
 					"type": "string",
+					"description": "The color of the comment when prefixed with //!",
 					"default": "#FF2D00"
 				},
 				"better-comments.questionColor": {
 					"type": "string",
+					"description": "The color of the comment when prefixed with //?",
 					"default": "#3498DB"
+				},
+				"better-comments.removedColor": {
+					"type": "string",
+					"description": "The color of the commented code when prefixed with ////",
+					"default": "#474747"
 				},
 				"better-comments.todoColor": {
 					"type": "string",
+					"description": "The color of the comment when prefixed with //TODO",
 					"default": "#FF8C00"
 				}
 			}
