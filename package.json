@@ -1,80 +1,80 @@
 {
-	"name": "better-comments",
-	"displayName": "Better Comments",
-	"icon": "icon.png",
-	"description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-	"version": "0.0.1",
-	"publisher": "aaron-bond",
-	"author": {
-		"name": "Aaron Bond"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/aaron-bond/better-comments"
-	},
-	"bugs": "https://github.com/aaron-bond/better-comments/issues",
-	"categories": [
-		"Other"
-	],
-	"engines": {
-		"vscode": "^1.8.0"
-	},
-	"activationEvents": [
-		"onLanguage:cpp",
-		"onLanguage:csharp",
-		"onLanguage:css",
-		"onLanguage:java",
-		"onLanguage:javascript",
-		"onLanguage:less",
-		"onLanguage:lua",
-		"onLanguage:php",
-		"onLanguage:rust",
-		"onLanguage:typescript"
-	],
-	"galleryBanner": {
-		"color": "#e3f4ff",
-		"theme": "light"
-	},
-	"main": "./out/extension",
-	"scripts": {
-		"vscode:prepublish": "tsc -p ./",
-		"compile": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "node ./node_modules/vscode/bin/test"
-	},
-	"contributes": {
-		"configuration": {
-			"title": "Better Comments configuration",
-			"properties": {
-				"better-comments.alertColor": {
-					"type": "string",
-					"description": "The color of the comment when prefixed with //!",
-					"default": "#FF2D00"
-				},
-				"better-comments.questionColor": {
-					"type": "string",
-					"description": "The color of the comment when prefixed with //?",
-					"default": "#3498DB"
-				},
-				"better-comments.removedColor": {
-					"type": "string",
-					"description": "The color of the commented code when prefixed with ////",
-					"default": "#474747"
-				},
-				"better-comments.todoColor": {
-					"type": "string",
-					"description": "The color of the comment when prefixed with //TODO",
-					"default": "#FF8C00"
-				}
-			}
-		}
-	},
-	"devDependencies": {
-		"typescript": "^2.0.3",
-		"vsce": "^1.22.0",
-		"vscode": "^1.0.0",
-		"mocha": "^2.3.3",
-		"@types/node": "^6.0.40",
-		"@types/mocha": "^2.2.32"
-	}
+    "name": "better-comments",
+    "displayName": "Better Comments",
+    "icon": "icon.png",
+    "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
+    "version": "0.0.3",
+    "publisher": "aaron-bond",
+    "author": {
+        "name": "Aaron Bond"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aaron-bond/better-comments"
+    },
+    "bugs": "https://github.com/aaron-bond/better-comments/issues",
+    "categories": [
+        "Other"
+    ],
+    "engines": {
+        "vscode": "^1.8.0"
+    },
+    "activationEvents": [
+        "onLanguage:cpp",
+        "onLanguage:csharp",
+        "onLanguage:css",
+        "onLanguage:java",
+        "onLanguage:javascript",
+        "onLanguage:less",
+        "onLanguage:lua",
+        "onLanguage:php",
+        "onLanguage:rust",
+        "onLanguage:typescript"
+    ],
+    "galleryBanner": {
+        "color": "#e3f4ff",
+        "theme": "light"
+    },
+    "main": "./out/extension",
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "contributes": {
+        "configuration": {
+            "title": "Better Comments configuration",
+            "properties": {
+                "better-comments.alertColor": {
+                    "type": "string",
+                    "description": "The color of the comment when prefixed with //!",
+                    "default": "#FF2D00"
+                },
+                "better-comments.questionColor": {
+                    "type": "string",
+                    "description": "The color of the comment when prefixed with //?",
+                    "default": "#3498DB"
+                },
+                "better-comments.removedColor": {
+                    "type": "string",
+                    "description": "The color of the commented code when prefixed with ////",
+                    "default": "#474747"
+                },
+                "better-comments.todoColor": {
+                    "type": "string",
+                    "description": "The color of the comment when prefixed with //TODO",
+                    "default": "#FF8C00"
+                }
+            }
+        }
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vsce": "^1.22.0",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
 }

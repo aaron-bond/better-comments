@@ -7,6 +7,8 @@ With this extension, you will be able to categorise your annotations into:
 * TODOs
 * Removed code will also be styled to make it clear the code shouldn't be there!
 
+![Annotated code](images/better-comments.PNG)
+
 ## Contribution points
 
 This extension contributes the following settings:
