@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!activeEditor) return;
 
 		// Regex will find: // + ! OR ? OR // OR TODO, until end of line
-		const regEx = /(\/\/)+(\!|\?|\/\/|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.*)+/g;
+		const regEx = /(\/\/)+( )?(\!|\?|\/\/|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.*)+/g;
 
 		const text = activeEditor.document.getText();
 
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
 			const decoration = { range: new vscode.Range(startPos, endPos) };
 
-			let matchString = match[2] as string;
+			let matchString = match[3] as string;
 			switch (matchString.toLowerCase()) {
 				case "!":
 					alerts.push(decoration);
