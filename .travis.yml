@@ -14,3 +14,5 @@ script:
 before_deploy:
 - npm install -g vsce;
 - vsce package;
+
+after_failure: "cat /home/travis/build/aaron-bond/better-comments/npm-debug.log"
