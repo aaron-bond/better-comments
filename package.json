@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
@@ -66,11 +66,11 @@
                     "description": "The color of the comment when prefixed with //TODO",
                     "default": "#FF8C00"
                 },
-				"better-comments.highlightColor": {
+                "better-comments.highlightColor": {
                     "type": "string",
                     "description": "The color of the comment when prefixed with //*",
                     "default": "#98C379"
-				}
+                }
             }
         }
     },

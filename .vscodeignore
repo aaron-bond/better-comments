@@ -8,3 +8,4 @@ images/**
 .gitignore
 tsconfig.json
 npm-debug.log
+.travis.yml

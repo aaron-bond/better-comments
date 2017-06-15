@@ -1,6 +1,6 @@
 # Change Log
 
-# [0.0.4] (2017-06-15)
+# [0.1.0] (2017-06-15)
 
 ### Features
 * Adding new comment type contribution point: **highlight** ([07bd22f](https://github.com/aaron-bond/better-comments/commit/07bd22f))
