@@ -8,6 +8,7 @@ install:
 - npm install;
 
 script:
+- npm run compile;
 - npm run test;
 
 before_deploy:
