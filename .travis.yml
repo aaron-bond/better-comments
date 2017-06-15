@@ -1,5 +1,4 @@
-sudo: required
-dist: trusty
+sudo: false
 language: node_js
 node_js:
   - '6.9.1'
@@ -15,4 +14,6 @@ before_deploy:
 - npm install -g vsce;
 - vsce package;
 
-after_failure: "cat /home/travis/build/aaron-bond/better-comments/npm-debug.log"
+after_failure: 
+- "ls"
+- "cat /home/travis/build/aaron-bond/better-comments/npm-debug.log"
