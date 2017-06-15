@@ -1,3 +1,9 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - '6.9.1'
+  
 after_success:  
 - npm install -g vsce;
 - vsce package;
