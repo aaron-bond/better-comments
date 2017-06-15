@@ -8,7 +8,7 @@ install:
 - npm install;
 
 script:
-- npm run compile;
+- tsc -p ./;
 - npm run test;
 
 before_deploy:
