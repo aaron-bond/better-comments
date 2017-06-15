@@ -7,6 +7,9 @@ node_js:
 install:
 - npm install;
 
+script:
+- npm test --silent;
+
 before_deploy:
 - npm install -g vsce;
 - vsce package;
