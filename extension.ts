@@ -10,12 +10,13 @@ export function activate(context: vscode.ExtensionContext) {
 	const question_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.questionColor });
 	const removed_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.removedColor, textDecoration: 'line-through' });
 	const todo_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.todoColor });
+	const highlight_decorationType = vscode.window.createTextEditorDecorationType({ color: contributions.highlightColor });
 
 	function updateDecorations() {
 		if (!activeEditor) return;
 
 		// Regex will find: // + ! OR ? OR // OR TODO, until end of line
-		const regEx = /(\/\/)+( )?(\!|\?|\/\/|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.*)+/g;
+		const regEx = /(\/\/)+( )?(\!|\?|\/\/|\*|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.*)+/g;
 
 		const text = activeEditor.document.getText();
 
@@ -24,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const informational: vscode.DecorationOptions[] = [];
 		const removed: vscode.DecorationOptions[] = [];
 		const todos: vscode.DecorationOptions[] = [];
+		const highlights: vscode.DecorationOptions[] = [];
 
 		let match;
 		while (match = regEx.exec(text)) {
@@ -48,6 +50,10 @@ export function activate(context: vscode.ExtensionContext) {
 				case "todo":
 					todos.push(decoration);
 					break;
+
+				case "*":
+					highlights.push(decoration);
+					break;
 			}
 		}
 
@@ -55,6 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 		activeEditor.setDecorations(question_decorationType, questions);
 		activeEditor.setDecorations(removed_decorationType, removed);
 		activeEditor.setDecorations(todo_decorationType, todos);
+		activeEditor.setDecorations(highlight_decorationType, highlights);
 	}
 
 	// Text update handlers
@@ -81,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (timeout) {
 			clearTimeout(timeout);
 		}
-		timeout = setTimeout(updateDecorations, 500);
+		timeout = setTimeout(updateDecorations, 200);
 	}
 }
 

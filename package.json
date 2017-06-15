@@ -65,7 +65,12 @@
                     "type": "string",
                     "description": "The color of the comment when prefixed with //TODO",
                     "default": "#FF8C00"
-                }
+                },
+				"better-comments.highlightColor": {
+                    "type": "string",
+                    "description": "The color of the comment when prefixed with //*",
+                    "default": "#98C379"
+				}
             }
         }
     },
