@@ -8,6 +8,7 @@
     "author": {
         "name": "Aaron Bond"
     },
+    "license" : "SEE LICENSE IN LICENSE.md",
     "repository": {
         "type": "git",
         "url": "https://github.com/aaron-bond/better-comments"
