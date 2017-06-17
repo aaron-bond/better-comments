@@ -8,13 +8,14 @@
     "author": {
         "name": "Aaron Bond"
     },
+	"homepage": "https://github.com/aaron-bond/better-comments/blob/master/README.md",
     "repository": {
         "type": "git",
         "url": "https://github.com/aaron-bond/better-comments"
     },
     "bugs": "https://github.com/aaron-bond/better-comments/issues",
     "categories": [
-        "Other"
+        "Formatters"
     ],
     "engines": {
         "vscode": "^1.8.0"
