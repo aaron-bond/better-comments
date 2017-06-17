@@ -9,6 +9,7 @@
         "name": "Aaron Bond"
     },
 	"homepage": "https://github.com/aaron-bond/better-comments/blob/master/README.md",
+    "license" : "SEE LICENSE IN LICENSE.md",
     "repository": {
         "type": "git",
         "url": "https://github.com/aaron-bond/better-comments"
