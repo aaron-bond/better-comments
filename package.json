@@ -22,6 +22,7 @@
         "vscode": "^1.8.0"
     },
     "activationEvents": [
+        "onLanguage:c",
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
