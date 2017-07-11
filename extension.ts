@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!activeEditor) return;
 
 		// Regex will find: // + ! OR ? OR // OR TODO, until end of line
-		const regEx = /(\/\/)+( )?(\!|\?|\/\/|\*|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.*)+/g;
+		let regEx = /(\/\/)+( )?(\!|\?|\/\/|\*|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.*)+/g;
 
 		const text = activeEditor.document.getText();
 
@@ -28,6 +28,37 @@ export function activate(context: vscode.ExtensionContext) {
 		const highlights: vscode.DecorationOptions[] = [];
 
 		let match;
+		while (match = regEx.exec(text)) {
+			const startPos = activeEditor.document.positionAt(match.index);
+			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
+			const decoration = { range: new vscode.Range(startPos, endPos) };
+
+			let matchString = match[3] as string;
+			switch (matchString.toLowerCase()) {
+				case "!":
+					alerts.push(decoration);
+					break;
+
+				case "?":
+					questions.push(decoration);
+					break;
+
+				case "//":
+					removed.push(decoration);
+					break;
+
+				case "todo":
+					todos.push(decoration);
+					break;
+
+				case "*":
+					highlights.push(decoration);
+					break;
+			}
+		}
+		
+		regEx = /(\/\*)+( )?(\!|\?|\/\/|\*|[\\t\\T][\\o\\O][\\d\\D][\\o\\O])+(.|\n|\r*)+\*\//gm;
+		
 		while (match = regEx.exec(text)) {
 			const startPos = activeEditor.document.positionAt(match.index);
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
