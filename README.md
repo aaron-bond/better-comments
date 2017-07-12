@@ -17,4 +17,5 @@ This extension contributes the following settings:
 * `better-comments.questionColor`: defaults to #3498DB
 * `better-comments.todoColor`: defaults to #FF8C00
 * `better-comments.removedColor`: defaults to #474747
-* `better-comments.highlightColor`: defaults to #98C379;
+* `better-comments.highlightColor`: defaults to #98C379
+* `better-comments.multilineComments`: defaults to **true**; set to **false** to disable
