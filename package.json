@@ -3,13 +3,13 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
     },
-	"homepage": "https://github.com/aaron-bond/better-comments/blob/master/README.md",
-    "license" : "SEE LICENSE IN LICENSE.md",
+    "homepage": "https://github.com/aaron-bond/better-comments/blob/master/README.md",
+    "license": "SEE LICENSE IN LICENSE.md",
     "repository": {
         "type": "git",
         "url": "https://github.com/aaron-bond/better-comments"
@@ -73,12 +73,12 @@
                     "type": "string",
                     "description": "The color of the comment when prefixed with //*",
                     "default": "#98C379"
-				},
-				"better-comments.multilineComments": {
-					"type": "boolean",
-					"description": "Whether the multiline comment highlighter should be active",
-					"default": true
-				}
+                },
+                "better-comments.multilineComments": {
+                    "type": "boolean",
+                    "description": "Whether the multiline comment highlighter should be active",
+                    "default": true
+                }
             }
         }
     },
