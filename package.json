@@ -73,7 +73,12 @@
                     "type": "string",
                     "description": "The color of the comment when prefixed with //*",
                     "default": "#98C379"
-                }
+				},
+				"better-comments.multilineComments": {
+					"type": "boolean",
+					"description": "Whether the multiline comment highlighter should be active",
+					"default": true
+				}
             }
         }
     },
