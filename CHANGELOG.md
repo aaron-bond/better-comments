@@ -4,7 +4,7 @@
 
 ### Features
 * Adding language support for `C` (thanks to _TheWhoAreYouPerson_) ([6f3b852](https://github.com/aaron-bond/better-comments/commit/6f3b852))
-* Adding support for multiline comments (special thanks to _kurozael_ for the suggestion and help implementing) ([cc82fca](https://github.com/aaron-bond/better-comments/commit/6f3b852cc82fca))
+* Adding support for multiline comments (special thanks to _kurozael_ for the suggestion and help implementing) ([cc82fca](https://github.com/aaron-bond/better-comments/commit/cc82fca))
 	 - Also adding contribution point for this: **multilineComments**: set this to false to disable
 
 # [0.1.0] (2017-06-15)
