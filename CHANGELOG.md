@@ -1,5 +1,9 @@
 # Change Log
 
+# [0.1.2] (2017-07-14)
+
+### Bug Fixes
+* Fixing issue with `TODO` and `:` in multiline comments ([5f4d049](https://github.com/aaron-bond/better-comments/commit/5f4d049)), closes [#5](https://github.com/aaron-bond/better-comments/issues/5)
 # [0.1.1] (2017-07-12)
 
 ### Features
