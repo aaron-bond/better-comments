@@ -60,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let findMultilineComments = function () {
 		const regEx = /(^|[ \t])(\/\*)+([\s\S]*?)(\*\/)/g;
 		const text = activeEditor.document.getText();
-		const commentRegEx = /(^)+([ \t]*)?(\!|\?|\*|(todo))+( )?([a-z])+([^*/\r\n]*)/igm;
+		const commentRegEx = /(^)+([ \t]*)?(\!|\?|\*|(todo(:)?))+( )*?([a-z])+([^*/\r\n]*)/igm;
 
 		let match;
 		while (match = regEx.exec(text)) {
@@ -82,6 +82,7 @@ export function activate(context: vscode.ExtensionContext) {
 						break;
 
 					case "todo":
+					case "todo:":
 						todos.push(decoration);
 						break;
 
