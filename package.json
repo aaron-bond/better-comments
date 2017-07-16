@@ -26,6 +26,7 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
+        "onLanguage:go",
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:less",
