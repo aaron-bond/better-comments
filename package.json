@@ -33,7 +33,10 @@
         "onLanguage:lua",
         "onLanguage:php",
         "onLanguage:rust",
-        "onLanguage:typescript"
+        "onLanguage:typescript",
+        "onLanguage:shellscript",
+        "onLanguage:plsql",
+        "onLanguage:sql"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
