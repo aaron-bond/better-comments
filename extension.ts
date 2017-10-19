@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let findSingleLineComments = function () {
 		// Regex will find: // + ! OR ? OR // OR TODO, until end of line
-		const regEx = /(\/\/|\#|\-\-)+( )?(\!|\?|(\/\/|\#|\-\-)|\*|(todo))+(.*)+/ig;
+		const regEx = /(\/\/|\#|\-\-)+( )?(\!|\?|(\/\/)|\*|(todo))+(.*)+/ig;
 		const text = activeEditor.document.getText();
 
 		let match;
@@ -43,8 +43,6 @@ export function activate(context: vscode.ExtensionContext) {
 					break;
 
 				case "//":
-				case "#":
-				case "--":
 					removed.push(decoration);
 					break;
 
