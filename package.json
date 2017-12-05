@@ -26,20 +26,41 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
+        "onLanguage:fsharp",
         "onLanguage:go",
+        "onLanguage:groovy",
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:less",
-        "onLanguage:lua",
+		"onLanguage:lua",
+        "onLanguage:objective-c",
+        "onLanguage:objective-cpp",
         "onLanguage:php",
         "onLanguage:rust",
-        "onLanguage:typescript"
+		"onLanguage:scss",
+		"onLanguage:sass",
+		"onLanguage:shaderlab",
+		"onLanguage:swift",
+		"onLanguage:typescript",
+
+		"onLanguage:coffeescript",
+		"onLanguage:dockerfile",
+		"onLanguage:makefile",
+		"onLanguage:perl",
+		"onLanguage:perl6",
+		"onLanguage:powershell",
+		"onLanguage:python",
+		"onLanguage:r",
+		"onLanguage:ruby",
+		"onLanguage:shellscript",
+
+		"onLanguage:sql"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
         "theme": "light"
     },
-    "main": "./out/extension",
+    "main": "./out/src/extension",
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",
@@ -50,36 +71,22 @@
         "configuration": {
             "title": "Better Comments configuration",
             "properties": {
-                "better-comments.alertColor": {
-                    "type": "string",
-                    "description": "The color of the comment when prefixed with //!",
-                    "default": "#FF2D00"
-                },
-                "better-comments.questionColor": {
-                    "type": "string",
-                    "description": "The color of the comment when prefixed with //?",
-                    "default": "#3498DB"
-                },
-                "better-comments.removedColor": {
-                    "type": "string",
-                    "description": "The color of the commented code when prefixed with ////",
-                    "default": "#474747"
-                },
-                "better-comments.todoColor": {
-                    "type": "string",
-                    "description": "The color of the comment when prefixed with //TODO",
-                    "default": "#FF8C00"
-                },
-                "better-comments.highlightColor": {
-                    "type": "string",
-                    "description": "The color of the comment when prefixed with //*",
-                    "default": "#98C379"
-                },
                 "better-comments.multilineComments": {
                     "type": "boolean",
                     "description": "Whether the multiline comment highlighter should be active",
                     "default": true
-                }
+				},
+				"better-comments.tags": {
+					"type": "object",
+					"description": "Tags which are used to color the comments",
+					"default": [
+						{ "tag": "!", "color": "#FF2D00", "strikethrough": false },
+						{ "tag": "?", "color": "#3498DB", "strikethrough": false },
+						{ "tag": "//", "color": "#474747", "strikethrough": true },
+						{ "tag": "todo", "color": "#FF8C00", "strikethrough": false },
+						{ "tag": "*", "color": "#98C379", "strikethrough": false }
+					]
+				}
             }
         }
     },
