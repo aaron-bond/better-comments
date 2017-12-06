@@ -10,7 +10,8 @@
 			"es6"
 		],
 		"sourceMap": true,
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"rootDir": "src"
 	},
 	"exclude": [
 		"node_modules",

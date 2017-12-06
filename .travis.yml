@@ -1,7 +1,7 @@
 sudo: false
 os: linux
 language: node_js
-node_js: '6.9.1'
+node_js: '8.9.2'
 
 before_install:
 - export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
@@ -13,6 +13,6 @@ install:
 
 script:
   - npm test --silent
-  
+
 after_failure:
 - "cat /home/travis/build/aaron-bond/better-comments/npm-debug.log"

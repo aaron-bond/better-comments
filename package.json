@@ -19,7 +19,7 @@
         "Formatters"
     ],
     "engines": {
-        "vscode": "^1.8.0"
+        "vscode": "^1.18.0"
     },
     "activationEvents": [
         "onLanguage:c",
@@ -32,29 +32,27 @@
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:less",
-		"onLanguage:lua",
+        "onLanguage:lua",
         "onLanguage:objective-c",
         "onLanguage:objective-cpp",
         "onLanguage:php",
         "onLanguage:rust",
-		"onLanguage:scss",
-		"onLanguage:sass",
-		"onLanguage:shaderlab",
-		"onLanguage:swift",
-		"onLanguage:typescript",
-
-		"onLanguage:coffeescript",
-		"onLanguage:dockerfile",
-		"onLanguage:makefile",
-		"onLanguage:perl",
-		"onLanguage:perl6",
-		"onLanguage:powershell",
-		"onLanguage:python",
-		"onLanguage:r",
-		"onLanguage:ruby",
-		"onLanguage:shellscript",
-
-		"onLanguage:sql"
+        "onLanguage:scss",
+        "onLanguage:sass",
+        "onLanguage:shaderlab",
+        "onLanguage:swift",
+        "onLanguage:typescript",
+        "onLanguage:coffeescript",
+        "onLanguage:dockerfile",
+        "onLanguage:makefile",
+        "onLanguage:perl",
+        "onLanguage:perl6",
+        "onLanguage:powershell",
+        "onLanguage:python",
+        "onLanguage:r",
+        "onLanguage:ruby",
+        "onLanguage:shellscript",
+        "onLanguage:sql"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
@@ -62,10 +60,11 @@
     },
     "main": "./out/src/extension",
     "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "contributes": {
         "configuration": {
@@ -75,27 +74,47 @@
                     "type": "boolean",
                     "description": "Whether the multiline comment highlighter should be active",
                     "default": true
-				},
-				"better-comments.tags": {
-					"type": "object",
-					"description": "Tags which are used to color the comments",
-					"default": [
-						{ "tag": "!", "color": "#FF2D00", "strikethrough": false },
-						{ "tag": "?", "color": "#3498DB", "strikethrough": false },
-						{ "tag": "//", "color": "#474747", "strikethrough": true },
-						{ "tag": "todo", "color": "#FF8C00", "strikethrough": false },
-						{ "tag": "*", "color": "#98C379", "strikethrough": false }
-					]
-				}
+                },
+                "better-comments.tags": {
+                    "type": "object",
+                    "description": "Tags which are used to color the comments",
+                    "default": [
+                        {
+                            "tag": "!",
+                            "color": "#FF2D00",
+                            "strikethrough": false
+                        },
+                        {
+                            "tag": "?",
+                            "color": "#3498DB",
+                            "strikethrough": false
+                        },
+                        {
+                            "tag": "//",
+                            "color": "#474747",
+                            "strikethrough": true
+                        },
+                        {
+                            "tag": "todo",
+                            "color": "#FF8C00",
+                            "strikethrough": false
+                        },
+                        {
+                            "tag": "*",
+                            "color": "#98C379",
+                            "strikethrough": false
+                        }
+                    ]
+                }
             }
         }
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
+        "typescript": "^2.6.1",
         "vsce": "^1.22.0",
-        "vscode": "^1.0.0",
+        "vscode": "^1.1.6",
         "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
     }
 }

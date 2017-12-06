@@ -1,5 +1,10 @@
 import * as vscode from 'vscode';
-import { CommentTag } from './CommentTag';
+interface CommentTag {
+	tag: string;
+	escapedTag: string;
+	decoration: vscode.TextEditorDecorationType;
+	ranges: Array<vscode.DecorationOptions>;
+}
 
 export class Parser {
 	private tags: CommentTag[] = [];
