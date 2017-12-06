@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.0.0] (2017-12-06)
+#### Bug Fixes
+* Fixing support for JSDoc style block comments ([69a36bf](https://github.com/aaron-bond/better-comments/commit/69a36bf)), closes [#13]
+
+#### Features
+* Adding support for MANY languages ([0e7eab9](https://github.com/aaron-bond/better-comments/commit/0e7eab9d352780bfb303caf090e186c15bdcc77b)), closes [#8], [#9]
+* Adding customisable comment annotation indicators, closes [#11]
+
 ## [0.1.3] (2017-07-17)
 #### Bug Fixes
 * Fixing an issue where multi-line comments would not be detected if preceded by some indentation ([c36821b](https://github.com/aaron-bond/better-comments/commit/c36821b))

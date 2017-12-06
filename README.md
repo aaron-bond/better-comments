@@ -9,13 +9,31 @@ With this extension, you will be able to categorise your annotations into:
 
 ![Annotated code](images/better-comments.PNG)
 
-## Contribution points
+## Configuration
 
-This extension contributes the following settings:
+This extension can be configured in User Settings or Workspace settings.
+The default settings are:
 
-* `better-comments.alertColor`: defaults to #FF2D00
-* `better-comments.questionColor`: defaults to #3498DB
-* `better-comments.todoColor`: defaults to #FF8C00
-* `better-comments.removedColor`: defaults to #474747
-* `better-comments.highlightColor`: defaults to #98C379
-* `better-comments.multilineComments`: defaults to **true**; set to **false** to disable
+`better-comments.multilineComments`: `true`
+
+`better-comments.tags`
+
+	`tag`: '!'
+	`color`: '#FF2D00'
+	`strikethrough`: false
+
+	`tag`: '?'
+	`color`: '#3498DB'
+	`strikethrough`: false
+
+	`tag`: '//'
+	`color`: '#474747'
+	`strikethrough`: true
+
+	`tag`: 'todo'
+	`color`: '#FF8C00'
+	`strikethrough`: false
+
+	`tag`: '*'
+	`color`: '#98C379'
+	`strikethrough`: false
