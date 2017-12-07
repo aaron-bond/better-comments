@@ -12,28 +12,36 @@ With this extension, you will be able to categorise your annotations into:
 ## Configuration
 
 This extension can be configured in User Settings or Workspace settings.
-The default settings are:
 
-`better-comments.multilineComments`: `true`
+
+`'better-comments.multilineComments': true`
+ This setting will control whether multiline comments are styled using the annotation tags.
+ When false, multiline comments will be presented without decoration.
+
 
 `better-comments.tags`
-
-	`tag`: '!'
-	`color`: '#FF2D00'
-	`strikethrough`: false
-
-	`tag`: '?'
-	`color`: '#3498DB'
-	`strikethrough`: false
-
-	`tag`: '//'
-	`color`: '#474747'
-	`strikethrough`: true
-
-	`tag`: 'todo'
-	`color`: '#FF8C00'
-	`strikethrough`: false
-
-	`tag`: '*'
-	`color`: '#98C379'
-	`strikethrough`: false
+The tags are the characters or sequences used to mark a comment for decoration.
+The default 5 can be modifed to change the colors, and more can be added.
+```javascript
+[{
+  `tag`: '!',
+  `color`: '#FF2D00',
+  `strikethrough`: false
+},{
+  `tag`: '?',
+  `color`: '#3498DB',
+  `strikethrough`: false
+},{
+  `tag`: '//',
+  `color`: '#474747',
+  `strikethrough`: true
+},{
+  `tag`: 'todo',
+  `color`: '#FF8C00',
+  `strikethrough`: false
+},{
+  `tag`: '*',
+  `color`: '#98C379',
+  `strikethrough`: false
+}]
+```
