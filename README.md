@@ -5,7 +5,9 @@ With this extension, you will be able to categorise your annotations into:
 * Alerts
 * Queries
 * TODOs
-* Removed code will also be styled to make it clear the code shouldn't be there!
+* Highlights
+* Commented out code can also be styled to make it clear the code shouldn't be there
+* Any other comment styles you'd like can be specified in the settings
 
 ![Annotated code](images/better-comments.PNG)
 
