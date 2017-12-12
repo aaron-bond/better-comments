@@ -2,7 +2,7 @@
 
 ## [1.1.1] (2017-12-12) : Accidental Increment
 #### Bug Fixes
-* Fixing issue with options configuration ([]()), closes [#16]
+* Fixing issue with options configuration ([0a00618](https://github.com/aaron-bond/better-comments/commit/0a00618)), closes [#16]
 
 ## [1.0.0] (2017-12-06)
 #### Bug Fixes
