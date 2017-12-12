@@ -77,7 +77,7 @@
                 },
                 "better-comments.tags": {
                     "type": "array",
-                    "description": "Tags which are used to color the comments",
+                    "description": "Tags which are used to color the comments. Changes require a restart of VS Code to take effect",
                     "default": [
                         {
                             "tag": "!",
