@@ -143,7 +143,6 @@ export class Parser {
 			case "java":
 			case "javascript":
 			case "less":
-			case "lua":
 			case "php":
 			case "rust":
 			case "swift":
@@ -166,6 +165,7 @@ export class Parser {
 				break;
 
 			case "sql":
+			case "lua":
 				this.delimiter = "--";
 				break;
 		}
