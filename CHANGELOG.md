@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.1.2] (2017-?-?)
+## [1.1.2] (2017-12-16)
 #### Bug Fixes
 * Fixed wrong delimiter for Lua ([4bb1e2f](https://github.com/aaron-bond/better-comments/commit/4bb1e2f)), closes [#17]
 
