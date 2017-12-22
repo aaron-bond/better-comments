@@ -31,6 +31,7 @@
         "onLanguage:groovy",
         "onLanguage:java",
         "onLanguage:javascript",
+        "onLanguage:javascriptreact",
         "onLanguage:less",
         "onLanguage:lua",
         "onLanguage:objective-c",
@@ -58,7 +59,7 @@
         "color": "#e3f4ff",
         "theme": "light"
     },
-    "main": "./out/src/extension",
+    "main": "./out/extension",
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",

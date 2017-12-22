@@ -142,6 +142,7 @@ export class Parser {
 			case "go":
 			case "java":
 			case "javascript":
+			case "javascriptreact":
 			case "less":
 			case "php":
 			case "rust":
