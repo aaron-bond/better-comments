@@ -32,7 +32,7 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// start by finding the delimiter (//, --, #) with an optional space
+		// start by finding the delimiter (//, --, #, ') with an optional space
 		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( )?";
 
 		// Apply all configurable comment start tags
@@ -129,7 +129,7 @@ export class Parser {
 	}
 
 	/**
-	 * Sets the comment delimiter [//, #, --] of a given language
+	 * Sets the comment delimiter [//, #, --, '] of a given language
 	 * @param languageCode The short code of the current language
 	 * https://code.visualstudio.com/docs/languages/identifiers
 	 */
@@ -169,6 +169,9 @@ export class Parser {
 			case "lua":
 				this.delimiter = "--";
 				break;
+
+			case "vb":
+				this.delimiter = "'";
 		}
 	}
 
@@ -185,7 +188,7 @@ export class Parser {
 			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
 			this.tags.push({
 				tag: item.tag,
-				escapedTag: escapedSequence.replace(/\//gi, "\\/"), //! hardcoded to escape slashes
+				escapedTag: escapedSequence.replace(/\//gi, "\\/"), // ! hardcoded to escape slashes
 				ranges: [],
 				decoration: vscode.window.createTextEditorDecorationType(options)
 			});

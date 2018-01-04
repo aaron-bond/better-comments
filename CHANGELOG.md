@@ -1,7 +1,11 @@
 # Change Log
 
+## [1.1.4] (2018-01-04)
+#### Features
+* Adding activation event and new comment type for VB.NET ("vb") ([]()), closes [21]
+
 ## [1.1.3] (2017-12-22)
-#### Bug Fixes
+#### Features
 * Adding activation event for React ("javascriptreact") ([e54ae83](https://github.com/aaron-bond/better-comments/commit/e54ae83)), closes [#19]
 
 ## [1.1.2] (2017-12-16)
