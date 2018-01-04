@@ -2,7 +2,7 @@
 
 ## [1.1.4] (2018-01-04)
 #### Features
-* Adding activation event and new comment type for VB.NET ("vb") ([]()), closes [21]
+* Adding activation event and new comment type for VB.NET ("vb") ([45199a9](https://github.com/aaron-bond/better-comments/commit/45199a9)), closes [21]
 
 ## [1.1.3] (2017-12-22)
 #### Features
