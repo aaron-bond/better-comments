@@ -70,7 +70,7 @@ export class Parser {
 	 * @param activeEditor The active text editor containing the code document
 	 */
 	public FindMultilineComments(activeEditor: vscode.TextEditor): void {
-
+		let languageCode = activeEditor.document.languageId;
 		// If highlight multiline is off in package.json or doesn't apply to his language, return
 		if (!this.highlightMultilineComments)
 			return;
@@ -89,7 +89,7 @@ export class Parser {
 		commentMatchString += ")+([ ]*[a-z]|[:])+([^*/\\r\\n]*)";
 
 		// Find rows of comments matching pattern
-		let regEx = /(^|[ \t])([\/\(]\*)+([\s\S]*?)(\*[\/\)])/gm;
+		let regEx = /(^|[ \t])(\/\*)+([\s\S]*?)(\*\/)/gm;
 		let commentRegEx = new RegExp(commentMatchString, "igm");
 
 		// Find the multiline comment block
