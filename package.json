@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
