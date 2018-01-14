@@ -2,31 +2,31 @@
 
 ## [1.1.5] (2018-01-14)
 #### Bug Fixes
-* Fixing multiline comment detection with non-English characters ([deff42b](https://github.com/aaron-bond/better-comments/commit/deff42b)), closes [24]
+* Fixing multiline comment detection with non-English characters ([deff42b](https://github.com/aaron-bond/better-comments/commit/deff42b)), closes [24](https://github.com/aaron-bond/better-comments/issues/24)
 
 ## [1.1.4] (2018-01-04)
 #### Features
-* Adding activation event and new comment type for VB.NET ("vb") ([45199a9](https://github.com/aaron-bond/better-comments/commit/45199a9)), closes [21]
+* Adding activation event and new comment type for VB.NET ("vb") ([45199a9](https://github.com/aaron-bond/better-comments/commit/45199a9)), closes [21](https://github.com/aaron-bond/better-comments/issues/21)
 
 ## [1.1.3] (2017-12-22)
 #### Features
-* Adding activation event for React ("javascriptreact") ([e54ae83](https://github.com/aaron-bond/better-comments/commit/e54ae83)), closes [#19]
+* Adding activation event for React ("javascriptreact") ([e54ae83](https://github.com/aaron-bond/better-comments/commit/e54ae83)), closes [#19](https://github.com/aaron-bond/better-comments/issues/19)
 
 ## [1.1.2] (2017-12-16)
 #### Bug Fixes
-* Fixed wrong delimiter for Lua ([4bb1e2f](https://github.com/aaron-bond/better-comments/commit/4bb1e2f)), closes [#17]
+* Fixed wrong delimiter for Lua ([4bb1e2f](https://github.com/aaron-bond/better-comments/commit/4bb1e2f)), closes [#17](https://github.com/aaron-bond/better-comments/issues/17)
 
 ## [1.1.1] (2017-12-12) : Accidental Increment
 #### Bug Fixes
-* Fixing issue with options configuration ([0a00618](https://github.com/aaron-bond/better-comments/commit/0a00618)), closes [#16]
+* Fixing issue with options configuration ([0a00618](https://github.com/aaron-bond/better-comments/commit/0a00618)), closes [#16](https://github.com/aaron-bond/better-comments/issues/16)
 
 ## [1.0.0] (2017-12-06)
 #### Bug Fixes
-* Fixing support for JSDoc style block comments ([69a36bf](https://github.com/aaron-bond/better-comments/commit/69a36bf)), closes [#13]
+* Fixing support for JSDoc style block comments ([69a36bf](https://github.com/aaron-bond/better-comments/commit/69a36bf)), closes [#13](https://github.com/aaron-bond/better-comments/issues/13)
 
 #### Features
-* Adding support for MANY languages ([0e7eab9](https://github.com/aaron-bond/better-comments/commit/0e7eab9d352780bfb303caf090e186c15bdcc77b)), closes [#8], [#9]
-* Adding customisable comment annotation indicators, closes [#11]
+* Adding support for MANY languages ([0e7eab9](https://github.com/aaron-bond/better-comments/commit/0e7eab9d352780bfb303caf090e186c15bdcc77b)), closes [#8](https://github.com/aaron-bond/better-comments/issues/8), [#9](https://github.com/aaron-bond/better-comments/issues/9)
+* Adding customisable comment annotation indicators, closes [#11](https://github.com/aaron-bond/better-comments/issues/11)
 
 ## [0.1.3] (2017-07-17)
 #### Bug Fixes
