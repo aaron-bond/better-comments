@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.5] (2018-01-14)
+#### Bug Fixes
+* Fixing multiline comment detection with non-English characters ([deff42b](https://github.com/aaron-bond/better-comments/commit/deff42b)), closes [24]
+
 ## [1.1.4] (2018-01-04)
 #### Features
 * Adding activation event and new comment type for VB.NET ("vb") ([45199a9](https://github.com/aaron-bond/better-comments/commit/45199a9)), closes [21]
