@@ -86,7 +86,7 @@ export class Parser {
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString: string = "(^)+([ \\t]*\\*[ \\t]*)(";
 		commentMatchString += characters.join("|");
-		commentMatchString += ")+([ ]*[a-z]|[:])+([^*/\\r\\n]*)";
+		commentMatchString += ")+([ ]*|[:])+([^*/\\r\\n]*)";
 
 		// Find rows of comments matching pattern
 		let regEx = /(^|[ \t])(\/\*)+([\s\S]*?)(\*\/)/gm;

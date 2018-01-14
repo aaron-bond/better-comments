@@ -53,8 +53,8 @@
         "onLanguage:r",
         "onLanguage:ruby",
         "onLanguage:shellscript",
-		"onLanguage:sql",
-		"onLanguage:vb"
+        "onLanguage:sql",
+        "onLanguage:vb"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
