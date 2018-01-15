@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.6] (2018-01-15)
+### Features
+* Adding multiple new languages ([586f325](https://github.com/aaron-bond/better-comments/commit/586f325)), thanks to _Jooseppi12_
+
 ## [1.1.5] (2018-01-14)
 #### Bug Fixes
 * Fixing multiline comment detection with non-English characters ([deff42b](https://github.com/aaron-bond/better-comments/commit/deff42b)), closes [24](https://github.com/aaron-bond/better-comments/issues/24)
