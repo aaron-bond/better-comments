@@ -139,13 +139,17 @@ export class Parser {
 			case "cpp":
 			case "csharp":
 			case "css":
+			case "fsharp":
 			case "go":
+			case "haxe":
 			case "java":
 			case "javascript":
 			case "javascriptreact":
+			case "kotlin":
 			case "less":
 			case "php":
 			case "rust":
+			case "scala":
 			case "swift":
 			case "typescript":
 				this.delimiter = "//";
@@ -154,6 +158,7 @@ export class Parser {
 
 			case "coffeescript":
 			case "dockerfile":
+			case "elixir":
 			case "makefile":
 			case "perl":
 			case "perl6":
@@ -165,6 +170,9 @@ export class Parser {
 				this.delimiter = "#";
 				break;
 
+			case "ada":
+			case "haskell":
+			case "plsql":
 			case "sql":
 			case "lua":
 				this.delimiter = "--";
@@ -172,7 +180,12 @@ export class Parser {
 
 			case "vb":
 				this.delimiter = "'";
-		}
+				break;
+			
+			case "erlang":
+			case "latex":
+				this.delimiter = "%";
+}
 	}
 
 	private setTags(): void {

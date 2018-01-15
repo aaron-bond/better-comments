@@ -47,3 +47,48 @@ The default 5 can be modifed to change the colors, and more can be added.
   `strikethrough`: false
 }]
 ```
+
+## Supported Languages
+
+* Ada
+* C
+* CoffeeScript
+* CSS
+* C++
+* C#
+* Dockerfile
+* Elixir
+* Erlang
+* F#
+* Go
+* Groovy
+* Haskell
+* Haxe
+* Kotlin
+* Java
+* JavaScript
+* JavaScript React
+* LaTex
+* Less
+* Lua
+* Makefile
+* Objective-C
+* Objective-C++
+* Perl
+* Perl 6
+* PHP
+* PL/SQL
+* PowerShell
+* Python
+* R
+* Rust
+* Ruby
+* Sass
+* Scala
+* SCSS
+* ShaderLab
+* ShellScript
+* SQL
+* Swift
+* TypeScript
+* Visual Basic
