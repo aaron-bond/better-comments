@@ -32,8 +32,8 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// start by finding the delimiter (//, --, #, ') with an optional space
-		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( )?";
+		// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
+		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
 
 		// Apply all configurable comment start tags
 		this.expression += "("
