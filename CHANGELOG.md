@@ -1,16 +1,20 @@
 # Change Log
 
+## [1.1.7] (2018-01-07)
+### Bug Fixes
+* Fixing comment detection when tabs are used to start the comment ([2f08fb9](https://github.com/aaron-bond/better-comments/commit/2f08fb9)), closes [#25](https://github.com/aaron-bond/better-comments/issues/25), thanks to _bekorn_
+
 ## [1.1.6] (2018-01-15)
 ### Features
 * Adding multiple new languages ([586f325](https://github.com/aaron-bond/better-comments/commit/586f325)), thanks to _Jooseppi12_
 
 ## [1.1.5] (2018-01-14)
 #### Bug Fixes
-* Fixing multiline comment detection with non-English characters ([deff42b](https://github.com/aaron-bond/better-comments/commit/deff42b)), closes [24](https://github.com/aaron-bond/better-comments/issues/24)
+* Fixing multiline comment detection with non-English characters ([deff42b](https://github.com/aaron-bond/better-comments/commit/deff42b)), closes [#24](https://github.com/aaron-bond/better-comments/issues/24)
 
 ## [1.1.4] (2018-01-04)
 #### Features
-* Adding activation event and new comment type for VB.NET ("vb") ([45199a9](https://github.com/aaron-bond/better-comments/commit/45199a9)), closes [21](https://github.com/aaron-bond/better-comments/issues/21)
+* Adding activation event and new comment type for VB.NET ("vb") ([45199a9](https://github.com/aaron-bond/better-comments/commit/45199a9)), closes [#21](https://github.com/aaron-bond/better-comments/issues/21)
 
 ## [1.1.3] (2017-12-22)
 #### Features
