@@ -1,9 +1,20 @@
 import * as vscode from 'vscode';
+
 interface CommentTag {
 	tag: string;
 	escapedTag: string;
 	decoration: vscode.TextEditorDecorationType;
 	ranges: Array<vscode.DecorationOptions>;
+}
+
+interface Contributions {
+	multilineComments: boolean;
+	useJSDocStyle: boolean;
+	tags: [{
+		tag: string;
+		color: string;
+		strikethrough: boolean;
+	}]
 }
 
 export class Parser {
@@ -13,7 +24,7 @@ export class Parser {
 	private highlightMultilineComments = false;
 
 	// Read from the package.json
-	private contributions = vscode.workspace.getConfiguration('better-comments');
+	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
 
 	public constructor() {
 		this.setTags();
@@ -66,10 +77,10 @@ export class Parser {
 	}
 
 	/**
-	 * Finds all multiline comments delimited by /\*
+	 * Finds all multiline comments starting with /*
 	 * @param activeEditor The active text editor containing the code document
 	 */
-	public FindMultilineComments(activeEditor: vscode.TextEditor): void {
+	public FindMultilineComments(activeEditor: vscode.TextEditor, findJSDoc: boolean = false): void {
 
 		// If highlight multiline is off in package.json or doesn't apply to his language, return
 		if (!this.highlightMultilineComments)
@@ -84,12 +95,20 @@ export class Parser {
 		}
 
 		// Combine custom delimiters and the rest of the comment block matcher
-		let commentMatchString: string = "(^)+([ \\t]*\\*[ \\t]*)(";
+		let commentMatchString: string = "";
+		let regEx: RegExp;
+		
+		if (findJSDoc) {
+			commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
+			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */		
+		} else {
+			commentMatchString = "(^)+([ \\t]*[ \\t]*)("; // Don't expect the leading *
+			regEx = /(^|[ \t])(\/\*[^*])+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /* */
+		}
+
 		commentMatchString += characters.join("|");
 		commentMatchString += ")+([ ]*|[:])+([^*/\\r\\n]*)";
 
-		// Find rows of comments matching pattern
-		let regEx = /(^|[ \t])(\/\*)+([\s\S]*?)(\*\/)/gm;
 		let commentRegEx = new RegExp(commentMatchString, "igm");
 
 		// Find the multiline comment block
@@ -185,13 +204,11 @@ export class Parser {
 			case "erlang":
 			case "latex":
 				this.delimiter = "%";
-}
+		}
 	}
 
 	private setTags(): void {
-		let contributions = vscode.workspace.getConfiguration('better-comments');
-
-		let items = contributions.tags;
+		let items = this.contributions.tags;
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color };
 			if (item.strikethrough) {
