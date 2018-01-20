@@ -107,7 +107,7 @@ export class Parser {
 		}
 
 		commentMatchString += characters.join("|");
-		commentMatchString += ")+([ ]*|[:])+([^*/\\r\\n]*)";
+		commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
 
 		let commentRegEx = new RegExp(commentMatchString, "igm");
 
