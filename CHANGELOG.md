@@ -2,7 +2,7 @@
 
 ## [1.1.8] (2018-01-23)
 ### Features
-* Adding support for GraphQL ([]()), closes [#28](https://github.com/aaron-bond/better-comments/issues/28)
+* Adding support for GraphQL ([bcfcefa](https://github.com/aaron-bond/better-comments/commit/bcfcefa)), closes [#28](https://github.com/aaron-bond/better-comments/issues/28)
 
 ### Bug Fixes
 * Expanding non-JSDoc block comment detection ([dccd467](https://github.com/aaron-bond/better-comments/commit/dccd467)), closes [#20](https://github.com/aaron-bond/better-comments/issues/20)
