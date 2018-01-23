@@ -178,6 +178,7 @@ export class Parser {
 			case "coffeescript":
 			case "dockerfile":
 			case "elixir":
+			case "graphql":
 			case "makefile":
 			case "perl":
 			case "perl6":

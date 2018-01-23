@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.1.8] (2018-01-23)
+### Features
+* Adding support for GraphQL ([]()), closes [#28](https://github.com/aaron-bond/better-comments/issues/28)
+
+### Bug Fixes
+* Expanding non-JSDoc block comment detection ([dccd467](https://github.com/aaron-bond/better-comments/commit/dccd467)), closes [#20](https://github.com/aaron-bond/better-comments/issues/20)
+
 ## [1.1.7] (2018-01-07)
 ### Bug Fixes
 * Fixing comment detection when tabs are used to start the comment ([2f08fb9](https://github.com/aaron-bond/better-comments/commit/2f08fb9)), closes [#25](https://github.com/aaron-bond/better-comments/issues/25), thanks to _bekorn_
