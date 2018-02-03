@@ -42,6 +42,14 @@ The default 5 can be modifed to change the colors, and more can be added.
   `color`: '#FF8C00',
   `strikethrough`: false
 },{
+  `tag`: 'fixme',
+  `color`: '#FF8C00',
+  `strikethrough`: false
+},{
+  `tag`: 'hack',
+  `color`: '#FF2D00',
+  `strikethrough`: false
+},{
   `tag`: '*',
   `color`: '#98C379',
   `strikethrough`: false

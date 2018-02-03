@@ -112,6 +112,16 @@
                             "strikethrough": false
                         },
                         {
+                            "tag": "fixme",
+                            "color": "#FF8C00",
+                            "strikethrough": false
+                        },
+                        {
+                            "tag": "hack",
+                            "color": "#FF2D00",
+                            "strikethrough": false
+                        },
+                        {
                             "tag": "*",
                             "color": "#98C379",
                             "strikethrough": false
