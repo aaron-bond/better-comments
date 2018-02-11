@@ -179,6 +179,7 @@ export class Parser {
 			case "dockerfile":
 			case "elixir":
 			case "graphql":
+			case "julia":
 			case "makefile":
 			case "perl":
 			case "perl6":

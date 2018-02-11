@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.9] (2018-02-11)
+### Features
+* Adding support for Julia ([]())
+
 ## [1.1.8] (2018-01-23)
 ### Features
 * Adding support for GraphQL ([bcfcefa](https://github.com/aaron-bond/better-comments/commit/bcfcefa)), closes [#28](https://github.com/aaron-bond/better-comments/issues/28)

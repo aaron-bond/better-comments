@@ -38,6 +38,7 @@
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:javascriptreact",
+        "onLanguage:julia",
         "onLanguage:latex",
         "onLanguage:less",
         "onLanguage:lua",
