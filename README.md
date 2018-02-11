@@ -69,6 +69,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Java
 * JavaScript
 * JavaScript React
+* Julia
 * LaTex
 * Less
 * Lua
