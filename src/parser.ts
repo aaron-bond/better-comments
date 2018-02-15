@@ -206,6 +206,8 @@ export class Parser {
 			case "erlang":
 			case "latex":
 				this.delimiter = "%";
+			case "COBOL":
+				this.delimiter = "*>";
 		}
 	}
 
