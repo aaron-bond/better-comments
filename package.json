@@ -65,6 +65,7 @@
         "onLanguage:shellscript",
 		"onLanguage:sql",
         "onLanguage:vb",
+        "onLanguage:yaml",
         "onLanguage:graphql"
     ],
     "galleryBanner": {

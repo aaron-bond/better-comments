@@ -97,10 +97,10 @@ export class Parser {
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString: string = "";
 		let regEx: RegExp;
-		
+
 		if (findJSDoc) {
 			commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
-			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */		
+			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */
 		} else {
 			commentMatchString = "(^)+([ \\t]*[ \\t]*)("; // Don't expect the leading *
 			regEx = /(^|[ \t])(\/\*[^*])+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /* */
@@ -188,6 +188,7 @@ export class Parser {
 			case "r":
 			case "ruby":
 			case "shellscript":
+			case "yaml":
 				this.delimiter = "#";
 				break;
 
@@ -202,7 +203,7 @@ export class Parser {
 			case "vb":
 				this.delimiter = "'";
 				break;
-			
+
 			case "erlang":
 			case "latex":
 				this.delimiter = "%";
