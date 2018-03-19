@@ -77,6 +77,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Makefile
 * Objective-C
 * Objective-C++
+* Pascal
 * Perl
 * Perl 6
 * PHP

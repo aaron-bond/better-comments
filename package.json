@@ -50,6 +50,8 @@
         "onLanguage:makefile",
         "onLanguage:objective-c",
         "onLanguage:objective-cpp",
+        "onLanguage:objectpascal",
+        "onLanguage:pascal",
         "onLanguage:perl",
         "onLanguage:perl6",
         "onLanguage:plsql",

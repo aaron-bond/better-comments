@@ -4,6 +4,7 @@
 ### Features
 * Adding support for: Clojure, Racket, Lisp ([88e0720](https://github.com/aaron-bond/better-comments/commit/88e0720)), merges [#40](https://github.com/aaron-bond/better-comments/pull/40)
 * Adding support for: Yaml ([]()), merges [#37](https://github.com/aaron-bond/better-comments/pull/37)
+* Adding support for: Pascal ([]()), closes [#41](https://github.com/aaron-bond/better-comments/pull/37)
 
 ## Bug Fixes
 * Fixing random crashes when unsupported language is opened in the window ([]()), closes [#35](https://github.com/aaron-bond/better-comments/issues/35)
