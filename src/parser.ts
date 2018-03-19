@@ -166,6 +166,8 @@ export class Parser {
 			case "javascriptreact":
 			case "kotlin":
 			case "less":
+			case "objectpascal":
+			case "pascal":
 			case "php":
 			case "rust":
 			case "scala":
