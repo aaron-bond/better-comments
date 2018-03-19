@@ -19,9 +19,12 @@ interface Contributions {
 
 export class Parser {
 	private tags: CommentTag[] = [];
-	private expression: string;
-	private delimiter: string;
+	private expression: string = "";
+	private delimiter: string = "";
 	private highlightMultilineComments = false;
+
+	// * this is used to trigger the events when a supported language code is found
+	public unsupportedLanguage = false;
 
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
@@ -188,6 +191,7 @@ export class Parser {
 			case "r":
 			case "ruby":
 			case "shellscript":
+			case "yaml":
 				this.delimiter = "#";
 				break;
 
@@ -212,6 +216,10 @@ export class Parser {
 			case "racket":
 			case "lisp":
 				this.delimiter = ";";
+				break;
+
+			default:
+				this.unsupportedLanguage = true;
 				break;
 		}
 	}

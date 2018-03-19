@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "1.1.8",
+    "version": "1.2.0",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
@@ -68,7 +68,8 @@
         "onLanguage:sql",
         "onLanguage:swift",
         "onLanguage:typescript",
-        "onLanguage:vb"        
+        "onLanguage:vb",
+        "onLanguage:yaml"  
     ],
     "galleryBanner": {
         "color": "#e3f4ff",

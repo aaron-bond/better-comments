@@ -9,7 +9,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Called to handle events below
 	let updateDecorations = function (useHash = false) {
+		// * if no active window is open, return
 		if (!activeEditor) return;
+
+		// * if lanugage isn't supported, return
+		if (parser.unsupportedLanguage) return;
 
 		// Finds the single line comments using the language comment delimiter
 		parser.FindSingleLineComments(activeEditor)
