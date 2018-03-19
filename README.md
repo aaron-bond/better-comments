@@ -52,6 +52,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 
 * Ada
 * C
+* Clojure
 * CoffeeScript
 * CSS
 * C++
@@ -72,10 +73,12 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Julia
 * LaTex
 * Less
+* Lisp
 * Lua
 * Makefile
 * Objective-C
 * Objective-C++
+* Pascal
 * Perl
 * Perl 6
 * PHP
@@ -83,6 +86,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * PowerShell
 * Python
 * R
+* Racket
 * Rust
 * Ruby
 * Sass
@@ -94,3 +98,4 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Swift
 * TypeScript
 * Visual Basic
+* YAML

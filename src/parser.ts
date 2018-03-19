@@ -19,9 +19,12 @@ interface Contributions {
 
 export class Parser {
 	private tags: CommentTag[] = [];
-	private expression: string;
-	private delimiter: string;
+	private expression: string = "";
+	private delimiter: string = "";
 	private highlightMultilineComments = false;
+
+	// * this is used to trigger the events when a supported language code is found
+	public unsupportedLanguage = false;
 
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
@@ -97,7 +100,7 @@ export class Parser {
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString: string = "";
 		let regEx: RegExp;
-		
+
 		if (findJSDoc) {
 			commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
 			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */		
@@ -166,6 +169,8 @@ export class Parser {
 			case "javascriptreact":
 			case "kotlin":
 			case "less":
+			case "pascal":
+			case "objectpascal":
 			case "php":
 			case "rust":
 			case "scala":
@@ -188,6 +193,7 @@ export class Parser {
 			case "r":
 			case "ruby":
 			case "shellscript":
+			case "yaml":
 				this.delimiter = "#";
 				break;
 
@@ -202,10 +208,21 @@ export class Parser {
 			case "vb":
 				this.delimiter = "'";
 				break;
-			
+
 			case "erlang":
 			case "latex":
 				this.delimiter = "%";
+				break;
+
+			case "clojure":
+			case "racket":
+			case "lisp":
+				this.delimiter = ";";
+				break;
+
+			default:
+				this.unsupportedLanguage = true;
+				break;
 		}
 	}
 
