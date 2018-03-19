@@ -1,8 +1,13 @@
 # Change Log
 
+## [1.2.0] (????-??-??)
+### Features
+* Adding support for: Clojure, Racket, Lisp ([]()), merges [#40](https://github.com/aaron-bond/better-comments/pull/40)
+
+
 ## [1.1.9] (2018-02-11)
 ### Features
-* Adding support for Julia ([]())
+* Adding support for Julia ([1b24ce1](https://github.com/aaron-bond/better-comments/commit/1b24ce1))
 
 ## [1.1.8] (2018-01-23)
 ### Features
