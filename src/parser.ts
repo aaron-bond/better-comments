@@ -24,7 +24,7 @@ export class Parser {
 	private highlightMultilineComments = false;
 
 	// * this is used to trigger the events when a supported language code is found
-	public unsupportedLanguage = false;
+	public supportedLanguage = true;
 
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
@@ -156,6 +156,8 @@ export class Parser {
 	 * https://code.visualstudio.com/docs/languages/identifiers
 	 */
 	private setDelimiter(languageCode: string): void {
+		this.supportedLanguage = true;
+		
 		switch (languageCode) {
 			case "c":
 			case "cpp":
@@ -221,7 +223,7 @@ export class Parser {
 				break;
 
 			default:
-				this.unsupportedLanguage = true;
+				this.supportedLanguage = false;
 				break;
 		}
 	}

@@ -1,12 +1,18 @@
 # Change Log
 
+## [1.2.1] (2018-03-20)
+### Features
+
+### Bug Fixes
+* Fixing logic to run the decorations properly when switching back from an unsupported language ([]()), closes [#47](https://github.com/aaron-bond/better-comments/issues/47)
+
 ## [1.2.0] (2018-03-19)
 ### Features
 * Adding support for: Clojure, Racket, Lisp ([88e0720](https://github.com/aaron-bond/better-comments/commit/88e0720)), merges [#40](https://github.com/aaron-bond/better-comments/pull/40)
 * Adding support for: Yaml ([e9f40a0](https://github.com/aaron-bond/better-comments/commit/e9f40a0)), merges [#37](https://github.com/aaron-bond/better-comments/pull/37)
 * Adding support for: Pascal ([655f61f](https://github.com/aaron-bond/better-comments/commit/655f61f)), closes [#41](https://github.com/aaron-bond/better-comments/pull/37)
 
-## Bug Fixes
+### Bug Fixes
 * Fixing crash when unsupported language is opened in the window ([e9f40a0](https://github.com/aaron-bond/better-comments/commit/e9f40a0)), closes [#35](https://github.com/aaron-bond/better-comments/issues/35)
 
 ## [1.1.9] (2018-02-11)

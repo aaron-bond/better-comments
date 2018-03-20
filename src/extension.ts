@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!activeEditor) return;
 
 		// * if lanugage isn't supported, return
-		if (parser.unsupportedLanguage) return;
+		if (!parser.supportedLanguage) return;
 
 		// Finds the single line comments using the language comment delimiter
 		parser.FindSingleLineComments(activeEditor)
