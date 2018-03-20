@@ -2,10 +2,11 @@
 
 ## [1.2.1] (2018-03-20)
 ### Features
-* Adding support for: Terraform ([]()), closes [#48](https://github.com/aaron-bond/better-comments/issues/48)
+* Adding support for: Terraform ([c5edd8d](https://github.com/aaron-bond/better-comments/commit/c5edd8d)), closes [#48](https://github.com/aaron-bond/better-comments/issues/48)
 
 ### Bug Fixes
-* Fixing logic to run the decorations properly when switching back from an unsupported language ([]()), closes [#47](https://github.com/aaron-bond/better-comments/issues/47)
+* Fixing logic to run the decorations properly when switching back from an unsupported language ([756e0e0](https://github.com/aaron-bond/better-comments/commit/756e0e0)), closes [#47](https://github.com/aaron-bond/better-comments/issues/47)
+* Fixing decoration of strikethrough on multiline comments to start in the correct location ([c4372e7](https://github.com/aaron-bond/better-comments/commit/c4372e7)), closes [#46](https://github.com/aaron-bond/better-comments/issues/46)
 
 ## [1.2.0] (2018-03-19)
 ### Features
