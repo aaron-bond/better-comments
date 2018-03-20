@@ -96,6 +96,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * ShellScript
 * SQL
 * Swift
+* Terraform
 * TypeScript
 * Visual Basic
 * YAML

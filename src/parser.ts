@@ -221,6 +221,11 @@ export class Parser {
 			case "lisp":
 				this.delimiter = ";";
 				break;
+			
+			case "terraform":
+				this.delimiter = "#";
+				this.highlightMultilineComments = this.contributions.multilineComments;
+				break;
 
 			default:
 				this.supportedLanguage = false;

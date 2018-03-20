@@ -2,6 +2,7 @@
 
 ## [1.2.1] (2018-03-20)
 ### Features
+* Adding support for: Terraform ([]()), closes [#48](https://github.com/aaron-bond/better-comments/issues/48)
 
 ### Bug Fixes
 * Fixing logic to run the decorations properly when switching back from an unsupported language ([]()), closes [#47](https://github.com/aaron-bond/better-comments/issues/47)

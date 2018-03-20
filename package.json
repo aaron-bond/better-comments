@@ -69,6 +69,7 @@
         "onLanguage:shellscript",
         "onLanguage:sql",
         "onLanguage:swift",
+        "onLanguage:terraform",
         "onLanguage:typescript",
         "onLanguage:vb",
         "onLanguage:yaml"  
