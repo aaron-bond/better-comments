@@ -122,7 +122,7 @@ export class Parser {
 			// Find the line
 			let line;
 			while (line = commentRegEx.exec(commentBlock)) {
-				let startPos = activeEditor.document.positionAt(match.index + line.index);
+				let startPos = activeEditor.document.positionAt(match.index + line.index + line[2].length);
 				let endPos = activeEditor.document.positionAt(match.index + line.index + line[0].length);
 				let range: vscode.DecorationOptions = { range: new vscode.Range(startPos, endPos) };
 
