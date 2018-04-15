@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.2.2] (2018-04-??)
+## [1.2.2] (2018-04-15)
 ### Features
 * Adding support for: JSON with comments ([6f0b330](https://github.com/aaron-bond/better-comments/commit/6f0b330)), closes [#51](https://github.com/aaron-bond/better-comments/issues/51)
 * Adding support for: AL ([de86410](https://github.com/aaron-bond/better-comments/commit/de86410)), closes [#54](https://github.com/aaron-bond/better-comments/issues/54)
