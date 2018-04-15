@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.2] (2018-04-??)
+### Features
+* Adding support for: TypeScript React (.tsx) ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#56](https://github.com/aaron-bond/better-comments/issues/56)
+
 ## [1.2.1] (2018-03-20)
 ### Features
 * Adding support for: Terraform ([c5edd8d](https://github.com/aaron-bond/better-comments/commit/c5edd8d)), closes [#48](https://github.com/aaron-bond/better-comments/issues/48)

@@ -71,6 +71,7 @@
         "onLanguage:swift",
         "onLanguage:terraform",
         "onLanguage:typescript",
+        "onLanguage:typescriptreact",
         "onLanguage:vb",
         "onLanguage:yaml"  
     ],

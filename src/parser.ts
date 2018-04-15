@@ -178,6 +178,7 @@ export class Parser {
 			case "scala":
 			case "swift":
 			case "typescript":
+			case "typescriptreact":
 				this.delimiter = "//";
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
