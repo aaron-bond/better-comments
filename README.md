@@ -51,6 +51,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 ## Supported Languages
 
 * Ada
+* AL
 * C
 * Clojure
 * CoffeeScript

@@ -23,6 +23,7 @@
     },
     "activationEvents": [
         "onLanguage:ada",
+        "onLanguage:al",
         "onLanguage:c",
         "onLanguage:clojure",
         "onLanguage:coffeescript",

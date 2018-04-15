@@ -159,6 +159,7 @@ export class Parser {
 		this.supportedLanguage = true;
 		
 		switch (languageCode) {
+			case "al":
 			case "c":
 			case "cpp":
 			case "csharp":
