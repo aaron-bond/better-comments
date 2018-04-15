@@ -2,9 +2,9 @@
 
 ## [1.2.2] (2018-04-??)
 ### Features
-* Adding support for: JSON with comments ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#51](https://github.com/aaron-bond/better-comments/issues/51)
-* Adding support for: AL ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#54](https://github.com/aaron-bond/better-comments/issues/54)
-* Adding support for: TypeScript React (.tsx) ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#56](https://github.com/aaron-bond/better-comments/issues/56)
+* Adding support for: JSON with comments ([6f0b330](https://github.com/aaron-bond/better-comments/commit/6f0b330)), closes [#51](https://github.com/aaron-bond/better-comments/issues/51)
+* Adding support for: AL ([de86410](https://github.com/aaron-bond/better-comments/commit/de86410)), closes [#54](https://github.com/aaron-bond/better-comments/issues/54)
+* Adding support for: TypeScript React (.tsx) ([e884b37](https://github.com/aaron-bond/better-comments/commit/e884b37)), closes [#56](https://github.com/aaron-bond/better-comments/issues/56)
 
 ## [1.2.1] (2018-03-20)
 ### Features
