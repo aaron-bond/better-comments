@@ -71,6 +71,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Java
 * JavaScript
 * JavaScript React
+* JSON with comments
 * Julia
 * LaTex
 * Less

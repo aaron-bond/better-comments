@@ -43,6 +43,7 @@
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:javascriptreact",
+        "onLanguage:jsonc",
         "onLanguage:julia",
         "onLanguage:latex",
         "onLanguage:less",

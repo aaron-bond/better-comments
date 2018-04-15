@@ -170,6 +170,7 @@ export class Parser {
 			case "java":
 			case "javascript":
 			case "javascriptreact":
+			case "jsonc":
 			case "kotlin":
 			case "less":
 			case "pascal":
