@@ -20,7 +20,7 @@ interface Contributions {
 export class Parser {
 	private tags: CommentTag[] = [];
 	private expression: string = "";
-	private delimiters: string[] = [""];
+	private delimiters: string[] = [];
 	private highlightMultilineComments = false;
 
 	// * this is used to trigger the events when a supported language code is found
@@ -46,18 +46,10 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
+		// start by finding the delimiter (//, ///, --, #, ') with optional spaces or tabs
 		this.expression = "(";
-		this.delimiters.forEach(element => {
-			this.expression += element.replace(/\//ig, "\\/");
-			if (this.delimiters.lastIndexOf(element) != this.delimiters.length - 1) {
-				this.expression += "|";
-			} else {
-				this.expression += ")";
-			}
-
-		});
-		this.expression += "+( |\t)*";
+		this.expression += this.delimiters.join("|").replace(/\//ig, "\\/");
+		this.expression += ")+( |\t)*";
 
 		// Apply all configurable comment start tags
 		this.expression += "("
@@ -167,8 +159,11 @@ export class Parser {
 	 */
 	private setDelimiter(languageCode: string): void {
 		this.supportedLanguage = true;
+		this.delimiters = [];
 
 		switch (languageCode) {
+			case "dart":
+				this.delimiters.push("///");
 			case "al":
 			case "c":
 			case "cpp":
@@ -191,12 +186,7 @@ export class Parser {
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
-				this.delimiters = ["//"];
-				this.highlightMultilineComments = this.contributions.multilineComments;
-				break;
-
-			case "dart":
-				this.delimiters = ["///", "//"];
+				this.delimiters.push("//");
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
 
