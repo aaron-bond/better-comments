@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "1.2.3",
+    "version": "1.2.2",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
@@ -30,7 +30,6 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
-        "onLanguage:dart",
         "onLanguage:dockerfile",
         "onLanguage:elixir",
         "onLanguage:erlang",
