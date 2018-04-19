@@ -30,6 +30,7 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
+        "onLanguage:dart",
         "onLanguage:dockerfile",
         "onLanguage:elixir",
         "onLanguage:erlang",
