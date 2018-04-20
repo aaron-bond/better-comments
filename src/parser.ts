@@ -159,11 +159,8 @@ export class Parser {
 	 */
 	private setDelimiter(languageCode: string): void {
 		this.supportedLanguage = true;
-		this.delimiters = [];
 
 		switch (languageCode) {
-			case "dart":
-				this.delimiters.push("///");
 			case "al":
 			case "c":
 			case "cpp":
@@ -186,7 +183,12 @@ export class Parser {
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
-				this.delimiters.push("//");
+				this.delimiters = ["//"];
+				this.highlightMultilineComments = this.contributions.multilineComments;
+				break;
+
+			case "dart":
+				this.delimiters = ["///", "//"];
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
 
