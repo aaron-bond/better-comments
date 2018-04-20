@@ -20,7 +20,7 @@ interface Contributions {
 export class Parser {
 	private tags: CommentTag[] = [];
 	private expression: string = "";
-	private delimiter: string = "";
+	private delimiters: string[] = [];
 	private highlightMultilineComments = false;
 
 	// * this is used to trigger the events when a supported language code is found
@@ -46,8 +46,10 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
-		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
+		// start by finding the delimiter (//, ///, --, #, ') with optional spaces or tabs
+		this.expression = "(";
+		this.expression += this.delimiters.join("|").replace(/\//ig, "\\/");
+		this.expression += ")+( |\t)*";
 
 		// Apply all configurable comment start tags
 		this.expression += "("
@@ -157,7 +159,7 @@ export class Parser {
 	 */
 	private setDelimiter(languageCode: string): void {
 		this.supportedLanguage = true;
-		
+
 		switch (languageCode) {
 			case "al":
 			case "c":
@@ -181,7 +183,12 @@ export class Parser {
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
-				this.delimiter = "//";
+				this.delimiters = ["//"];
+				this.highlightMultilineComments = this.contributions.multilineComments;
+				break;
+
+			case "dart":
+				this.delimiters = ["///", "//"];
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
 
@@ -199,7 +206,7 @@ export class Parser {
 			case "ruby":
 			case "shellscript":
 			case "yaml":
-				this.delimiter = "#";
+				this.delimiters = ["#"];
 				break;
 
 			case "ada":
@@ -207,26 +214,26 @@ export class Parser {
 			case "plsql":
 			case "sql":
 			case "lua":
-				this.delimiter = "--";
+				this.delimiters = ["--"];
 				break;
 
 			case "vb":
-				this.delimiter = "'";
+				this.delimiters = ["'"];
 				break;
 
 			case "erlang":
 			case "latex":
-				this.delimiter = "%";
+				this.delimiters = ["%"];
 				break;
 
 			case "clojure":
 			case "racket":
 			case "lisp":
-				this.delimiter = ";";
+				this.delimiters = [";"];
 				break;
-			
+
 			case "terraform":
-				this.delimiter = "#";
+				this.delimiters = ["#"];
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
 
