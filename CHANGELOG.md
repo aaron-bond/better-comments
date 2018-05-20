@@ -2,13 +2,13 @@
 
 ## [1.2.3] (2018-05-20)
 ### Features
-* Adding support for: Dart ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#65](https://github.com/aaron-bond/better-comments/issues/65)
-* Adding support for: Matlab ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#58](https://github.com/aaron-bond/better-comments/issues/58)
+* Adding support for: Dart ([7490b81](https://github.com/aaron-bond/better-comments/commit/7490b81)), closes [#65](https://github.com/aaron-bond/better-comments/issues/65)
+* Adding support for: Matlab ([e35541b](https://github.com/aaron-bond/better-comments/commit/e35541b)), closes [#58](https://github.com/aaron-bond/better-comments/issues/58)
 
 ### Bug Fixes
-* Fixing support for SCSS ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#60](https://github.com/aaron-bond/better-comments/issues/60)
+* Fixing support for SCSS ([2b3919f](https://github.com/aaron-bond/better-comments/commit/2b3919f)), closes [#60](https://github.com/aaron-bond/better-comments/issues/60)
 * Fixing Python to prevent first line of the file being detected as a comment,  
-([](https://github.com/aaron-bond/better-comments/commit/)), closes [#61](https://github.com/aaron-bond/better-comments/issues/61)
+([438e0a6](https://github.com/aaron-bond/better-comments/commit/438e0a6)), closes [#61](https://github.com/aaron-bond/better-comments/issues/61)
 
 
 ## [1.2.2] (2018-04-15)
