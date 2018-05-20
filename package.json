@@ -19,7 +19,7 @@
         "Formatters"
     ],
     "engines": {
-        "vscode": "^1.18.0"
+        "vscode": "^1.23.0"
     },
     "activationEvents": [
         "onLanguage:ada",
@@ -30,6 +30,7 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
+        "onLanguage:dart",
         "onLanguage:dockerfile",
         "onLanguage:elixir",
         "onLanguage:erlang",
