@@ -204,6 +204,7 @@ export class Parser {
 			case "ruby":
 			case "shellscript":
 			case "yaml":
+			case "nim":
 				this.delimiter = "#";
 				break;
 
