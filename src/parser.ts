@@ -21,7 +21,13 @@ export class Parser {
 	private tags: CommentTag[] = [];
 	private expression: string = "";
 	private delimiter: string = "";
+
 	private highlightMultilineComments = false;
+	
+	// * this will allow plaintext files to show comment highlighting if switched on
+	private isPlainText = false;
+
+	// * this is used to prevent the first line of the file (specifically python) from coloring like other comments
 	private ignoreFirstLine = false;
 
 	// * this is used to trigger the events when a supported language code is found
@@ -47,8 +53,13 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
-		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
+		if (this.isPlainText) {
+			// start by tying the regex to the first character in a line
+			this.expression = "(^)+([ \\t]*[ \\t]*)";
+		} else {
+			// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
+			this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
+		}
 
 		// Apply all configurable comment start tags
 		this.expression += "(";
@@ -62,7 +73,10 @@ export class Parser {
 	 */
 	public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
 		let text = activeEditor.document.getText();
-		let regEx = new RegExp(this.expression, "ig");
+
+		// if it's plain text, we have to do mutliline regex to catch the start of the line with ^
+		let regexFlags = (this.isPlainText) ? "igm" : "ig";
+		let regEx = new RegExp(this.expression, regexFlags);
 
 		let match: any;
 		while (match = regEx.exec(text)) {
@@ -161,6 +175,8 @@ export class Parser {
 	 */
 	private setDelimiter(languageCode: string): void {
 		this.supportedLanguage = true;
+		this.ignoreFirstLine = false;
+		this.isPlainText = false;
 		
 		switch (languageCode) {
 			case "al":
@@ -239,6 +255,10 @@ export class Parser {
 			case "terraform":
 				this.delimiter = "#";
 				this.highlightMultilineComments = this.contributions.multilineComments;
+				break;
+			
+			case "plaintext":
+				this.isPlainText = true;
 				break;
 
 			default:

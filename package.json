@@ -58,6 +58,7 @@
         "onLanguage:pascal",
         "onLanguage:perl",
         "onLanguage:perl6",
+        "onLanguage:plaintext",
         "onLanguage:plsql",
         "onLanguage:php",
         "onLanguage:powershell",
@@ -100,6 +101,11 @@
                     "type": "boolean",
                     "description": "Whether the multiline comment highlighter should be active",
                     "default": true
+                },
+                "better-comments.highlightPlainText": {
+                    "type": "boolean",
+                    "description": "Whether the plaintext comment highlighter should be active",
+                    "default": false
                 },
                 "better-comments.tags": {
                     "type": "array",
