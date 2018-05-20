@@ -197,6 +197,7 @@ export class Parser {
 			case "graphql":
 			case "julia":
 			case "makefile":
+			case "nim":
 			case "perl":
 			case "perl6":
 			case "powershell":
@@ -204,7 +205,6 @@ export class Parser {
 			case "ruby":
 			case "shellscript":
 			case "yaml":
-			case "nim":
 				this.delimiter = "#";
 				break;
 
