@@ -22,6 +22,7 @@ export class Parser {
 	private expression: string = "";
 	private delimiter: string = "";
 	private highlightMultilineComments = false;
+	private ignoreFirstLine = false;
 
 	// * this is used to trigger the events when a supported language code is found
 	public supportedLanguage = true;
@@ -68,6 +69,11 @@ export class Parser {
 			let startPos = activeEditor.document.positionAt(match.index);
 			let endPos = activeEditor.document.positionAt(match.index + match[0].length);
 			let range = { range: new vscode.Range(startPos, endPos) };
+
+			// Required to ignore the first line of .py files (#61)
+			if (this.ignoreFirstLine && startPos.line === 0 && startPos.character === 0) {
+				continue;
+			}
 
 			// Find which custom delimiter was used in order to add it to the collection
 			let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
@@ -194,12 +200,16 @@ export class Parser {
 			case "perl":
 			case "perl6":
 			case "powershell":
-			case "python":
 			case "r":
 			case "ruby":
 			case "shellscript":
 			case "yaml":
 				this.delimiter = "#";
+				break;
+
+			case "python":
+				this.delimiter = "#";
+				this.ignoreFirstLine = true;
 				break;
 
 			case "ada":

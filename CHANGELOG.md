@@ -6,6 +6,9 @@
 
 ### Bug Fixes
 * Fixing support for SCSS ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#60](https://github.com/aaron-bond/better-comments/issues/60)
+* Fixing Python to prevent first line of the file being detected as a comment,  
+([](https://github.com/aaron-bond/better-comments/commit/)), closes [#61](https://github.com/aaron-bond/better-comments/issues/61)
+
 
 ## [1.2.2] (2018-04-15)
 ### Features

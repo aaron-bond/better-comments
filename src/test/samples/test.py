@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # ! Import the modules
 import sys
 import random
