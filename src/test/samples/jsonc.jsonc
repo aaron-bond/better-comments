@@ -1,0 +1,12 @@
+{
+    // This is a comment in JSONC
+    // ! this one is colored
+    "item1": 1,
+    "item2": {
+        "child": ""
+    }
+
+    /* 
+        * some comments
+    */
+}
