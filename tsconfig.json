@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+        "strict": true,   /* enable all strict type-checking options */
 		"alwaysStrict": true,
 		"module": "commonjs",
 		"target": "es6",
@@ -11,9 +12,11 @@
 		],
 		"sourceMap": true,
 		"strictNullChecks": true,
-		"rootDir": "src"
+		"rootDir": "src",
+        "noUnusedLocals": true /* Report errors on unused locals. */
 	},
 	"exclude": [
+		"src/test",
 		"node_modules",
 		".vscode-test"
 	]

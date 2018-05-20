@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!parser.supportedLanguage) return;
 
 		// Finds the single line comments using the language comment delimiter
-		parser.FindSingleLineComments(activeEditor)
+		parser.FindSingleLineComments(activeEditor);
 
 		// Finds the multi line comments using the language comment delimiter
 		parser.FindMultilineComments(activeEditor);
@@ -26,7 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// Apply the styles set in the package.json
 		parser.ApplyDecorations(activeEditor);
-	}
+	};
 
 	// Get the active editor for the first time and initialise the regex
 	if (vscode.window.activeTextEditor) {

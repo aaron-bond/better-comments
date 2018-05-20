@@ -14,7 +14,7 @@ interface Contributions {
 		tag: string;
 		color: string;
 		strikethrough: boolean;
-	}]
+	}];
 }
 
 export class Parser {
@@ -50,7 +50,7 @@ export class Parser {
 		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
 
 		// Apply all configurable comment start tags
-		this.expression += "("
+		this.expression += "(";
 		this.expression += characters.join("|");
 		this.expression += ")+(.*)";
 	}
@@ -71,7 +71,7 @@ export class Parser {
 
 			// Find which custom delimiter was used in order to add it to the collection
 			let matchString = match[3] as string;
-			let matchTag = this.tags.find(item => item.tag.toLowerCase() == match[3].toLowerCase());
+			let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
 
 			if (matchTag) {
 				matchTag.ranges.push(range);
@@ -86,8 +86,7 @@ export class Parser {
 	public FindMultilineComments(activeEditor: vscode.TextEditor, findJSDoc: boolean = false): void {
 
 		// If highlight multiline is off in package.json or doesn't apply to his language, return
-		if (!this.highlightMultilineComments)
-			return;
+		if (!this.highlightMultilineComments) return;
 
 		let text = activeEditor.document.getText();
 
@@ -128,7 +127,7 @@ export class Parser {
 
 				// Find which custom delimiter was used in order to add it to the collection
 				let matchString = line[3] as string;
-				let matchTag = this.tags.find(item => item.tag.toLowerCase() == matchString.toLowerCase());
+				let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
 				if (matchTag) {
 					matchTag.ranges.push(range);
