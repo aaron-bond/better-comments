@@ -4,6 +4,9 @@
 ### Features
 * Adding support for: Dart ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#65](https://github.com/aaron-bond/better-comments/issues/65)
 
+### Bug Fixes
+* Fixing support for SCSS ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#60](https://github.com/aaron-bond/better-comments/issues/60)
+
 ## [1.2.2] (2018-04-15)
 ### Features
 * Adding support for: JSON with comments ([6f0b330](https://github.com/aaron-bond/better-comments/commit/6f0b330)), closes [#51](https://github.com/aaron-bond/better-comments/issues/51)

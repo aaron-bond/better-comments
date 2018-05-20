@@ -70,7 +70,6 @@ export class Parser {
 			let range = { range: new vscode.Range(startPos, endPos) };
 
 			// Find which custom delimiter was used in order to add it to the collection
-			let matchString = match[3] as string;
 			let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
 
 			if (matchTag) {
@@ -178,6 +177,7 @@ export class Parser {
 			case "php":
 			case "rust":
 			case "scala":
+			case "scss":
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
