@@ -3,6 +3,7 @@
 ## [1.2.3] (2018-05-20)
 ### Features
 * Adding support for: Dart ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#65](https://github.com/aaron-bond/better-comments/issues/65)
+* Adding support for: Matlab ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#58](https://github.com/aaron-bond/better-comments/issues/58)
 
 ### Bug Fixes
 * Fixing support for SCSS ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#60](https://github.com/aaron-bond/better-comments/issues/60)

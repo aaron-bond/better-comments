@@ -51,6 +51,7 @@
         "onLanguage:lisp",
         "onLanguage:lua",
         "onLanguage:makefile",
+        "onLanguage:matlab",
         "onLanguage:objective-c",
         "onLanguage:objective-cpp",
         "onLanguage:objectpascal",
