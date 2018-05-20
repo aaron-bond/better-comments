@@ -114,27 +114,32 @@
                         {
                             "tag": "!",
                             "color": "#FF2D00",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "?",
                             "color": "#3498DB",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "//",
                             "color": "#474747",
-                            "strikethrough": true
+                            "strikethrough": true,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "todo",
                             "color": "#FF8C00",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "*",
                             "color": "#98C379",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         }
                     ]
                 }

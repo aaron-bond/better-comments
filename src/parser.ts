@@ -14,6 +14,7 @@ interface Contributions {
 		tag: string;
 		color: string;
 		strikethrough: boolean;
+		backgroundColor: string;
 	}];
 }
 
@@ -270,7 +271,7 @@ export class Parser {
 	private setTags(): void {
 		let items = this.contributions.tags;
 		for (let item of items) {
-			let options: vscode.DecorationRenderOptions = { color: item.color };
+			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
 			if (item.strikethrough) {
 				options.textDecoration = "line-through";
 			}
