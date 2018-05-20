@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.2.4] (2018-05-??)
+### Features
+* Adding new property for tags: **backgroundColor** ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#66](https://github.com/aaron-bond/better-comments/issues/66)
+	-  default: `transparent`
+* Adding support for: PlainText ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#39](https://github.com/aaron-bond/better-comments/issues/39)  
+	-  PlainText support must be turned on in the settings: `highlightPlainText`
+
 ## [1.2.3] (2018-05-20)
 ### Features
 * Adding support for: Dart ([7490b81](https://github.com/aaron-bond/better-comments/commit/7490b81)), closes [#65](https://github.com/aaron-bond/better-comments/issues/65)
