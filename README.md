@@ -79,6 +79,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Lisp
 * Lua
 * Makefile
+* Nim
 * MATLAB
 * Objective-C
 * Objective-C++
