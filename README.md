@@ -53,11 +53,11 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Ada
 * AL
 * C
+* C#
+* C++
 * Clojure
 * CoffeeScript
 * CSS
-* C++
-* C#
 * Dart
 * Dockerfile
 * Elixir
@@ -68,12 +68,12 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Groovy
 * Haskell
 * Haxe
-* Kotlin
 * Java
 * JavaScript
 * JavaScript React
 * JSON with comments
 * Julia
+* Kotlin
 * LaTex
 * Less
 * Lisp
@@ -91,8 +91,8 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Python
 * R
 * Racket
-* Rust
 * Ruby
+* Rust
 * Sass
 * Scala
 * SCSS
