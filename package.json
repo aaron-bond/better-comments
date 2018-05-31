@@ -52,6 +52,7 @@
         "onLanguage:lua",
         "onLanguage:makefile",
         "onLanguage:matlab",
+        "onLanguage:nim",
         "onLanguage:objective-c",
         "onLanguage:objective-cpp",
         "onLanguage:objectpascal",
