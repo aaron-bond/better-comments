@@ -1,11 +1,12 @@
 # Change Log
 
-## [1.2.4] (2018-05-??)
+## [1.2.4] (2018-05-31)
 ### Features
-* Adding new property for tags: **backgroundColor** ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#66](https://github.com/aaron-bond/better-comments/issues/66)
+* Adding new property for tags: **backgroundColor** ([3e7a188](https://github.com/aaron-bond/better-comments/commit/3e7a188)), closes [#66](https://github.com/aaron-bond/better-comments/issues/66)
 	-  default: `transparent`
-* Adding support for: PlainText ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#39](https://github.com/aaron-bond/better-comments/issues/39)  
+* Adding support for: PlainText ([27ff774](https://github.com/aaron-bond/better-comments/commit/27ff774)), closes [#39](https://github.com/aaron-bond/better-comments/issues/39)  
 	-  PlainText support must be turned on in the settings: `highlightPlainText`
+* Adding support for: Vue.js ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#71](https://github.com/aaron-bond/better-comments/issues/71) 
 
 ## [1.2.3] (2018-05-20)
 ### Features

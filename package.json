@@ -78,6 +78,7 @@
         "onLanguage:typescript",
         "onLanguage:typescriptreact",
         "onLanguage:vb",
+        "onLanguage:vue",
         "onLanguage:yaml"
     ],
     "galleryBanner": {

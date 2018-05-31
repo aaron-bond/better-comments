@@ -204,6 +204,7 @@ export class Parser {
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
+			case "vue":
 				this.delimiter = "//";
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
