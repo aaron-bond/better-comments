@@ -6,7 +6,9 @@
 	-  default: `transparent`
 * Adding support for: PlainText ([27ff774](https://github.com/aaron-bond/better-comments/commit/27ff774)), closes [#39](https://github.com/aaron-bond/better-comments/issues/39)  
 	-  PlainText support must be turned on in the settings: `highlightPlainText`
-* Adding support for: Vue.js ([2b14d2e](https://github.com/aaron-bond/better-comments/commit/2b14d2e)), closes [#71](https://github.com/aaron-bond/better-comments/issues/71) 
+* Adding support for: Vue.js ([2b14d2e](https://github.com/aaron-bond/better-comments/commit/2b14d2e)), closes [#71](https://github.com/aaron-bond/better-comments/issues/71)
+* Adding support for: nim ([73a55f6](https://github.com/aaron-bond/better-comments/commit/73a55f6)), merges [#68](https://github.com/aaron-bond/better-comments/issues/68)
+* Adding support for: HiveQL and Pig ([](https://github.com/aaron-bond/better-comments/commit/)), merges [#63](https://github.com/aaron-bond/better-comments/issues/63)
 
 ## [1.2.3] (2018-05-20)
 ### Features

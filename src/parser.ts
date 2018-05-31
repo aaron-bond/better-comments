@@ -233,9 +233,11 @@ export class Parser {
 
 			case "ada":
 			case "haskell":
-			case "plsql":
-			case "sql":
+			case "hive-sql":
 			case "lua":
+			case "pig":
+			case "plsql":
+			case "sql":			
 				this.delimiter = "--";
 				break;
 

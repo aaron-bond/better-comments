@@ -76,6 +76,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Groovy
 * Haskell
 * Haxe
+* HiveQL
 * Java
 * JavaScript
 * JavaScript React
@@ -95,6 +96,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Perl
 * Perl 6
 * PHP
+* Pig
 * PL/SQL
 * PowerShell
 * Python
