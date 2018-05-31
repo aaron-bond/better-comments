@@ -100,7 +100,7 @@ export class Parser {
 	}
 
 	/**
-	 * Finds all multiline comments starting with /*
+	 * Finds all multiline comments starting with "*"
 	 * @param activeEditor The active text editor containing the code document
 	 */
 	public FindMultilineComments(activeEditor: vscode.TextEditor, findJSDoc: boolean = false): void {
