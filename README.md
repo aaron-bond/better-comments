@@ -16,35 +16,43 @@ With this extension, you will be able to categorise your annotations into:
 This extension can be configured in User Settings or Workspace settings.
 
 
-`'better-comments.multilineComments': true`
+`'better-comments.multilineComments': true`  
  This setting will control whether multiline comments are styled using the annotation tags.
  When false, multiline comments will be presented without decoration.
 
+`'better-comments.highlightPlainText': false`  
+This setting will control whether comments in a plain text file are styled using the annotation tags.
+When true, the tags (defaults: `! * ? //`) will be detected if they're the first character on a line.
 
-`better-comments.tags`
+`better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
 The default 5 can be modifed to change the colors, and more can be added.
 ```javascript
 [{
   `tag`: '!',
   `color`: '#FF2D00',
-  `strikethrough`: false
+  `strikethrough`: false,
+  `backgroundColor`: 'transparent'
 },{
   `tag`: '?',
   `color`: '#3498DB',
-  `strikethrough`: false
+  `strikethrough`: false,
+  `backgroundColor`: 'transparent'
 },{
   `tag`: '//',
   `color`: '#474747',
-  `strikethrough`: true
+  `strikethrough`: true,
+  `backgroundColor`: 'transparent'
 },{
   `tag`: 'todo',
   `color`: '#FF8C00',
-  `strikethrough`: false
+  `strikethrough`: false,
+  `backgroundColor`: 'transparent'
 },{
   `tag`: '*',
   `color`: '#98C379',
-  `strikethrough`: false
+  `strikethrough`: false,
+  `backgroundColor`: 'transparent'
 }]
 ```
 
@@ -53,11 +61,11 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Ada
 * AL
 * C
+* C#
+* C++
 * Clojure
 * CoffeeScript
 * CSS
-* C++
-* C#
 * Dart
 * Dockerfile
 * Elixir
@@ -68,12 +76,12 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Groovy
 * Haskell
 * Haxe
-* Kotlin
 * Java
 * JavaScript
 * JavaScript React
 * JSON with comments
 * Julia
+* Kotlin
 * LaTex
 * Less
 * Lisp
@@ -92,8 +100,8 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Python
 * R
 * Racket
-* Rust
 * Ruby
+* Rust
 * Sass
 * Scala
 * SCSS
@@ -105,4 +113,5 @@ The default 5 can be modifed to change the colors, and more can be added.
 * TypeScript
 * TypeScript React
 * Visual Basic
+* Vue.js
 * YAML

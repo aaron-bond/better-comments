@@ -14,6 +14,7 @@ interface Contributions {
 		tag: string;
 		color: string;
 		strikethrough: boolean;
+		backgroundColor: string;
 	}];
 }
 
@@ -21,7 +22,13 @@ export class Parser {
 	private tags: CommentTag[] = [];
 	private expression: string = "";
 	private delimiter: string = "";
+
 	private highlightMultilineComments = false;
+	
+	// * this will allow plaintext files to show comment highlighting if switched on
+	private isPlainText = false;
+
+	// * this is used to prevent the first line of the file (specifically python) from coloring like other comments
 	private ignoreFirstLine = false;
 
 	// * this is used to trigger the events when a supported language code is found
@@ -47,8 +54,13 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
-		this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
+		if (this.isPlainText) {
+			// start by tying the regex to the first character in a line
+			this.expression = "(^)+([ \\t]*[ \\t]*)";
+		} else {
+			// start by finding the delimiter (//, --, #, ') with optional spaces or tabs
+			this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
+		}
 
 		// Apply all configurable comment start tags
 		this.expression += "(";
@@ -62,7 +74,10 @@ export class Parser {
 	 */
 	public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
 		let text = activeEditor.document.getText();
-		let regEx = new RegExp(this.expression, "ig");
+
+		// if it's plain text, we have to do mutliline regex to catch the start of the line with ^
+		let regexFlags = (this.isPlainText) ? "igm" : "ig";
+		let regEx = new RegExp(this.expression, regexFlags);
 
 		let match: any;
 		while (match = regEx.exec(text)) {
@@ -85,7 +100,7 @@ export class Parser {
 	}
 
 	/**
-	 * Finds all multiline comments starting with /*
+	 * Finds all multiline comments starting with "*"
 	 * @param activeEditor The active text editor containing the code document
 	 */
 	public FindMultilineComments(activeEditor: vscode.TextEditor, findJSDoc: boolean = false): void {
@@ -161,6 +176,8 @@ export class Parser {
 	 */
 	private setDelimiter(languageCode: string): void {
 		this.supportedLanguage = true;
+		this.ignoreFirstLine = false;
+		this.isPlainText = false;
 		
 		switch (languageCode) {
 			case "al":
@@ -187,6 +204,7 @@ export class Parser {
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
+			case "vue":
 				this.delimiter = "//";
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
@@ -241,6 +259,10 @@ export class Parser {
 				this.delimiter = "#";
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
+			
+			case "plaintext":
+				this.isPlainText = true;
+				break;
 
 			default:
 				this.supportedLanguage = false;
@@ -251,7 +273,7 @@ export class Parser {
 	private setTags(): void {
 		let items = this.contributions.tags;
 		for (let item of items) {
-			let options: vscode.DecorationRenderOptions = { color: item.color };
+			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
 			if (item.strikethrough) {
 				options.textDecoration = "line-through";
 			}

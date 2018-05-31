@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
@@ -59,6 +59,7 @@
         "onLanguage:pascal",
         "onLanguage:perl",
         "onLanguage:perl6",
+        "onLanguage:plaintext",
         "onLanguage:plsql",
         "onLanguage:php",
         "onLanguage:powershell",
@@ -78,6 +79,7 @@
         "onLanguage:typescript",
         "onLanguage:typescriptreact",
         "onLanguage:vb",
+        "onLanguage:vue",
         "onLanguage:yaml"
     ],
     "galleryBanner": {
@@ -102,6 +104,11 @@
                     "description": "Whether the multiline comment highlighter should be active",
                     "default": true
                 },
+                "better-comments.highlightPlainText": {
+                    "type": "boolean",
+                    "description": "Whether the plaintext comment highlighter should be active",
+                    "default": false
+                },
                 "better-comments.tags": {
                     "type": "array",
                     "description": "Tags which are used to color the comments. Changes require a restart of VS Code to take effect",
@@ -109,27 +116,32 @@
                         {
                             "tag": "!",
                             "color": "#FF2D00",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "?",
                             "color": "#3498DB",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "//",
                             "color": "#474747",
-                            "strikethrough": true
+                            "strikethrough": true,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "todo",
                             "color": "#FF8C00",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         },
                         {
                             "tag": "*",
                             "color": "#98C379",
-                            "strikethrough": false
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         }
                     ]
                 }
