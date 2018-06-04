@@ -27,6 +27,7 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
+	"onLanguage:cobol",
         "onLanguage:elixir",
         "onLanguage:erlang",
         "onLanguage:fsharp",
