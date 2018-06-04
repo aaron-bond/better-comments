@@ -10,6 +10,7 @@ interface CommentTag {
 interface Contributions {
 	multilineComments: boolean;
 	useJSDocStyle: boolean;
+	highlightPlainText: boolean;
 	tags: [{
 		tag: string;
 		color: string;
@@ -54,7 +55,7 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		if (this.isPlainText) {
+		if (this.isPlainText && this.contributions.highlightPlainText) {
 			// start by tying the regex to the first character in a line
 			this.expression = "(^)+([ \\t]*[ \\t]*)";
 		} else {
@@ -261,9 +262,16 @@ export class Parser {
 				this.delimiter = "#";
 				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
+
+			case "COBOL":
+				this.delimiter = "\\*\\>"; // ? this must be escaped to avoid breaking the regex parsing
+				break;
 			
 			case "plaintext":
 				this.isPlainText = true;
+
+				// If highlight plaintext is enabeld, this is a supported language
+				this.supportedLanguage = this.contributions.highlightPlainText;
 				break;
 
 			default:

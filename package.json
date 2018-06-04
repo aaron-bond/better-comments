@@ -26,6 +26,7 @@
         "onLanguage:al",
         "onLanguage:c",
         "onLanguage:clojure",
+        "onLanguage:COBOL",
         "onLanguage:coffeescript",
         "onLanguage:cpp",
         "onLanguage:csharp",

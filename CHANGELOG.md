@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.5] (2018-06-04)
+### Features
+* Adding support for COBOL ([](https://github.com/aaron-bond/better-comments/commit/)), merges [#34](https://github.com/aaron-bond/better-comments/issues/34)
+### Bug Fixes
+* Fixing plaintext highlight even when setting is false ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#73](https://github.com/aaron-bond/better-comments/issues/73)
+
 ## [1.2.4] (2018-05-31)
 ### Features
 * Adding new property for tags: **backgroundColor** ([3e7a188](https://github.com/aaron-bond/better-comments/commit/3e7a188)), closes [#66](https://github.com/aaron-bond/better-comments/issues/66)
