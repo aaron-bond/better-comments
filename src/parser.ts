@@ -50,6 +50,11 @@ export class Parser {
 	public SetRegex(languageCode: string) {
 		this.setDelimiter(languageCode);
 
+		// if the language isn't supported, we don't need to go any further
+		if (!this.supportedLanguage) {
+			return;
+		}
+
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
 			characters.push(commentTag.escapedTag);
