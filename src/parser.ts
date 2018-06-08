@@ -25,7 +25,7 @@ export class Parser {
 	private delimiter: string = "";
 
 	private highlightMultilineComments = false;
-	
+
 	// * this will allow plaintext files to show comment highlighting if switched on
 	private isPlainText = false;
 
@@ -128,7 +128,7 @@ export class Parser {
 
 		if (findJSDoc) {
 			commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
-			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */		
+			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */
 		} else {
 			commentMatchString = "(^)+([ \\t]*[ \\t]*)("; // Don't expect the leading *
 			regEx = /(^|[ \t])(\/\*[^*])+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /* */
@@ -184,7 +184,7 @@ export class Parser {
 		this.supportedLanguage = true;
 		this.ignoreFirstLine = false;
 		this.isPlainText = false;
-		
+
 		switch (languageCode) {
 			case "al":
 			case "c":
@@ -192,6 +192,7 @@ export class Parser {
 			case "csharp":
 			case "css":
 			case "dart":
+			case "flax":
 			case "fsharp":
 			case "go":
 			case "haxe":
@@ -243,7 +244,7 @@ export class Parser {
 			case "lua":
 			case "pig":
 			case "plsql":
-			case "sql":			
+			case "sql":
 				this.delimiter = "--";
 				break;
 
@@ -262,7 +263,7 @@ export class Parser {
 			case "lisp":
 				this.delimiter = ";";
 				break;
-			
+
 			case "terraform":
 				this.delimiter = "#";
 				this.highlightMultilineComments = this.contributions.multilineComments;
@@ -271,7 +272,7 @@ export class Parser {
 			case "COBOL":
 				this.delimiter = "\\*\\>"; // ? this must be escaped to avoid breaking the regex parsing
 				break;
-			
+
 			case "plaintext":
 				this.isPlainText = true;
 
