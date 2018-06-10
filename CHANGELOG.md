@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.6] (2018-06-10)
+### Features
+* Adding support for Flax ([71f6326](https://github.com/aaron-bond/better-comments/commit/71f6326)), merges [#76](https://github.com/aaron-bond/better-comments/issues/76)
+### House Keeping
+* Updating README to reflect actual styntax better ([71f9019](https://github.com/aaron-bond/better-comments/commit/71f9019)), merges [#77](https://github.com/aaron-bond/better-comments/issues/77)
+
 ## [1.2.5] (2018-06-04)
 ### Features
 * Adding support for COBOL ([7939ca2](https://github.com/aaron-bond/better-comments/commit/7939ca2)), merges [#34](https://github.com/aaron-bond/better-comments/issues/34)
