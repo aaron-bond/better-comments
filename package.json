@@ -35,6 +35,7 @@
         "onLanguage:dockerfile",
         "onLanguage:elixir",
         "onLanguage:erlang",
+        "onLanguage:flax",
         "onLanguage:fsharp",
         "onLanguage:go",
         "onLanguage:graphql",
