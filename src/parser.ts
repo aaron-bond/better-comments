@@ -75,7 +75,7 @@ export class Parser {
 	}
 
 	/**
-	 * Finds all single line comments delimted by a given delimter and matching tags specified in package.json
+	 * Finds all single line comments delimited by a given delimiter and matching tags specified in package.json
 	 * @param activeEditor  The active text editor containing the code document
 	 */
 	public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
@@ -116,7 +116,7 @@ export class Parser {
 
 		let text = activeEditor.document.getText();
 
-		// Build up regex matcher for custom delimter tags
+		// Build up regex matcher for custom delimiter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
 			characters.push(commentTag.escapedTag);
@@ -270,7 +270,7 @@ export class Parser {
 				break;
 
 			case "COBOL":
-				this.delimiter = "\\*\\>"; // ? this must be escaped to avoid breaking the regex parsing
+				this.delimiter = "\\*\\>|^......[\\*/]"; // ? this must be escaped to avoid breaking the regex parsing
 				break;
 
 			case "plaintext":
