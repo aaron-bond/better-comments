@@ -78,6 +78,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Elixir
 * Erlang
 * F#
+* gdscript
 * Go
 * GraphQL
 * Groovy

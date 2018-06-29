@@ -37,6 +37,7 @@
         "onLanguage:erlang",
         "onLanguage:flax",
         "onLanguage:fsharp",
+        "onLanguage:gdscript",
         "onLanguage:go",
         "onLanguage:graphql",
         "onLanguage:groovy",
