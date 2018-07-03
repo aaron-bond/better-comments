@@ -23,8 +23,13 @@ export class Parser {
 	private tags: CommentTag[] = [];
 	private expression: string = "";
 	private delimiter: string = "";
-
 	private highlightMultilineComments = false;
+
+	// * this will trigger blockcomment instead of multilinecode
+	private isBlock = false;
+	
+	// * only used when comment is block comment
+	private enddelimiter: string = "";
 
 	// * this will allow plaintext files to show comment highlighting if switched on
 	private isPlainText = false;
@@ -79,6 +84,7 @@ export class Parser {
 	 * @param activeEditor  The active text editor containing the code document
 	 */
 	public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
+		if(this.isBlock) return;
 		let text = activeEditor.document.getText();
 
 		// if it's plain text, we have to do mutliline regex to catch the start of the line with ^
@@ -110,7 +116,6 @@ export class Parser {
 	 * @param activeEditor The active text editor containing the code document
 	 */
 	public FindMultilineComments(activeEditor: vscode.TextEditor, findJSDoc: boolean = false): void {
-
 		// If highlight multiline is off in package.json or doesn't apply to his language, return
 		if (!this.highlightMultilineComments) return;
 
@@ -129,6 +134,9 @@ export class Parser {
 		if (findJSDoc) {
 			commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
 			regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */
+		} else if(this.isBlock){
+			commentMatchString = "("+this.delimiter+"|^)+([ \\t]*[ \\t]*)("; // Don't expect the leading *
+			regEx = new RegExp("(\\" + this.delimiter + "[^*])+([\\s\\S]*?)(" + this.enddelimiter + ")", "gm");
 		} else {
 			commentMatchString = "(^)+([ \\t]*[ \\t]*)("; // Don't expect the leading *
 			regEx = /(^|[ \t])(\/\*[^*])+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /* */
@@ -138,7 +146,7 @@ export class Parser {
 		commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
 
 		let commentRegEx = new RegExp(commentMatchString, "igm");
-
+		
 		// Find the multiline comment block
 		let match: any;
 		while (match = regEx.exec(text)) {
@@ -148,6 +156,7 @@ export class Parser {
 			let line;
 			while (line = commentRegEx.exec(commentBlock)) {
 				let startPos = activeEditor.document.positionAt(match.index + line.index + line[2].length);
+				if(this.isBlock) startPos = activeEditor.document.positionAt(match.index + line.index);
 				let endPos = activeEditor.document.positionAt(match.index + line.index + line[0].length);
 				let range: vscode.DecorationOptions = { range: new vscode.Range(startPos, endPos) };
 
@@ -184,6 +193,7 @@ export class Parser {
 		this.supportedLanguage = true;
 		this.ignoreFirstLine = false;
 		this.isPlainText = false;
+		this.isBlock = false;
 
 		switch (languageCode) {
 			case "al":
@@ -280,7 +290,16 @@ export class Parser {
 				// If highlight plaintext is enabeld, this is a supported language
 				this.supportedLanguage = this.contributions.highlightPlainText;
 				break;
-
+			case "html":
+				this.isBlock = true;
+				this.delimiter = "<!--";
+				this.enddelimiter = "-->";
+				break;
+			case "twig":
+				this.isBlock = true;
+				this.delimiter = "{#";
+				this.enddelimiter = "#}";
+				break;
 			default:
 				this.supportedLanguage = false;
 				break;
