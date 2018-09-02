@@ -38,6 +38,7 @@
         "onLanguage:flax",
         "onLanguage:fsharp",
         "onLanguage:fortran-modern",
+        "onLanguage:gdscript",
         "onLanguage:go",
         "onLanguage:graphql",
         "onLanguage:groovy",

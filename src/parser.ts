@@ -219,6 +219,7 @@ export class Parser {
 			case "coffeescript":
 			case "dockerfile":
 			case "elixir":
+			case "gdscript":
 			case "graphql":
 			case "julia":
 			case "makefile":
