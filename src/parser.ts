@@ -285,6 +285,7 @@ export class Parser {
 				break;
 			
 			case "SAS":
+			case "stata":
 				this.delimiter = "\\*"; // ? this must be escaped to avoid breaking the regex parsing
 				break;
 

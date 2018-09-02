@@ -119,6 +119,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * ShaderLab
 * ShellScript
 * SQL
+* STATA
 * Swift
 * Terraform
 * TypeScript

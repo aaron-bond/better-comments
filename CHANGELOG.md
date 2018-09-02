@@ -6,6 +6,7 @@
 * Adding support for multiple languages, closes [#89](https://github.com/aaron-bond/better-comments/issues/89)
 	* Fortran (modern) ([XXXXXXX](https://github.com/aaron-bond/better-comments/commit/))
 	* SAS ([XXXXXXX](https://github.com/aaron-bond/better-comments/commit/))
+	* STATA ([XXXXXXX](https://github.com/aaron-bond/better-comments/commit/))
 
 ### House Keeping
 * Updating README to reflect actual styntax better ([71f9019](https://github.com/aaron-bond/better-comments/commit/71f9019)), merges [#77](https://github.com/aaron-bond/better-comments/issues/77)

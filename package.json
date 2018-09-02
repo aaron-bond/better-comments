@@ -80,6 +80,7 @@
         "onLanguage:shaderlab",
         "onLanguage:shellscript",
         "onLanguage:sql",
+        "onLanguage:stata",
         "onLanguage:swift",
         "onLanguage:terraform",
         "onLanguage:typescript",
