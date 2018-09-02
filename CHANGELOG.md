@@ -1,8 +1,9 @@
 # Change Log
 
-## [1.2.6] (2018-06-10)
+## [1.2.6] (2018-09-02)
 ### Features
 * Adding support for Flax ([71f6326](https://github.com/aaron-bond/better-comments/commit/71f6326)), merges [#76](https://github.com/aaron-bond/better-comments/issues/76)
+* Adding support for Fortran (modern) ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#89](https://github.com/aaron-bond/better-comments/issues/89)
 ### House Keeping
 * Updating README to reflect actual styntax better ([71f9019](https://github.com/aaron-bond/better-comments/commit/71f9019)), merges [#77](https://github.com/aaron-bond/better-comments/issues/77)
 
