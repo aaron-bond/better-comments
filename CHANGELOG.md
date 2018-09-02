@@ -4,9 +4,9 @@
 ### Features
 * Adding support for Flax ([71f6326](https://github.com/aaron-bond/better-comments/commit/71f6326)), merges [#76](https://github.com/aaron-bond/better-comments/issues/76)
 * Adding support for multiple languages, closes [#89](https://github.com/aaron-bond/better-comments/issues/89)
-	* Fortran (modern) ([XXXXXXX](https://github.com/aaron-bond/better-comments/commit/))
-	* SAS ([XXXXXXX](https://github.com/aaron-bond/better-comments/commit/))
-	* STATA ([XXXXXXX](https://github.com/aaron-bond/better-comments/commit/))
+	* Fortran (modern) ([8762226](https://github.com/aaron-bond/better-comments/commit/8762226))
+	* SAS ([145e8d3](https://github.com/aaron-bond/better-comments/commit/145e8d3))
+	* STATA ([eb0f367](https://github.com/aaron-bond/better-comments/commit/eb0f367))
 
 ### House Keeping
 * Updating README to reflect actual styntax better ([71f9019](https://github.com/aaron-bond/better-comments/commit/71f9019)), merges [#77](https://github.com/aaron-bond/better-comments/issues/77)
@@ -14,6 +14,7 @@
 ## [1.2.5] (2018-06-04)
 ### Features
 * Adding support for COBOL ([7939ca2](https://github.com/aaron-bond/better-comments/commit/7939ca2)), merges [#34](https://github.com/aaron-bond/better-comments/issues/34)
+
 ### Bug Fixes
 * Fixing plaintext highlight even when setting is false ([7939ca2](https://github.com/aaron-bond/better-comments/commit/7939ca2)), closes [#73](https://github.com/aaron-bond/better-comments/issues/73)
 
