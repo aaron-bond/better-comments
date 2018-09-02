@@ -283,6 +283,10 @@ export class Parser {
 			case "fortran-modern":
 				this.delimiter = "c";
 				break;
+			
+			case "SAS":
+				this.delimiter = "\\*"; // ? this must be escaped to avoid breaking the regex parsing
+				break;
 
 			default:
 				this.supportedLanguage = false;
