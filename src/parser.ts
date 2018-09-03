@@ -235,6 +235,7 @@ export class Parser {
 				break;
 
 			case "python":
+			case "tcl":
 				this.delimiter = "#";
 				this.ignoreFirstLine = true;
 				break;

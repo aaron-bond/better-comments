@@ -83,6 +83,7 @@
         "onLanguage:sql",
         "onLanguage:stata",
         "onLanguage:swift",
+        "onLanguage:tcl",
         "onLanguage:terraform",
         "onLanguage:typescript",
         "onLanguage:typescriptreact",

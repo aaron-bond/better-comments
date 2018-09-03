@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.8] (2018-09-03)
+### Features
+* Added support for Tcl ([]()), closes [#92](https://github.com/aaron-bond/better-comments/issues/92)
+
 ## [1.2.7] (2018-09-02)
 ### Features
 * Adding support for Flax ([71f6326](https://github.com/aaron-bond/better-comments/commit/71f6326)), merges [#76](https://github.com/aaron-bond/better-comments/issues/76)

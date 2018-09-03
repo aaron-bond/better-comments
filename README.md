@@ -122,6 +122,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * SQL
 * STATA
 * Swift
+* Tcl
 * Terraform
 * TypeScript
 * TypeScript React
