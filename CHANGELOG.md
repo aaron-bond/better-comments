@@ -2,7 +2,7 @@
 
 ## [1.2.8] (2018-09-03)
 ### Features
-* Added support for Tcl ([]()), closes [#92](https://github.com/aaron-bond/better-comments/issues/92)
+* Added support for Tcl ([52e6d35](https://github.com/aaron-bond/better-comments/commit/52e6d35)), closes [#92](https://github.com/aaron-bond/better-comments/issues/92)
 
 ## [1.2.7] (2018-09-02)
 ### Features
