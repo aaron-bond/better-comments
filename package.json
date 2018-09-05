@@ -66,6 +66,7 @@
         "onLanguage:perl6",
         "onLanguage:pig",
         "onLanguage:plaintext",
+        "onLanguage:diagram",
         "onLanguage:plsql",
         "onLanguage:php",
         "onLanguage:powershell",
