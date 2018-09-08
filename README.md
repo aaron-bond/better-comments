@@ -106,6 +106,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Perl 6
 * PHP
 * Pig
+* PlantUML
 * PL/SQL
 * PowerShell
 * Python

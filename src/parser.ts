@@ -251,6 +251,7 @@ export class Parser {
 				break;
 
 			case "vb":
+			case "diagram": // ? PlantUML is recognized as Diagram (diagram)
 				this.delimiter = "'";
 				break;
 
