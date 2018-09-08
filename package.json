@@ -24,6 +24,7 @@
     "activationEvents": [
         "onLanguage:ada",
         "onLanguage:al",
+        "onLanguage:bibtex",
         "onLanguage:c",
         "onLanguage:clojure",
         "onLanguage:COBOL",
@@ -67,6 +68,7 @@
         "onLanguage:perl6",
         "onLanguage:pig",
         "onLanguage:plaintext",
+        "onLanguage:diagram",
         "onLanguage:plsql",
         "onLanguage:php",
         "onLanguage:powershell",

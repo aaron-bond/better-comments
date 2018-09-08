@@ -92,7 +92,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * JSON with comments
 * Julia
 * Kotlin
-* LaTex
+* LaTex (inlc. Bibtex/Biblatex)
 * Less
 * Lisp
 * Lua
