@@ -255,6 +255,7 @@ export class Parser {
 				this.delimiter = "'";
 				break;
 
+			case "bibtex":
 			case "erlang":
 			case "latex":
 			case "matlab":
