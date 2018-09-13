@@ -4,6 +4,9 @@
 ### Features
 * Adding support for Bibtex/Biblatex ([](https://github.com/aaron-bond/better-comments/commit/)), thanks to _JavierReyes945_, merges [#96](https://github.com/aaron-bond/better-comments/pull/96)
 
+### Bug Fixes
+* Fixing multiline comment support for SAS and Stata ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#95](https://github.com/aaron-bond/better-comments/issues/95)
+
 ## [1.2.9] (2018-09-08)
 ### Features
 * Adding support for PlantUML ([9a446a3](https://github.com/aaron-bond/better-comments/commit/9a446a3)), thanks to _JavierReyes945_, closes [#94](https://github.com/aaron-bond/better-comments/issues/94)

@@ -291,6 +291,7 @@ export class Parser {
 			case "SAS":
 			case "stata":
 				this.delimiter = "\\*"; // ? this must be escaped to avoid breaking the regex parsing
+				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
 
 			default:
