@@ -211,6 +211,7 @@ export class Parser {
 			case "swift":
 			case "typescript":
 			case "typescriptreact":
+			case "verilog":
 			case "vue":
 				this.delimiter = "//";
 				this.highlightMultilineComments = this.contributions.multilineComments;

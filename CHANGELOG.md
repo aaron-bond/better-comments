@@ -3,6 +3,7 @@
 ## [1.3.0] (2018-09-13)
 ### Features
 * Adding support for Bibtex/Biblatex ([](https://github.com/aaron-bond/better-comments/commit/)), thanks to _JavierReyes945_, merges [#96](https://github.com/aaron-bond/better-comments/pull/96)
+* Adding support for Verilog HDL ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#84](https://github.com/aaron-bond/better-comments/issues/84)
 
 ### Bug Fixes
 * Fixing multiline comment support for SAS and Stata ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#95](https://github.com/aaron-bond/better-comments/issues/95)
