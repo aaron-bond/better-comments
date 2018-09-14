@@ -14,6 +14,11 @@ when defined(gcc) and defined(windows):
   else:
     {.link: "icons/nim_icon.o".}
 
+#[
+  ? question
+  block comment
+]#
+
 when defined(amd64) and defined(windows) and defined(vcc):
   {.link: "icons/nim-amd64-windows-vcc.res".}
 when defined(i386) and defined(windows) and defined(vcc):

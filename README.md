@@ -86,6 +86,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Haskell
 * Haxe
 * HiveQL
+* HTML
 * Java
 * JavaScript
 * JavaScript React
@@ -125,6 +126,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Swift
 * Tcl
 * Terraform
+* Twig
 * TypeScript
 * TypeScript React
 * Verilog

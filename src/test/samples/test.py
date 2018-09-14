@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+    my_method does a thing. There are many like it, but this one is mine.
+    ? Do we really need this?
+    ! Deprecated
+    @param my_param Do some stuff with this
+"""
+
 # ! Import the modules
 import sys
 import random

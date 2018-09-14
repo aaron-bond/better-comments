@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
@@ -45,6 +45,7 @@
         "onLanguage:graphql",
         "onLanguage:groovy",
         "onLanguage:haskell",
+        "onLanguage:html",
         "onLanguage:haxe",
         "onLanguage:hive-sql",
         "onLanguage:kotlin",
@@ -87,6 +88,7 @@
         "onLanguage:swift",
         "onLanguage:tcl",
         "onLanguage:terraform",
+        "onLanguage:twig",
         "onLanguage:typescript",
         "onLanguage:typescriptreact",
         "onLanguage:vb",
