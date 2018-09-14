@@ -285,6 +285,7 @@ export class Parser {
 			case "makefile":
 			case "perl":
 			case "perl6":
+			case "puppet":
 			case "r":
 			case "ruby":
 			case "shellscript":

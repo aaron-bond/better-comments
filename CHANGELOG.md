@@ -3,6 +3,9 @@
 ## [2.0.0] (2018-09-16)
 ### Features
 * Block comments for lots and lots of languages. Please raise a bug or feature request if I've missed any!
+* Added support for HTML
+* Added support for Twig
+* Added support for Puppet
 
 ### House Keeping
 * I decided a major version release was appropriate for this one as it's a pretty huge set of changes in terms of how the extension functions

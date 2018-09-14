@@ -110,6 +110,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * PlantUML
 * PL/SQL
 * PowerShell
+* Puppet
 * Python
 * R
 * Racket
