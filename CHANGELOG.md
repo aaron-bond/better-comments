@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.0.0] (2018-09-16)
+### Features
+* Block comments for lots and lots of languages. Please raise a bug or feature request if I've missed any!
+
+### House Keeping
+* I decided a major version release was appropriate for this one as it's a pretty huge set of changes in terms of how the extension functions
+* It's now possible to add block comment formatting for any new languages as required. Sorry it took so long!
+
 ## [1.3.0] (2018-09-13)
 ### Features
 * Adding support for Bibtex/Biblatex ([d1f06b6](https://github.com/aaron-bond/better-comments/commit/d1f06b6)), thanks to _JavierReyes945_, merges [#96](https://github.com/aaron-bond/better-comments/pull/96)
