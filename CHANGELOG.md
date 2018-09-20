@@ -1,6 +1,6 @@
 # Change Log
 
-## [2.0.0] (2018-09-16)
+## [2.0.0] (2018-09-20)
 ### Features
 * Block comments for lots and lots of languages. Please raise a bug or feature request if I've missed any!
 * Added support for HTML
