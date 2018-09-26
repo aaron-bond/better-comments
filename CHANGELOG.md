@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.0.1] (2018-09-26)
+### Bug Fixes
+* Fixing issue where JSDoc block comments weren't being detected properly ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#101](https://github.com/aaron-bond/better-comments/issues/101)
+
 ## [2.0.0] (2018-09-20)
 ### Features
 * Block comments for lots and lots of languages. Please raise a bug or feature request if I've missed any!

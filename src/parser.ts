@@ -139,7 +139,7 @@ export class Parser {
 		// Use start and end delimiters to find block comments
 		let regexString = "(^|[ \\t])(";
 		regexString += this.blockCommentStart;
-		regexString += ")+([\\s\\S]*?)(";
+		regexString += "[\\s])+([\\s\\S]*?)(";
 		regexString += this.blockCommentEnd;
 		regexString += ")";
 
