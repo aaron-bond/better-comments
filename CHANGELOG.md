@@ -6,7 +6,7 @@
 * Fixing support for multiline Haskell comments ([498016a](https://github.com/aaron-bond/better-comments/commit/498016a)), closes [#102](https://github.com/aaron-bond/better-comments/issues/102)
 
 ### Features
-* Adding D support ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#99](https://github.com/aaron-bond/better-comments/issues/99)
+* Adding D support ([c6a619c](https://github.com/aaron-bond/better-comments/commit/c6a619c)), closes [#99](https://github.com/aaron-bond/better-comments/issues/99)
 
 ## [2.0.1] (2018-09-26)
 ### Bug Fixes
