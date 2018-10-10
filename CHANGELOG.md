@@ -3,6 +3,7 @@
 ## [2.0.2] (2018-10-10)
 ### Bug Fixes
 * Fixing single line CSS comments([469a93f](https://github.com/aaron-bond/better-comments/commit/469a93f)), closes [#109](https://github.com/aaron-bond/better-comments/issues/109)
+* Fixing support for multiline Haskell comments ([](https://github.com/aaron-bond/better-comments/commit/)), closes [#102](https://github.com/aaron-bond/better-comments/issues/102)
 
 ## [2.0.1] (2018-09-26)
 ### Bug Fixes
