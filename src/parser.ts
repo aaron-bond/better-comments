@@ -255,7 +255,6 @@ export class Parser {
 			case "c":
 			case "cpp":
 			case "csharp":
-			case "css":
 			case "dart":
 			case "flax":
 			case "fsharp":
@@ -275,6 +274,10 @@ export class Parser {
 			case "verilog":
 			case "vue":
 				this.setCommentFormat("//", "/*", "*/");
+				break;
+			
+			case "css":
+				this.setCommentFormat("/*", "/*", "*/");
 				break;
 
 			case "coffeescript":
