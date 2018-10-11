@@ -107,30 +107,14 @@ export class Parser {
 				continue;
 			}
 
-			// Find which custom delimiter was used in order to add it to the collection
-			// let tgs: any;
-			// while (tgs = this.tags){
-			// 	let tg: any;
-			// 	while (tg = tgs.tag){
-			// 		if (tg.toLowerCase() === match[3].toLowerCase()){
-			// 			console.log("MATCH");
-			// 		}
-			// 	}
-			// }
+			// Find which custom delimiters were used in order to add it to the collection
 			this.tags.forEach(tags => {
 				tags.tag.forEach(tag => {
 					if (tag.toLowerCase() === match[3].toLowerCase()){
-						console.log("MATCH");
 						tags.ranges.push(range);
 					}
 				});
 			});
-			console.log(this.tags);
-			// let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
-
-			// if (matchTag) {
-			// 	matchTag.ranges.push(range);
-			// }
 		}
 	}
 
@@ -186,17 +170,10 @@ export class Parser {
 				this.tags.forEach(tags => {
 					tags.tag.forEach(tag => {
 						if (tag.toLowerCase() === matchString.toLowerCase()) {
-							console.log("MATCH");
 							tags.ranges.push(range);
 						}
 					});
 				});
-				console.log(this.tags);
-				// let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
-
-				// if (matchTag) {
-				// 	matchTag.ranges.push(range);
-				// }
 			}
 		}
 	}
@@ -246,17 +223,10 @@ export class Parser {
 				this.tags.forEach(tags => {
 					tags.tag.forEach(tag => {
 						if (tag.toLowerCase() === matchString.toLowerCase()) {
-							console.log("MATCH");
 							tags.ranges.push(range);
 						}
 					});
 				});
-				console.log(this.tags);
-				// let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
-
-				// if (matchTag) {
-				// 	matchTag.ranges.push(range);
-				// }
 			}
 		}
 	}
