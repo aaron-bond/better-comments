@@ -114,6 +114,11 @@
         "configuration": {
             "title": "Better Comments configuration",
             "properties": {
+                "better-comments.excludeLanguages": {
+                    "type":"object",
+                    "description": "Define tags that have to be excluded in certain languages.\nExample: {\"html\":\"?\"} or {\"html\":[\"?\", \"!\"]}",
+                    "default": {}
+                },
                 "better-comments.multilineComments": {
                     "type": "boolean",
                     "description": "Whether the multiline comment highlighter should be active",

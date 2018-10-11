@@ -11,6 +11,7 @@ interface Contributions {
 	multilineComments: boolean;
 	useJSDocStyle: boolean;
 	highlightPlainText: boolean;
+	excludeLanguages: any;
 	tags: [{
 		tag: string;
 		color: string;
@@ -39,6 +40,9 @@ export class Parser {
 
 	// * this is used to trigger the events when a supported language code is found
 	public supportedLanguage = true;
+	
+	// * this is used to eclude languages with certain language codes
+	public languageCode : string = "";
 
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
@@ -53,6 +57,7 @@ export class Parser {
 	 * https://code.visualstudio.com/docs/languages/identifiers
 	 */
 	public SetRegex(languageCode: string) {
+		this.languageCode = languageCode;
 		this.setDelimiter(languageCode);
 
 		// if the language isn't supported, we don't need to go any further
@@ -110,6 +115,25 @@ export class Parser {
 			// Find which custom delimiters were used in order to add it to the collection
 			this.tags.forEach(tags => {
 				tags.tag.forEach(tag => {
+					if (this.contributions.excludeLanguages.hasOwnProperty(this.languageCode)){
+						let el: string[] | string = this.contributions.excludeLanguages[this.languageCode];
+						if (typeof el === "string"){
+							if (el.toLowerCase() === tag.toLowerCase()){
+								return;
+							}
+						}else{
+							let exclude = false;
+							el.forEach(t => {
+								if (t.toLowerCase() === tag){
+									exclude = true;
+									return;
+								}
+							});
+							if (exclude){
+								return;
+							}
+						}
+					}
 					if (tag.toLowerCase() === match[3].toLowerCase()){
 						tags.ranges.push(range);
 					}
@@ -169,10 +193,29 @@ export class Parser {
 
 				this.tags.forEach(tags => {
 					tags.tag.forEach(tag => {
-						if (tag.toLowerCase() === matchString.toLowerCase()) {
-							tags.ranges.push(range);
+					if (this.contributions.excludeLanguages.hasOwnProperty(this.languageCode)){
+						let el: string[] | string = this.contributions.excludeLanguages[this.languageCode];
+						if (typeof el === "string"){
+							if (el.toLowerCase() === tag.toLowerCase()){
+								return;
+							}
+						}else{
+							let exclude = false;
+							el.forEach(t => {
+								if (t.toLowerCase() === tag){
+									exclude = true;
+									return;
+								}
+							});
+							if (exclude){
+								return;
+							}
 						}
-					});
+					}
+						if (tag.toLowerCase() === matchString.toLowerCase()){
+						tags.ranges.push(range);
+					}
+				});
 				});
 			}
 		}
@@ -222,6 +265,25 @@ export class Parser {
 				let matchString = line[3] as string;
 				this.tags.forEach(tags => {
 					tags.tag.forEach(tag => {
+						if (this.contributions.excludeLanguages.hasOwnProperty(this.languageCode)) {
+							let el: string[] | string = this.contributions.excludeLanguages[this.languageCode];
+							if (typeof el === "string") {
+								if (el.toLowerCase() === tag.toLowerCase()) {
+									return;
+								}
+							} else {
+								let exclude = false;
+								el.forEach(t => {
+									if (t.toLowerCase() === tag) {
+										exclude = true;
+										return;
+									}
+								});
+								if (exclude) {
+									return;
+								}
+							}
+						}
 						if (tag.toLowerCase() === matchString.toLowerCase()) {
 							tags.ranges.push(range);
 						}
