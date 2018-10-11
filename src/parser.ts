@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 
 interface CommentTag {
-	tag: string;
-	escapedTag: string;
+	tag: string[];
+	escapedTag: string[];
 	decoration: vscode.TextEditorDecorationType;
 	ranges: Array<vscode.DecorationOptions>;
 }
@@ -62,7 +62,9 @@ export class Parser {
 
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
+			commentTag.escapedTag.forEach(escapedTag => {
+				characters.push(escapedTag);
+			});
 		}
 
 		if (this.isPlainText && this.contributions.highlightPlainText) {
@@ -106,11 +108,29 @@ export class Parser {
 			}
 
 			// Find which custom delimiter was used in order to add it to the collection
-			let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
+			// let tgs: any;
+			// while (tgs = this.tags){
+			// 	let tg: any;
+			// 	while (tg = tgs.tag){
+			// 		if (tg.toLowerCase() === match[3].toLowerCase()){
+			// 			console.log("MATCH");
+			// 		}
+			// 	}
+			// }
+			this.tags.forEach(tags => {
+				tags.tag.forEach(tag => {
+					if (tag.toLowerCase() === match[3].toLowerCase()){
+						console.log("MATCH");
+						tags.ranges.push(range);
+					}
+				});
+			});
+			console.log(this.tags);
+			// let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
 
-			if (matchTag) {
-				matchTag.ranges.push(range);
-			}
+			// if (matchTag) {
+			// 	matchTag.ranges.push(range);
+			// }
 		}
 	}
 
@@ -128,7 +148,9 @@ export class Parser {
 		// Build up regex matcher for custom delimter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
+			commentTag.escapedTag.forEach(escapedTag => {
+				characters.push(escapedTag);
+			});
 		}
 
 		// Combine custom delimiters and the rest of the comment block matcher		
@@ -160,11 +182,21 @@ export class Parser {
 
 				// Find which custom delimiter was used in order to add it to the collection
 				let matchString = line[3] as string;
-				let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
-				if (matchTag) {
-					matchTag.ranges.push(range);
-				}
+				this.tags.forEach(tags => {
+					tags.tag.forEach(tag => {
+						if (tag.toLowerCase() === matchString.toLowerCase()) {
+							console.log("MATCH");
+							tags.ranges.push(range);
+						}
+					});
+				});
+				console.log(this.tags);
+				// let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
+
+				// if (matchTag) {
+				// 	matchTag.ranges.push(range);
+				// }
 			}
 		}
 	}
@@ -183,7 +215,9 @@ export class Parser {
 		// Build up regex matcher for custom delimter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
+			commentTag.escapedTag.forEach(escapedTag => {
+				characters.push(escapedTag);
+			});
 		}
 
 		// Combine custom delimiters and the rest of the comment block matcher
@@ -209,11 +243,20 @@ export class Parser {
 
 				// Find which custom delimiter was used in order to add it to the collection
 				let matchString = line[3] as string;
-				let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
+				this.tags.forEach(tags => {
+					tags.tag.forEach(tag => {
+						if (tag.toLowerCase() === matchString.toLowerCase()) {
+							console.log("MATCH");
+							tags.ranges.push(range);
+						}
+					});
+				});
+				console.log(this.tags);
+				// let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
-				if (matchTag) {
-					matchTag.ranges.push(range);
-				}
+				// if (matchTag) {
+				// 	matchTag.ranges.push(range);
+				// }
 			}
 		}
 	}
@@ -395,11 +438,19 @@ export class Parser {
 			if (item.strikethrough) {
 				options.textDecoration = "line-through";
 			}
-
-			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+			let tags : string[] = [];
+			if (typeof item.tag !== "string"){
+				tags = item.tag;
+			}else{
+				tags.push(item.tag);
+			}
+			let escapedSequences : string[] = [];
+			tags.forEach(tag => {
+				escapedSequences.push(tag.replace(/([()[{*+.$^\\|?])/g, '\\$1').replace(/\//gi, "\\/"));// ! hardcoded to escape slashes
+			});
 			this.tags.push({
-				tag: item.tag,
-				escapedTag: escapedSequence.replace(/\//gi, "\\/"), // ! hardcoded to escape slashes
+				tag: tags,
+				escapedTag: escapedSequences, 
 				ranges: [],
 				decoration: vscode.window.createTextEditorDecorationType(options)
 			});
