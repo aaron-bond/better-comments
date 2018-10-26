@@ -366,6 +366,7 @@ export class Parser {
 			
 			case "html":
 				this.setCommentFormat("<!--", "<!--", "-->");
+				this.setCommentFormat(null, "<f:comment>", "</f:comment>");
 				break;
 			
 			case "twig":
