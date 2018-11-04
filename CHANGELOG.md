@@ -3,6 +3,7 @@
 ## [2.0.3] (2018-11-04)
 ### Features
 * Adding Stylus support ([a57ad30](https://github.com/aaron-bond/better-comments/commit/a57ad30)), merges [#112]. Thanks _vednoc_
+* Adding ASCIIDoc support ([60a5f5f](https://github.com/aaron-bond/better-comments/commit/60a5f5f)), closes [#107](https://github.com/aaron-bond/better-comments/issues/107)
 
 ## [2.0.2] (2018-10-10)
 ### Bug Fixes
