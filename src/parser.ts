@@ -243,6 +243,10 @@ export class Parser {
 
 		switch (languageCode) {
 
+			case "asciidoc":
+				this.setCommentFormat("//", "////", "////");
+				break;
+
 			case "javascript":
 			case "javascriptreact":
 			case "typescript":
