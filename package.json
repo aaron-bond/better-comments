@@ -87,6 +87,7 @@
         "onLanguage:shellscript",
         "onLanguage:sql",
         "onLanguage:stata",
+        "onLanguage:stylus",
         "onLanguage:swift",
         "onLanguage:tcl",
         "onLanguage:terraform",
