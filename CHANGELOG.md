@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.0.3] (2018-11-04)
+### Features
+* Adding Stylus support ([a57ad30](https://github.com/aaron-bond/better-comments/commit/a57ad30)), merges [#112]. Thanks _vednoc_
+
 ## [2.0.2] (2018-10-10)
 ### Bug Fixes
 * Fixing single line CSS comments([469a93f](https://github.com/aaron-bond/better-comments/commit/469a93f)), closes [#109](https://github.com/aaron-bond/better-comments/issues/109)
