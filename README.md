@@ -24,6 +24,15 @@ This extension can be configured in User Settings or Workspace settings.
 This setting will control whether comments in a plain text file are styled using the annotation tags.
 When true, the tags (defaults: `! * ? //`) will be detected if they're the first character on a line.
 
+`better-comments.excludeLanguages`  
+In this setting you can define tags that have to be excluded in certain languages.
+```json
+"better-comments.excludeLanguages": {
+  "html": "?",
+  "php": ["?", "!"]
+}
+```
+
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
 The default 5 can be modifed to change the colors, and more can be added.

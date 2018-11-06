@@ -32,8 +32,8 @@
         "onLanguage:coffeescript",
         "onLanguage:cpp",
         "onLanguage:csharp",
-		"onLanguage:css",
-		"onLanguage:d",
+        "onLanguage:css",
+        "onLanguage:d",
         "onLanguage:dart",
         "onLanguage:diagram",
         "onLanguage:dockerfile",
@@ -116,6 +116,11 @@
         "configuration": {
             "title": "Better Comments configuration",
             "properties": {
+                "better-comments.excludeLanguages": {
+                    "type":"object",
+                    "description": "Define tags that have to be excluded in certain languages.\nExample: {\"html\":\"?\"} or {\"html\":[\"?\", \"!\"]}",
+                    "default": {}
+                },
                 "better-comments.multilineComments": {
                     "type": "boolean",
                     "description": "Whether the multiline comment highlighter should be active",
@@ -131,7 +136,7 @@
                     "description": "Tags which are used to color the comments. Changes require a restart of VS Code to take effect",
                     "default": [
                         {
-                            "tag": "!",
+                            "tag": ["!", "FIXME"],
                             "color": "#FF2D00",
                             "strikethrough": false,
                             "backgroundColor": "transparent"

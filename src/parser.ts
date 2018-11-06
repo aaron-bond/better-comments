@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
 
 interface CommentTag {
-	tag: string;
-	escapedTag: string;
+	tag: string[];
+	escapedTag: string[];
 	decoration: vscode.TextEditorDecorationType;
 	ranges: Array<vscode.DecorationOptions>;
 }
@@ -11,6 +11,7 @@ interface Contributions {
 	multilineComments: boolean;
 	useJSDocStyle: boolean;
 	highlightPlainText: boolean;
+	excludeLanguages: any;
 	tags: [{
 		tag: string;
 		color: string;
@@ -39,6 +40,9 @@ export class Parser {
 
 	// * this is used to trigger the events when a supported language code is found
 	public supportedLanguage = true;
+	
+	// * this is used to eclude languages with certain language codes
+	public languageCode : string = "";
 
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
@@ -53,6 +57,7 @@ export class Parser {
 	 * https://code.visualstudio.com/docs/languages/identifiers
 	 */
 	public SetRegex(languageCode: string) {
+		this.languageCode = languageCode;
 		this.setDelimiter(languageCode);
 
 		// if the language isn't supported, we don't need to go any further
@@ -62,7 +67,9 @@ export class Parser {
 
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
+			commentTag.escapedTag.forEach(escapedTag => {
+				characters.push(escapedTag);
+			});
 		}
 
 		if (this.isPlainText && this.contributions.highlightPlainText) {
@@ -105,12 +112,33 @@ export class Parser {
 				continue;
 			}
 
-			// Find which custom delimiter was used in order to add it to the collection
-			let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
-
-			if (matchTag) {
-				matchTag.ranges.push(range);
-			}
+			// Find which custom delimiters were used in order to add it to the collection
+			this.tags.forEach(tags => {
+				tags.tag.forEach(tag => {
+					if (this.contributions.excludeLanguages.hasOwnProperty(this.languageCode)){
+						let el: string[] | string = this.contributions.excludeLanguages[this.languageCode];
+						if (typeof el === "string"){
+							if (el.toLowerCase() === tag.toLowerCase()){
+								return;
+							}
+						}else{
+							let exclude = false;
+							el.forEach(t => {
+								if (t.toLowerCase() === tag){
+									exclude = true;
+									return;
+								}
+							});
+							if (exclude){
+								return;
+							}
+						}
+					}
+					if (tag.toLowerCase() === match[3].toLowerCase()){
+						tags.ranges.push(range);
+					}
+				});
+			});
 		}
 	}
 
@@ -128,7 +156,9 @@ export class Parser {
 		// Build up regex matcher for custom delimter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
+			commentTag.escapedTag.forEach(escapedTag => {
+				characters.push(escapedTag);
+			});
 		}
 
 		// Combine custom delimiters and the rest of the comment block matcher		
@@ -160,11 +190,33 @@ export class Parser {
 
 				// Find which custom delimiter was used in order to add it to the collection
 				let matchString = line[3] as string;
-				let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
 
-				if (matchTag) {
-					matchTag.ranges.push(range);
-				}
+				this.tags.forEach(tags => {
+					tags.tag.forEach(tag => {
+					if (this.contributions.excludeLanguages.hasOwnProperty(this.languageCode)){
+						let el: string[] | string = this.contributions.excludeLanguages[this.languageCode];
+						if (typeof el === "string"){
+							if (el.toLowerCase() === tag.toLowerCase()){
+								return;
+							}
+						}else{
+							let exclude = false;
+							el.forEach(t => {
+								if (t.toLowerCase() === tag){
+									exclude = true;
+									return;
+								}
+							});
+							if (exclude){
+								return;
+							}
+						}
+					}
+						if (tag.toLowerCase() === matchString.toLowerCase()){
+						tags.ranges.push(range);
+					}
+				});
+				});
 			}
 		}
 	}
@@ -183,7 +235,9 @@ export class Parser {
 		// Build up regex matcher for custom delimter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
+			commentTag.escapedTag.forEach(escapedTag => {
+				characters.push(escapedTag);
+			});
 		}
 
 		// Combine custom delimiters and the rest of the comment block matcher
@@ -209,11 +263,32 @@ export class Parser {
 
 				// Find which custom delimiter was used in order to add it to the collection
 				let matchString = line[3] as string;
-				let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
-
-				if (matchTag) {
-					matchTag.ranges.push(range);
-				}
+				this.tags.forEach(tags => {
+					tags.tag.forEach(tag => {
+						if (this.contributions.excludeLanguages.hasOwnProperty(this.languageCode)) {
+							let el: string[] | string = this.contributions.excludeLanguages[this.languageCode];
+							if (typeof el === "string") {
+								if (el.toLowerCase() === tag.toLowerCase()) {
+									return;
+								}
+							} else {
+								let exclude = false;
+								el.forEach(t => {
+									if (t.toLowerCase() === tag) {
+										exclude = true;
+										return;
+									}
+								});
+								if (exclude) {
+									return;
+								}
+							}
+						}
+						if (tag.toLowerCase() === matchString.toLowerCase()) {
+							tags.ranges.push(range);
+						}
+					});
+				});
 			}
 		}
 	}
@@ -400,11 +475,19 @@ export class Parser {
 			if (item.strikethrough) {
 				options.textDecoration = "line-through";
 			}
-
-			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+			let tags : string[] = [];
+			if (typeof item.tag !== "string"){
+				tags = item.tag;
+			}else{
+				tags.push(item.tag);
+			}
+			let escapedSequences : string[] = [];
+			tags.forEach(tag => {
+				escapedSequences.push(tag.replace(/([()[{*+.$^\\|?])/g, '\\$1').replace(/\//gi, "\\/"));// ! hardcoded to escape slashes
+			});
 			this.tags.push({
-				tag: item.tag,
-				escapedTag: escapedSequence.replace(/\//gi, "\\/"), // ! hardcoded to escape slashes
+				tag: tags,
+				escapedTag: escapedSequences, 
 				ranges: [],
 				decoration: vscode.window.createTextEditorDecorationType(options)
 			});
