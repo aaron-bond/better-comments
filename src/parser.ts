@@ -1,4 +1,7 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as json5 from 'json5';
 
 interface CommentTag {
 	tag: string;
@@ -17,6 +20,11 @@ interface Contributions {
 		strikethrough: boolean;
 		backgroundColor: string;
 	}];
+}
+
+interface CommentConfig {
+	lineComment?: string;
+	blockComment?: [string, string];
 }
 
 export class Parser {
@@ -43,8 +51,61 @@ export class Parser {
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
 
+	private readonly languageToConfigPath = new Map<string, string>();
+
+	// Cache for comment config
+	private readonly commentConfig = new Map<string, CommentConfig | undefined>();
+
 	public constructor() {
+		this.initializeLanguages();
 		this.setTags();
+	}
+
+	/**
+	 * Generate a map of language configuration file by language defined by extensions
+	 * External extensions can override default configurations os VSCode
+	 */
+	private initializeLanguages() {
+		for (const extension of vscode.extensions.all) {
+			const packageJSON = extension.packageJSON as any;
+			if (packageJSON.contributes && packageJSON.contributes.languages) {
+				for (const language of packageJSON.contributes.languages) {
+					if (language.configuration) {
+							const configPath = path.join(extension.extensionPath, language.configuration);
+							this.languageToConfigPath.set(language.id, configPath);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Return the comment config for `languageCode`
+	 * @param languageCode The short code of the current language
+	 */
+	private tryGetCommentConfig (languageCode: string): CommentConfig | undefined {
+		if (this.commentConfig.has(languageCode)) {
+			return this.commentConfig.get(languageCode);
+		}
+
+		if (!this.languageToConfigPath.has(languageCode)) {
+			return undefined;
+		}
+
+		const file = this.languageToConfigPath.get(languageCode) as string;
+
+		const content = fs.readFileSync(file, {encoding: 'utf8'});
+
+		try {
+			// use json5, because the config can contains comments
+			const config = json5.parse(content);
+
+			this.commentConfig.set(languageCode, config.comments);
+			return config.comments;
+		} catch (error) {
+			this.commentConfig.set(languageCode, undefined);
+			return undefined;
+		}
 	}
 
 	/**
@@ -385,7 +446,20 @@ export class Parser {
 				break;
 
 			default:
+				const config = this.tryGetCommentConfig(languageCode);
+
+				if (config) {
+					if (config.blockComment) {
+						this.setCommentFormat(config.lineComment || null, config.blockComment[0], config.blockComment[1]);
+						break;
+					}
+					if (config.lineComment) {
+						this.delimiter = this.escapeRegExp(config.lineComment);
+						break;
+					}
+				}
 				this.supportedLanguage = false;
+
 				break;
 		}
 	}
