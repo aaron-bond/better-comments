@@ -1,14 +1,65 @@
 # Change Log
 
-## [1.2.6] (2018-06-10)
+## [2.0.3] (2018-11-04)
+### Features
+* Adding Stylus support ([a57ad30](https://github.com/aaron-bond/better-comments/commit/a57ad30)), merges [#112]. Thanks _vednoc_
+* Adding ASCIIDoc support ([60a5f5f](https://github.com/aaron-bond/better-comments/commit/60a5f5f)), closes [#107](https://github.com/aaron-bond/better-comments/issues/107)
+
+## [2.0.2] (2018-10-10)
+### Bug Fixes
+* Fixing single line CSS comments([469a93f](https://github.com/aaron-bond/better-comments/commit/469a93f)), closes [#109](https://github.com/aaron-bond/better-comments/issues/109)
+* Fixing support for multiline Haskell comments ([498016a](https://github.com/aaron-bond/better-comments/commit/498016a)), closes [#102](https://github.com/aaron-bond/better-comments/issues/102)
+
+### Features
+* Adding D support ([c6a619c](https://github.com/aaron-bond/better-comments/commit/c6a619c)), closes [#99](https://github.com/aaron-bond/better-comments/issues/99)
+
+## [2.0.1] (2018-09-26)
+### Bug Fixes
+* Fixing issue where JSDoc block comments weren't being detected properly ([7cb9126](https://github.com/aaron-bond/better-comments/commit/7cb9126)), closes [#101](https://github.com/aaron-bond/better-comments/issues/101)
+
+## [2.0.0] (2018-09-20)
+### Features
+* Block comments for lots and lots of languages. Please raise a bug or feature request if I've missed any!
+* Added support for HTML
+* Added support for Twig
+* Added support for Puppet
+
+### House Keeping
+* I decided a major version release was appropriate for this one as it's a pretty huge set of changes in terms of how the extension functions
+* It's now possible to add block comment formatting for any new languages as required. Sorry it took so long!
+
+## [1.3.0] (2018-09-13)
+### Features
+* Adding support for Bibtex/Biblatex ([d1f06b6](https://github.com/aaron-bond/better-comments/commit/d1f06b6)), thanks to _JavierReyes945_, merges [#96](https://github.com/aaron-bond/better-comments/pull/96)
+* Adding support for Verilog HDL ([b368b17](https://github.com/aaron-bond/better-comments/commit/b368b17)), closes [#84](https://github.com/aaron-bond/better-comments/issues/84)
+
+### Bug Fixes
+* Fixing multiline comment support for SAS and Stata ([4b40bd9](https://github.com/aaron-bond/better-comments/commit/4b40bd9)), closes [#95](https://github.com/aaron-bond/better-comments/issues/95)
+
+## [1.2.9] (2018-09-08)
+### Features
+* Adding support for PlantUML ([9a446a3](https://github.com/aaron-bond/better-comments/commit/9a446a3)), thanks to _JavierReyes945_, closes [#94](https://github.com/aaron-bond/better-comments/issues/94)
+
+## [1.2.8] (2018-09-03)
+### Features
+* Added support for Tcl ([52e6d35](https://github.com/aaron-bond/better-comments/commit/52e6d35)), closes [#92](https://github.com/aaron-bond/better-comments/issues/92)
+
+## [1.2.7] (2018-09-02)
 ### Features
 * Adding support for Flax ([71f6326](https://github.com/aaron-bond/better-comments/commit/71f6326)), merges [#76](https://github.com/aaron-bond/better-comments/issues/76)
+* Adding support for multiple languages, closes [#89](https://github.com/aaron-bond/better-comments/issues/89)
+	* Fortran (modern) ([8762226](https://github.com/aaron-bond/better-comments/commit/8762226))
+	* SAS ([145e8d3](https://github.com/aaron-bond/better-comments/commit/145e8d3))
+	* STATA ([eb0f367](https://github.com/aaron-bond/better-comments/commit/eb0f367))
+
 ### House Keeping
 * Updating README to reflect actual styntax better ([71f9019](https://github.com/aaron-bond/better-comments/commit/71f9019)), merges [#77](https://github.com/aaron-bond/better-comments/issues/77)
+* Messed up the incrementing of the version on this one with the gdscript merge so just pushing this as 1.2.7 for convenience
 
 ## [1.2.5] (2018-06-04)
 ### Features
 * Adding support for COBOL ([7939ca2](https://github.com/aaron-bond/better-comments/commit/7939ca2)), merges [#34](https://github.com/aaron-bond/better-comments/issues/34)
+
 ### Bug Fixes
 * Fixing plaintext highlight even when setting is false ([7939ca2](https://github.com/aaron-bond/better-comments/commit/7939ca2)), closes [#73](https://github.com/aaron-bond/better-comments/issues/73)
 

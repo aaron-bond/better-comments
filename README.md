@@ -66,6 +66,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 
 * Ada
 * AL
+* AsciiDoc
 * C
 * C#
 * C++
@@ -78,6 +79,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Elixir
 * Erlang
 * F#
+* Fortran
 * gdscript
 * Go
 * GraphQL
@@ -85,13 +87,14 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Haskell
 * Haxe
 * HiveQL
+* HTML
 * Java
 * JavaScript
 * JavaScript React
 * JSON with comments
 * Julia
 * Kotlin
-* LaTex
+* LaTex (inlc. Bibtex/Biblatex)
 * Less
 * Lisp
 * Lua
@@ -105,23 +108,31 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Perl 6
 * PHP
 * Pig
+* PlantUML
 * PL/SQL
 * PowerShell
+* Puppet
 * Python
 * R
 * Racket
 * Ruby
 * Rust
+* SAS
 * Sass
 * Scala
 * SCSS
 * ShaderLab
 * ShellScript
 * SQL
+* STATA
+* Stylus
 * Swift
+* Tcl
 * Terraform
+* Twig
 * TypeScript
 * TypeScript React
+* Verilog
 * Visual Basic
 * Vue.js
 * YAML
