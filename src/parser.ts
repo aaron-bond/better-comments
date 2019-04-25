@@ -330,6 +330,7 @@ export class Parser {
 				this.delimiter = "--";
 				break;
 
+			case "elm":
 			case "haskell":
 				this.setCommentFormat("--", "{-", "-}");
 				break;

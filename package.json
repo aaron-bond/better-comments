@@ -24,7 +24,7 @@
     "activationEvents": [
         "onLanguage:ada",
         "onLanguage:al",
-		"onLanguage:asciidoc",
+        "onLanguage:asciidoc",
         "onLanguage:bibtex",
         "onLanguage:c",
         "onLanguage:clojure",
@@ -32,8 +32,8 @@
         "onLanguage:coffeescript",
         "onLanguage:cpp",
         "onLanguage:csharp",
-		"onLanguage:css",
-		"onLanguage:d",
+        "onLanguage:css",
+        "onLanguage:d",
         "onLanguage:dart",
         "onLanguage:diagram",
         "onLanguage:dockerfile",
@@ -98,7 +98,8 @@
         "onLanguage:vb",
         "onLanguage:verilog",
         "onLanguage:vue",
-        "onLanguage:yaml"
+        "onLanguage:yaml",
+        "onLanguage:elm"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
