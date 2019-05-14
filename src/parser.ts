@@ -324,11 +324,14 @@ export class Parser {
 
 			case "ada":
 			case "hive-sql":
-			case "lua":
 			case "pig":
 			case "plsql":
 			case "sql":
 				this.delimiter = "--";
+				break;
+			
+			case "lua":
+				this.setCommentFormat("--", "--[[", "]]");
 				break;
 
 			case "elm":
