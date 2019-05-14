@@ -100,7 +100,7 @@
         "onLanguage:vb",
         "onLanguage:verilog",
         "onLanguage:vue",
-        "onLanguage:yaml"        
+        "onLanguage:yaml"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
@@ -168,10 +168,10 @@
         }
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vsce": "^1.48.0",
-        "vscode": "^1.1.0",
-        "@types/node": "^8.0.0",
-        "tslint": "^5.10.0"
+        "typescript": "3.4.5",
+        "vsce": "^1.61.0",
+        "vscode": "^1.1.34",
+        "@types/node": "^12.0.1",
+        "tslint": "^5.16.0"
     }
 }
