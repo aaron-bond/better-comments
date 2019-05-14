@@ -39,6 +39,7 @@
         "onLanguage:diagram",
         "onLanguage:dockerfile",
         "onLanguage:elixir",
+        "onLanguage:elm",
         "onLanguage:erlang",
         "onLanguage:flax",
         "onLanguage:fsharp",
@@ -99,8 +100,7 @@
         "onLanguage:vb",
         "onLanguage:verilog",
         "onLanguage:vue",
-        "onLanguage:yaml",
-        "onLanguage:elm"
+        "onLanguage:yaml"        
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
