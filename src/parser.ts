@@ -263,6 +263,7 @@ export class Parser {
 			case "flax":
 			case "fsharp":
 			case "go":
+			case "groovy":
 			case "haxe":
 			case "java":
 			case "jsonc":
