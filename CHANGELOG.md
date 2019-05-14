@@ -3,7 +3,7 @@
 ## [2.0.4] (2019-05-14)
 ### Bug Fixes
 * Fixing Groovy support ([099bcc0](https://github.com/aaron-bond/better-comments/commit/099bcc0)), closes [#150](https://github.com/aaron-bond/better-comments/issues/150)
-* Fixing multiline Lua support ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)), closes [#151](https://github.com/aaron-bond/better-comments/issues/151)
+* Fixing multiline Lua support ([7ca3164](https://github.com/aaron-bond/better-comments/commit/7ca3164)), closes [#151](https://github.com/aaron-bond/better-comments/issues/151)
 
 ### Features
 * Supporting remote development, closes [#147](https://github.com/aaron-bond/better-comments/issues/147). Thanks _mjbvz_
