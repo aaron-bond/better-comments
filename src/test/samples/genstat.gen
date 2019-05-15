@@ -1,0 +1,17 @@
+print 0
+\ Line comment only at the start of a line
+\ Line comment only at the start of a line
+\ ! Line comment only at the start of a line
+\ * Line comment only at the start of a line
+print 2 " Block comment at the end of a line "
+print 3 " Block comment at the end of a line
+ ! testing
+possibly continuing to the next line
+"
+print 4
+"=============================================================================
+Long block comment
+=============================================================================="
+print 5
+" Another block comment"
+print 6

@@ -46,6 +46,7 @@
         "onLanguage:fsharp",
         "onLanguage:fortran-modern",
         "onLanguage:gdscript",
+        "onLanguage:genstat",
         "onLanguage:go",
         "onLanguage:graphql",
         "onLanguage:groovy",

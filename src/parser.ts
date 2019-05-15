@@ -384,6 +384,10 @@ export class Parser {
 				this.setCommentFormat("{#", "{#", "#}");
 				break;
 
+			case "genstat":
+				this.setCommentFormat("\\", '"', '"');
+				break;
+
 			case "plaintext":
 				this.isPlainText = true;
 

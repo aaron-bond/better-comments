@@ -4,6 +4,7 @@
 ### Features
 * Adding Markdown support ([54e51fb](https://github.com/aaron-bond/better-comments/commit/54e51fb)), closes [#91](https://github.com/aaron-bond/better-comments/issues/91)
 * Adding Apex support ([301644e](https://github.com/aaron-bond/better-comments/commit/301644e)), closes [#143](https://github.com/aaron-bond/better-comments/issues/143)
+* Adding GenStat support ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)), closes [#149](https://github.com/aaron-bond/better-comments/issues/149)
 
 ## [2.0.4] (2019-05-14)
 ### Bug Fixes
