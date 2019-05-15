@@ -63,6 +63,7 @@
         "onLanguage:lisp",
         "onLanguage:lua",
         "onLanguage:makefile",
+        "onLanguage:markdown",
         "onLanguage:matlab",
         "onLanguage:nim",
         "onLanguage:objective-c",

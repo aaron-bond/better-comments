@@ -375,6 +375,7 @@ export class Parser {
 				break;
 			
 			case "html":
+			case "markdown":
 				this.setCommentFormat("<!--", "<!--", "-->");
 				break;
 			

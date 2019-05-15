@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.0.5] (2019-??-??)
+### Features
+* Adding Markdown support ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)), closes [#91](https://github.com/aaron-bond/better-comments/issues/91)
+
 ## [2.0.4] (2019-05-14)
 ### Bug Fixes
 * Fixing Groovy support ([099bcc0](https://github.com/aaron-bond/better-comments/commit/099bcc0)), closes [#150](https://github.com/aaron-bond/better-comments/issues/150)

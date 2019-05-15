@@ -77,6 +77,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Dart
 * Dockerfile
 * Elixir
+* Elm
 * Erlang
 * F#
 * Fortran
@@ -99,6 +100,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Lisp
 * Lua
 * Makefile
+* Markdown
 * Nim
 * MATLAB
 * Objective-C
