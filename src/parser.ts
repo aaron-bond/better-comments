@@ -387,6 +387,10 @@ export class Parser {
 			case "genstat":
 				this.setCommentFormat("\\", '"', '"');
 				break;
+			
+			case "cfml":
+				this.setCommentFormat("<!---", "<!---", "--->");
+				break;
 
 			case "plaintext":
 				this.isPlainText = true;

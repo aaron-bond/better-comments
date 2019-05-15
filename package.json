@@ -30,6 +30,7 @@
         "onLanguage:bibtex",
         "onLanguage:c",
         "onLanguage:clojure",
+        "onLanguage:cfml",
         "onLanguage:COBOL",
         "onLanguage:coffeescript",
         "onLanguage:cpp",

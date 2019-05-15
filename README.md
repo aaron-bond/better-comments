@@ -71,6 +71,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * C
 * C#
 * C++
+* ColdFusion
 * Clojure
 * COBOL
 * CoffeeScript
