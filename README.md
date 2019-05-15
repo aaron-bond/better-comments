@@ -66,6 +66,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 
 * Ada
 * AL
+* Apex
 * AsciiDoc
 * C
 * C#

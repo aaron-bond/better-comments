@@ -3,6 +3,7 @@
 ## [2.0.5] (2019-??-??)
 ### Features
 * Adding Markdown support ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)), closes [#91](https://github.com/aaron-bond/better-comments/issues/91)
+* Adding Apex support ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)), closes [#143](https://github.com/aaron-bond/better-comments/issues/143)
 
 ## [2.0.4] (2019-05-14)
 ### Bug Fixes

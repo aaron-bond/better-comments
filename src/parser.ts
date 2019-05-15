@@ -247,6 +247,7 @@ export class Parser {
 				this.setCommentFormat("//", "////", "////");
 				break;
 
+			case "apex":
 			case "javascript":
 			case "javascriptreact":
 			case "typescript":
