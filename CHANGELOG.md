@@ -1,11 +1,11 @@
 # Change Log
 
-## [2.0.5] (2019-??-??)
+## [2.0.5] (2019-05-15)
 ### Features
 * Adding Markdown support ([54e51fb](https://github.com/aaron-bond/better-comments/commit/54e51fb)), closes [#91](https://github.com/aaron-bond/better-comments/issues/91)
 * Adding Apex support ([301644e](https://github.com/aaron-bond/better-comments/commit/301644e)), closes [#143](https://github.com/aaron-bond/better-comments/issues/143)
 * Adding GenStat support ([a14e24c](https://github.com/aaron-bond/better-comments/commit/a14e24c)), closes [#149](https://github.com/aaron-bond/better-comments/issues/149)
-* Adding ColdFusion support ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)), closes [#135](https://github.com/aaron-bond/better-comments/issues/135)
+* Adding ColdFusion support ([9e2a4be](https://github.com/aaron-bond/better-comments/commit/9e2a4be)), closes [#135](https://github.com/aaron-bond/better-comments/issues/135)
 
 ## [2.0.4] (2019-05-14)
 ### Bug Fixes
