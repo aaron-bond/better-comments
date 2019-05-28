@@ -242,169 +242,168 @@ export class Parser {
 		this.isPlainText = false;
 
 		switch (languageCode) {
-
+			case "ada":
+			case "al":
+			case "apex":
 			case "asciidoc":
 				this.setCommentFormat("//", "////", "////");
 				break;
 
-			case "apex":
+			case "bibtex":
 			case "brightscript":
 				this.delimiter = "'";
 				break;
 
-			case "javascript":
-			case "javascriptreact":
-			case "typescript":
-			case "typescriptreact":
-				this.setCommentFormat("//", "/*", "*/");
-				this.highlightJSDoc = true;
+
+			case "c":
+			case "cfml":
+				this.setCommentFormat("<!---", "<!---", "--->");
 				break;
 
-			case "al":
-			case "c":
+			case "clojure":
+			case "COBOL":
+				this.delimiter = this.escapeRegExp("*>");
+				break;
+
+			case "coffeescript":
 			case "cpp":
 			case "csharp":
-			case "dart":
-			case "flax":
-			case "fsharp":
-			case "go":
-			case "groovy":
-			case "haxe":
-			case "java":
-			case "jsonc":
-			case "kotlin":
-			case "less":
-			case "pascal":
-			case "objectpascal":
-			case "php":
-			case "rust":
-			case "scala":
-			case "scss":
-			case "stylus":
-			case "swift":
-			case "verilog":
-			case "vue":
-				this.setCommentFormat("//", "/*", "*/");
-				break;
-
 			case "css":
 				this.setCommentFormat("/*", "/*", "*/");
 				break;
 
-			case "coffeescript":
+			case "dart":
+			case "diagram": // ? PlantUML is recognized as Diagram (diagram)
+				this.delimiter = "'";
+				break;
+
 			case "dockerfile":
-			case "gdscript":
-			case "graphql":
-			case "julia":
-			case "makefile":
-			case "perl":
-			case "perl6":
-			case "puppet":
-			case "r":
-			case "ruby":
-			case "shellscript":
-			case "tcl":
-			case "yaml":
-				this.delimiter = "#";
-				break;
-
-			case "tcl":
-				this.delimiter = "#";
-				this.ignoreFirstLine = true;
-				break;
-
 			case "elixir":
-			case "python":
-				this.setCommentFormat("#", '"""', '"""');
-				this.ignoreFirstLine = true;
+			case "elm":
+			case "erlang":
+			case "flax":
+			case "fortran-modern":
+				this.delimiter = "c";
 				break;
 
-			case "nim":
-				this.setCommentFormat("#", "#[", "]#");
+			case "fsharp":
+			case "gdscript":
+			case "genstat":
+				this.setCommentFormat("\\", '"', '"');
 				break;
 
-			case "powershell":
-				this.setCommentFormat("#", "<#", "#>");
+			case "go":
+			case "graphql":
+			case "groovy":
+			case "haskell":
+				this.setCommentFormat("--", "{-", "-}");
 				break;
 
-			case "ada":
+			case "haxe":
 			case "hive-sql":
-			case "pig":
-			case "plsql":
-			case "sql":
-				this.delimiter = "--";
+			case "html":
+			case "java":
+			case "javascript":
+			case "javascriptreact":
+			case "jsonc":
+			case "julia":
+			case "kotlin":
+			case "latex":
+			case "less":
+			case "lisp":
+				this.delimiter = ";";
 				break;
 
 			case "lua":
 				this.setCommentFormat("--", "--[[", "]]");
 				break;
 
-			case "elm":
-			case "haskell":
-				this.setCommentFormat("--", "{-", "-}");
+			case "makefile":
+			case "markdown":
+				this.setCommentFormat("<!--", "<!--", "-->");
 				break;
 
-			case "vb":
-			case "diagram": // ? PlantUML is recognized as Diagram (diagram)
-				this.delimiter = "'";
-				break;
-
-			case "bibtex":
-			case "erlang":
-			case "latex":
 			case "matlab":
 				this.delimiter = "%";
 				break;
 
-			case "clojure":
+			case "nim":
+				this.setCommentFormat("#", "#[", "]#");
+				break;
+
+			case "objectpascal":
+			case "pascal":
+			case "perl":
+			case "perl6":
+			case "php":
+			case "pig":
+			case "plaintext":
+				this.isPlainText = true;
+
+				// If highlight plaintext is enabled, this is a supported language
+				this.supportedLanguage = this.contributions.highlightPlainText;
+				break;
+
+			case "plsql":
+			case "powershell":
+				this.setCommentFormat("#", "<#", "#>");
+				break;
+
+			case "puppet":
+			case "python":
+				this.setCommentFormat("#", '"""', '"""');
+				this.ignoreFirstLine = true;
+				break;
+
+			case "r":
 			case "racket":
-			case "lisp":
-				this.delimiter = ";";
+			case "ruby":
+			case "rust":
+			case "SAS":
+			case "scala":
+			case "scss":
+			case "shellscript":
+			case "sql":
+				this.delimiter = "--";
+				break;
+
+			case "stata":
+				this.setCommentFormat("*", "/*", "*/");
+				break;
+
+			case "stylus":
+			case "swift":
+			case "tcl":
+				this.delimiter = "#";
+				this.ignoreFirstLine = true;
 				break;
 
 			case "terraform":
 				this.setCommentFormat("#", "/*", "*/");
 				break;
 
-			case "COBOL":
-				this.delimiter = this.escapeRegExp("*>");
-				break;
-
-			case "fortran-modern":
-				this.delimiter = "c";
-				break;
-
-			case "SAS":
-			case "stata":
-				this.setCommentFormat("*", "/*", "*/");
-				break;
-
-			case "html":
-			case "xml":
-				this.setCommentFormat("<!--", "<!--", "-->");
-				break;
-
-			case "markdown":
-				this.setCommentFormat("<!--", "<!--", "-->");
-				break;
-
 			case "twig":
 				this.setCommentFormat("{#", "{#", "#}");
 				break;
 
-			case "genstat":
-				this.setCommentFormat("\\", '"', '"');
+			case "typescript":
+			case "typescriptreact":
+				this.setCommentFormat("//", "/*", "*/");
+				this.highlightJSDoc = true;
 				break;
 
-			case "cfml":
-				this.setCommentFormat("<!---", "<!---", "--->");
+			case "vb":
+			case "verilog":
+			case "vue":
+				this.setCommentFormat("//", "/*", "*/");
 				break;
 
-			case "plaintext":
-				this.isPlainText = true;
+			case "xml":
+				this.setCommentFormat("<!--", "<!--", "-->");
+				break;
 
-				// If highlight plaintext is enabeld, this is a supported language
-				this.supportedLanguage = this.contributions.highlightPlainText;
+			case "yaml":
+				this.delimiter = "#";
 				break;
 
 			default:
