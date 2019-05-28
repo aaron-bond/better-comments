@@ -380,6 +380,10 @@ export class Parser {
 				break;
 			
 			case "html":
+			case "xml":
+				this.setCommentFormat("<!--", "<!--", "-->");
+				break;
+
 			case "markdown":
 				this.setCommentFormat("<!--", "<!--", "-->");
 				break;
