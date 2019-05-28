@@ -248,6 +248,10 @@ export class Parser {
 				break;
 
 			case "apex":
+			case "brightscript":
+				this.delimiter = "'";
+				break;
+
 			case "javascript":
 			case "javascriptreact":
 			case "typescript":
