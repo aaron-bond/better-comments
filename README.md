@@ -68,13 +68,14 @@ The default 5 can be modified to change the colors, and more can be added.
 * AL
 * Apex
 * AsciiDoc
+* BrightScript
 * C
 * C#
 * C++
-* ColdFusion
 * Clojure
 * COBOL
 * CoffeeScript
+* ColdFusion
 * CSS
 * Dart
 * Dockerfile
@@ -104,8 +105,8 @@ The default 5 can be modified to change the colors, and more can be added.
 * Lua
 * Makefile
 * Markdown
-* Nim
 * MATLAB
+* Nim
 * Objective-C
 * Objective-C++
 * Pascal
@@ -113,8 +114,8 @@ The default 5 can be modified to change the colors, and more can be added.
 * Perl 6
 * PHP
 * Pig
-* PlantUML
 * PL/SQL
+* PlantUML
 * PowerShell
 * Puppet
 * Python
@@ -140,4 +141,5 @@ The default 5 can be modified to change the colors, and more can be added.
 * Verilog
 * Visual Basic
 * Vue.js
+* XML
 * YAML
