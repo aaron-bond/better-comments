@@ -4,7 +4,7 @@ import { Parser } from './parser';
 // this method is called when vs code is activated
 export function activate(context: vscode.ExtensionContext) {
 
-	let activeEditor: vscode.TextEditor;
+	let activeEditor: vscode.TextEditor | undefined;
 	let parser: Parser = new Parser();
 
 	// Called to handle events below
