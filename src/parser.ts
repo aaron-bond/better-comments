@@ -16,6 +16,11 @@ interface Contributions {
 		color: string;
 		strikethrough: boolean;
 		backgroundColor: string;
+		// * Keep strikethrough For Older Settings, but textDecoration has priority
+		textDecoration: string;
+		fontStyle: string;
+		fontWeight: string;
+		border: string;		
 	}];
 }
 
@@ -412,8 +417,24 @@ export class Parser {
 		let items = this.contributions.tags;
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
-			if (item.strikethrough) {
-				options.textDecoration = "line-through";
+
+			if (item.textDecoration)
+				options.textDecoration = item.textDecoration;
+			else //Fallback for older settings
+				if (item.strikethrough) {
+					options.textDecoration = "line-through";
+				}
+			 
+			if (item.fontStyle) {
+				options.fontStyle = item.fontStyle;
+			}
+
+			if (item.fontWeight) {
+				options.fontWeight = item.fontWeight;
+			}
+
+			if (item.border) {
+				options.border = item.border;
 			}
 
 			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
