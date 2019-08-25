@@ -137,8 +137,9 @@
                     "default": [
                         {
                             "tag": "!",
-                            "color": "#FF2D00",
-                            "strikethrough": false,
+                            "color": "#DAAA01",
+                            "textDecoration": "underline #474747",
+                            "fontWeight": "600",
                             "backgroundColor": "transparent"
                         },
                         {
@@ -150,7 +151,7 @@
                         {
                             "tag": "//",
                             "color": "#474747",
-                            "strikethrough": true,
+                            "textDecoration": "line-through orange",
                             "backgroundColor": "transparent"
                         },
                         {
@@ -163,6 +164,27 @@
                             "tag": "*",
                             "color": "#98C379",
                             "strikethrough": false,
+                            "backgroundColor": "transparent"
+                        },
+                        {
+                            "tag": "research",
+                            "color": "#DAAA01",
+                            "border": "0.5px solid #98C379",
+                            "fontWeight": "200",
+                            "backgroundColor": "transparent"
+                        },
+                        {
+                            "tag": "fixme",
+                            "color": "#FF2D00",
+                            "strikethrough": false,
+                            "fontWeight": "bold",
+                            "backgroundColor": "transparent"
+                        },
+                        {
+                            "tag": "#",
+                            "color": "#31E1EB",
+                            "strikethrough": false,
+                            "fontStyle": "normal",
                             "backgroundColor": "transparent"
                         }
                     ]
