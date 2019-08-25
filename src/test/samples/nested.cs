@@ -4,12 +4,16 @@
     TODO Create some copyright notices
     * Highlight to draw attention
     ? Maybe I should indent less
+    FIXME! Not Enough Code
+    // Too many comments?
+    Research better ways to use comments!
  */
 public class MyClass
 {
     // ! backing member for the public property
     private short myProperty = 0;
 
+    // # Pay Attention!
     // * Available for public use
     public short MyProperty
     {
