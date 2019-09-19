@@ -366,6 +366,14 @@ export class Parser {
 				this.delimiter = this.escapeRegExp("*>");
 				break;
 
+			case "FortranFreeForm":
+				this.delimiter = "!";
+				break;
+
+			case "fortran_fixed-form":
+				this.delimiter = "!";
+				break;
+
 			case "fortran-modern":
 				this.delimiter = "c";
 				break;
