@@ -371,7 +371,7 @@ export class Parser {
 				break;
 
 			case "fortran_fixed-form":
-				this.delimiter = "!";
+				this.delimiter = "c";
 				break;
 
 			case "fortran-modern":
