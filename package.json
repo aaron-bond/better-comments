@@ -38,6 +38,7 @@
         "onLanguage:css",
         "onLanguage:d",
         "onLanguage:dart",
+        "onLanguage:dhall",
         "onLanguage:diagram",
         "onLanguage:dockerfile",
         "onLanguage:elixir",
