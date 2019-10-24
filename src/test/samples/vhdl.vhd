@@ -1,7 +1,8 @@
-/* VHDL 2008 style multiline comment
+/** VHDL 2008 style multiline comment
 * ! ALERT
 * ? Why
 * TODO: do something
+* // nope
 */
 
 LIBRARY ieee;
@@ -23,6 +24,7 @@ BEGIN  -- ARCHITECTURE rtl
     -- ! ALERT
     -- ? Why
     -- TODO: do something
+    -- // nope
     o <= a AND b;
 
 END ARCHITECTURE rtl;
