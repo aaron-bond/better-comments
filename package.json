@@ -96,6 +96,7 @@
         "onLanguage:stata",
         "onLanguage:stylus",
         "onLanguage:swift",
+        "onLanguage:systemverilog",
         "onLanguage:tcl",
         "onLanguage:terraform",
         "onLanguage:twig",
