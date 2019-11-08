@@ -338,6 +338,7 @@ export class Parser {
 			case "dhall":
 			case "elm":
 			case "haskell":
+			case "purescript":
 				this.setCommentFormat("--", "{-", "-}");
 				break;
 

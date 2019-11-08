@@ -82,6 +82,7 @@
         "onLanguage:php",
         "onLanguage:powershell",
         "onLanguage:puppet",
+        "onLanguage:purescript",
         "onLanguage:python",
         "onLanguage:r",
         "onLanguage:racket",
