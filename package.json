@@ -36,6 +36,7 @@
         "onLanguage:cpp",
         "onLanguage:csharp",
         "onLanguage:css",
+        "onLanguage:cuda",
         "onLanguage:d",
         "onLanguage:dart",
         "onLanguage:diagram",

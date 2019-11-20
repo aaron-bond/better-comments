@@ -260,6 +260,7 @@ export class Parser {
 			case "c":
 			case "cpp":
 			case "csharp":
+			case "cuda":
 			case "dart":
 			case "flax":
 			case "fsharp":
