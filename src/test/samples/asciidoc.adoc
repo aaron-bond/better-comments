@@ -1,0 +1,12 @@
+This is asciidoc
+= This does something
+
+// ! comment
+
+////
+
+	Block comment
+	! hello world
+	* this is a comment
+
+////

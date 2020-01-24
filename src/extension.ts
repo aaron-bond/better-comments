@@ -19,10 +19,10 @@ export function activate(context: vscode.ExtensionContext) {
 		parser.FindSingleLineComments(activeEditor);
 
 		// Finds the multi line comments using the language comment delimiter
-		parser.FindMultilineComments(activeEditor);
+		parser.FindBlockComments(activeEditor);
 
 		// Finds the jsdoc comments
-		parser.FindMultilineComments(activeEditor, true);
+		parser.FindJSDocComments(activeEditor);
 
 		// Apply the styles set in the package.json
 		parser.ApplyDecorations(activeEditor);
