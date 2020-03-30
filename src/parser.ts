@@ -270,6 +270,7 @@ export class Parser {
 			case "jsonc":
 			case "kotlin":
 			case "less":
+			case "odin":
 			case "pascal":
 			case "objectpascal":
 			case "php":
