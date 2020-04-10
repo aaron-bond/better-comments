@@ -166,6 +166,12 @@
                             "strikethrough": false,
                             "backgroundColor": "transparent"
                         }
+                        {
+                            "tag": "^",
+                            "color": "#F45678",
+                            "strikethrogh": false,
+                            "backgroundColor": "transparent"
+                        }
                     ]
                 }
             }
