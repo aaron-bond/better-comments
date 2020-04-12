@@ -132,7 +132,8 @@
                     "description": "Whether the plaintext comment highlighter should be active",
                     "default": false
                 },
-                "better-comments.tags": {
+                "better-comments.tags": 
+                {
                     "type": "array",
                     "description": "Tags which are used to color the comments. Changes require a restart of VS Code to take effect",
                     "default": [
