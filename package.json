@@ -165,6 +165,18 @@
                             "color": "#98C379",
                             "strikethrough": false,
                             "backgroundColor": "transparent"
+                        },
+                        {
+                            "tag": "#",
+                            "color": "#34EB3A",
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
+                        },
+                        {
+                            "tag": "@",
+                            "color": "#C0B7FF",
+                            "strikethrough": false,
+                            "backgroundColor": "transparent"
                         }
                     ]
                 }
