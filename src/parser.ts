@@ -392,6 +392,10 @@ export class Parser {
 				this.setCommentFormat("<!---", "<!---", "--->");
 				break;
 
+				case "jade":
+				this.delimiter = "//-";
+				break;
+
 			case "plaintext":
 				this.isPlainText = true;
 
