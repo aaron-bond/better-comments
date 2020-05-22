@@ -278,6 +278,7 @@ export class Parser {
 			case "scss":
 			case "stylus":
 			case "swift":
+			case "tablegen":
 			case "verilog":
 			case "vue":
 				this.setCommentFormat("//", "/*", "*/");

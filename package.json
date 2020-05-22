@@ -96,6 +96,7 @@
         "onLanguage:stata",
         "onLanguage:stylus",
         "onLanguage:swift",
+        "onLanguage:tablegen",
         "onLanguage:tcl",
         "onLanguage:terraform",
         "onLanguage:twig",
