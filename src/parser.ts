@@ -334,6 +334,10 @@ export class Parser {
 			case "lua":
 				this.setCommentFormat("--", "--[[", "]]");
 				break;
+				
+			case "moonscript":
+				this.setCommentFormat("--", "--[[", "]]");
+				break;
 
 			case "elm":
 			case "haskell":
