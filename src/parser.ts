@@ -422,9 +422,13 @@ export class Parser {
 			}
 			
 			if(item.bold) {
+				// @ts-ignore - this feature is only available in last version of vscode and not in the npm package
+				// ts can find them in @types/vscode but unfortunately, the whole extension compilation fails when using @types/vscode
 				options.fontWeight = "bold";
 			}
 			if(item.italic) {
+				// @ts-ignore - this feature is only available in last version of vscode and not in the npm package
+				// ts can find them in @types/vscode but unfortunately, the whole extension compilation fails when using @types/vscode
 				options.fontStyle = "italic";
 			}
 
