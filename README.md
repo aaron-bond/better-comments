@@ -33,31 +33,46 @@ The default 5 can be modifed to change the colors, and more can be added.
     "tag": "!",
     "color": "#FF2D00",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false,
+    "underline": false
   },
   {
     "tag": "?",
     "color": "#3498DB",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false,
+    "underline": false
   },
   {
     "tag": "//",
     "color": "#474747",
     "strikethrough": true,
-    "backgroundColor": "transparent"
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false,
+    "underline": false
   },
   {
     "tag": "todo",
     "color": "#FF8C00",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false,
+    "underline": false
   },
   {
     "tag": "*",
     "color": "#98C379",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false,
+    "underline": false
   }
 ]
 ```
