@@ -27,52 +27,55 @@ When true, the tags (defaults: `! * ? //`) will be detected if they're the first
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
 The default 5 can be modifed to change the colors, and more can be added.
+
+**strikethrough and underline are mutually exclusive, only one of them can be applied**
+
 ```json
 "better-comments.tags": [
   {
     "tag": "!",
     "color": "#FF2D00",
     "strikethrough": false,
+    "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false,
-    "underline": false
+    "italic": false
   },
   {
     "tag": "?",
     "color": "#3498DB",
     "strikethrough": false,
+    "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false,
-    "underline": false
+    "italic": false
   },
   {
     "tag": "//",
     "color": "#474747",
     "strikethrough": true,
+    "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false,
-    "underline": false
+    "italic": false
   },
   {
     "tag": "todo",
     "color": "#FF8C00",
     "strikethrough": false,
+    "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false,
-    "underline": false
+    "italic": false
   },
   {
     "tag": "*",
     "color": "#98C379",
     "strikethrough": false,
+    "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false,
-    "underline": false
+    "italic": false
   }
 ]
 ```
