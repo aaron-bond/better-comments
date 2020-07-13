@@ -415,20 +415,23 @@ export class Parser {
 		let items = this.contributions.tags;
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
+
+			// ? the textDecoration is initialised to empty so we can concat a preceeding space on it
+			options.textDecoration = "";
+
 			if (item.strikethrough) {
-				options.textDecoration = "line-through";
-			} else if (item.underline) {
-				options.textDecoration = "underline";
+				options.textDecoration += "line-through";
 			}
 			
-			if(item.bold) {
-				// @ts-ignore - this feature is only available in last version of vscode and not in the npm package
-				// ts can find them in @types/vscode but unfortunately, the whole extension compilation fails when using @types/vscode
+			if (item.underline) {
+				options.textDecoration += " underline";
+			}
+			
+			if (item.bold) {
 				options.fontWeight = "bold";
 			}
-			if(item.italic) {
-				// @ts-ignore - this feature is only available in last version of vscode and not in the npm package
-				// ts can find them in @types/vscode but unfortunately, the whole extension compilation fails when using @types/vscode
+
+			if (item.italic) {
 				options.fontStyle = "italic";
 			}
 

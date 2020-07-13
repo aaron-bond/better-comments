@@ -28,8 +28,6 @@ When true, the tags (defaults: `! * ? //`) will be detected if they're the first
 The tags are the characters or sequences used to mark a comment for decoration.
 The default 5 can be modifed to change the colors, and more can be added.
 
-**strikethrough and underline are mutually exclusive, only one of them can be applied**
-
 ```json
 "better-comments.tags": [
   {
