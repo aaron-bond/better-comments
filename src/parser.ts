@@ -278,6 +278,7 @@ export class Parser {
 			case "php":
 			case "rust":
 			case "scala":
+			case "sass":
 			case "scss":
 			case "shaderlab":
 			case "stylus":
