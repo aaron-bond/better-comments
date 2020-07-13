@@ -21,7 +21,9 @@
     "engines": {
         "vscode": "^1.8.1"
     },
-    "extensionKind": ["ui"],
+    "extensionKind": [
+        "ui"
+    ],
     "activationEvents": [
         "onLanguage:ada",
         "onLanguage:al",
