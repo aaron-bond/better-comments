@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.1.0] (????-??-??)
+### Features
+* Adding Bold, Italic, and Underline ([e41ccc4](https://github.com/aaron-bond/better-comments/commit/e41ccc4)), closes [#50](https://github.com/aaron-bond/better-comments/issues/50). Massive thanks to _Fr33maan_
+
 ## [2.0.5] (2019-05-15)
 ### Features
 * Adding Markdown support ([54e51fb](https://github.com/aaron-bond/better-comments/commit/54e51fb)), closes [#91](https://github.com/aaron-bond/better-comments/issues/91)
