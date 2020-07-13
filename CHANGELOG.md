@@ -5,8 +5,8 @@
 * Adding Bold, Italic, and Underline ([e41ccc4](https://github.com/aaron-bond/better-comments/commit/e41ccc4)), closes [#50](https://github.com/aaron-bond/better-comments/issues/50). Massive thanks to _Fr33maan_
 
 ### Bug Fixes
-* Fixing Shaderlab support ([]()), closes [#245](https://github.com/aaron-bond/better-comments/issues/245)
-* Fixing SASS support ([]()), closes [#123](https://github.com/aaron-bond/better-comments/issues/123), [#215](ttps://github.com/aaron-bond/better-comments/issues/215)
+* Fixing Shaderlab support ([f96049f](https://github.com/aaron-bond/better-comments/commit/f96049f)), closes [#245](https://github.com/aaron-bond/better-comments/issues/245)
+* Fixing SASS support ([7decffb](https://github.com/aaron-bond/better-comments/commit/7decffb)), closes [#123](https://github.com/aaron-bond/better-comments/issues/123), [#215](ttps://github.com/aaron-bond/better-comments/issues/215)
 
 ## [2.0.5] (2019-05-15)
 ### Features

@@ -134,7 +134,7 @@ export class Parser {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// Combine custom delimiters and the rest of the comment block matcher		
+		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString = "(^)+([ \\t]*[ \\t]*)(";
 		commentMatchString += characters.join("|");
 		commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
