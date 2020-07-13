@@ -3,6 +3,8 @@
 ## [2.1.0] (????-??-??)
 ### Features
 * Adding Bold, Italic, and Underline ([e41ccc4](https://github.com/aaron-bond/better-comments/commit/e41ccc4)), closes [#50](https://github.com/aaron-bond/better-comments/issues/50). Massive thanks to _Fr33maan_
+* Adding XML support
+* Adding BrightScript support
 
 ### Bug Fixes
 * Fixing Shaderlab support ([f96049f](https://github.com/aaron-bond/better-comments/commit/f96049f)), closes [#245](https://github.com/aaron-bond/better-comments/issues/245)

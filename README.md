@@ -25,7 +25,7 @@ When true, the tags (defaults: `! * ? //`) will be detected if they're the first
 
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
-The default 5 can be modifed to change the colors, and more can be added.
+The default 5 can be modified to change the colors, and more can be added.
 
 ```json
 "better-comments.tags": [
@@ -83,6 +83,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * AL
 * Apex
 * AsciiDoc
+* BrightScript
 * C
 * C#
 * C++
@@ -155,4 +156,5 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Verilog
 * Visual Basic
 * Vue.js
+* XML
 * YAML

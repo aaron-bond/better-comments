@@ -30,6 +30,7 @@
         "onLanguage:apex",
         "onLanguage:asciidoc",
         "onLanguage:bibtex",
+        "onLanguage:brightscript",
         "onLanguage:c",
         "onLanguage:clojure",
         "onLanguage:cfml",
@@ -106,6 +107,7 @@
         "onLanguage:vb",
         "onLanguage:verilog",
         "onLanguage:vue",
+        "onLanguage:xml",
         "onLanguage:yaml"
     ],
     "galleryBanner": {
