@@ -15,6 +15,9 @@ interface Contributions {
 		tag: string;
 		color: string;
 		strikethrough: boolean;
+		underline: boolean;
+		bold: boolean;
+		italic: boolean;
 		backgroundColor: string;
 	}];
 }
@@ -412,8 +415,24 @@ export class Parser {
 		let items = this.contributions.tags;
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
+
+			// ? the textDecoration is initialised to empty so we can concat a preceeding space on it
+			options.textDecoration = "";
+
 			if (item.strikethrough) {
-				options.textDecoration = "line-through";
+				options.textDecoration += "line-through";
+			}
+			
+			if (item.underline) {
+				options.textDecoration += " underline";
+			}
+			
+			if (item.bold) {
+				options.fontWeight = "bold";
+			}
+
+			if (item.italic) {
+				options.fontStyle = "italic";
 			}
 
 			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
