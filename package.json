@@ -19,7 +19,7 @@
         "Formatters"
     ],
     "engines": {
-        "vscode": "^1.8.1"
+        "vscode": "^1.47.0"
     },
     "extensionKind": [
         "ui"
