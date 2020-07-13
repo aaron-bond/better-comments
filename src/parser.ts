@@ -279,6 +279,7 @@ export class Parser {
 			case "rust":
 			case "scala":
 			case "scss":
+			case "shaderlab":
 			case "stylus":
 			case "swift":
 			case "verilog":

@@ -15,7 +15,6 @@ With this extension, you will be able to categorise your annotations into:
 
 This extension can be configured in User Settings or Workspace settings.
 
-
 `"better-comments.multilineComments": true`  
  This setting will control whether multiline comments are styled using the annotation tags.
  When false, multiline comments will be presented without decoration.
