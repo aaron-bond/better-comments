@@ -59,6 +59,7 @@
         "onLanguage:haxe",
         "onLanguage:hive-sql",
         "onLanguage:kotlin",
+        "onLanguage:jade",
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:javascriptreact",
