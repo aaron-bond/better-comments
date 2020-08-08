@@ -66,6 +66,15 @@ The default 5 can be modified to change the colors, and more can be added.
     "italic": false
   },
   {
+    "tag": "fixme",
+    "color": "#FF6000",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": true,
+    "italic": false
+  },
+  {
     "tag": "*",
     "color": "#98C379",
     "strikethrough": false,
