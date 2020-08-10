@@ -327,7 +327,9 @@ export class Parser {
 			case "powershell":
 				this.setCommentFormat("#", "<#", "#>");
 				break;
-
+			case "praat":
+				this.setCommentFormat("#");
+				break;
 			case "ada":
 			case "hive-sql":
 			case "pig":
