@@ -262,6 +262,8 @@ export class Parser {
 			case "al":
 			case "c":
 			case "cpp":
+			case "opencl": // note: requires a package that "contributes":{"languages": {"id":"opencl"}} e.g. https://github.com/Galarius/vscode-opencl		
+			case "css":
 			case "csharp":
 			case "dart":
 			case "flax":
