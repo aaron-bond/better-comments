@@ -15,6 +15,9 @@ interface Contributions {
 		tag: string;
 		color: string;
 		strikethrough: boolean;
+		underline: boolean;
+		bold: boolean;
+		italic: boolean;
 		backgroundColor: string;
 	}];
 }
@@ -80,7 +83,7 @@ export class Parser {
 	}
 
 	/**
-	 * Finds all single line comments delimted by a given delimter and matching tags specified in package.json
+	 * Finds all single line comments delimited by a given delimiter and matching tags specified in package.json
 	 * @param activeEditor The active text editor containing the code document
 	 */
 	public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
@@ -125,13 +128,13 @@ export class Parser {
 		
 		let text = activeEditor.document.getText();
 
-		// Build up regex matcher for custom delimter tags
+		// Build up regex matcher for custom delimiter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
 			characters.push(commentTag.escapedTag);
 		}
 
-		// Combine custom delimiters and the rest of the comment block matcher		
+		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString = "(^)+([ \\t]*[ \\t]*)(";
 		commentMatchString += characters.join("|");
 		commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
@@ -180,7 +183,7 @@ export class Parser {
 
 		let text = activeEditor.document.getText();
 
-		// Build up regex matcher for custom delimter tags
+		// Build up regex matcher for custom delimiter tags
 		let characters: Array<string> = [];
 		for (let commentTag of this.tags) {
 			characters.push(commentTag.escapedTag);
@@ -275,7 +278,9 @@ export class Parser {
 			case "php":
 			case "rust":
 			case "scala":
+			case "sass":
 			case "scss":
+			case "shaderlab":
 			case "stylus":
 			case "swift":
 			case "systemverilog":
@@ -341,8 +346,9 @@ export class Parser {
 				this.setCommentFormat("--", "{-", "-}");
 				break;
 
-			case "vb":
+			case "brightscript":
 			case "diagram": // ? PlantUML is recognized as Diagram (diagram)
+			case "vb":
 				this.delimiter = "'";
 				break;
 
@@ -378,6 +384,7 @@ export class Parser {
 			
 			case "html":
 			case "markdown":
+			case "xml":
 				this.setCommentFormat("<!--", "<!--", "-->");
 				break;
 			
@@ -413,8 +420,24 @@ export class Parser {
 		let items = this.contributions.tags;
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
+
+			// ? the textDecoration is initialised to empty so we can concat a preceeding space on it
+			options.textDecoration = "";
+
 			if (item.strikethrough) {
-				options.textDecoration = "line-through";
+				options.textDecoration += "line-through";
+			}
+			
+			if (item.underline) {
+				options.textDecoration += " underline";
+			}
+			
+			if (item.bold) {
+				options.fontWeight = "bold";
+			}
+
+			if (item.italic) {
+				options.fontStyle = "italic";
 			}
 
 			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');

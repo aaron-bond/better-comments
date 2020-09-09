@@ -1,5 +1,15 @@
 # Change Log
 
+## [2.1.0] (2020-07-13)
+### Features
+* Adding Bold, Italic, and Underline ([e41ccc4](https://github.com/aaron-bond/better-comments/commit/e41ccc4)), closes [#50](https://github.com/aaron-bond/better-comments/issues/50). Massive thanks to _Fr33maan_
+* Adding XML support
+* Adding BrightScript support
+
+### Bug Fixes
+* Fixing Shaderlab support ([f96049f](https://github.com/aaron-bond/better-comments/commit/f96049f)), closes [#245](https://github.com/aaron-bond/better-comments/issues/245)
+* Fixing SASS support ([7decffb](https://github.com/aaron-bond/better-comments/commit/7decffb)), closes [#123](https://github.com/aaron-bond/better-comments/issues/123), [#215](ttps://github.com/aaron-bond/better-comments/issues/215)
+
 ## [2.0.5] (2019-05-15)
 ### Features
 * Adding Markdown support ([54e51fb](https://github.com/aaron-bond/better-comments/commit/54e51fb)), closes [#91](https://github.com/aaron-bond/better-comments/issues/91)

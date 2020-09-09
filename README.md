@@ -15,7 +15,6 @@ With this extension, you will be able to categorise your annotations into:
 
 This extension can be configured in User Settings or Workspace settings.
 
-
 `"better-comments.multilineComments": true`  
  This setting will control whether multiline comments are styled using the annotation tags.
  When false, multiline comments will be presented without decoration.
@@ -26,38 +25,54 @@ When true, the tags (defaults: `! * ? //`) will be detected if they're the first
 
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
-The default 5 can be modifed to change the colors, and more can be added.
+The default 5 can be modified to change the colors, and more can be added.
+
 ```json
 "better-comments.tags": [
   {
     "tag": "!",
     "color": "#FF2D00",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
   },
   {
     "tag": "?",
     "color": "#3498DB",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
   },
   {
     "tag": "//",
     "color": "#474747",
     "strikethrough": true,
-    "backgroundColor": "transparent"
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
   },
   {
     "tag": "todo",
     "color": "#FF8C00",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
   },
   {
     "tag": "*",
     "color": "#98C379",
     "strikethrough": false,
-    "backgroundColor": "transparent"
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
   }
 ]
 ```
@@ -68,6 +83,7 @@ The default 5 can be modifed to change the colors, and more can be added.
 * AL
 * Apex
 * AsciiDoc
+* BrightScript
 * C
 * C#
 * C++
@@ -141,4 +157,5 @@ The default 5 can be modifed to change the colors, and more can be added.
 * Verilog
 * Visual Basic
 * Vue.js
+* XML
 * YAML
