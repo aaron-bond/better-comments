@@ -106,6 +106,7 @@
         "onLanguage:typescriptreact",
         "onLanguage:vb",
         "onLanguage:verilog",
+        "onLanguage:vhdl",
         "onLanguage:vue",
         "onLanguage:xml",
         "onLanguage:yaml"
