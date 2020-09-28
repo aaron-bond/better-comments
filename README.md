@@ -121,6 +121,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Makefile
 * Markdown
 * Nim
+* NSIS
 * MATLAB
 * Objective-C
 * Objective-C++

@@ -72,6 +72,7 @@
         "onLanguage:markdown",
         "onLanguage:matlab",
         "onLanguage:nim",
+        "onLanguage:nsis",
         "onLanguage:objective-c",
         "onLanguage:objective-cpp",
         "onLanguage:objectpascal",
