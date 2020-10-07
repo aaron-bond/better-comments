@@ -95,6 +95,7 @@
         "onLanguage:scss",
         "onLanguage:shaderlab",
         "onLanguage:shellscript",
+        "onLanguage:solidity",
         "onLanguage:sql",
         "onLanguage:stata",
         "onLanguage:stylus",
