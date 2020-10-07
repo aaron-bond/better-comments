@@ -144,6 +144,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * SCSS
 * ShaderLab
 * ShellScript
+* Solidity
 * SQL
 * STATA
 * Stylus
@@ -158,3 +159,4 @@ The default 5 can be modified to change the colors, and more can be added.
 * Vue.js
 * XML
 * YAML
+
