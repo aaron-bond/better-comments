@@ -5,6 +5,8 @@ interface CommentTag {
 	escapedTag: string;
 	decoration: vscode.TextEditorDecorationType;
 	ranges: Array<vscode.DecorationOptions>;
+	languageCodeBlacklist?: Array<string> | null;
+	languageCodeWhitelist?: Array<string> | null;
 }
 
 interface Contributions {
@@ -19,6 +21,8 @@ interface Contributions {
 		bold: boolean;
 		italic: boolean;
 		backgroundColor: string;
+		languageCodeBlacklist?: Array<string> | null;
+		languageCodeWhitelist?: Array<string> | null;
 	}];
 }
 
@@ -227,6 +231,18 @@ export class Parser {
 	 */
 	public ApplyDecorations(activeEditor: vscode.TextEditor): void {
 		for (let tag of this.tags) {
+			// filter out non-whitelisted languages
+			if (Array.isArray(tag.languageCodeWhitelist)) {
+				if (!tag.languageCodeWhitelist.includes(activeEditor.document.languageId))
+					continue;
+			}
+
+			// filter out blacklisted languages
+			if (Array.isArray(tag.languageCodeBlacklist)) {
+				if (tag.languageCodeBlacklist.includes(activeEditor.document.languageId))
+					continue;
+			}
+
 			activeEditor.setDecorations(tag.decoration, tag.ranges);
 
 			// clear the ranges for the next pass
@@ -444,7 +460,9 @@ export class Parser {
 				tag: item.tag,
 				escapedTag: escapedSequence.replace(/\//gi, "\\/"), // ! hardcoded to escape slashes
 				ranges: [],
-				decoration: vscode.window.createTextEditorDecorationType(options)
+				decoration: vscode.window.createTextEditorDecorationType(options),
+				languageCodeBlacklist: item.languageCodeBlacklist,
+				languageCodeWhitelist: item.languageCodeWhitelist
 			});
 		}
 	}

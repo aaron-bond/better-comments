@@ -146,7 +146,9 @@
                             "underline": false,
                             "backgroundColor": "transparent",
                             "bold": false,
-                            "italic": false
+                            "italic": false,
+                            "languageCodeBlacklist": null,
+                            "languageCodeWhitelist": null
                         },
                         {
                             "tag": "?",
@@ -155,7 +157,9 @@
                             "underline": false,
                             "backgroundColor": "transparent",
                             "bold": false,
-                            "italic": false
+                            "italic": false,
+                            "languageCodeBlacklist": null,
+                            "languageCodeWhitelist": null
                         },
                         {
                             "tag": "//",
@@ -164,7 +168,9 @@
                             "underline": false,
                             "backgroundColor": "transparent",
                             "bold": false,
-                            "italic": false
+                            "italic": false,
+                            "languageCodeBlacklist": null,
+                            "languageCodeWhitelist": null
                         },
                         {
                             "tag": "todo",
@@ -173,7 +179,9 @@
                             "underline": false,
                             "backgroundColor": "transparent",
                             "bold": false,
-                            "italic": false
+                            "italic": false,
+                            "languageCodeBlacklist": null,
+                            "languageCodeWhitelist": null
                         },
                         {
                             "tag": "*",
@@ -182,7 +190,9 @@
                             "underline": false,
                             "backgroundColor": "transparent",
                             "bold": false,
-                            "italic": false
+                            "italic": false,
+                            "languageCodeBlacklist": null,
+                            "languageCodeWhitelist": null
                         }
                     ]
                 }
