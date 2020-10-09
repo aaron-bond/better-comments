@@ -26,6 +26,7 @@ When true, the tags (defaults: `! * ? //`) will be detected if they're the first
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
 The default 5 can be modified to change the colors, and more can be added.
+>`languageCodeBlacklist` and `languageCodeWhitelist` can be an array of [language identifiers](https://code.visualstudio.com/docs/languages/identifiers#_known-language-identifiers), use them to selectively enable or disable tags for specific languages.
 
 ```json
 "better-comments.tags": [
@@ -36,7 +37,9 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "languageCodeBlacklist": null,
+    "languageCodeWhitelist": null
   },
   {
     "tag": "?",
@@ -45,7 +48,9 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "languageCodeBlacklist": null,
+    "languageCodeWhitelist": null
   },
   {
     "tag": "//",
@@ -54,7 +59,9 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "languageCodeBlacklist": null,
+    "languageCodeWhitelist": null
   },
   {
     "tag": "todo",
@@ -63,7 +70,9 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "languageCodeBlacklist": null,
+    "languageCodeWhitelist": null
   },
   {
     "tag": "*",
@@ -72,7 +81,9 @@ The default 5 can be modified to change the colors, and more can be added.
     "underline": false,
     "backgroundColor": "transparent",
     "bold": false,
-    "italic": false
+    "italic": false,
+    "languageCodeBlacklist": null,
+    "languageCodeWhitelist": null
   }
 ]
 ```
