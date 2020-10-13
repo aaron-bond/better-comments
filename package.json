@@ -38,6 +38,7 @@
         "onLanguage:coffeescript",
         "onLanguage:cpp",
         "onLanguage:csharp",
+        "onLanguage:crystal",
         "onLanguage:css",
         "onLanguage:d",
         "onLanguage:dart",
