@@ -251,6 +251,10 @@ export class Parser {
 				break;
 
 			case "apex":
+			case "ahk":
+				this.setCommentFormat(";", "/*", "*/");
+				break;
+
 			case "javascript":
 			case "javascriptreact":
 			case "typescript":

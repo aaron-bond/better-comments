@@ -26,6 +26,7 @@
     ],
     "activationEvents": [
         "onLanguage:ada",
+        "onLanguage:ahk",
         "onLanguage:al",
         "onLanguage:apex",
         "onLanguage:asciidoc",
