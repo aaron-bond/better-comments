@@ -131,6 +131,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Pig
 * PlantUML
 * PL/SQL
+* PlusCal
 * PowerShell
 * Puppet
 * Python
@@ -150,6 +151,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Swift
 * Tcl
 * Terraform
+* TLA<sup>+</sup>
 * Twig
 * TypeScript
 * TypeScript React
