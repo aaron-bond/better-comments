@@ -101,6 +101,8 @@
         "onLanguage:swift",
         "onLanguage:tcl",
         "onLanguage:terraform",
+        "onLanguage:tlaplus",
+        "onLanguage:tlaplus_cfg",
         "onLanguage:twig",
         "onLanguage:typescript",
         "onLanguage:typescriptreact",
