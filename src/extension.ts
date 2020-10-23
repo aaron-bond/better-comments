@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
         // * if no active window is open, return
         if (!activeEditor) return;
 
-        // * if lanugage isn't supported, return
+        // * if language isn't supported, return
         if (!parser.supportedLanguage) return;
 
         // Finds the single line comments using the language comment delimiter
@@ -70,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
             clearTimeout(timeout);
         }
         timeout = setTimeout(updateDecorations, 200);
-    }
+    }   
 }
 
 export function deactivate() { }

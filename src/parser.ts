@@ -93,7 +93,7 @@ export class Parser {
 
 		let text = activeEditor.document.getText();
 
-		// if it's plain text, we have to do mutliline regex to catch the start of the line with ^
+		// if it's plain text, we have to do multiline regex to catch the start of the line with ^
 		let regexFlags = (this.isPlainText) ? "igm" : "ig";
 		let regEx = new RegExp(this.expression, regexFlags);
 
@@ -402,7 +402,7 @@ export class Parser {
 			case "plaintext":
 				this.isPlainText = true;
 
-				// If highlight plaintext is enabeld, this is a supported language
+				// If highlight plaintext is enabled, this is a supported language
 				this.supportedLanguage = this.contributions.highlightPlainText;
 				break;
 
@@ -420,7 +420,7 @@ export class Parser {
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
 
-			// ? the textDecoration is initialised to empty so we can concat a preceeding space on it
+			// ? the textDecoration is initialized to empty so we can concat a preceding space on it
 			options.textDecoration = "";
 
 			if (item.strikethrough) {
