@@ -63,10 +63,7 @@ export class Parser {
 			return;
 		}
 
-		let characters: Array<string> = [];
-		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
-		}
+		const characters: Array<string> = this.tags.map(tag => tag.escapedTag);
 
 		if (this.isPlainText && this.contributions.highlightPlainText) {
 			// start by tying the regex to the first character in a line
@@ -129,10 +126,7 @@ export class Parser {
 		let text = activeEditor.document.getText();
 
 		// Build up regex matcher for custom delimiter tags
-		let characters: Array<string> = [];
-		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
-		}
+		let characters: Array<string> = this.tags.map(tag => tag.escapedTag);
 
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString = "(^)+([ \\t]*[ \\t]*)(";
@@ -184,10 +178,7 @@ export class Parser {
 		let text = activeEditor.document.getText();
 
 		// Build up regex matcher for custom delimiter tags
-		let characters: Array<string> = [];
-		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
-		}
+		let characters: Array<string> = this.tags.map(tag => tag.escapedTag)
 
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
