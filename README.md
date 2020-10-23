@@ -21,7 +21,7 @@ This extension can be configured in User Settings or Workspace settings.
 
 `"better-comments.highlightPlainText": false`  
 This setting will control whether comments in a plain text file are styled using the annotation tags.
-When true, the tags (defaults: `! * ? //`) will be detected if they're the first character on a line.
+When true, the tags (defaults: `! ❕ ❗ ⚠ * ℹ ? ❓ ❔ //`) will be detected if they're the first character on a line.
 
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
@@ -39,7 +39,52 @@ The default 5 can be modified to change the colors, and more can be added.
     "italic": false
   },
   {
+    "tag": "❗",
+    "color": "#FF2D00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "❕",
+    "color": "#FF2D00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "⚠",
+    "color": "#FF2D00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
     "tag": "?",
+    "color": "#3498DB",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "❓",
+    "color": "#3498DB",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "❔",
     "color": "#3498DB",
     "strikethrough": false,
     "underline": false,
@@ -67,6 +112,15 @@ The default 5 can be modified to change the colors, and more can be added.
   },
   {
     "tag": "*",
+    "color": "#98C379",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "ℹ",
     "color": "#98C379",
     "strikethrough": false,
     "underline": false,
