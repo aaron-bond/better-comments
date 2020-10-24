@@ -104,6 +104,7 @@
         "onLanguage:twig",
         "onLanguage:typescript",
         "onLanguage:typescriptreact",
+        "onLanguage:vala",
         "onLanguage:vb",
         "onLanguage:verilog",
         "onLanguage:vue",
