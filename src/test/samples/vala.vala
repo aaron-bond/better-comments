@@ -11,7 +11,7 @@ class Demo.HelloWorld : GLib.Object {
     public string name { get; set; }
 
     /**
-     * This method supposed to do something usefull.
+     * This method supposed to do something useful.
      *
      * If test equals some value it should return true otherwise false.
      *
