@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package sample;
+
+/**
+ * My Function
+ * ! Some Alert
+ * TODO Some stuff
+ * ?  Questions
+ * * Highlights
+ */
+message SampleMessage {
+    string hello = 1;
+}
