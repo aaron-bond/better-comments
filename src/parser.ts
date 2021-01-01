@@ -285,6 +285,7 @@ export class Parser {
 			case "swift":
 			case "verilog":
 			case "vue":
+			case "proto3":
 				this.setCommentFormat("//", "/*", "*/");
 				break;
 			
