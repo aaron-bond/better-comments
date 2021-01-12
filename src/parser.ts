@@ -1,4 +1,7 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as json5 from 'json5'
 
 interface CommentTag {
 	tag: string;
@@ -20,6 +23,11 @@ interface Contributions {
 		italic: boolean;
 		backgroundColor: string;
 	}];
+}
+
+interface CommentConfig {
+	lineComment?: string;
+	blockComment?: [string, string];
 }
 
 export class Parser {
@@ -46,8 +54,62 @@ export class Parser {
 	// Read from the package.json
 	private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
 
+	private readonly languageToConfigPath = new Map<string, string>();
+
+	private readonly commentConfig = new Map<string, CommentConfig | undefined>();
+
 	public constructor() {
 		this.setTags();
+		this.updateLanguagesDefinitions();
+	}
+
+	/**
+	 * Generate a map of language configuration file by language defined by extensions
+	 * External extensions can override default configurations os VSCode
+	 */
+	public updateLanguagesDefinitions() {
+		this.commentConfig.clear();
+
+		for (const extension of vscode.extensions.all) {
+			const packageJSON = extension.packageJSON as any;
+			if (packageJSON.contributes && packageJSON.contributes.languages) {
+				for (const language of packageJSON.contributes.languages) {
+					if (language.configuration) {
+							const configPath = path.join(extension.extensionPath, language.configuration);
+							this.languageToConfigPath.set(language.id, configPath);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Return the comment config for `languageCode`
+	 * @param languageCode The short code of the current language
+	 */
+	private getCommentConfig (languageCode: string): CommentConfig | undefined {
+		if (this.commentConfig.has(languageCode)) {
+			return this.commentConfig.get(languageCode);
+		}
+
+		if (!this.languageToConfigPath.has(languageCode)) {
+			return undefined;
+		}
+
+		const file = this.languageToConfigPath.get(languageCode) as string;
+
+		const content = fs.readFileSync(file, {encoding: 'utf8'});
+
+		try {
+			// use json5, because the config can contains comments
+			const config = json5.parse(content);
+
+			this.commentConfig.set(languageCode, config.comments);
+			return config.comments;
+		} catch (error) {
+			this.commentConfig.set(languageCode, undefined);
+			return undefined;
+		}
 	}
 
 	/**
@@ -243,171 +305,46 @@ export class Parser {
 		this.supportedLanguage = true;
 		this.ignoreFirstLine = false;
 		this.isPlainText = false;
+		this.delimiter = "";
+		this.blockCommentStart = "";
+		this.blockCommentEnd = "";
+
+		const config = this.getCommentConfig(languageCode);
+
+		if (config) {
+			if (config.blockComment) {
+				this.setCommentFormat(config.lineComment || null, config.blockComment[0], config.blockComment[1]);
+			} else if (config.lineComment) {
+				this.delimiter = this.escapeRegExp(config.lineComment);
+			}
+		} else {
+			this.supportedLanguage = false;
+		}
 
 		switch (languageCode) {
-
-			case "asciidoc":
-				this.setCommentFormat("//", "////", "////");
-				break;
-
 			case "apex":
 			case "javascript":
 			case "javascriptreact":
 			case "typescript":
 			case "typescriptreact":
-				this.setCommentFormat("//", "/*", "*/");
 				this.highlightJSDoc = true;
-				break;
-
-			case "al":
-			case "c":
-			case "cpp":
-			case "csharp":
-			case "dart":
-			case "flax":
-			case "fsharp":
-			case "go":
-			case "groovy":
-			case "haxe":
-			case "java":
-			case "jsonc":
-			case "kotlin":
-			case "less":
-			case "pascal":
-			case "objectpascal":
-			case "php":
-			case "rust":
-			case "scala":
-			case "sass":
-			case "scss":
-			case "shaderlab":
-			case "stylus":
-			case "swift":
-			case "verilog":
-			case "vue":
-				this.setCommentFormat("//", "/*", "*/");
-				break;
-			
-			case "css":
-				this.setCommentFormat("/*", "/*", "*/");
-				break;
-
-			case "coffeescript":
-			case "dockerfile":
-			case "gdscript":
-			case "graphql":
-			case "julia":
-			case "makefile":
-			case "perl":
-			case "perl6":
-			case "puppet":
-			case "r":
-			case "ruby":
-			case "shellscript":
-			case "tcl":
-			case "yaml":
-				this.delimiter = "#";
-				break;
-			
-			case "tcl":
-				this.delimiter = "#";
-				this.ignoreFirstLine = true;
 				break;
 
 			case "elixir":
 			case "python":
-				this.setCommentFormat("#", '"""', '"""');
+			case "tcl":
 				this.ignoreFirstLine = true;
 				break;
-			
-			case "nim":
-				this.setCommentFormat("#", "#[", "]#");
-				break;
 
-			case "powershell":
-				this.setCommentFormat("#", "<#", "#>");
-				break;
-
-			case "ada":
-			case "hive-sql":
-			case "pig":
-			case "plsql":
-			case "sql":
-				this.delimiter = "--";
+			case "css":
+				this.delimiter = this.escapeRegExp("/*");
 				break;
 			
-			case "lua":
-				this.setCommentFormat("--", "--[[", "]]");
-				break;
-
-			case "elm":
-			case "haskell":
-				this.setCommentFormat("--", "{-", "-}");
-				break;
-
-			case "brightscript":
-			case "diagram": // ? PlantUML is recognized as Diagram (diagram)
-			case "vb":
-				this.delimiter = "'";
-				break;
-
-			case "bibtex":
-			case "erlang":
-			case "latex":
-			case "matlab":
-				this.delimiter = "%";
-				break;
-
-			case "clojure":
-			case "racket":
-			case "lisp":
-				this.delimiter = ";";
-				break;
-
-			case "terraform":
-				this.setCommentFormat("#", "/*", "*/");
-				break;
-
-			case "COBOL":
-				this.delimiter = this.escapeRegExp("*>");
-				break;
-
-			case "fortran-modern":
-				this.delimiter = "c";
-				break;
-			
-			case "SAS":
-			case "stata":
-				this.setCommentFormat("*", "/*", "*/");
-				break;
-			
-			case "html":
-			case "markdown":
-			case "xml":
-				this.setCommentFormat("<!--", "<!--", "-->");
-				break;
-			
-			case "twig":
-				this.setCommentFormat("{#", "{#", "#}");
-				break;
-
-			case "genstat":
-				this.setCommentFormat("\\", '"', '"');
-				break;
-			
-			case "cfml":
-				this.setCommentFormat("<!---", "<!---", "--->");
-				break;
-
 			case "plaintext":
 				this.isPlainText = true;
 
 				// If highlight plaintext is enabeld, this is a supported language
 				this.supportedLanguage = this.contributions.highlightPlainText;
-				break;
-
-			default:
-				this.supportedLanguage = false;
 				break;
 		}
 	}
