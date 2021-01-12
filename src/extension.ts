@@ -7,6 +7,10 @@ export function activate(context: vscode.ExtensionContext) {
     let activeEditor: vscode.TextEditor;
     let parser: Parser = new Parser();
 
+    vscode.extensions.onDidChange(() => {
+        parser.updateLanguagesDefinitions();
+    }, null, context.subscriptions);
+
     // Called to handle events below
     let updateDecorations = function (useHash = false) {
         // * if no active window is open, return
