@@ -399,6 +399,10 @@ export class Parser {
 				this.setCommentFormat("<!---", "<!---", "--->");
 				break;
 
+			case "qlik":
+				this.setCommentFormat("//", "/*", "*/");
+				break;
+	
 			case "plaintext":
 				this.isPlainText = true;
 
