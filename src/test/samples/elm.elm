@@ -26,7 +26,7 @@ tom = {firstName = "tom", lastName = "john", age = 34, status = Visitor }
 main =
     text "Hello world!"
 
-{-
+{-|
     TODO tab TODO
         !double tab
             ?triple tab
