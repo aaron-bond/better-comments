@@ -93,7 +93,7 @@ export class Parser {
 
 		let text = activeEditor.document.getText();
 
-		// if it's plain text, we have to do mutliline regex to catch the start of the line with ^
+		// if it's plain text, we have to do multiline regex to catch the start of the line with ^
 		let regexFlags = (this.isPlainText) ? "igm" : "ig";
 		let regEx = new RegExp(this.expression, regexFlags);
 
@@ -247,168 +247,199 @@ export class Parser {
 		switch (languageCode) {
 
 			case "asciidoc":
-				this.setCommentFormat("//", "////", "////");
+                this.setCommentFormat("//", "////", "////");
+                break;
+
+            case "apex":
+            case "javascript":
+            case "javascriptreact":
+            case "typescript":
+            case "typescriptreact":
+                this.setCommentFormat("//", "/*", "*/");
+                this.highlightJSDoc = true;
+                break;
+
+            case "al":
+            case "alloy":
+            case "c":
+            case "cpp":
+            case "csharp":
+            case "dafny":
+            case "dart":
+            case "flax":
+            case "fsharp":
+            case "go":
+            case "groovy":
+            case "haxe":
+            case "java":
+            case "jsonc":
+            case "kotlin":
+            case "less":
+            case "pascal":
+            case "objectpascal":
+            case "php":
+            case "promela":
+            case "rust":
+            case "scala":
+            case "sass":
+            case "scss":
+            case "shaderlab":
+            case "stylus":
+            case "swift":
+            case "verilog":
+            case "vue":
+                this.setCommentFormat("//", "/*", "*/");
+                break;
+
+            case "css":
+                this.setCommentFormat("/*", "/*", "*/"); //? should css even have a single line comment?
+                break;
+
+            case "coffeescript":
+			case "cson":
+            case "dockerfile":
+            case "gdscript":
+            case "graphql":
+            case "julia":
+            case "makefile":
+            case "perl":
+            case "perl6":
+            case "puppet":
+            case "r":
+            case "ruby":
+            case "shellscript":
+            case "tcl":
+			case "toml":
+            case "yaml":
+                this.delimiter = "#";
+                break;
+
+            case "tcl":
+                this.delimiter = "#";
+                this.ignoreFirstLine = true;
+                break;
+
+			case "gitconfig":
+				this.delimiter = "[#;]"; // single line comments can start with either '#', or ';'. (bypasses regex scrubber) 
 				break;
 
-			case "apex":
-			case "javascript":
-			case "javascriptreact":
-			case "typescript":
-			case "typescriptreact":
-				this.setCommentFormat("//", "/*", "*/");
-				this.highlightJSDoc = true;
+			case "gitignore":
+				this.delimiter = "^#";		// single line comments must be the first character of the line. (bypasses regex scrubber)
+				this.isPlainText = true;	// to enable multiline in regex parsing and allow the /^/ to detect the start fo a line.
 				break;
 
-			case "al":
-			case "c":
-			case "cpp":
-			case "csharp":
-			case "dart":
-			case "flax":
-			case "fsharp":
-			case "go":
-			case "groovy":
-			case "haxe":
-			case "java":
-			case "jsonc":
-			case "kotlin":
-			case "less":
-			case "pascal":
-			case "objectpascal":
-			case "php":
-			case "rust":
-			case "scala":
-			case "sass":
-			case "scss":
-			case "shaderlab":
-			case "stylus":
-			case "swift":
-			case "verilog":
-			case "vue":
-				this.setCommentFormat("//", "/*", "*/");
-				break;
-			
-			case "css":
-				this.setCommentFormat("/*", "/*", "*/");
+            case "elixir":
+            case "python":
+                this.setCommentFormat("#", '"""', '"""');
+                this.ignoreFirstLine = true;
+                break;
+
+            case "nim":
+                this.setCommentFormat("#", "#[", "]#");
+                break;
+
+            case "powershell":
+                this.setCommentFormat("#", "<#", "#>");
+                break;
+
+            case "ada":
+            case "hive-sql":
+            case "pig":
+            case "plsql":
+            case "sql":
+                this.delimiter = "--";
+                break;
+
+            case "lua":
+                this.setCommentFormat("--", "--[[", "]]");
+                break;
+
+            case "elm":
+            case "haskell":
+                this.setCommentFormat("--", "{-", "-}");
+                break;
+
+            case "brightscript":
+            case "diagram": // ? PlantUML is recognized as Diagram (diagram)
+            case "vb":
+                this.delimiter = "'";
+                break;
+
+            case "bibtex":
+			case "tex":
+            case "erlang":
+            case "matlab":
+                this.delimiter = "%";
+                break;
+
+            case "latex":
+				// latex has a make shift multiline comment using the `comment` environment.
+                this.setCommentFormat("%", "\\begin{comment}", "\\end{comment}");
+                break;
+
+            case "ahk":
+                this.setCommentFormat(";", "/*", "*/");
+                break;
+
+            case "clojure":
+            case "racket":
+            case "lisp":
+                this.delimiter = ";";
+                break;
+
+            case "terraform":
+                this.setCommentFormat("#", "/*", "*/");
+                break;
+
+            case "COBOL":
+                this.delimiter = this.escapeRegExp("*>");
+                break;
+
+            case "fortran-modern":
+                this.delimiter = "c";
+                break;
+
+            case "SAS":
+            case "stata":
+                this.setCommentFormat("*", "/*", "*/");
+                break;
+
+            case "html":
+            case "markdown":
+            case "xml":
+                this.setCommentFormat("<!--", "<!--", "-->");
+                break;
+
+            case "twig":
+                this.setCommentFormat("{#", "{#", "#}");
+                break;
+
+            case "genstat":
+                this.setCommentFormat("\\", '"', '"');
+                break;
+
+            case "cfml":
+                this.setCommentFormat("<!---", "<!---", "--->");
+                break;
+
+			// Support for x86 assembly in both GAS and At&t/GNU syntax (bypasses regex scrubber)
+			case "gas":
+				this.delimiter = "[\#\;]";			// Gas needs '#' & At&t needs ';'. (bypasses regex scrubber)
+				this.blockCommentStart = "\/\*";	// both support "/*...*/" multiline comments
+				this.blockCommentEnd = "\*\/";
+				this.highlightMultilineComments = this.contributions.multilineComments;
 				break;
 
-			case "coffeescript":
-			case "dockerfile":
-			case "gdscript":
-			case "graphql":
-			case "julia":
-			case "makefile":
-			case "perl":
-			case "perl6":
-			case "puppet":
-			case "r":
-			case "ruby":
-			case "shellscript":
-			case "tcl":
-			case "yaml":
-				this.delimiter = "#";
-				break;
-			
-			case "tcl":
-				this.delimiter = "#";
-				this.ignoreFirstLine = true;
-				break;
+            case "plaintext":
+                this.isPlainText = true;
+                // If highlight plaintext is enabled, this is a supported language
+                this.supportedLanguage = this.contributions.highlightPlainText;
+                break;
 
-			case "elixir":
-			case "python":
-				this.setCommentFormat("#", '"""', '"""');
-				this.ignoreFirstLine = true;
-				break;
-			
-			case "nim":
-				this.setCommentFormat("#", "#[", "]#");
-				break;
+            default:
+                this.supportedLanguage = false;
+                break;
 
-			case "powershell":
-				this.setCommentFormat("#", "<#", "#>");
-				break;
-
-			case "ada":
-			case "hive-sql":
-			case "pig":
-			case "plsql":
-			case "sql":
-				this.delimiter = "--";
-				break;
-			
-			case "lua":
-				this.setCommentFormat("--", "--[[", "]]");
-				break;
-
-			case "elm":
-			case "haskell":
-				this.setCommentFormat("--", "{-", "-}");
-				break;
-
-			case "brightscript":
-			case "diagram": // ? PlantUML is recognized as Diagram (diagram)
-			case "vb":
-				this.delimiter = "'";
-				break;
-
-			case "bibtex":
-			case "erlang":
-			case "latex":
-			case "matlab":
-				this.delimiter = "%";
-				break;
-
-			case "clojure":
-			case "racket":
-			case "lisp":
-				this.delimiter = ";";
-				break;
-
-			case "terraform":
-				this.setCommentFormat("#", "/*", "*/");
-				break;
-
-			case "COBOL":
-				this.delimiter = this.escapeRegExp("*>");
-				break;
-
-			case "fortran-modern":
-				this.delimiter = "c";
-				break;
-			
-			case "SAS":
-			case "stata":
-				this.setCommentFormat("*", "/*", "*/");
-				break;
-			
-			case "html":
-			case "markdown":
-			case "xml":
-				this.setCommentFormat("<!--", "<!--", "-->");
-				break;
-			
-			case "twig":
-				this.setCommentFormat("{#", "{#", "#}");
-				break;
-
-			case "genstat":
-				this.setCommentFormat("\\", '"', '"');
-				break;
-			
-			case "cfml":
-				this.setCommentFormat("<!---", "<!---", "--->");
-				break;
-
-			case "plaintext":
-				this.isPlainText = true;
-
-				// If highlight plaintext is enabeld, this is a supported language
-				this.supportedLanguage = this.contributions.highlightPlainText;
-				break;
-
-			default:
-				this.supportedLanguage = false;
-				break;
 		}
 	}
 
@@ -420,7 +451,7 @@ export class Parser {
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
 
-			// ? the textDecoration is initialised to empty so we can concat a preceeding space on it
+			// ? the textDecoration is initialized to empty so we can concat a proceeding space on it
 			options.textDecoration = "";
 
 			if (item.strikethrough) {

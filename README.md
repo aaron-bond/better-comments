@@ -1,7 +1,7 @@
 # Better Comments
 
 The Better Comments extension will help you create more human-friendly comments in your code.  
-With this extension, you will be able to categorise your annotations into:
+With this extension, you will be able to categorize your annotations into:
 * Alerts
 * Queries
 * TODOs
@@ -80,7 +80,9 @@ The default 5 can be modified to change the colors, and more can be added.
 ## Supported Languages
 
 * Ada
+* Auto Hot Key
 * AL
+* Alloy
 * Apex
 * AsciiDoc
 * BrightScript
@@ -91,7 +93,9 @@ The default 5 can be modified to change the colors, and more can be added.
 * Clojure
 * COBOL
 * CoffeeScript
+* CSON
 * CSS
+* Dafny
 * Dart
 * Dockerfile
 * Elixir
@@ -99,8 +103,11 @@ The default 5 can be modified to change the colors, and more can be added.
 * Erlang
 * F#
 * Fortran
+* GAS x86 assembly (at&t/GNU syntax)
 * gdscript
 * GenStat
+* git config
+* gitignore
 * Go
 * GraphQL
 * Groovy
@@ -114,7 +121,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * JSON with comments
 * Julia
 * Kotlin
-* LaTex (inlc. Bibtex/Biblatex)
+* LaTeX (inlc. BibTeX/BibLaTeX & plain TeX)
 * Less
 * Lisp
 * Lua
@@ -132,6 +139,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * PlantUML
 * PL/SQL
 * PowerShell
+* Promela
 * Puppet
 * Python
 * R
@@ -150,6 +158,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Swift
 * Tcl
 * Terraform
+* TOML
 * Twig
 * TypeScript
 * TypeScript React
