@@ -103,7 +103,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Erlang
 * F#
 * Fortran
-* GAS x86 assembly (at&t/GNU syntax)
+* GAS x86/x86_64/AMD64 assembly _(at&t/GNU syntax)_
 * gdscript
 * GenStat
 * git config
@@ -127,8 +127,9 @@ The default 5 can be modified to change the colors, and more can be added.
 * Lua
 * Makefile
 * Markdown
-* Nim
 * MATLAB
+* NASM/YASM x86/x86_64/AMD64 assembly _(intel syntax) [asm]_
+* Nim
 * Objective-C
 * Objective-C++
 * Pascal
@@ -144,6 +145,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Python
 * R
 * Racket
+* Rainmeter _(win10 desktop widget config file [modified ini])_
 * Ruby
 * Rust
 * SAS

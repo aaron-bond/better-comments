@@ -95,6 +95,7 @@
 		"onLanguage:python",
 		"onLanguage:r",
 		"onLanguage:racket",
+        "onLanguage:rainmeter",
 		"onLanguage:ruby",
 		"onLanguage:rust",
 		"onLanguage:scala",

@@ -260,7 +260,6 @@ export class Parser {
                 break;
 
             case "al":
-            case "alloy":
             case "c":
             case "cpp":
             case "csharp":
@@ -384,9 +383,11 @@ export class Parser {
             case "clojure":
             case "racket":
             case "lisp":
+			case "rainmeter":
                 this.delimiter = ";";
                 break;
 
+			case "gas":
             case "terraform":
                 this.setCommentFormat("#", "/*", "*/");
                 break;
@@ -422,13 +423,25 @@ export class Parser {
                 this.setCommentFormat("<!---", "<!---", "--->");
                 break;
 
-			// Support for x86 assembly in both GAS and At&t/GNU syntax (bypasses regex scrubber)
-			case "gas":
-				this.delimiter = "[\#\;]";			// Gas needs '#' & At&t needs ';'. (bypasses regex scrubber)
-				this.blockCommentStart = "\/\*";	// both support "/*...*/" multiline comments
-				this.blockCommentEnd = "\*\/";
+
+			case "alloy":				// Alloy Model checker language
+				this.delimiter = "(?:\/\/|--)"	// single line comments can be either standard C `//` or haskell like `--` (bypasses regex scrubber)
+				this.blockCommentStart = this.escapeRegExp("/*");	// multiline comments can only be C style '/* ... */`
+				this.blockCommentEnd = this.escapeRegExp("*/");
 				this.highlightMultilineComments = this.contributions.multilineComments;
-				break;
+
+			//? Commented out until language id overlap is resolved between several different extensions offering support very different assembly syntaxes for different architectures.
+			//?  relevant issues have been submitted on the offending extensions repos (2021-02-18).
+			// case "asm":					// nasm/yasm x86/x86_64/amd64 assembly (Intel Syntax)
+			// 	this.delimiter = ";";
+			// 	// Has no official multiline comments but has two common practices for this using assembler directives.
+			// 	//? Highlighting this is supported by 1 of the two extensions for the language. 
+			// 	// Which involve using a standard `%if` with some constant for 0 as the expr or `%ifdef` with a Defined `COMMENT` "variable" of some flavor.
+			// 	//  for sections that are used for documentation (and not just "commenting-out-code").
+			// 	this.blockCommentStart = "%if(?: (?:0x)?0+|def _*\d*_*[Cc][Oo][Mm][Mm][Ee][Nn][Tt]_*\d*_*)";	// (bypasses regex scrubber)
+			// 	this.blockCommentEnd = this.escapeRegExp("%endif");
+			// 	this.highlightMultilineComments = this.contributions.multilineComments;
+			// 	break;
 
             case "plaintext":
                 this.isPlainText = true;
