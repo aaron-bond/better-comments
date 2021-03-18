@@ -139,6 +139,7 @@
                 "better-comments.multilineComments": {
                     "type": "boolean",
                     "description": "Whether the multiline comment highlighter should be active",
+                    "scope": "language-overridable",
                     "default": true
                 },
                 "better-comments.highlightPlainText": {
@@ -148,6 +149,7 @@
                 },
                 "better-comments.tags": {
                     "type": "array",
+                    "scope": "language-overridable",
                     "description": "Tags which are used to color the comments. Changes require a restart of VS Code to take effect",
                     "default": [
                         {
