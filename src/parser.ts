@@ -333,6 +333,7 @@ export class Parser {
 			case "pig":
 			case "plsql":
 			case "sql":
+			case "vhdl":
 				this.delimiter = "--";
 				break;
 			
