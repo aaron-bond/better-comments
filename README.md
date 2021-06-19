@@ -92,6 +92,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * COBOL
 * CoffeeScript
 * CSS
+* CUDA C++
 * Dart
 * Dockerfile
 * Elixir
