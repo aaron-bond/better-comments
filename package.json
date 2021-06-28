@@ -83,6 +83,7 @@
         "onLanguage:plsql",
         "onLanguage:php",
         "onLanguage:powershell",
+        "onLanguage:processing",
         "onLanguage:puppet",
         "onLanguage:python",
         "onLanguage:r",
