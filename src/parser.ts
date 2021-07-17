@@ -406,6 +406,10 @@ export class Parser {
 				this.supportedLanguage = this.contributions.highlightPlainText;
 				break;
 
+			case "zig":
+				this.delimiter = "//";
+				break;
+
 			default:
 				this.supportedLanguage = false;
 				break;
