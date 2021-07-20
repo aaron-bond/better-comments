@@ -114,12 +114,16 @@
         "color": "#e3f4ff",
         "theme": "light"
     },
+    "browser": "./out/web/extension.js",
     "main": "./out/extension",
     "scripts": {
-        "vscode:prepublish": "npm run compile",
+        "vscode:prepublish": "npm run compile && npm run package-web",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
-        "lint": "tslint -c tslint.json 'src/**/*.ts'"
+        "lint": "tslint -c tslint.json 'src/**/*.ts'",
+        "compile-web": "webpack --config ./build/web-extension.webpack.config.js",
+        "watch-web": "webpack --watch --config ./build/web-extension.webpack.config.js",
+        "package-web": "webpack --mode production --devtool hidden-source-map --config ./build/web-extension.webpack.config.js"
     },
     "contributes": {
         "configuration": {
@@ -190,10 +194,13 @@
         }
     },
     "devDependencies": {
+        "@types/node": "^13.13.52",
         "@types/vscode": "^1.47.0",
-        "@types/node": "^13.11.1",
+        "ts-loader": "^9.2.3",
+        "tslint": "^6.1.2",
         "typescript": "^3.4.3",
         "vsce": "^1.77.0",
-        "tslint": "^6.1.2"
+        "webpack": "^5.45.1",
+        "webpack-cli": "^4.7.2"
     }
 }
