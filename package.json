@@ -59,6 +59,7 @@
         "onLanguage:haxe",
         "onLanguage:hive-sql",
         "onLanguage:kotlin",
+        "onLanguag:jai",
         "onLanguage:java",
         "onLanguage:javascript",
         "onLanguage:javascriptreact",
@@ -190,10 +191,10 @@
         }
     },
     "devDependencies": {
-        "@types/vscode": "^1.47.0",
         "@types/node": "^13.11.1",
+        "@types/vscode": "^1.47.0",
+        "tslint": "^6.1.2",
         "typescript": "^3.4.3",
-        "vsce": "^1.77.0",
-        "tslint": "^6.1.2"
+        "vsce": "^1.99.0"
     }
 }
