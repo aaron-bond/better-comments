@@ -108,6 +108,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * Haxe
 * HiveQL
 * HTML
+* Jai
 * Java
 * JavaScript
 * JavaScript React
