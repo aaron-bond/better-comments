@@ -406,6 +406,10 @@ export class Parser {
 				this.supportedLanguage = this.contributions.highlightPlainText;
 				break;
 
+			case "jai":
+				this.setCommentFormat("//", "/*", "*/");
+				break;
+
 			default:
 				this.supportedLanguage = false;
 				break;
