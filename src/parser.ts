@@ -336,6 +336,10 @@ export class Parser {
 				this.delimiter = "--";
 				break;
 			
+			case "vhdl":
+				this.setCommentFormat("--", "/*", "*/");
+				break;
+
 			case "lua":
 				this.setCommentFormat("--", "--[[", "]]");
 				break;
