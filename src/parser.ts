@@ -125,7 +125,7 @@ export class Parser {
 
 		// If highlight multiline is off in package.json or doesn't apply to his language, return
 		if (!this.highlightMultilineComments) return;
-		
+
 		let text = activeEditor.document.getText();
 
 		// Build up regex matcher for custom delimiter tags
@@ -285,9 +285,10 @@ export class Parser {
 			case "swift":
 			case "verilog":
 			case "vue":
+			case "squirrel":
 				this.setCommentFormat("//", "/*", "*/");
 				break;
-			
+
 			case "css":
 				this.setCommentFormat("/*", "/*", "*/");
 				break;
@@ -308,7 +309,7 @@ export class Parser {
 			case "yaml":
 				this.delimiter = "#";
 				break;
-			
+
 			case "tcl":
 				this.delimiter = "#";
 				this.ignoreFirstLine = true;
@@ -319,7 +320,7 @@ export class Parser {
 				this.setCommentFormat("#", '"""', '"""');
 				this.ignoreFirstLine = true;
 				break;
-			
+
 			case "nim":
 				this.setCommentFormat("#", "#[", "]#");
 				break;
@@ -335,7 +336,7 @@ export class Parser {
 			case "sql":
 				this.delimiter = "--";
 				break;
-			
+
 			case "lua":
 				this.setCommentFormat("--", "--[[", "]]");
 				break;
@@ -375,18 +376,18 @@ export class Parser {
 			case "fortran-modern":
 				this.delimiter = "c";
 				break;
-			
+
 			case "SAS":
 			case "stata":
 				this.setCommentFormat("*", "/*", "*/");
 				break;
-			
+
 			case "html":
 			case "markdown":
 			case "xml":
 				this.setCommentFormat("<!--", "<!--", "-->");
 				break;
-			
+
 			case "twig":
 				this.setCommentFormat("{#", "{#", "#}");
 				break;
@@ -394,7 +395,7 @@ export class Parser {
 			case "genstat":
 				this.setCommentFormat("\\", '"', '"');
 				break;
-			
+
 			case "cfml":
 				this.setCommentFormat("<!---", "<!---", "--->");
 				break;
@@ -426,11 +427,11 @@ export class Parser {
 			if (item.strikethrough) {
 				options.textDecoration += "line-through";
 			}
-			
+
 			if (item.underline) {
 				options.textDecoration += " underline";
 			}
-			
+
 			if (item.bold) {
 				options.fontWeight = "bold";
 			}
@@ -465,7 +466,7 @@ export class Parser {
 	 * @param end The end delimiter for block comments
 	 */
 	private setCommentFormat(singleLine: string | null, start: string, end: string): void {
-		
+
 		// If no single line comment delimiter is passed, single line comments are not supported
 		if (singleLine) {
 			this.delimiter = this.escapeRegExp(singleLine);
