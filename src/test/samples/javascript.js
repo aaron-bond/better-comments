@@ -3,6 +3,11 @@
  * TODO: Create some copyright notes
  */
 
+/*
+ * non js-doc comments
+ ! non js-doc comments
+ */
+
 /**
  * My Function
  * ! Some Alert
