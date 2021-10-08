@@ -29,6 +29,7 @@ export class Parser {
 	private delimiter: string = "";
 	private blockCommentStart: string = "";
 	private blockCommentEnd: string = "";
+	private blockCommentDecorator: string = "";
 
 	private highlightSingleLineComments = true;
 	private highlightMultilineComments = false;
@@ -135,7 +136,7 @@ export class Parser {
 		}
 
 		// Combine custom delimiters and the rest of the comment block matcher
-		let commentMatchString = "(^)+([ \\t]*[ \\t]*)(";
+		let commentMatchString = "(^)+([ \\t]*[ \\t" +this.blockCommentDecorator+ "]*)(";
 		commentMatchString += characters.join("|");
 		commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
 
@@ -247,7 +248,7 @@ export class Parser {
 		switch (languageCode) {
 
 			case "asciidoc":
-				this.setCommentFormat("//", "////", "////");
+				this.setCommentFormat("//", "////", "////", "");
 				break;
 
 			case "apex":
@@ -255,7 +256,7 @@ export class Parser {
 			case "javascriptreact":
 			case "typescript":
 			case "typescriptreact":
-				this.setCommentFormat("//", "/*", "*/");
+				this.setCommentFormat("//", "/*", "*/", "*");
 				this.highlightJSDoc = true;
 				break;
 
@@ -285,11 +286,11 @@ export class Parser {
 			case "swift":
 			case "verilog":
 			case "vue":
-				this.setCommentFormat("//", "/*", "*/");
+				this.setCommentFormat("//", "/*", "*/", "*");
 				break;
 			
 			case "css":
-				this.setCommentFormat("/*", "/*", "*/");
+				this.setCommentFormat("/*", "/*", "*/", "");
 				break;
 
 			case "coffeescript":
@@ -316,16 +317,16 @@ export class Parser {
 
 			case "elixir":
 			case "python":
-				this.setCommentFormat("#", '"""', '"""');
+				this.setCommentFormat("#", '"""', '"""', "");
 				this.ignoreFirstLine = true;
 				break;
 			
 			case "nim":
-				this.setCommentFormat("#", "#[", "]#");
+				this.setCommentFormat("#", "#[", "]#", "");
 				break;
 
 			case "powershell":
-				this.setCommentFormat("#", "<#", "#>");
+				this.setCommentFormat("#", "<#", "#>", "");
 				break;
 
 			case "ada":
@@ -337,12 +338,12 @@ export class Parser {
 				break;
 			
 			case "lua":
-				this.setCommentFormat("--", "--[[", "]]");
+				this.setCommentFormat("--", "--[[", "]]", "");
 				break;
 
 			case "elm":
 			case "haskell":
-				this.setCommentFormat("--", "{-", "-}");
+				this.setCommentFormat("--", "{-", "-}", "");
 				break;
 
 			case "brightscript":
@@ -365,7 +366,7 @@ export class Parser {
 				break;
 
 			case "terraform":
-				this.setCommentFormat("#", "/*", "*/");
+				this.setCommentFormat("#", "/*", "*/", "");
 				break;
 
 			case "COBOL":
@@ -378,25 +379,25 @@ export class Parser {
 			
 			case "SAS":
 			case "stata":
-				this.setCommentFormat("*", "/*", "*/");
+				this.setCommentFormat("*", "/*", "*/", "");
 				break;
 			
 			case "html":
 			case "markdown":
 			case "xml":
-				this.setCommentFormat("<!--", "<!--", "-->");
+				this.setCommentFormat("<!--", "<!--", "-->", "");
 				break;
 			
 			case "twig":
-				this.setCommentFormat("{#", "{#", "#}");
+				this.setCommentFormat("{#", "{#", "#}", "");
 				break;
 
 			case "genstat":
-				this.setCommentFormat("\\", '"', '"');
+				this.setCommentFormat("\\", '"', '"', "");
 				break;
 			
 			case "cfml":
-				this.setCommentFormat("<!---", "<!---", "--->");
+				this.setCommentFormat("<!---", "<!---", "--->", "");
 				break;
 
 			case "plaintext":
@@ -463,8 +464,9 @@ export class Parser {
 	 * @param singleLine The single line comment delimiter. If NULL, single line is not supported
 	 * @param start The start delimiter for block comments
 	 * @param end The end delimiter for block comments
+	 * @param decorator The decorator for next line i.e. first character of line 
 	 */
-	private setCommentFormat(singleLine: string | null, start: string, end: string): void {
+	private setCommentFormat(singleLine: string | null, start: string, end: string, decorator: string): void {
 		
 		// If no single line comment delimiter is passed, single line comments are not supported
 		if (singleLine) {
@@ -476,6 +478,9 @@ export class Parser {
 
 		this.blockCommentStart = this.escapeRegExp(start);
 		this.blockCommentEnd = this.escapeRegExp(end);
+		if (decorator) {
+			this.blockCommentDecorator = this.escapeRegExp(decorator);
+		}
 		this.highlightMultilineComments = this.contributions.multilineComments;
 	}
 }
