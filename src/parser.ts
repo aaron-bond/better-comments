@@ -399,6 +399,12 @@ export class Parser {
 				this.setCommentFormat("<!---", "<!---", "--->");
 				break;
 
+			case "bat":
+			case "cmd":
+				// you can use :: , rem or : with leading space to comment a line
+				this.delimiter = this.escapeRegExp('rem\ |::|: \ '); 
+				break;
+
 			case "plaintext":
 				this.isPlainText = true;
 
