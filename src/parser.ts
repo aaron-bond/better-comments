@@ -364,6 +364,7 @@ export class Parser {
 				this.delimiter = ";";
 				break;
 
+			case "nsis":
 			case "terraform":
 				this.setCommentFormat("#", "/*", "*/");
 				break;
