@@ -132,6 +132,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * PlantUML
 * PL/SQL
 * PowerShell
+* Processing
 * Puppet
 * Python
 * R
