@@ -48,6 +48,8 @@
         "onLanguage:erlang",
         "onLanguage:flax",
         "onLanguage:fsharp",
+        "onLanguage:FortranFreeForm",
+        "onLanguage:fortran_fixed-form",
         "onLanguage:fortran-modern",
         "onLanguage:gdscript",
         "onLanguage:genstat",
