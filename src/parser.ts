@@ -369,7 +369,7 @@ export class Parser {
 				break;
 
 			case "COBOL":
-				this.delimiter = this.escapeRegExp("*>");
+				this.delimiter = "[0-9 ][0-9 ][0-9 ][0-9 ][0-9 ][0-9 ]"+this.escapeRegExp("*")+"|"+this.escapeRegExp("*>")
 				break;
 
 			case "fortran-modern":
