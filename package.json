@@ -149,7 +149,52 @@
                             "italic": false
                         },
                         {
+                            "tag": "❗",
+                            "color": "#FF2D00",
+                            "strikethrough": false,
+                            "underline": false,
+                            "backgroundColor": "transparent",
+                            "bold": false,
+                            "italic": false
+                        },
+                        {
+                            "tag": "❕",
+                            "color": "#FF2D00",
+                            "strikethrough": false,
+                            "underline": false,
+                            "backgroundColor": "transparent",
+                            "bold": false,
+                            "italic": false
+                        },
+                        {
+                            "tag": "⚠",
+                            "color": "#FF2D00",
+                            "strikethrough": false,
+                            "underline": false,
+                            "backgroundColor": "transparent",
+                            "bold": false,
+                            "italic": false
+                        },
+                        {
                             "tag": "?",
+                            "color": "#3498DB",
+                            "strikethrough": false,
+                            "underline": false,
+                            "backgroundColor": "transparent",
+                            "bold": false,
+                            "italic": false
+                        },
+                        {
+                            "tag": "❓",
+                            "color": "#3498DB",
+                            "strikethrough": false,
+                            "underline": false,
+                            "backgroundColor": "transparent",
+                            "bold": false,
+                            "italic": false
+                        },
+                        {
+                            "tag": "❔",
                             "color": "#3498DB",
                             "strikethrough": false,
                             "underline": false,
@@ -177,6 +222,15 @@
                         },
                         {
                             "tag": "*",
+                            "color": "#98C379",
+                            "strikethrough": false,
+                            "underline": false,
+                            "backgroundColor": "transparent",
+                            "bold": false,
+                            "italic": false
+                        },
+                        {
+                            "tag": "ℹ",
                             "color": "#98C379",
                             "strikethrough": false,
                             "underline": false,

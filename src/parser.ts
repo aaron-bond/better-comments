@@ -63,10 +63,7 @@ export class Parser {
 			return;
 		}
 
-		let characters: Array<string> = [];
-		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
-		}
+		const characters: Array<string> = this.tags.map(tag => tag.escapedTag);
 
 		if (this.isPlainText && this.contributions.highlightPlainText) {
 			// start by tying the regex to the first character in a line
@@ -93,7 +90,7 @@ export class Parser {
 
 		let text = activeEditor.document.getText();
 
-		// if it's plain text, we have to do mutliline regex to catch the start of the line with ^
+		// if it's plain text, we have to do multiline regex to catch the start of the line with ^
 		let regexFlags = (this.isPlainText) ? "igm" : "ig";
 		let regEx = new RegExp(this.expression, regexFlags);
 
@@ -129,10 +126,7 @@ export class Parser {
 		let text = activeEditor.document.getText();
 
 		// Build up regex matcher for custom delimiter tags
-		let characters: Array<string> = [];
-		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
-		}
+		let characters: Array<string> = this.tags.map(tag => tag.escapedTag);
 
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString = "(^)+([ \\t]*[ \\t]*)(";
@@ -184,10 +178,7 @@ export class Parser {
 		let text = activeEditor.document.getText();
 
 		// Build up regex matcher for custom delimiter tags
-		let characters: Array<string> = [];
-		for (let commentTag of this.tags) {
-			characters.push(commentTag.escapedTag);
-		}
+		let characters: Array<string> = this.tags.map(tag => tag.escapedTag)
 
 		// Combine custom delimiters and the rest of the comment block matcher
 		let commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
@@ -402,7 +393,7 @@ export class Parser {
 			case "plaintext":
 				this.isPlainText = true;
 
-				// If highlight plaintext is enabeld, this is a supported language
+				// If highlight plaintext is enabled, this is a supported language
 				this.supportedLanguage = this.contributions.highlightPlainText;
 				break;
 
@@ -420,7 +411,7 @@ export class Parser {
 		for (let item of items) {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
 
-			// ? the textDecoration is initialised to empty so we can concat a preceeding space on it
+			// ? the textDecoration is initialized to empty so we can concat a preceding space on it
 			options.textDecoration = "";
 
 			if (item.strikethrough) {
