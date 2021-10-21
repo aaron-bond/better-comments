@@ -93,6 +93,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * CoffeeScript
 * CSS
 * Dart
+* Dhall
 * Dockerfile
 * Elixir
 * Elm
@@ -133,6 +134,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * PL/SQL
 * PowerShell
 * Puppet
+* PureScript
 * Python
 * R
 * Racket
