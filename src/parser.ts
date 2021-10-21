@@ -341,6 +341,8 @@ export class Parser {
 				break;
 
 			case "elm":
+				this.setCommentFormat("--", "{-\|?", "-}");
+				break;
 			case "haskell":
 				this.setCommentFormat("--", "{-", "-}");
 				break;
