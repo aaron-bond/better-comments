@@ -86,6 +86,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * BrightScript
 * C
 * C#
+* Crystal
 * C++
 * ColdFusion
 * Clojure
