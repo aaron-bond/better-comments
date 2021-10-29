@@ -292,6 +292,7 @@ export class Parser {
 				this.setCommentFormat("/*", "/*", "*/");
 				break;
 
+			case "ansible":
 			case "coffeescript":
 			case "dockerfile":
 			case "gdscript":
