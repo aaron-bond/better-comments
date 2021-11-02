@@ -11,6 +11,7 @@ interface Contributions {
 	multilineComments: boolean;
 	useJSDocStyle: boolean;
 	highlightPlainText: boolean;
+	UseCustomDefined:boolean;
 	tags: [{
 		tag: string;
 		color: string;
@@ -19,6 +20,12 @@ interface Contributions {
 		bold: boolean;
 		italic: boolean;
 		backgroundColor: string;
+	}];
+	CustomDefinedComment: [{
+		Language:string;
+		singleLine: string;
+		start: string;
+		end: string;
 	}];
 }
 
@@ -391,6 +398,10 @@ export class Parser {
 				this.setCommentFormat("{#", "{#", "#}");
 				break;
 
+			//case "intouch":
+			//	this.setCommentFormat("{", "{", "}");
+			//	break;
+
 			case "genstat":
 				this.setCommentFormat("\\", '"', '"');
 				break;
@@ -407,8 +418,22 @@ export class Parser {
 				break;
 
 			default:
-				this.supportedLanguage = false;
-				break;
+				if (this.contributions.UseCustomDefined){
+					let config = this.contributions.CustomDefinedComment;
+					this.supportedLanguage = false;
+					config.map(item =>{
+						if (languageCode == item.Language){
+							this.setCommentFormat(item.singleLine, item.start, item.end);
+							this.supportedLanguage = true;
+						}
+					});
+					break;
+				}
+				else
+				{
+					this.supportedLanguage = false;
+					break;
+				}
 		}
 	}
 
