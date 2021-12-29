@@ -306,6 +306,7 @@ export class Parser {
 			case "shellscript":
 			case "tcl":
 			case "yaml":
+			case "ansible":
 				this.delimiter = "#";
 				break;
 			
