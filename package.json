@@ -109,7 +109,8 @@
         "onLanguage:verilog",
         "onLanguage:vue",
         "onLanguage:xml",
-        "onLanguage:yaml"
+        "onLanguage:yaml",
+        "onLanguage:ansible"
     ],
     "galleryBanner": {
         "color": "#e3f4ff",
