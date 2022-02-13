@@ -85,6 +85,7 @@
         "onLanguage:powershell",
         "onLanguage:puppet",
         "onLanguage:python",
+        "onLanguage:qlikview",
         "onLanguage:r",
         "onLanguage:racket",
         "onLanguage:ruby",
