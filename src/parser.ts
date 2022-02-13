@@ -276,6 +276,7 @@ export class Parser {
 			case "pascal":
 			case "objectpascal":
 			case "php":
+			case "qlik":
 			case "rust":
 			case "scala":
 			case "sass":
@@ -319,7 +320,7 @@ export class Parser {
 				this.setCommentFormat("#", '"""', '"""');
 				this.ignoreFirstLine = true;
 				break;
-			
+				
 			case "nim":
 				this.setCommentFormat("#", "#[", "]#");
 				break;

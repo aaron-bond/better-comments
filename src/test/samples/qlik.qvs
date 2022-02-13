@@ -1,0 +1,34 @@
+// * Defining variable that points to the data 
+let vLoadData = "D:\Kleiton\Projects\Data\";
+
+// A simple Qlik comment example
+
+/*
+Multiline comment
+*/
+
+ * My Script File
+ * TODO: Create some copyright notes
+ */
+
+/**
+ * My Function
+ * ! Some Alert
+ * TODO Some stuff
+ * ?  Questions
+ * * Highlights
+ */
+
+// TODO Some stuff ? Example of Loading Data
+Load  
+	field_one
+	,field_two
+From
+$(vLoadData)projects\BD_PLO_NATUREZA_RECEITA.qvd
+(qvd)
+
+// ! Need more content here
+
+//// removed code
+
+// * End of the file.

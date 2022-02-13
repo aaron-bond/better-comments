@@ -134,6 +134,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * PowerShell
 * Puppet
 * Python
+* Qlik
 * R
 * Racket
 * Ruby
