@@ -10,7 +10,7 @@
 * Problems are likely to arise with this change, but it allows a lot more users to benefit from Better Comments without needing an explicit update for the extension adding support.
 
 __With version 3.0.0 comes the addition of the support button on the Github page for [Better Comments](https://github.com/sponsors/aaron-bond)__  
-__If you feel the extension has earned me a coffee, that's the place to do it!__
+__If you feel my work on this extension has earned me a coffee, that's the place to do it!__
 
 _**Thanks!**_
 
