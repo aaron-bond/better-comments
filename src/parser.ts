@@ -25,7 +25,7 @@ export class Parser {
     // Read from the package.json
     private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
 
-    // 
+    // The configuration necessary to find supported languages on startup
     private configuration: Configuration;
 
     /**
