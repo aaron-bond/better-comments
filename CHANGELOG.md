@@ -2,7 +2,7 @@
 
 ## [3.0.0] (2022-??-??)
 ### Features
-* Adding built in support for all languages ([XXX](https://github.com/aaron-bond/better-comments/commit/XXX)). Massive thanks to _X_
+* Adding built in support for all languages ([e1373bf](https://github.com/aaron-bond/better-comments/commit/e1373bf)). Massive thanks to _edgardmessias_
 
 ### House Keeping
 * Version bumped all dependencies
@@ -12,7 +12,7 @@
 __With version 3.0.0 comes the addition of the support button on the Github page for [Better Comments](https://github.com/sponsors/aaron-bond)__  
 __If you feel the extension has earned me a coffee, that's the place to do it!__
 
-___Thanks!___
+_**Thanks!**_
 
 
 ## [2.1.0] (2020-07-13)
