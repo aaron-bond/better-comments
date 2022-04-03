@@ -7,6 +7,10 @@ void brokenFunc() {
 	! comment freely here 
 	
 	*/
+
+    /**
+     * * abc
+     */
 	
 	int x=123;  
     int y=321;  /+ to your heart's content +/

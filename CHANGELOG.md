@@ -1,5 +1,20 @@
 # Change Log
 
+## [3.0.0] (2022-??-??)
+### Features
+* Adding built in support for all languages ([e1373bf](https://github.com/aaron-bond/better-comments/commit/e1373bf)). Massive thanks to _edgardmessias_
+
+### House Keeping
+* Version bumped all dependencies
+* Language support is now driven from configuration files. This means that if you have an extension which informs VSCode about a language, Better Comments will know about it too!
+* Problems are likely to arise with this change, but it allows a lot more users to benefit from Better Comments without needing an explicit update for the extension adding support.
+
+__With version 3.0.0 comes the addition of the support button on the Github page for [Better Comments](https://github.com/sponsors/aaron-bond)__  
+__If you feel my work on this extension has earned me a coffee, that's the place to do it!__
+
+_**Thanks!**_
+
+
 ## [2.1.0] (2020-07-13)
 ### Features
 * Adding Bold, Italic, and Underline ([e41ccc4](https://github.com/aaron-bond/better-comments/commit/e41ccc4)), closes [#50](https://github.com/aaron-bond/better-comments/issues/50). Massive thanks to _Fr33maan_

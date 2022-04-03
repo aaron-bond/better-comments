@@ -1,6 +1,7 @@
 program class_Example;
 
 // ! hello
+// * hello
 Uses
    strings;
 

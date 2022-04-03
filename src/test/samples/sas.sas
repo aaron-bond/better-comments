@@ -1,5 +1,5 @@
-* !this is a comment;
-/* ?also this is */
+* ! this is a comment
+/* ? also this is */
 
 DATA CLASS;
      INPUT NAME $ 1-8 SEX $ 10 AGE 12-13 HEIGHT 15-16 WEIGHT 18-22;

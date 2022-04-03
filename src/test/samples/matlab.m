@@ -6,6 +6,8 @@ function output = my_fun(input)
 % @param {type} [name] description.
 % @return {type} [name] description.
 % @see dependencies
+% ! hello world
+% * another comment
 %
 
 
