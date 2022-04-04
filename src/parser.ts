@@ -62,7 +62,7 @@ export class Parser {
             this.expression = "(^)+([ \\t]*[ \\t]*)";
         } else {
             // start by finding the delimiter (//, --, #, ') with optional spaces or tabs
-            this.expression = "(" + this.delimiter.replace(/\//ig, "\\/") + ")+( |\t)*";
+            this.expression = "(" + this.delimiter + ")+( |\t)*";
         }
 
         // Apply all configurable comment start tags
@@ -322,7 +322,7 @@ export class Parser {
      * @param end The end delimiter for block comments
      */
     private setCommentFormat(
-            singleLine: string | null,
+            singleLine: string | string[] | null,
             start: string | null = null,
             end: string | null): void {
 
@@ -332,7 +332,15 @@ export class Parser {
 
         // If no single line comment delimiter is passed, single line comments are not supported
         if (singleLine) {
-            this.delimiter = this.escapeRegExp(singleLine);
+            if (typeof singleLine === 'string') {
+                this.delimiter = this.escapeRegExp(singleLine).replace(/\//ig, "\\/");
+            }
+            else if (singleLine.length > 0) {
+                var delimiters = singleLine
+                            .map(s => this.escapeRegExp(s))
+                            .join("|");
+                this.delimiter = delimiters;
+            }
         }
         else {
             this.highlightSingleLineComments = false;

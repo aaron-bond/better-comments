@@ -15,3 +15,6 @@ twoway (scatter cars hhsize) (lfit cars hhsize)
 graph export carsdata.png
 * Regress cars on hhsize
 regress cars hhsize
+
+
+// ! some other comment type
