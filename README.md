@@ -147,6 +147,7 @@ The default 5 can be modified to change the colors, and more can be added.
 * SQL
 * STATA
 * Stylus
+* Svelte
 * Swift
 * Tcl
 * Terraform
