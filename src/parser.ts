@@ -324,7 +324,7 @@ export class Parser {
     private setCommentFormat(
             singleLine: string | string[] | null,
             start: string | null = null,
-            end: string | null): void {
+            end: string | null = null): void {
 
         this.delimiter = "";
         this.blockCommentStart = "";
@@ -336,6 +336,7 @@ export class Parser {
                 this.delimiter = this.escapeRegExp(singleLine).replace(/\//ig, "\\/");
             }
             else if (singleLine.length > 0) {
+                // * if multiple delimiters are passed, the language has more than one single line comment format
                 var delimiters = singleLine
                             .map(s => this.escapeRegExp(s))
                             .join("|");
