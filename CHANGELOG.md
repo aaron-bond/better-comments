@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.0.0] (2022-??-??)
+## [3.0.0] (2022-04-05)
 ### Features
 * Adding built in support for all languages ([e1373bf](https://github.com/aaron-bond/better-comments/commit/e1373bf)). Massive thanks to _edgardmessias_
 
