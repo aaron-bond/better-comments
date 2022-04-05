@@ -70,13 +70,13 @@ export function activate(context: vscode.ExtensionContext) {
 
     // * IMPORTANT:
     // * To avoid calling update too often,
-    // * set a timer for 200ms to wait before updating decorations
+    // * set a timer for 100ms to wait before updating decorations
     var timeout: NodeJS.Timer;
     function triggerUpdateDecorations() {
         if (timeout) {
             clearTimeout(timeout);
         }
-        timeout = setTimeout(updateDecorations, 200);
+        timeout = setTimeout(updateDecorations, 100);
     }
 }
 
