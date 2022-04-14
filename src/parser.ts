@@ -6,8 +6,7 @@ export class Parser {
     private expression: string = "";
 
     private delimiter: string = "";
-    private blockCommentStart: string = "";
-    private blockCommentEnd: string = "";
+    private blockComments: [string, string][] = [];
 
     private highlightSingleLineComments = true;
     private highlightMultilineComments = false;
@@ -114,7 +113,7 @@ export class Parser {
 
         // If highlight multiline is off in package.json or doesn't apply to his language, return
         if (!this.highlightMultilineComments) return;
-        
+
         let text = activeEditor.document.getText();
 
         // Build up regex matcher for custom delimiter tags
@@ -129,11 +128,14 @@ export class Parser {
         commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
 
         // Use start and end delimiters to find block comments
-        let regexString = "(^|[ \\t])(";
-        regexString += this.blockCommentStart;
-        regexString += "[\\s])+([\\s\\S]*?)(";
-        regexString += this.blockCommentEnd;
-        regexString += ")";
+        let regexString = "(^|[ \\t])";
+        for (let blockComment of this.blockComments) {
+            regexString += "(";
+            regexString += blockComment[0];
+            regexString += "[\\s])+([\\s\\S]*?)(";
+            regexString += blockComment[1];
+            regexString += ")";
+        }
 
         let regEx = new RegExp(regexString, "gm");
         let commentRegEx = new RegExp(commentMatchString, "igm");
@@ -235,12 +237,24 @@ export class Parser {
         this.ignoreFirstLine = false;
         this.isPlainText = false;
 
-        const config = this.configuration.GetCommentConfiguration(languageCode);
-        if (config) {
-            let blockCommentStart = config.blockComment ? config.blockComment[0] : null;
-            let blockCommentEnd = config.blockComment ? config.blockComment[1] : null;
+        let configs = this.configuration.GetCommentConfiguration(languageCode);
+        if (configs.length > 0) {
+            let lineComments: string[] = [];
+            let blockComments: [string, string][] = [];
 
-            this.setCommentFormat(config.lineComment || blockCommentStart, blockCommentStart, blockCommentEnd);
+            for (let config of configs) {
+                if (config.lineComment) {
+                    lineComments.push(config.lineComment);
+                }
+                else if (config.blockComment) {
+                    lineComments.push(config.blockComment[0]);
+                }
+                if (config.blockComment) {
+                    blockComments.push(config.blockComment);
+                }
+            }
+
+            this.setCommentFormat(lineComments, blockComments);
 
             this.supportedLanguage = true;
         }
@@ -259,7 +273,7 @@ export class Parser {
             case "tcl":
                 this.ignoreFirstLine = true;
                 break;
-            
+
             case "plaintext":
                 this.isPlainText = true;
 
@@ -283,11 +297,11 @@ export class Parser {
             if (item.strikethrough) {
                 options.textDecoration += "line-through";
             }
-            
+
             if (item.underline) {
                 options.textDecoration += " underline";
             }
-            
+
             if (item.bold) {
                 options.fontWeight = "bold";
             }
@@ -322,35 +336,27 @@ export class Parser {
      * @param end The end delimiter for block comments
      */
     private setCommentFormat(
-            singleLine: string | string[] | null,
-            start: string | null = null,
-            end: string | null = null): void {
+        singleLine: string[],
+        blocks: [string, string][]): void {
 
         this.delimiter = "";
-        this.blockCommentStart = "";
-        this.blockCommentEnd = "";
+        this.blockComments = [];
 
         // If no single line comment delimiter is passed, single line comments are not supported
-        if (singleLine) {
-            if (typeof singleLine === 'string') {
-                this.delimiter = this.escapeRegExp(singleLine).replace(/\//ig, "\\/");
-            }
-            else if (singleLine.length > 0) {
-                // * if multiple delimiters are passed, the language has more than one single line comment format
-                var delimiters = singleLine
-                            .map(s => this.escapeRegExp(s))
-                            .join("|");
-                this.delimiter = delimiters;
-            }
+        if (singleLine.length > 0) {
+            // * if multiple delimiters are passed, the language has more than one single line comment format
+            var delimiters = singleLine
+                .map(s => this.escapeRegExp(s))
+                .join("|");
+            this.delimiter = delimiters;
         }
         else {
             this.highlightSingleLineComments = false;
         }
 
-        if (start && end) {
-            this.blockCommentStart = this.escapeRegExp(start);
-            this.blockCommentEnd = this.escapeRegExp(end);
 
+        if (blocks.length > 0) {
+            this.blockComments = blocks.map(block => [this.escapeRegExp(block[0]), this.escapeRegExp(block[1])]);
             this.highlightMultilineComments = this.contributions.multilineComments;
         }
     }
