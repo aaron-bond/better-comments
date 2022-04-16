@@ -11,5 +11,5 @@ fn myFun () {
 // ! this is an alert
 // ? this is a question
 // * this is a highlight
-//// this code has been removed
+// // this code has been removed
 // todo clean up removed code
