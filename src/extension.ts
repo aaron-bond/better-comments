@@ -1,18 +1,20 @@
 import * as vscode from 'vscode';
+import { Configuration } from './configuration';
 import { Parser } from './parser';
 
 // this method is called when vs code is activated
 export function activate(context: vscode.ExtensionContext) {
-
     let activeEditor: vscode.TextEditor;
-    let parser: Parser = new Parser();
+
+    let configuration: Configuration = new Configuration();
+    let parser: Parser = new Parser(configuration);
 
     // Called to handle events below
-    let updateDecorations = function (useHash = false) {
-        // * if no active window is open, return
+    let updateDecorations = function () {
+        // if no active window is open, return
         if (!activeEditor) return;
 
-        // * if lanugage isn't supported, return
+        // if lanugage isn't supported, return
         if (!parser.supportedLanguage) return;
 
         // Finds the single line comments using the language comment delimiter
@@ -39,6 +41,11 @@ export function activate(context: vscode.ExtensionContext) {
         triggerUpdateDecorations();
     }
 
+    // * Handle extensions being added or removed
+    vscode.extensions.onDidChange(() => {
+        configuration.UpdateLanguagesDefinitions();
+    }, null, context.subscriptions);
+
     // * Handle active file changed
     vscode.window.onDidChangeActiveTextEditor(editor => {
         if (editor) {
@@ -62,14 +69,14 @@ export function activate(context: vscode.ExtensionContext) {
     }, null, context.subscriptions);
 
     // * IMPORTANT:
-    // To avoid calling update too often,
-    // set a timer for 200ms to wait before updating decorations
+    // * To avoid calling update too often,
+    // * set a timer for 100ms to wait before updating decorations
     var timeout: NodeJS.Timer;
     function triggerUpdateDecorations() {
         if (timeout) {
             clearTimeout(timeout);
         }
-        timeout = setTimeout(updateDecorations, 200);
+        timeout = setTimeout(updateDecorations, 100);
     }
 }
 

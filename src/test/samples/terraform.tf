@@ -16,3 +16,11 @@ resource "aws_instance" "web" {
     user = "root"
   }
 }
+
+
+
+# ! hello
+// ! hello
+/*
+ ! hello
+*/

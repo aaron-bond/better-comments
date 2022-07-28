@@ -1,4 +1,5 @@
-@moduledoc """"
+@moduledoc
+""""
 Some description
     ! ALERT
 """

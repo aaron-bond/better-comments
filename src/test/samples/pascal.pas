@@ -10,6 +10,11 @@ procedure DoSomethingWithComponent(var C: TComponent);
 
 implementation
 
+{
+    * block comment
+    ! block comment
+}
+
 // ! hello world
 uses SysUtils;
 

@@ -1,6 +1,6 @@
 #lang racket
 
-;;  ! Functions for 2d drawing and transformation
+;;; ! Functions for 2d drawing and transformation
 
 (require lang/posn)
 
@@ -12,8 +12,8 @@
        (+ (pos-y a-pos) (* a-speed (sin r)))))
 
 (define (add-direction-speeds d1 s1 d2 s2)
-  ;; Given two direction & speed pairs, calculate the
-  ;; combined effect and return new direction and speed
+  ; Given two direction & speed pairs, calculate the
+  ; combined effect and return new direction and speed
   (if (and (zero? s1) (zero? s2))
       (list d1 0)
       (let* ([vec1 (move-pos (pos 0 0) d1 s1)]
