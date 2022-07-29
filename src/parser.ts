@@ -44,8 +44,8 @@ export class Parser {
      * @param languageCode The short code of the current language
      * https://code.visualstudio.com/docs/languages/identifiers
      */
-    public SetRegex(languageCode: string) {
-        this.setDelimiter(languageCode);
+    public async SetRegex(languageCode: string) {
+        await this.setDelimiter(languageCode);
 
         // if the language isn't supported, we don't need to go any further
         if (!this.supportedLanguage) {
@@ -230,12 +230,12 @@ export class Parser {
      * @param languageCode The short code of the current language
      * https://code.visualstudio.com/docs/languages/identifiers
      */
-    private setDelimiter(languageCode: string): void {
+    private async setDelimiter(languageCode: string): Promise<void> {
         this.supportedLanguage = false;
         this.ignoreFirstLine = false;
         this.isPlainText = false;
 
-        const config = this.configuration.GetCommentConfiguration(languageCode);
+        const config = await this.configuration.GetCommentConfiguration(languageCode);
         if (config) {
             let blockCommentStart = config.blockComment ? config.blockComment[0] : null;
             let blockCommentEnd = config.blockComment ? config.blockComment[1] : null;

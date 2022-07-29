@@ -25,7 +25,9 @@ module.exports = /** @type WebpackConfig */ {
 		alias: {
 		},
 		fallback: {
-			'assert': require.resolve('assert')
+			'assert': require.resolve('assert'),
+			'path': require.resolve('path-browserify'),
+			'util': require.resolve('util/')
 		}
 	},
 	module: {

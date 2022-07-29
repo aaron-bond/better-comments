@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 
-import * as fs from 'fs';
 import * as json5 from 'json5'
+import { TextDecoder } from 'util';
 
 export class Configuration {
     private readonly commentConfig = new Map<string, CommentConfig | undefined>();
@@ -41,7 +41,7 @@ export class Configuration {
      * @param languageCode 
      * @returns 
      */
-    public GetCommentConfiguration(languageCode: string): CommentConfig | undefined {
+    public async GetCommentConfiguration(languageCode: string): Promise<CommentConfig | undefined> {
 
         // * check if the language config has already been loaded
         if (this.commentConfig.has(languageCode)) {
@@ -55,11 +55,12 @@ export class Configuration {
 
         try {
             // Get the filepath from the map
-            let filePath = this.languageConfigFiles.get(languageCode) as string;
-            let content = fs.readFileSync(filePath, { encoding: 'utf8' });
+            const filePath = this.languageConfigFiles.get(languageCode) as string;
+            const rawContent = await vscode.workspace.fs.readFile(vscode.Uri.file(filePath));
+            const content = new TextDecoder().decode(rawContent);
 
             // use json5, because the config can contains comments
-            let config = json5.parse(content);
+            const config = json5.parse(content);
 
             this.commentConfig.set(languageCode, config.comments);
 

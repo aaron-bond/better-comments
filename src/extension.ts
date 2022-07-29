@@ -3,7 +3,7 @@ import { Configuration } from './configuration';
 import { Parser } from './parser';
 
 // this method is called when vs code is activated
-export function activate(context: vscode.ExtensionContext) {
+export async function activate(context: vscode.ExtensionContext) {
     let activeEditor: vscode.TextEditor;
 
     let configuration: Configuration = new Configuration();
@@ -35,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         activeEditor = vscode.window.activeTextEditor;
 
         // Set the regex patterns for the specified language's comments
-        parser.SetRegex(activeEditor.document.languageId);
+        await parser.SetRegex(activeEditor.document.languageId);
 
         // Trigger first update of decorators
         triggerUpdateDecorations();
@@ -47,12 +47,12 @@ export function activate(context: vscode.ExtensionContext) {
     }, null, context.subscriptions);
 
     // * Handle active file changed
-    vscode.window.onDidChangeActiveTextEditor(editor => {
+    vscode.window.onDidChangeActiveTextEditor(async editor => {
         if (editor) {
             activeEditor = editor;
 
             // Set regex for updated language
-            parser.SetRegex(editor.document.languageId);
+            await parser.SetRegex(editor.document.languageId);
 
             // Trigger update to set decorations for newly active file
             triggerUpdateDecorations();
