@@ -1,5 +1,13 @@
 # Change Log
 
+## [3.0.2] (2022-07-30)
+### House Keeping
+* Adding Sponsor link to package.json ([c2b4992](https://github.com/aaron-bond/better-comments/commit/c2b4992)), closes [#409](https://github.com/aaron-bond/better-comments/issues/409)
+
+## [3.0.1] (2022-07-30)
+### Features
+* Enabling Better Comments to run within VSCode for the Web ([3c4a6ac](https://github.com/aaron-bond/better-comments/commit/3c4a6ac)). Massive thanks to _tanhakabir_
+
 ## [3.0.0] (2022-04-05)
 ### Features
 * Adding built in support for all languages ([e1373bf](https://github.com/aaron-bond/better-comments/commit/e1373bf)). Massive thanks to _edgardmessias_
