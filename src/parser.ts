@@ -68,7 +68,7 @@ export class Parser {
         // Apply all configurable comment start tags
         this.expression += "(";
         this.expression += characters.join("|");
-        this.expression += ")+(.*)";
+        this.expression += ")(.*)";
     }
 
     /**
