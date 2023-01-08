@@ -115,7 +115,7 @@
         }
     },
     "dependencies": {
-        "json5": "^2.2.1"
+        "json5": "^2.2.2"
     },
     "devDependencies": {
         "@types/json5": "^2.2.0",
