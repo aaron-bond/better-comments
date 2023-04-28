@@ -1,23 +1,27 @@
 {
-	"compilerOptions": {
-        "strict": true,   /* enable all strict type-checking options */
-		"alwaysStrict": true,
-		"module": "commonjs",
-		"target": "es6",
-		"outDir": "out",
-		"noImplicitAny": true,
-		"noImplicitReturns": true,
-		"lib": [
-			"es6"
+  "compilerOptions": {
+    "strict": true, /* enable all strict type-checking options */
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "out",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "lib": [
+      "es6",
+      "DOM"
+    ],
+    "sourceMap": true,
+    "types": [
+			"node"
 		],
-		"sourceMap": true,
-		"strictNullChecks": true,
-		"rootDir": "src",
-        "noUnusedLocals": true /* Report errors on unused locals. */
-	},
-	"exclude": [
-		"src/test*",
-		"node_modules",
-		".vscode-test"
-	]
+    "strictNullChecks": true,
+    "rootDir": "src",
+    "noUnusedLocals": true /* Report errors on unused locals. */
+  },
+  "exclude": [
+    "src/test*",
+    "node_modules",
+    ".vscode-test"
+  ]
 }
