@@ -9,8 +9,10 @@
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
+
 const path = require('path');
 const webpack = require('webpack');
+console.log(path.join(__dirname, '../out/web'));
 
 module.exports = /** @type WebpackConfig */ {
 	context: path.dirname(__dirname),
@@ -27,7 +29,8 @@ module.exports = /** @type WebpackConfig */ {
 		fallback: {
 			'assert': require.resolve('assert'),
 			'path': require.resolve('path-browserify'),
-			'util': require.resolve('util/')
+			'util': require.resolve('util/'),
+      'fs': false
 		}
 	},
 	module: {
