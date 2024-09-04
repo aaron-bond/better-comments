@@ -57,18 +57,22 @@ export class Parser {
             characters.push(commentTag.escapedTag);
         }
 
+        const matches = "(" + characters.join("|") + ")";
+        const whitespace = "( |\t)";
+        const newLine = "\r?\n";
+
         if (this.isPlainText && this.contributions.highlightPlainText) {
             // start by tying the regex to the first character in a line
             this.expression = "(^)+([ \\t]*[ \\t]*)";
         } else {
             // start by finding the delimiter (//, --, #, ') with optional spaces or tabs
-            this.expression = "(" + this.delimiter + ")+( |\t)*";
+            this.expression = `(${this.delimiter})+${whitespace}*`;
         }
 
+
         // Apply all configurable comment start tags
-        this.expression += "(";
-        this.expression += characters.join("|");
-        this.expression += ")+(.*)";
+        this.expression += `${matches}+.*`;
+	this.expression += `(?:${newLine}${whitespace}*${this.delimiter}(?!${whitespace}*${matches}).*)*`;
     }
 
     /**
