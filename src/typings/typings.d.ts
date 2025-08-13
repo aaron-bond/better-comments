@@ -24,3 +24,17 @@ interface CommentConfig {
     lineComment?: string;
     blockComment?: [string, string];
 }
+
+declare enum LanguageIdentifiers {
+    Apex = "apex",
+    JavaScript = "javascript",
+    JavaScriptReact = "javascriptreact",
+    TypeScript = "typescript",
+    TypeScriptReact = "typescriptreact",
+    Vue = "vue",
+    VueHTML = "vue-html",
+    Elixir = "elixir",
+    Python = "python",
+    Tcl = "tcl",
+    Plaintext = "plaintext"
+}

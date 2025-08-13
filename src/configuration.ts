@@ -41,7 +41,7 @@ export class Configuration {
      * @param languageCode 
      * @returns 
      */
-    public async GetCommentConfiguration(languageCode: string): Promise<CommentConfig | undefined> {
+    public async GetCommentConfiguration(languageCode: LanguageIdentifiers): Promise<CommentConfig | undefined> {
 
         // * check if the language config has already been loaded
         if (this.commentConfig.has(languageCode)) {

@@ -44,7 +44,7 @@ export class Parser {
      * @param languageCode The short code of the current language
      * https://code.visualstudio.com/docs/languages/identifiers
      */
-    public async SetRegex(languageCode: string) {
+    public async SetRegex(languageCode: LanguageIdentifiers) {
         await this.setDelimiter(languageCode);
 
         // if the language isn't supported, we don't need to go any further
@@ -230,7 +230,7 @@ export class Parser {
      * @param languageCode The short code of the current language
      * https://code.visualstudio.com/docs/languages/identifiers
      */
-    private async setDelimiter(languageCode: string): Promise<void> {
+    private async setDelimiter(languageCode: LanguageIdentifiers): Promise<void> {
         this.supportedLanguage = false;
         this.ignoreFirstLine = false;
         this.isPlainText = false;
@@ -245,27 +245,33 @@ export class Parser {
             this.supportedLanguage = true;
         }
 
-        switch (languageCode) {
-            case "apex":
-            case "javascript":
-            case "javascriptreact":
-            case "typescript":
-            case "typescriptreact":
-                this.highlightJSDoc = true;
-                break;
+        const highlightJSDocLanguages = new Set<LanguageIdentifiers>([
+            LanguageIdentifiers.Apex,
+            LanguageIdentifiers.JavaScript,
+            LanguageIdentifiers.JavaScriptReact,
+            LanguageIdentifiers.TypeScript,
+            LanguageIdentifiers.TypeScriptReact,
+            LanguageIdentifiers.Vue,
+            LanguageIdentifiers.VueHTML
+        ]);
 
-            case "elixir":
-            case "python":
-            case "tcl":
-                this.ignoreFirstLine = true;
-                break;
-            
-            case "plaintext":
-                this.isPlainText = true;
+        const ignoreFirstLineLanguages = new Set<LanguageIdentifiers>([
+            LanguageIdentifiers.Elixir,
+            LanguageIdentifiers.Python,
+            LanguageIdentifiers.Tcl,
+        ]);
 
-                // If highlight plaintext is enabled, this is a supported language
-                this.supportedLanguage = this.contributions.highlightPlainText;
-                break;
+        if (highlightJSDocLanguages.has(languageCode)) {
+            this.highlightJSDoc = true;
+        }
+
+        if (ignoreFirstLineLanguages.has(languageCode)) {
+            this.ignoreFirstLine = true;
+        }
+
+        if (languageCode === LanguageIdentifiers.Plaintext) {
+            this.isPlainText = true;
+            this.supportedLanguage = this.contributions.highlightPlainText;
         }
     }
 
