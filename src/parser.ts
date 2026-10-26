@@ -1,5 +1,10 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
+import {
+    buildBlockCommentExpression, buildBlockLineExpression, buildJSDocLineExpression, buildLineCommentExpression,
+    escapeLineDelimiter, escapeRegExp, escapeTag, jsDocCommentExpression,
+} from './core/regex';
+import { toTagStyle } from './core/style';
 
 export class Parser {
     private tags: CommentTag[] = [];
@@ -57,18 +62,7 @@ export class Parser {
             characters.push(commentTag.escapedTag);
         }
 
-        if (this.isPlainText && this.contributions.highlightPlainText) {
-            // start by tying the regex to the first character in a line
-            this.expression = "(^)+([ \\t]*[ \\t]*)";
-        } else {
-            // start by finding the delimiter (//, --, #, ') with optional spaces or tabs
-            this.expression = "(" + this.delimiter + ")+( |\t)*";
-        }
-
-        // Apply all configurable comment start tags
-        this.expression += "(";
-        this.expression += characters.join("|");
-        this.expression += ")+(.*)";
+        this.expression = buildLineCommentExpression(characters, this.delimiter, this.isPlainText && this.contributions.highlightPlainText);
     }
 
     /**
@@ -124,16 +118,10 @@ export class Parser {
         }
 
         // Combine custom delimiters and the rest of the comment block matcher
-        let commentMatchString = "(^)+([ \\t]*[ \\t]*)(";
-        commentMatchString += characters.join("|");
-        commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
+        let commentMatchString = buildBlockLineExpression(characters);
 
         // Use start and end delimiters to find block comments
-        let regexString = "(^|[ \\t])(";
-        regexString += this.blockCommentStart;
-        regexString += "[\\s])+([\\s\\S]*?)(";
-        regexString += this.blockCommentEnd;
-        regexString += ")";
+        let regexString = buildBlockCommentExpression(this.blockCommentStart, this.blockCommentEnd);
 
         let regEx = new RegExp(regexString, "gm");
         let commentRegEx = new RegExp(commentMatchString, "igm");
@@ -179,11 +167,8 @@ export class Parser {
         }
 
         // Combine custom delimiters and the rest of the comment block matcher
-        let commentMatchString = "(^)+([ \\t]*\\*[ \\t]*)("; // Highlight after leading *
-        let regEx = /(^|[ \t])(\/\*\*)+([\s\S]*?)(\*\/)/gm; // Find rows of comments matching pattern /** */
-
-        commentMatchString += characters.join("|");
-        commentMatchString += ")([ ]*|[:])+([^*/][^\\r\\n]*)";
+        let commentMatchString = buildJSDocLineExpression(characters);
+        let regEx = new RegExp(jsDocCommentExpression, "gm");
 
         let commentRegEx = new RegExp(commentMatchString, "igm");
 
@@ -275,44 +260,13 @@ export class Parser {
     private setTags(): void {
         let items = this.contributions.tags;
         for (let item of items) {
-            let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
-
-            // ? the textDecoration is initialised to empty so we can concat a preceeding space on it
-            options.textDecoration = "";
-
-            if (item.strikethrough) {
-                options.textDecoration += "line-through";
-            }
-            
-            if (item.underline) {
-                options.textDecoration += " underline";
-            }
-            
-            if (item.bold) {
-                options.fontWeight = "bold";
-            }
-
-            if (item.italic) {
-                options.fontStyle = "italic";
-            }
-
-            let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
             this.tags.push({
                 tag: item.tag,
-                escapedTag: escapedSequence.replace(/\//gi, "\\/"), // ! hardcoded to escape slashes
+                escapedTag: escapeTag(item.tag),
                 ranges: [],
-                decoration: vscode.window.createTextEditorDecorationType(options)
+                decoration: vscode.window.createTextEditorDecorationType(toTagStyle(item))
             });
         }
-    }
-
-    /**
-     * Escapes a given string for use in a regular expression
-     * @param input The input string to be escaped
-     * @returns {string} The escaped string
-     */
-    private escapeRegExp(input: string): string {
-        return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
     }
 
     /**
@@ -332,24 +286,15 @@ export class Parser {
 
         // If no single line comment delimiter is passed, single line comments are not supported
         if (singleLine) {
-            if (typeof singleLine === 'string') {
-                this.delimiter = this.escapeRegExp(singleLine).replace(/\//ig, "\\/");
-            }
-            else if (singleLine.length > 0) {
-                // * if multiple delimiters are passed, the language has more than one single line comment format
-                var delimiters = singleLine
-                            .map(s => this.escapeRegExp(s))
-                            .join("|");
-                this.delimiter = delimiters;
-            }
+            this.delimiter = escapeLineDelimiter(singleLine);
         }
         else {
             this.highlightSingleLineComments = false;
         }
 
         if (start && end) {
-            this.blockCommentStart = this.escapeRegExp(start);
-            this.blockCommentEnd = this.escapeRegExp(end);
+            this.blockCommentStart = escapeRegExp(start);
+            this.blockCommentEnd = escapeRegExp(end);
 
             this.highlightMultilineComments = this.contributions.multilineComments;
         }
