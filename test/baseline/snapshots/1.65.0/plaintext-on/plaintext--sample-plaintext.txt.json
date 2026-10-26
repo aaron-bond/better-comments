@@ -1,0 +1,94 @@
+{
+  "settings": "plaintext-on",
+  "target": "plaintext",
+  "input": "sample-plaintext.txt",
+  "languageId": "plaintext",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "//",
+      "options": {
+        "color": "#474747",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "todo",
+      "options": {
+        "color": "#FF8C00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#98C379",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "4:0",
+              "end": "4:12",
+              "text": "! my comment"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "5:0",
+              "end": "5:9",
+              "text": "? comment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": []
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+    "name": "no-comment-syntax",
+    "displayName": "Better Comments test fixture: language with an empty comments object",
+    "publisher": "better-comments-tests",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "contributes": {
+        "languages": [
+            {
+                "id": "bc-no-comment-syntax",
+                "extensions": [".bcnocomment"],
+                "configuration": "./language-configuration.json"
+            }
+        ]
+    }
+}

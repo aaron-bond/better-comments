@@ -1,0 +1,5 @@
+{
+    // No built-in language has a comments object with neither lineComment nor blockComment,
+    // so this one exists to reach that state in the parser (it switches off single-line matching)
+    "comments": {}
+}

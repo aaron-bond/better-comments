@@ -1,0 +1,26 @@
+{
+  "bc-no-comment-syntax": {},
+  "csharp": {
+    "lineComment": "//",
+    "blockComment": [
+      "/*",
+      "*/"
+    ]
+  },
+  "javascript": {
+    "lineComment": "//",
+    "blockComment": [
+      "/*",
+      "*/"
+    ]
+  },
+  "log": null,
+  "plaintext": null,
+  "python": {
+    "lineComment": "#",
+    "blockComment": [
+      "\"\"\"",
+      "\"\"\""
+    ]
+  }
+}

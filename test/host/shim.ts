@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 import Module = require('module');
+import { repoRoot } from '../repo';
 
 // Each extension gets its own copy of the vscode API, so wrapping the test's copy doesn't
 // reach the extension, and TextEditor objects are frozen, so they can't be spied on either.
@@ -8,7 +9,7 @@ import Module = require('module');
 // that records decoration types and hands out editors whose setDecorations calls are recorded.
 // The extension activates from the same require cache, so its calls are recorded too.
 
-export const repoRoot = path.resolve(__dirname, '../../..');
+export { repoRoot };
 export const outDir = path.join(repoRoot, 'out');
 export const samplesDir = path.join(repoRoot, 'test/fixtures/samples');
 export const extensionId = 'aaron-bond.better-comments';

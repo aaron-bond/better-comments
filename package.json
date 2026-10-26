@@ -46,6 +46,7 @@
         "watch-web": "webpack --watch --config ./build/web-extension.webpack.config.js",
         "package-web": "webpack --mode production --devtool hidden-source-map --config ./build/web-extension.webpack.config.js",
         "compile-tests": "tsc -p ./test",
+        "test:baseline:host": "npm run compile && npm run compile-tests && node out/test/host/runTests.js baseline",
         "test:integration": "npm run compile && npm run compile-tests && node out/test/host/runTests.js integration"
     },
     "contributes": {

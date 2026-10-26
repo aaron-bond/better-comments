@@ -1,0 +1,585 @@
+{
+  "settings": "default",
+  "target": "javascript",
+  "input": "generated-from-javascript-lf",
+  "languageId": "javascript",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "//",
+      "options": {
+        "color": "#474747",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "todo",
+      "options": {
+        "color": "#FF8C00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#98C379",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:27",
+              "text": "// ! first line of the file"
+            },
+            {
+              "start": "3:0",
+              "end": "3:18",
+              "text": "// ! start of line"
+            },
+            {
+              "start": "4:4",
+              "end": "4:29",
+              "text": "// ! indented with spaces"
+            },
+            {
+              "start": "5:1",
+              "end": "5:25",
+              "text": "// ! indented with a tab"
+            },
+            {
+              "start": "6:0",
+              "end": "6:32",
+              "text": "//! no space after the delimiter"
+            },
+            {
+              "start": "7:0",
+              "end": "7:41",
+              "text": "//   ! several spaces after the delimiter"
+            },
+            {
+              "start": "8:8",
+              "end": "8:23",
+              "text": "// ! after code"
+            },
+            {
+              "start": "9:9",
+              "end": "9:39",
+              "text": "// ! inside a string literal\";"
+            },
+            {
+              "start": "11:0",
+              "end": "11:4",
+              "text": "// !"
+            },
+            {
+              "start": "15:0",
+              "end": "15:24",
+              "text": "! block line at column 0"
+            },
+            {
+              "start": "16:4",
+              "end": "16:25",
+              "text": "! indented block line"
+            },
+            {
+              "start": "17:4",
+              "end": "17:19",
+              "text": "!: with a colon"
+            },
+            {
+              "start": "21:3",
+              "end": "21:15",
+              "text": "! jsdoc line"
+            },
+            {
+              "start": "22:5",
+              "end": "22:31",
+              "text": "!: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "27:0",
+              "end": "27:18",
+              "text": "// ? start of line"
+            },
+            {
+              "start": "28:4",
+              "end": "28:29",
+              "text": "// ? indented with spaces"
+            },
+            {
+              "start": "29:1",
+              "end": "29:25",
+              "text": "// ? indented with a tab"
+            },
+            {
+              "start": "30:0",
+              "end": "30:32",
+              "text": "//? no space after the delimiter"
+            },
+            {
+              "start": "31:0",
+              "end": "31:41",
+              "text": "//   ? several spaces after the delimiter"
+            },
+            {
+              "start": "32:8",
+              "end": "32:23",
+              "text": "// ? after code"
+            },
+            {
+              "start": "33:9",
+              "end": "33:39",
+              "text": "// ? inside a string literal\";"
+            },
+            {
+              "start": "35:0",
+              "end": "35:4",
+              "text": "// ?"
+            },
+            {
+              "start": "39:0",
+              "end": "39:24",
+              "text": "? block line at column 0"
+            },
+            {
+              "start": "40:4",
+              "end": "40:25",
+              "text": "? indented block line"
+            },
+            {
+              "start": "41:4",
+              "end": "41:19",
+              "text": "?: with a colon"
+            },
+            {
+              "start": "45:3",
+              "end": "45:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "//",
+          "ranges": [
+            {
+              "start": "51:0",
+              "end": "51:19",
+              "text": "// // start of line"
+            },
+            {
+              "start": "52:4",
+              "end": "52:30",
+              "text": "// // indented with spaces"
+            },
+            {
+              "start": "53:1",
+              "end": "53:26",
+              "text": "// // indented with a tab"
+            },
+            {
+              "start": "54:0",
+              "end": "54:33",
+              "text": "//// no space after the delimiter"
+            },
+            {
+              "start": "55:0",
+              "end": "55:42",
+              "text": "//   // several spaces after the delimiter"
+            },
+            {
+              "start": "56:8",
+              "end": "56:24",
+              "text": "// // after code"
+            },
+            {
+              "start": "57:9",
+              "end": "57:40",
+              "text": "// // inside a string literal\";"
+            },
+            {
+              "start": "59:0",
+              "end": "59:5",
+              "text": "// //"
+            },
+            {
+              "start": "63:0",
+              "end": "63:25",
+              "text": "// block line at column 0"
+            },
+            {
+              "start": "64:4",
+              "end": "64:26",
+              "text": "// indented block line"
+            },
+            {
+              "start": "65:4",
+              "end": "65:20",
+              "text": "//: with a colon"
+            },
+            {
+              "start": "69:3",
+              "end": "69:16",
+              "text": "// jsdoc line"
+            },
+            {
+              "start": "70:5",
+              "end": "70:32",
+              "text": "//: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "todo",
+          "ranges": [
+            {
+              "start": "75:0",
+              "end": "75:21",
+              "text": "// todo start of line"
+            },
+            {
+              "start": "76:4",
+              "end": "76:32",
+              "text": "// todo indented with spaces"
+            },
+            {
+              "start": "77:1",
+              "end": "77:28",
+              "text": "// todo indented with a tab"
+            },
+            {
+              "start": "78:0",
+              "end": "78:35",
+              "text": "//todo no space after the delimiter"
+            },
+            {
+              "start": "79:0",
+              "end": "79:44",
+              "text": "//   todo several spaces after the delimiter"
+            },
+            {
+              "start": "80:8",
+              "end": "80:26",
+              "text": "// todo after code"
+            },
+            {
+              "start": "81:9",
+              "end": "81:42",
+              "text": "// todo inside a string literal\";"
+            },
+            {
+              "start": "83:0",
+              "end": "83:18",
+              "text": "// TODO upper case"
+            },
+            {
+              "start": "84:0",
+              "end": "84:7",
+              "text": "// todo"
+            },
+            {
+              "start": "88:0",
+              "end": "88:27",
+              "text": "todo block line at column 0"
+            },
+            {
+              "start": "89:4",
+              "end": "89:28",
+              "text": "todo indented block line"
+            },
+            {
+              "start": "90:4",
+              "end": "90:22",
+              "text": "todo: with a colon"
+            },
+            {
+              "start": "94:3",
+              "end": "94:18",
+              "text": "todo jsdoc line"
+            },
+            {
+              "start": "95:5",
+              "end": "95:34",
+              "text": "todo: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "100:0",
+              "end": "100:18",
+              "text": "// * start of line"
+            },
+            {
+              "start": "101:4",
+              "end": "101:29",
+              "text": "// * indented with spaces"
+            },
+            {
+              "start": "102:1",
+              "end": "102:25",
+              "text": "// * indented with a tab"
+            },
+            {
+              "start": "103:0",
+              "end": "103:32",
+              "text": "//* no space after the delimiter"
+            },
+            {
+              "start": "104:0",
+              "end": "104:41",
+              "text": "//   * several spaces after the delimiter"
+            },
+            {
+              "start": "105:8",
+              "end": "105:23",
+              "text": "// * after code"
+            },
+            {
+              "start": "106:9",
+              "end": "106:39",
+              "text": "// * inside a string literal\";"
+            },
+            {
+              "start": "108:0",
+              "end": "108:4",
+              "text": "// *"
+            },
+            {
+              "start": "112:0",
+              "end": "112:24",
+              "text": "* block line at column 0"
+            },
+            {
+              "start": "113:4",
+              "end": "113:25",
+              "text": "* indented block line"
+            },
+            {
+              "start": "114:4",
+              "end": "114:19",
+              "text": "*: with a colon"
+            },
+            {
+              "start": "118:3",
+              "end": "118:15",
+              "text": "* jsdoc line"
+            },
+            {
+              "start": "119:5",
+              "end": "119:31",
+              "text": "*: jsdoc line with a colon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "15:0",
+              "end": "15:24",
+              "text": "! block line at column 0"
+            },
+            {
+              "start": "16:4",
+              "end": "16:25",
+              "text": "! indented block line"
+            },
+            {
+              "start": "17:4",
+              "end": "17:19",
+              "text": "!: with a colon"
+            },
+            {
+              "start": "21:3",
+              "end": "21:15",
+              "text": "! jsdoc line"
+            },
+            {
+              "start": "22:5",
+              "end": "22:31",
+              "text": "!: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "39:0",
+              "end": "39:24",
+              "text": "? block line at column 0"
+            },
+            {
+              "start": "40:4",
+              "end": "40:25",
+              "text": "? indented block line"
+            },
+            {
+              "start": "41:4",
+              "end": "41:19",
+              "text": "?: with a colon"
+            },
+            {
+              "start": "45:3",
+              "end": "45:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "//",
+          "ranges": [
+            {
+              "start": "63:0",
+              "end": "63:25",
+              "text": "// block line at column 0"
+            },
+            {
+              "start": "64:4",
+              "end": "64:26",
+              "text": "// indented block line"
+            },
+            {
+              "start": "65:4",
+              "end": "65:20",
+              "text": "//: with a colon"
+            },
+            {
+              "start": "69:3",
+              "end": "69:16",
+              "text": "// jsdoc line"
+            },
+            {
+              "start": "70:5",
+              "end": "70:32",
+              "text": "//: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "todo",
+          "ranges": [
+            {
+              "start": "88:0",
+              "end": "88:27",
+              "text": "todo block line at column 0"
+            },
+            {
+              "start": "89:4",
+              "end": "89:28",
+              "text": "todo indented block line"
+            },
+            {
+              "start": "90:4",
+              "end": "90:22",
+              "text": "todo: with a colon"
+            },
+            {
+              "start": "94:3",
+              "end": "94:18",
+              "text": "todo jsdoc line"
+            },
+            {
+              "start": "95:5",
+              "end": "95:34",
+              "text": "todo: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "112:0",
+              "end": "112:24",
+              "text": "* block line at column 0"
+            },
+            {
+              "start": "113:4",
+              "end": "113:25",
+              "text": "* indented block line"
+            },
+            {
+              "start": "114:4",
+              "end": "114:19",
+              "text": "*: with a colon"
+            },
+            {
+              "start": "118:3",
+              "end": "118:15",
+              "text": "* jsdoc line"
+            },
+            {
+              "start": "119:5",
+              "end": "119:31",
+              "text": "*: jsdoc line with a colon"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

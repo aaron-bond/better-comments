@@ -1,0 +1,139 @@
+{
+  "settings": "plaintext-on",
+  "target": "plaintext",
+  "input": "sample-unsupported_cobol.cbl",
+  "languageId": "plaintext",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "//",
+      "options": {
+        "color": "#474747",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "todo",
+      "options": {
+        "color": "#FF8C00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#98C379",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "4:0",
+              "end": "4:45",
+              "text": "* Demonstrates the use of the PERFORM..UNTIL."
+            },
+            {
+              "start": "5:0",
+              "end": "5:53",
+              "text": "* The PERFORM..UNTIL is most often used to process a "
+            },
+            {
+              "start": "6:0",
+              "end": "6:56",
+              "text": "* stream of data where the length of the stream can not "
+            },
+            {
+              "start": "7:0",
+              "end": "7:27",
+              "text": "* be determined in advance."
+            },
+            {
+              "start": "8:0",
+              "end": "8:59",
+              "text": "* Pay particular attention to the way the number stream is "
+            },
+            {
+              "start": "9:0",
+              "end": "9:28",
+              "text": "* processed in this program."
+            },
+            {
+              "start": "10:0",
+              "end": "10:59",
+              "text": "* Note how the ON SIZE ERROR can be used to detect when the"
+            },
+            {
+              "start": "11:0",
+              "end": "11:63",
+              "text": "* result of a computation is tot big for the data-item intended"
+            },
+            {
+              "start": "12:0",
+              "end": "12:13",
+              "text": "* to hold it."
+            },
+            {
+              "start": "13:0",
+              "end": "13:57",
+              "text": "* The INITIALIZE verb sets a data-item to its initial or "
+            },
+            {
+              "start": "14:0",
+              "end": "14:17",
+              "text": "* starting value."
+            },
+            {
+              "start": "15:0",
+              "end": "15:40",
+              "text": "*> TODO: Check if this format is correct"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": []
+    }
+  ]
+}

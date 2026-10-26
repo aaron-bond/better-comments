@@ -1,0 +1,420 @@
+{
+  "settings": "custom-tags",
+  "target": "javascript",
+  "input": "sample-javascript.js",
+  "languageId": "javascript",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "?",
+      "options": {
+        "color": "#100000",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#1A0B0C",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "+",
+      "options": {
+        "color": "#241618",
+        "textDecoration": " underline"
+      }
+    },
+    {
+      "tag": ".",
+      "options": {
+        "color": "#2E2124",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through underline"
+      }
+    },
+    {
+      "tag": "$",
+      "options": {
+        "color": "#382C30",
+        "backgroundColor": "#00000020",
+        "textDecoration": "",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": "^",
+      "options": {
+        "color": "#42373C",
+        "textDecoration": "line-through",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": "|",
+      "options": {
+        "color": "#4C4248",
+        "backgroundColor": "transparent",
+        "textDecoration": " underline",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": "(",
+      "options": {
+        "color": "#564D54",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through underline",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": ")",
+      "options": {
+        "color": "#605860",
+        "textDecoration": "",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "[",
+      "options": {
+        "color": "#6A636C",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "]",
+      "options": {
+        "color": "#746E78",
+        "backgroundColor": "#00000020",
+        "textDecoration": " underline",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "{",
+      "options": {
+        "color": "#7E7984",
+        "textDecoration": "line-through underline",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "}",
+      "options": {
+        "color": "#888490",
+        "backgroundColor": "transparent",
+        "textDecoration": "",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "\\",
+      "options": {
+        "color": "#928F9C",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "/",
+      "options": {
+        "color": "#9C9AA8",
+        "textDecoration": " underline",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "-",
+      "options": {
+        "color": "#A6A5B4",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through underline",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "@note",
+      "options": {
+        "color": "#B0B0C0",
+        "backgroundColor": "#00000020",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "FIXME:",
+      "options": {
+        "color": "#BABBCC",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "⚠",
+      "options": {
+        "color": "#C4C6D8",
+        "backgroundColor": "transparent",
+        "textDecoration": " underline"
+      }
+    },
+    {
+      "tag": "**",
+      "options": {
+        "color": "#CED1E4",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through underline"
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 20,
+      "applied": [
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "14:3",
+              "end": "14:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "36:3",
+              "end": "36:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "58:3",
+              "end": "58:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "80:3",
+              "end": "80:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "102:3",
+              "end": "102:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "124:3",
+              "end": "124:15",
+              "text": "?  Questions"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "25:0",
+              "end": "25:20",
+              "text": "// * End of the file"
+            },
+            {
+              "start": "47:0",
+              "end": "47:20",
+              "text": "// * End of the file"
+            },
+            {
+              "start": "69:0",
+              "end": "69:20",
+              "text": "// * End of the file"
+            },
+            {
+              "start": "91:0",
+              "end": "91:20",
+              "text": "// * End of the file"
+            },
+            {
+              "start": "113:0",
+              "end": "113:20",
+              "text": "// * End of the file"
+            },
+            {
+              "start": "135:0",
+              "end": "135:20",
+              "text": "// * End of the file"
+            },
+            {
+              "start": "6:1",
+              "end": "6:22",
+              "text": "* non js-doc comments"
+            },
+            {
+              "start": "15:3",
+              "end": "15:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "37:3",
+              "end": "37:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "59:3",
+              "end": "59:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "81:3",
+              "end": "81:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "103:3",
+              "end": "103:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "125:3",
+              "end": "125:15",
+              "text": "* Highlights"
+            }
+          ]
+        },
+        {
+          "tag": "/",
+          "ranges": [
+            {
+              "start": "23:0",
+              "end": "23:17",
+              "text": "//// removed code"
+            },
+            {
+              "start": "45:0",
+              "end": "45:17",
+              "text": "//// removed code"
+            },
+            {
+              "start": "67:0",
+              "end": "67:17",
+              "text": "//// removed code"
+            },
+            {
+              "start": "89:0",
+              "end": "89:17",
+              "text": "//// removed code"
+            },
+            {
+              "start": "111:0",
+              "end": "111:17",
+              "text": "//// removed code"
+            },
+            {
+              "start": "133:0",
+              "end": "133:17",
+              "text": "//// removed code"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 20,
+      "applied": [
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "14:3",
+              "end": "14:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "36:3",
+              "end": "36:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "58:3",
+              "end": "58:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "80:3",
+              "end": "80:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "102:3",
+              "end": "102:15",
+              "text": "?  Questions"
+            },
+            {
+              "start": "124:3",
+              "end": "124:15",
+              "text": "?  Questions"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "6:1",
+              "end": "6:22",
+              "text": "* non js-doc comments"
+            },
+            {
+              "start": "15:3",
+              "end": "15:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "37:3",
+              "end": "37:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "59:3",
+              "end": "59:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "81:3",
+              "end": "81:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "103:3",
+              "end": "103:15",
+              "text": "* Highlights"
+            },
+            {
+              "start": "125:3",
+              "end": "125:15",
+              "text": "* Highlights"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

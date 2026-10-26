@@ -30,7 +30,7 @@ The project installs, compiles, lints (one warning) and builds the web bundle on
 These came from reading the code and probing the compiled `Parser` with a stubbed `vscode`. They are current behaviour, so the baseline records them as they are. Any that get fixed are fixed later, deliberately.
 
 1. **JSDoc matching runs in every language by default.** The check is `if (!highlightMultilineComments && !highlightJSDoc) return`, so with the default `multilineComments: true`, `/** … * ! x … */` is highlighted in Python and every other language. `highlightJSDoc` is set to `true` for JS/TS/JSX/TSX/Apex and never reset. That only makes a difference when `multilineComments` is `false`: after visiting a JS-family file, JSDoc matching stays on for every language.
-2. **Single-line highlighting can switch off for good.** `highlightSingleLineComments` is set to `false` when the language's `comments` object has neither `lineComment` nor `blockComment`, and nothing sets it back. Confirmed: after such a language, `// ! x` in TypeScript is no longer highlighted. CSS does *not* trigger this (see 3).
+2. **Single-line highlighting can switch off for good.** `highlightSingleLineComments` is set to `false` when the language's `comments` object has neither `lineComment` nor `blockComment`, and nothing sets it back. Confirmed: after such a language, `// ! x` in TypeScript is no longer highlighted. CSS does *not* trigger this (see 3). No built-in language in 1.65.0 or 1.143.1 has such a config, so only third-party language extensions can trigger it. The baseline reaches it with a fixture extension.
 3. **Block-only languages use the block opener as a line delimiter.** `setDelimiter` passes `config.lineComment || blockCommentStart`, so in CSS `/* ! alert */` matches as a single-line comment, closing `*/` included.
 4. **`highlightMultilineComments` is never reset.** It is set from the setting whenever a language has block comments, and is still `true` after switching to a language without them (TS → YAML). The block regex then runs with empty delimiters. It finds nothing, but it shouldn't run at all. *To fix (Phase 5).*
 5. **`textDecoration` is built by joining strings.** Most tags get `""` (an empty string, not undefined), strikethrough gives `"line-through"`, and underline-only gives `" underline"` with a leading space.
@@ -39,6 +39,8 @@ These came from reading the code and probing the compiled `Parser` with a stubbe
 8. **`ignoreFirstLine`** applies to Python, Elixir and Tcl, and only skips a match that starts at line 0, character 0.
 9. **Overlapping language switches race.** `SetRegex` is async and changes parser state shared by every editor. Two quick editor switches can overlap, leaving one language's regex applied to the other editor. *To fix, incrementally (Phase 5).*
 10. **Only the active editor is decorated.** Other visible editors in a split view are not decorated.
+11. **Plain text keeps the previous language's block delimiters.** No plain text language config exists, so `setCommentFormat` isn't called and the delimiters and `highlightMultilineComments` stay as the last language left them. With `highlightPlainText` on, the same generated `.txt` gives 89 ranges fresh, 114 after JavaScript or C#, 99 after Python, and 0 after a language that switched off single-line matching.
+12. **The empty tag matches differently with CRLF.** With the `empty-tag` settings, generated C# and JavaScript give 56 ranges with LF and 59 with CRLF. For every other settings variant, LF and CRLF give the same counts. Not yet looked into.
 
 ## Potential bugs (to verify)
 
@@ -58,6 +60,10 @@ To verify:
 - Check which VS Code version introduced the object form, and whether any popular third-party language extensions use it.
 
 If confirmed, `CommentSyntax` needs to accept the object shape and the config parsing needs to turn it into a plain string.
+
+### P3: Empty tag with `highlightPlainText` may hang
+
+From reading the code; not run. With plain text on, the single-line regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `m` flag. An empty tag string makes that match zero characters on an empty line. `RegExp.exec` with `g` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` would never end and the extension host would freeze. This combination is left out of the host matrix on purpose. Check it in Node in a child process with a timeout before deciding anything.
 
 ### P2: Stale language-config entries
 
@@ -119,6 +125,15 @@ Only what's needed to run tests. Nothing in `src/` changes, and no production de
 Built-in language configs change between VS Code versions, so each version gets its own snapshot set.
 
 ## Phase 1: Comprehensive baseline (no source changes)
+
+**Status:** the real-host baseline is in place. Run `npm run test:baseline:host`, and add `-- --update-snapshots` to rewrite. It covers 85 snapshot files per version, each run under 8 histories (680 parser runs), and takes about 10 s per version. The snapshots for 1.65.0 and stable are byte-identical. A one-line change to the compiled parser (dropping `ignoreFirstLine`) failed exactly the 14 Python cases it should. The Node baseline is next.
+
+As built:
+- **Snapshot files:** `test/baseline/snapshots/<label>/<settings>/<target>--<input>.json`. Each one records the decoration types once, then lists the results with the histories that produce each. A split between groups shows where carried-over state matters.
+- **Shared code:** the matrix (`test/baseline/matrix.ts`) and the input generator (`test/baseline/generate.ts`) will also drive the Node baseline.
+- **Settings** are written to the real user settings of the temporary profile, and each case uses a fresh `Parser` that does exactly what `updateDecorations` does.
+- **Histories** call only `SetRegex`. That's the only method that changes the carried-over flags.
+- **`language-configs.json`** in each label folder is the config dump the Node baseline reads.
 
 ### How output is captured
 

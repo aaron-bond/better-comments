@@ -1,13 +1,13 @@
 import * as assert from 'assert';
 import * as path from 'path';
 import * as vscode from 'vscode';
-import { extensionActiveAtInstall, extensionId, loadOut, recorder, samplesDir, SetDecorationsCall } from '../shim';
+import { extensionActiveAtInstall, extensionId, loadOut, recorder, repoRoot, samplesDir, SetDecorationsCall } from '../shim';
 
 // Checks that the harness itself can see what the unmodified extension does.
 // If these fail, every other host test is suspect.
 
 const defaultTags: Array<{ tag: string; color: string }> =
-    require('../../../../package.json').contributes.configuration.properties['better-comments.tags'].default;
+    require(path.join(repoRoot, 'package.json')).contributes.configuration.properties['better-comments.tags'].default;
 
 async function waitFor<T>(what: string, check: () => T | undefined, timeoutMs = 5000): Promise<T> {
     const deadline = Date.now() + timeoutMs;
