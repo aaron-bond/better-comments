@@ -61,9 +61,17 @@ To verify:
 
 If confirmed, `CommentSyntax` needs to accept the object shape and the config parsing needs to turn it into a plain string.
 
-### P3: Empty tag with `highlightPlainText` may hang
+### P3: Empty tag with `highlightPlainText` hangs the extension host (confirmed)
 
-From reading the code; not run. With plain text on, the single-line regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `m` flag. An empty tag string makes that match zero characters on an empty line. `RegExp.exec` with `g` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` would never end and the extension host would freeze. This combination is left out of the host matrix on purpose. Check it in Node in a child process with a timeout before deciding anything.
+**Confirmed on 2026-10-26**, in Node against the compiled parser and in real VS Code 1.143.1.
+
+With plain text on, the single-line regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `gm` flags. An empty tag string adds an empty alternative, `(!|)`, so the regex can match zero characters on an empty line. `RegExp.exec` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` never ends.
+
+- **Node:** any plain text document that is empty or ends with a newline hangs. Whitespace-only lines and text with no empty lines finish normally. The same tags in JavaScript are fine, because the delimiter prevents zero-length matches.
+- **Real VS Code:** with `better-comments.highlightPlainText: true` and a tag `{ "tag": "" }` in `settings.json` at startup, opening a new untitled file (Ctrl+N, which is empty plain text) freezes the extension host. The run had to be killed after 60 s. The same steps with `TODO` instead of `""` finish in 8 s.
+- **Reach:** it needs both settings, which is presumably why it hasn't been reported. The `tags` schema doesn't constrain its items, so an empty tag is a valid setting, for example halfway through editing. The only related-looking issue is #187 ("Extension causes high cpu load", 2019, v2.0.5, no profile or settings), and there's no evidence it's the same thing.
+- **In the baseline:** the host matrix can't include this combination, because it would hang the run. Record it in the Node baseline as a case that times out in a child process, so the fix (Phase 5) shows up as a deliberate snapshot change.
+- **Possible fixes, to decide later:** ignore empty tags when building the regex, and/or advance `lastIndex` after a zero-length match. Either is a behaviour change and needs its own snapshot diff.
 
 ### P2: Stale language-config entries
 
