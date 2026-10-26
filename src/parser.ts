@@ -1,10 +1,8 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
 import { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './core/languageState';
-import {
-    buildBlockCommentExpression, buildBlockLineExpression, buildJSDocLineExpression, buildLineCommentExpression,
-    escapeTag, jsDocCommentExpression,
-} from './core/regex';
+import { findBlockComments, findJSDocComments, findLineComments, TagMatch } from './core/finder';
+import { buildLineCommentExpression, escapeTag } from './core/regex';
 import { toTagStyle } from './core/style';
 
 export class Parser {
@@ -68,28 +66,7 @@ export class Parser {
 
         let text = activeEditor.document.getText();
 
-        // if it's plain text, we have to do mutliline regex to catch the start of the line with ^
-        let regexFlags = (this.state.isPlainText) ? "igm" : "ig";
-        let regEx = new RegExp(this.expression, regexFlags);
-
-        let match: any;
-        while (match = regEx.exec(text)) {
-            let startPos = activeEditor.document.positionAt(match.index);
-            let endPos = activeEditor.document.positionAt(match.index + match[0].length);
-            let range = { range: new vscode.Range(startPos, endPos) };
-
-            // Required to ignore the first line of .py files (#61)
-            if (this.state.ignoreFirstLine && startPos.line === 0 && startPos.character === 0) {
-                continue;
-            }
-
-            // Find which custom delimiter was used in order to add it to the collection
-            let matchTag = this.tags.find(item => item.tag.toLowerCase() === match[3].toLowerCase());
-
-            if (matchTag) {
-                matchTag.ranges.push(range);
-            }
-        }
+        this.collectRanges(activeEditor, findLineComments(text, this.expression, this.state.isPlainText, this.state.ignoreFirstLine, this.tagNames()));
     }
 
     /**
@@ -103,42 +80,7 @@ export class Parser {
         
         let text = activeEditor.document.getText();
 
-        // Build up regex matcher for custom delimiter tags
-        let characters: Array<string> = [];
-        for (let commentTag of this.tags) {
-            characters.push(commentTag.escapedTag);
-        }
-
-        // Combine custom delimiters and the rest of the comment block matcher
-        let commentMatchString = buildBlockLineExpression(characters);
-
-        // Use start and end delimiters to find block comments
-        let regexString = buildBlockCommentExpression(this.state.blockCommentStart, this.state.blockCommentEnd);
-
-        let regEx = new RegExp(regexString, "gm");
-        let commentRegEx = new RegExp(commentMatchString, "igm");
-
-        // Find the multiline comment block
-        let match: any;
-        while (match = regEx.exec(text)) {
-            let commentBlock = match[0];
-
-            // Find the line
-            let line;
-            while (line = commentRegEx.exec(commentBlock)) {
-                let startPos = activeEditor.document.positionAt(match.index + line.index + line[2].length);
-                let endPos = activeEditor.document.positionAt(match.index + line.index + line[0].length);
-                let range: vscode.DecorationOptions = { range: new vscode.Range(startPos, endPos) };
-
-                // Find which custom delimiter was used in order to add it to the collection
-                let matchString = line[3] as string;
-                let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
-
-                if (matchTag) {
-                    matchTag.ranges.push(range);
-                }
-            }
-        }
+        this.collectRanges(activeEditor, findBlockComments(text, this.escapedTags(), this.tagNames(), this.state.blockCommentStart, this.state.blockCommentEnd));
     }
 
     /**
@@ -152,39 +94,7 @@ export class Parser {
 
         let text = activeEditor.document.getText();
 
-        // Build up regex matcher for custom delimiter tags
-        let characters: Array<string> = [];
-        for (let commentTag of this.tags) {
-            characters.push(commentTag.escapedTag);
-        }
-
-        // Combine custom delimiters and the rest of the comment block matcher
-        let commentMatchString = buildJSDocLineExpression(characters);
-        let regEx = new RegExp(jsDocCommentExpression, "gm");
-
-        let commentRegEx = new RegExp(commentMatchString, "igm");
-
-        // Find the multiline comment block
-        let match: any;
-        while (match = regEx.exec(text)) {
-            let commentBlock = match[0];
-
-            // Find the line
-            let line;
-            while (line = commentRegEx.exec(commentBlock)) {
-                let startPos = activeEditor.document.positionAt(match.index + line.index + line[2].length);
-                let endPos = activeEditor.document.positionAt(match.index + line.index + line[0].length);
-                let range: vscode.DecorationOptions = { range: new vscode.Range(startPos, endPos) };
-
-                // Find which custom delimiter was used in order to add it to the collection
-                let matchString = line[3] as string;
-                let matchTag = this.tags.find(item => item.tag.toLowerCase() === matchString.toLowerCase());
-
-                if (matchTag) {
-                    matchTag.ranges.push(range);
-                }
-            }
-        }
+        this.collectRanges(activeEditor, findJSDocComments(text, this.escapedTags(), this.tagNames()));
     }
 
     /**
@@ -201,6 +111,28 @@ export class Parser {
     }
 
     //#region  Private Methods
+
+    /**
+     * Adds each match to its tag's ranges as it's found
+     * @param activeEditor The active text editor containing the code document
+     * @param matches The matches, as document offsets
+     */
+    private collectRanges(activeEditor: vscode.TextEditor, matches: Iterable<TagMatch>): void {
+        for (let match of matches) {
+            let startPos = activeEditor.document.positionAt(match.start);
+            let endPos = activeEditor.document.positionAt(match.end);
+
+            this.tags[match.tagIndex].ranges.push({ range: new vscode.Range(startPos, endPos) });
+        }
+    }
+
+    private tagNames(): string[] {
+        return this.tags.map(commentTag => commentTag.tag);
+    }
+
+    private escapedTags(): string[] {
+        return this.tags.map(commentTag => commentTag.escapedTag);
+    }
 
     /**
      * Sets the comment delimiter [//, #, --, '] of a given language
