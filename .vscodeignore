@@ -9,3 +9,4 @@ images/**
 tsconfig.json
 npm-debug.log
 .travis.yml
+docs/**

@@ -15,8 +15,10 @@
 		"rootDir": "src",
         "noUnusedLocals": true /* Report errors on unused locals. */
 	},
+	"include": [
+		"src"
+	],
 	"exclude": [
-		"src/test*",
 		"node_modules",
 		".vscode-test"
 	]
