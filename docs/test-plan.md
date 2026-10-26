@@ -266,6 +266,12 @@ Move the logic one piece at a time, with the baseline identical after every step
 
 Each step is small enough to review in one sitting and can be released on its own if needed.
 
+### Through the refactor
+
+- **The end-to-end harness stays usable at every step.** `Parser` and `Configuration` keep their public APIs, so the host baseline and the harness checks run unchanged against each step's code.
+- **Overlapping language switches** (pinned 9) aren't covered by the baseline. Step 3 was checked with a scratch script that compares builds side by side across 882 overlapping-switch scenarios. In Phase 3 that check becomes a permanent test. Fast switching by hand is in [manual-checks.md](manual-checks.md), which you run against the v3.0.2 VSIX and the refactored VSIX.
+- **Performance benchmark at the end:** build `084a906` in a separate worktree and run one benchmark suite against both builds on the same machine (large files, typing bursts, language switches). The harness needs an option to load the extension from another folder for this.
+
 ## Phase 3: Unit tests and the test seam
 
 - Table-driven unit tests on `src/core`, starting by porting the generated-fixture cases from the baseline. Once these are in place, the Node baseline becomes optional locally. It stays in CI until the unit tests cover the same cases.
