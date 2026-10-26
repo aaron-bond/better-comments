@@ -1,4 +1,4 @@
-import { escapeLineDelimiter, escapeRegExp } from './regex';
+import { buildLineCommentExpression, escapeLineDelimiter, escapeRegExp } from './regex';
 
 // The per-language state the parser carries from one language to the next.
 // Some of it is never reset (see beginLanguageSwitch), so the previous languages affect the next one.
@@ -101,6 +101,31 @@ export function applyLanguage(
     }
 
     return next;
+}
+
+/**
+ * Builds the single line comment expression for the current language
+ * @param state The state after applyLanguage
+ * @param escapedTags The escaped tags, in configuration order
+ * @param settings The better-comments settings
+ */
+export function lineCommentExpression(state: LanguageState, escapedTags: string[], settings: LanguageSettings): string {
+    return buildLineCommentExpression(escapedTags, state.delimiter, state.isPlainText && settings.highlightPlainText);
+}
+
+// If highlight single line comments is off, single line comments are not supported for this language
+export function findsLineComments(state: LanguageState): boolean {
+    return state.highlightSingleLineComments;
+}
+
+// If highlight multiline is off in package.json or doesn't apply to his language, block comments aren't searched
+export function findsBlockComments(state: LanguageState): boolean {
+    return state.highlightMultilineComments;
+}
+
+// JSDoc comments are searched when multiline comments are, and for languages that have used JSDoc
+export function findsJSDocComments(state: LanguageState): boolean {
+    return state.highlightMultilineComments || state.highlightJSDoc;
 }
 
 /**

@@ -1,9 +1,11 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
-import { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './core/languageState';
 import { findBlockComments, findJSDocComments, findLineComments, TagMatch } from './core/finder';
-import { buildLineCommentExpression, escapeTag } from './core/regex';
-import { toTagStyle } from './core/style';
+import {
+    applyLanguage, beginLanguageSwitch, findsBlockComments, findsJSDocComments, findsLineComments,
+    initialLanguageState, LanguageState, lineCommentExpression,
+} from './core/languageState';
+import { prepareTag } from './core/tags';
 
 export class Parser {
     private tags: CommentTag[] = [];
@@ -47,12 +49,7 @@ export class Parser {
             return;
         }
 
-        let characters: Array<string> = [];
-        for (let commentTag of this.tags) {
-            characters.push(commentTag.escapedTag);
-        }
-
-        this.expression = buildLineCommentExpression(characters, this.state.delimiter, this.state.isPlainText && this.contributions.highlightPlainText);
+        this.expression = lineCommentExpression(this.state, this.escapedTags(), this.contributions);
     }
 
     /**
@@ -61,8 +58,7 @@ export class Parser {
      */
     public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
 
-        // If highlight single line comments is off, single line comments are not supported for this language
-        if (!this.state.highlightSingleLineComments) return;
+        if (!findsLineComments(this.state)) return;
 
         let text = activeEditor.document.getText();
 
@@ -75,9 +71,8 @@ export class Parser {
      */
     public FindBlockComments(activeEditor: vscode.TextEditor): void {
 
-        // If highlight multiline is off in package.json or doesn't apply to his language, return
-        if (!this.state.highlightMultilineComments) return;
-        
+        if (!findsBlockComments(this.state)) return;
+
         let text = activeEditor.document.getText();
 
         this.collectRanges(activeEditor, findBlockComments(text, this.escapedTags(), this.tagNames(), this.state.blockCommentStart, this.state.blockCommentEnd));
@@ -89,8 +84,7 @@ export class Parser {
      */
     public FindJSDocComments(activeEditor: vscode.TextEditor): void {
 
-        // If highlight multiline is off in package.json or doesn't apply to his language, return
-        if (!this.state.highlightMultilineComments && !this.state.highlightJSDoc) return;
+        if (!findsJSDocComments(this.state)) return;
 
         let text = activeEditor.document.getText();
 
@@ -153,11 +147,12 @@ export class Parser {
     private setTags(): void {
         let items = this.contributions.tags;
         for (let item of items) {
+            let prepared = prepareTag(item);
             this.tags.push({
-                tag: item.tag,
-                escapedTag: escapeTag(item.tag),
+                tag: prepared.tag,
+                escapedTag: prepared.escapedTag,
                 ranges: [],
-                decoration: vscode.window.createTextEditorDecorationType(toTagStyle(item))
+                decoration: vscode.window.createTextEditorDecorationType(prepared.style)
             });
         }
     }
