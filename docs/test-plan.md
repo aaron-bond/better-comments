@@ -61,7 +61,9 @@ To verify:
 
 If confirmed, `CommentSyntax` needs to accept the object shape and the config parsing needs to turn it into a plain string.
 
-### P3: Empty tag with `highlightPlainText` hangs the extension host (confirmed)
+### P3: Empty tag with `highlightPlainText` hangs the extension host (confirmed, fixed)
+
+**Fixed** on `task/improve-test-coverage`. The matching loops in `src/core/finder.ts` now step past zero-length matches without recording them. Any run that finished before the fix never produced a zero-length match, so only the runs that used to hang are affected. All existing snapshots were unchanged. A new settings variant, `empty-tag-plaintext-on`, records the fixed behaviour: with an empty tag, every non-empty plain text line gets that tag's colour, the same way an empty tag colours every comment in other languages. Whether empty tags should be ignored altogether is a separate decision. The real-VS Code repro (empty untitled file, then typing) now finishes in 8 s instead of freezing.
 
 **Confirmed on 2026-10-26**, in Node against the compiled parser and in real VS Code 1.143.1.
 

@@ -39,12 +39,16 @@ export const customTags: TagSetting[] = customTagNames.map((tag, i) => ({
     ...styleCombinations[i % styleCombinations.length],
 }));
 
+const emptyTagSet: TagSetting[] = [...defaultTags.slice(0, 2), { tag: '', color: '#ABCDEF' }];
+
 export const settingsVariants: SettingsVariant[] = [
     { name: 'default' },
     { name: 'multiline-off', multilineComments: false },
     { name: 'plaintext-on', highlightPlainText: true },
     { name: 'custom-tags', tags: customTags },
-    { name: 'empty-tag', tags: [...defaultTags.slice(0, 2), { tag: '', color: '#ABCDEF' }] },
+    { name: 'empty-tag', tags: emptyTagSet },
+    // Hung the extension host before the P3 fix
+    { name: 'empty-tag-plaintext-on', tags: emptyTagSet, highlightPlainText: true },
 ];
 
 // Languages set on the parser before the target, in order. The parser carries state between them.

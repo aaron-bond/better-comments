@@ -11,6 +11,23 @@ export interface TagMatch {
 }
 
 /**
+ * Runs a global regex over the text, skipping zero-length matches
+ * ? exec doesn't move past a zero-length match, so without this the loop never ends.
+ * ? the plaintext expression with an empty tag matches zero characters on an empty line
+ */
+function* matchAll(regEx: RegExp, text: string): Generator<RegExpExecArray> {
+    let match: RegExpExecArray | null;
+    while (match = regEx.exec(text)) {
+        if (match[0].length === 0) {
+            regEx.lastIndex++;
+            continue;
+        }
+
+        yield match;
+    }
+}
+
+/**
  * Finds the first configured tag a matched tag string belongs to, ignoring case
  * Throws if nothing was captured, as the parser always has
  */
@@ -31,8 +48,7 @@ export function* findLineComments(text: string, expression: string, isPlainText:
     let regexFlags = (isPlainText) ? "igm" : "ig";
     let regEx = new RegExp(expression, regexFlags);
 
-    let match: any;
-    while (match = regEx.exec(text)) {
+    for (let match of matchAll(regEx, text)) {
         // Required to ignore the first line of .py files (#61)
         if (ignoreFirstLine && match.index === 0) {
             continue;
@@ -81,13 +97,11 @@ export function* findJSDocComments(text: string, escapedTags: string[], tags: st
 
 function* findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tags: string[]): Generator<TagMatch> {
     // Find the multiline comment block
-    let match: any;
-    while (match = regEx.exec(text)) {
+    for (let match of matchAll(regEx, text)) {
         let commentBlock = match[0];
 
         // Find the line
-        let line;
-        while (line = commentRegEx.exec(commentBlock)) {
+        for (let line of matchAll(commentRegEx, commentBlock)) {
             // Find which custom delimiter was used in order to add it to the collection
             let matchString = line[3] as string;
             let tagIndex = findTagIndex(tags, matchString);
