@@ -1,8 +1,9 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
+import { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './core/languageState';
 import {
     buildBlockCommentExpression, buildBlockLineExpression, buildJSDocLineExpression, buildLineCommentExpression,
-    escapeLineDelimiter, escapeRegExp, escapeTag, jsDocCommentExpression,
+    escapeTag, jsDocCommentExpression,
 } from './core/regex';
 import { toTagStyle } from './core/style';
 
@@ -10,22 +11,13 @@ export class Parser {
     private tags: CommentTag[] = [];
     private expression: string = "";
 
-    private delimiter: string = "";
-    private blockCommentStart: string = "";
-    private blockCommentEnd: string = "";
-
-    private highlightSingleLineComments = true;
-    private highlightMultilineComments = false;
-    private highlightJSDoc = false;
-
-    // * this will allow plaintext files to show comment highlighting if switched on
-    private isPlainText = false;
-
-    // * this is used to prevent the first line of the file (specifically python) from coloring like other comments
-    private ignoreFirstLine = false;
+    // Carried from one language to the next
+    private state: LanguageState = initialLanguageState;
 
     // * this is used to trigger the events when a supported language code is found
-    public supportedLanguage = true;
+    public get supportedLanguage(): boolean {
+        return this.state.supportedLanguage;
+    }
 
     // Read from the package.json
     private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
@@ -53,7 +45,7 @@ export class Parser {
         await this.setDelimiter(languageCode);
 
         // if the language isn't supported, we don't need to go any further
-        if (!this.supportedLanguage) {
+        if (!this.state.supportedLanguage) {
             return;
         }
 
@@ -62,7 +54,7 @@ export class Parser {
             characters.push(commentTag.escapedTag);
         }
 
-        this.expression = buildLineCommentExpression(characters, this.delimiter, this.isPlainText && this.contributions.highlightPlainText);
+        this.expression = buildLineCommentExpression(characters, this.state.delimiter, this.state.isPlainText && this.contributions.highlightPlainText);
     }
 
     /**
@@ -72,12 +64,12 @@ export class Parser {
     public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
 
         // If highlight single line comments is off, single line comments are not supported for this language
-        if (!this.highlightSingleLineComments) return;
+        if (!this.state.highlightSingleLineComments) return;
 
         let text = activeEditor.document.getText();
 
         // if it's plain text, we have to do mutliline regex to catch the start of the line with ^
-        let regexFlags = (this.isPlainText) ? "igm" : "ig";
+        let regexFlags = (this.state.isPlainText) ? "igm" : "ig";
         let regEx = new RegExp(this.expression, regexFlags);
 
         let match: any;
@@ -87,7 +79,7 @@ export class Parser {
             let range = { range: new vscode.Range(startPos, endPos) };
 
             // Required to ignore the first line of .py files (#61)
-            if (this.ignoreFirstLine && startPos.line === 0 && startPos.character === 0) {
+            if (this.state.ignoreFirstLine && startPos.line === 0 && startPos.character === 0) {
                 continue;
             }
 
@@ -107,7 +99,7 @@ export class Parser {
     public FindBlockComments(activeEditor: vscode.TextEditor): void {
 
         // If highlight multiline is off in package.json or doesn't apply to his language, return
-        if (!this.highlightMultilineComments) return;
+        if (!this.state.highlightMultilineComments) return;
         
         let text = activeEditor.document.getText();
 
@@ -121,7 +113,7 @@ export class Parser {
         let commentMatchString = buildBlockLineExpression(characters);
 
         // Use start and end delimiters to find block comments
-        let regexString = buildBlockCommentExpression(this.blockCommentStart, this.blockCommentEnd);
+        let regexString = buildBlockCommentExpression(this.state.blockCommentStart, this.state.blockCommentEnd);
 
         let regEx = new RegExp(regexString, "gm");
         let commentRegEx = new RegExp(commentMatchString, "igm");
@@ -156,7 +148,7 @@ export class Parser {
     public FindJSDocComments(activeEditor: vscode.TextEditor): void {
 
         // If highlight multiline is off in package.json or doesn't apply to his language, return
-        if (!this.highlightMultilineComments && !this.highlightJSDoc) return;
+        if (!this.state.highlightMultilineComments && !this.state.highlightJSDoc) return;
 
         let text = activeEditor.document.getText();
 
@@ -216,42 +208,11 @@ export class Parser {
      * https://code.visualstudio.com/docs/languages/identifiers
      */
     private async setDelimiter(languageCode: string): Promise<void> {
-        this.supportedLanguage = false;
-        this.ignoreFirstLine = false;
-        this.isPlainText = false;
+        this.state = beginLanguageSwitch(this.state);
 
         const config = await this.configuration.GetCommentConfiguration(languageCode);
-        if (config) {
-            let blockCommentStart = config.blockComment ? config.blockComment[0] : null;
-            let blockCommentEnd = config.blockComment ? config.blockComment[1] : null;
 
-            this.setCommentFormat(config.lineComment || blockCommentStart, blockCommentStart, blockCommentEnd);
-
-            this.supportedLanguage = true;
-        }
-
-        switch (languageCode) {
-            case "apex":
-            case "javascript":
-            case "javascriptreact":
-            case "typescript":
-            case "typescriptreact":
-                this.highlightJSDoc = true;
-                break;
-
-            case "elixir":
-            case "python":
-            case "tcl":
-                this.ignoreFirstLine = true;
-                break;
-            
-            case "plaintext":
-                this.isPlainText = true;
-
-                // If highlight plaintext is enabled, this is a supported language
-                this.supportedLanguage = this.contributions.highlightPlainText;
-                break;
-        }
+        this.state = applyLanguage(this.state, languageCode, config, this.contributions);
     }
 
     /**
@@ -266,37 +227,6 @@ export class Parser {
                 ranges: [],
                 decoration: vscode.window.createTextEditorDecorationType(toTagStyle(item))
             });
-        }
-    }
-
-    /**
-     * Set up the comment format for single and multiline highlighting
-     * @param singleLine The single line comment delimiter. If NULL, single line is not supported
-     * @param start The start delimiter for block comments
-     * @param end The end delimiter for block comments
-     */
-    private setCommentFormat(
-            singleLine: string | string[] | null,
-            start: string | null = null,
-            end: string | null = null): void {
-
-        this.delimiter = "";
-        this.blockCommentStart = "";
-        this.blockCommentEnd = "";
-
-        // If no single line comment delimiter is passed, single line comments are not supported
-        if (singleLine) {
-            this.delimiter = escapeLineDelimiter(singleLine);
-        }
-        else {
-            this.highlightSingleLineComments = false;
-        }
-
-        if (start && end) {
-            this.blockCommentStart = escapeRegExp(start);
-            this.blockCommentEnd = escapeRegExp(end);
-
-            this.highlightMultilineComments = this.contributions.multilineComments;
         }
     }
 
