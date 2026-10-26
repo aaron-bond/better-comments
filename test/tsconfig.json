@@ -16,6 +16,8 @@
 		"noUnusedLocals": true
 	},
 	"exclude": [
-		"fixtures"
+		"fixtures",
+		"unit",
+		"node"
 	]
 }

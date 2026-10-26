@@ -119,6 +119,19 @@ export interface TagStyle { color: string; backgroundColor?: string; textDecorat
 
 The current parser carries state from one language to the next (pinned items 1, 2 and 4). A stateless `findTags` would silently change that. So the refactor first moves that state into an explicit object the core takes and returns, and the state stays, with the same values in the same cases. Removing it is a Phase 5 fix, with its own snapshot diff.
 
+## Running the tests
+
+| Command | What it runs | Time |
+|---|---|---|
+| `npm test` | Unit tests on `src/core`, the Node baseline (the full host matrix against the real `Parser` with a fake `vscode`) and the overlapping-switch test | ~2 s |
+| `npm run test:host` | The host baseline, the integration suite (harness and wiring) and the activation suite, in real VS Code 1.65.0 and stable | ~1 min |
+| `npm run test:all` | Both of the above | ~1 min |
+| `npm run coverage` | `test:all` under c8, including coverage from VS Code's extension host. The HTML report goes to `coverage/` | ~1 min |
+| `npm run test:baseline:host -- --update-snapshots` | Rewrites the host snapshots. Review every diff; any change is a behaviour change. | ~30 s |
+
+- Running from VS Code's terminal works; the runner clears `ELECTRON_RUN_AS_NODE` itself. On Linux without a display, use `xvfb-run -a npm run test:host`.
+- `BC_PARSER_PATH=<path to a build's parser.js> npm run test:node` runs the Node suites against another build, e.g. v3.0.2. It's how the overlapping-switch snapshot was recorded (with `BC_UPDATE_SNAPSHOTS=1`). v3.0.2 hangs on the `empty-tag-plaintext-on` cases (P3), so expect the Node baseline to stall there.
+
 ## Phase 0: Test tooling only (done)
 
 Only what's needed to run tests. Nothing in `src/` changes, and no production dependency changes.
@@ -275,6 +288,21 @@ Each step is small enough to review in one sitting and can be released on its ow
 - **Performance benchmark at the end:** build `084a906` in a separate worktree and run one benchmark suite against both builds on the same machine (large files, typing bursts, language switches). The harness needs an option to load the extension from another folder for this.
 
 ## Phase 3: Unit tests and the test seam
+
+**Status (2026-10-26): done, except the test seam, which isn't needed.**
+
+- **Unit tests** (`test/unit/`, 90 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the host snapshots for both VS Code versions. All 204 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
+- **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
+- **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
+- **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.
+- **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
+- **Coverage:** 99.9% of lines and 99.2% of branches across all suites. The only uncovered line is `extension.ts:46` (the handler for extensions being added or removed), which needs an extension installed during the run.
+- **Portability:** `.gitattributes` keeps the fixtures and snapshots byte-exact on Windows, and the test profile sets `files.eol` to `\n`. Neither has been tried on Windows yet; that comes with CI.
+- **No test seam needed.** The shim records the real extension's calls without any change to `src/`, so `activate()` doesn't need to return a test API.
+
+The original plan for this phase follows.
+
 
 - Table-driven unit tests on `src/core`, starting by porting the generated-fixture cases from the baseline. Once these are in place, the Node baseline becomes optional locally. It stays in CI until the unit tests cover the same cases.
 - `activate()` returns a small API used only by tests, and the end-to-end wiring tests move onto it:

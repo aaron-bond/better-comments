@@ -50,6 +50,16 @@ describe('test harness', () => {
         assert.deepStrictEqual(lineComments, { javascript: '//', csharp: '//', python: '#' });
     });
 
+    it('treats a language whose config is unreadable or missing as having none', async () => {
+        const { Configuration } = loadOut('configuration');
+        const config = new Configuration();
+
+        assert.strictEqual(await config.GetCommentConfiguration('bc-broken-config'), undefined);
+        assert.strictEqual(await config.GetCommentConfiguration('bc-missing-config'), undefined);
+        // A failed read is remembered, not retried
+        assert.strictEqual(await config.GetCommentConfiguration('bc-broken-config'), undefined);
+    });
+
     it('captures the activated extension decorating an opened file', async () => {
         const doc = await vscode.workspace.openTextDocument(path.join(samplesDir, 'javascript.js'));
         await vscode.window.showTextDocument(doc);

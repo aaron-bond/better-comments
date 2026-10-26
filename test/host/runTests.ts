@@ -22,6 +22,10 @@ async function main(): Promise<void> {
     const failed: string[] = [];
     for (const version of versions) {
         const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'better-comments-test-'));
+
+        // New and empty documents get the OS line ending by default, which would make snapshots differ on Windows
+        fs.mkdirSync(path.join(userDataDir, 'User'));
+        fs.writeFileSync(path.join(userDataDir, 'User', 'settings.json'), JSON.stringify({ 'files.eol': '\n' }));
         try {
             await runTests({
                 version,
@@ -37,6 +41,8 @@ async function main(): Promise<void> {
                     BC_UPDATE_SNAPSHOTS: updateSnapshots ? '1' : '',
                 },
                 launchArgs: [
+                    // The activation suite starts with a file open, as when VS Code is opened on a file
+                    ...(suite === 'activation' ? [path.join(repoRoot, 'test/fixtures/samples/javascript.js')] : []),
                     '--disable-extensions',
                     '--user-data-dir', userDataDir,
                     '--no-sandbox',

@@ -44,12 +44,13 @@ export function groupByResult(byHistory: Array<[string, CaseResult]>): Snapshot[
 
 export const updateSnapshots = process.env.BC_UPDATE_SNAPSHOTS === '1';
 
-export function matchSnapshot(relativePath: string, actual: unknown): void {
+// readOnly: only ever compare, even with --update-snapshots (the Node baseline checks the host's snapshots)
+export function matchSnapshot(relativePath: string, actual: unknown, options: { readOnly?: boolean } = {}): void {
     const file = path.join(snapshotRoot, relativePath);
     // Round-trip so undefined properties compare the same way they're stored
     const normalised = JSON.parse(JSON.stringify(actual));
 
-    if (updateSnapshots) {
+    if (updateSnapshots && !options.readOnly) {
         fs.mkdirSync(path.dirname(file), { recursive: true });
         fs.writeFileSync(file, JSON.stringify(normalised, null, 2) + '\n');
         return;

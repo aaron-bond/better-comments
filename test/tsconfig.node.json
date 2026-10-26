@@ -1,0 +1,23 @@
+{
+	// For the suites that run in plain Node through ts-node (unit and node), straight from the TypeScript sources
+	"compilerOptions": {
+		"strict": true,
+		"module": "commonjs",
+		"target": "es2019",
+		"lib": [
+			"es2019"
+		],
+		"types": [
+			"node",
+			"mocha"
+		],
+		"noUnusedLocals": true
+	},
+	"include": [
+		"unit",
+		"node",
+		"baseline",
+		"repo.ts",
+		"../src/typings"
+	]
+}

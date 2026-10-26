@@ -1,6 +1,6 @@
 {
     "name": "no-comment-syntax",
-    "displayName": "Better Comments test fixture: language with an empty comments object",
+    "displayName": "Better Comments test fixture: languages with unusual configs",
     "publisher": "better-comments-tests",
     "version": "0.0.1",
     "engines": {
@@ -10,8 +10,24 @@
         "languages": [
             {
                 "id": "bc-no-comment-syntax",
-                "extensions": [".bcnocomment"],
+                "extensions": [
+                    ".bcnocomment"
+                ],
                 "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "bc-broken-config",
+                "extensions": [
+                    ".bcbroken"
+                ],
+                "configuration": "./broken-language-configuration.json"
+            },
+            {
+                "id": "bc-missing-config",
+                "extensions": [
+                    ".bcmissing"
+                ],
+                "configuration": "./does-not-exist.json"
             }
         ]
     }
