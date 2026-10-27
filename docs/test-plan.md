@@ -147,18 +147,19 @@ Only what's needed to run tests. Nothing in `src/` changes, and no production de
 - `test/host/integration/harness.test.ts` checks the harness itself. The shim is installed before activation, decoration types are recorded, the real configs are read, and the activated extension's decorations are captured after opening a file and after an edit. If the shim is disabled, these checks fail.
 - Scripts so far: `compile-tests` and `test:integration`. Mocha errors when a glob matches no files, so `test:baseline`, `test:baseline:host`, `test:unit` and `test` are added along with their first test files.
 
-Built-in language configs change between VS Code versions, so each version gets its own snapshot set.
+Built-in language configs can change between VS Code versions, so every version is compared against the snapshots. They share one set; a version only gets its own file for a case where its output differs.
 
 ## Phase 1: Comprehensive baseline (no source changes)
 
-**Status:** the real-host baseline is in place. Run `npm run test:baseline:host`, and add `-- --update-snapshots` to rewrite. It covers 85 snapshot files per version, each run under 8 histories (680 parser runs), and takes about 10 s per version. The snapshots for 1.65.0 and stable are byte-identical. A one-line change to the compiled parser (dropping `ignoreFirstLine`) failed exactly the 14 Python cases it should. The Node baseline is next.
+**Status:** the real-host baseline is in place. Run `npm run test:baseline:host`, and add `-- --update-snapshots` to rewrite. It covers 85 snapshot files, each run under 8 histories (680 parser runs), and takes about 10 s per version. 1.65.0 and stable give byte-identical output, so they share one snapshot set. A one-line change to the compiled parser (dropping `ignoreFirstLine`) failed exactly the 14 Python cases it should. The Node baseline is next.
 
 As built:
-- **Snapshot files:** `test/baseline/snapshots/<label>/<settings>/<target>--<input>.json`. Each one records the decoration types once, then lists the results with the histories that produce each. A split between groups shows where carried-over state matters.
+- **Snapshot files:** `test/baseline/snapshots/host/<settings>/<target>--<input>.json`, shared by every VS Code version. Each one records the decoration types once, then lists the results with the histories that produce each. A split between groups shows where carried-over state matters.
+- **Per-version files:** where a version's output differs from the shared file, `--update-snapshots` writes it to `test/baseline/snapshots/versions/<label>/` at the same path, and that version is compared against it instead. The first version run (1.65.0 by default) writes the shared set, so update with every version, not just one. There are none today.
 - **Shared code:** the matrix (`test/baseline/matrix.ts`) and the input generator (`test/baseline/generate.ts`) will also drive the Node baseline.
 - **Settings** are written to the real user settings of the temporary profile, and each case uses a fresh `Parser` that does exactly what `updateDecorations` does.
 - **Histories** call only `SetRegex` (now `SetLanguage`). That's the only method that changes the carried-over flags.
-- **`language-configs.json`** in each label folder is the config dump the Node baseline reads.
+- **`language-configs.json`** in `host/` is the config dump the Node baseline reads. Like any other snapshot, a version gets its own copy only if its configs differ.
 
 ### How output is captured
 
@@ -299,7 +300,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
 - **Unit tests** (`test/unit/`, 93 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
-- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the host snapshots for both VS Code versions. All 204 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
+- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 102 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.

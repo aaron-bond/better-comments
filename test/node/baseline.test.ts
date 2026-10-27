@@ -7,7 +7,7 @@ import { CommentSyntax } from '../baseline/generate';
 import {
     effectiveTags, generatedText, histories, historyName, InputSpec, inputName, SettingsVariant, settingsVariants, targets,
 } from '../baseline/matrix';
-import { CaseResult, groupByResult, matchSnapshot, snapshotRoot, Snapshot } from '../baseline/snapshot';
+import { CaseResult, groupByResult, hostSnapshotFile, matchHostSnapshot, Snapshot, versionsWithOwnSnapshots } from '../baseline/snapshot';
 import { repoRoot } from '../repo';
 import { runUpdate, setLanguage } from '../parserUpdate';
 
@@ -17,7 +17,8 @@ import { runUpdate, setLanguage } from '../parserUpdate';
 
 const Parser = loadParser();
 const samplesDir = path.join(repoRoot, 'test/fixtures/samples');
-const labels = fs.readdirSync(snapshotRoot).filter(name => fs.existsSync(path.join(snapshotRoot, name, 'language-configs.json')));
+// The shared set, then each version that has some output of its own
+const versions: Array<string | undefined> = [undefined, ...versionsWithOwnSnapshots()];
 
 function settingsFor(variant: SettingsVariant) {
     return {
@@ -79,14 +80,16 @@ async function runCase(doc: FakeDocument, history: string[], configs: Record<str
 }
 
 describe('Node baseline', () => {
-    it('has host snapshots to compare against', () => {
-        assert.ok(labels.length > 0, `No host snapshots under ${snapshotRoot}. Run npm run test:baseline:host -- --update-snapshots first.`);
-    });
-
-    for (const label of labels) {
-        describe(label, () => {
-            const configs: Record<string, CommentSyntax | null> =
-                JSON.parse(fs.readFileSync(path.join(snapshotRoot, label, 'language-configs.json'), 'utf8'));
+    for (const version of versions) {
+        describe(version ?? 'shared snapshots', () => {
+            const configsFile = hostSnapshotFile('language-configs.json', version);
+            if (!fs.existsSync(configsFile)) {
+                it('has host snapshots to compare against', () => {
+                    assert.fail(`No ${configsFile}. Run npm run test:baseline:host -- --update-snapshots first.`);
+                });
+                return;
+            }
+            const configs: Record<string, CommentSyntax | null> = JSON.parse(fs.readFileSync(configsFile, 'utf8'));
 
             for (const variant of settingsVariants) {
                 describe(`settings: ${variant.name}`, () => {
@@ -114,7 +117,7 @@ describe('Node baseline', () => {
                                     decorationTypes: decorationTypes!,
                                     results: groupByResult(byHistory),
                                 };
-                                matchSnapshot(path.join(label, variant.name, `${target.languageId}--${inputName(input)}.json`), snapshot, { readOnly: true });
+                                matchHostSnapshot(path.join(variant.name, `${target.languageId}--${inputName(input)}.json`), snapshot, version, { readOnly: true });
                             });
                         }
                     }

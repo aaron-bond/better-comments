@@ -6,7 +6,7 @@ import {
     effectiveTags, generatedText, histories, historyName, InputSpec, inputName, languagesUsed,
     noCommentSyntaxLanguage, SettingsVariant, settingsVariants, targets,
 } from '../../baseline/matrix';
-import { CaseResult, groupByResult, matchSnapshot, RecordedRange, Snapshot } from '../../baseline/snapshot';
+import { CaseResult, groupByResult, matchHostSnapshot, RecordedRange, Snapshot } from '../../baseline/snapshot';
 import { loadOut, recorder, samplesDir, toRanges } from '../shim';
 import { runUpdate, setLanguage } from '../../parserUpdate';
 
@@ -109,7 +109,7 @@ describe(`host baseline (${label})`, function () {
         for (const languageId of languagesUsed) {
             dump[languageId] = (await syntaxOf(languageId)) ?? null;
         }
-        matchSnapshot(path.join(label, 'language-configs.json'), dump);
+        matchHostSnapshot('language-configs.json', dump, label);
     });
 
     for (const variant of settingsVariants) {
@@ -139,7 +139,7 @@ describe(`host baseline (${label})`, function () {
                             decorationTypes: decorationTypes!,
                             results: groupByResult(byHistory),
                         };
-                        matchSnapshot(path.join(label, variant.name, `${target.languageId}--${inputName(input)}.json`), snapshot);
+                        matchHostSnapshot(path.join(variant.name, `${target.languageId}--${inputName(input)}.json`), snapshot, label);
                     });
                 }
             }

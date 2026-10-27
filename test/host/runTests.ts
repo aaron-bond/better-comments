@@ -15,15 +15,17 @@ async function main(): Promise<void> {
     const versions = versionArgs.length ? versionArgs : defaultVersions;
 
     const failed: string[] = [];
-    for (const version of versions) {
+    for (const [i, version] of versions.entries()) {
         try {
             await launchSuite({
                 suite,
                 version,
                 env: {
-                    // Snapshots are kept per version label ("1.65.0", "stable"), not per resolved version
+                    // Versions share one snapshot set and differ by label ("1.65.0", "stable"), not by resolved version
                     BC_VSCODE_LABEL: version,
                     BC_UPDATE_SNAPSHOTS: updateSnapshots ? '1' : '',
+                    // The first version run writes the shared set; the rest only record where they differ
+                    BC_OWNS_SHARED_SNAPSHOTS: i === 0 ? '1' : '',
                 },
                 // The activation suite starts with a file open, as when VS Code is opened on a file
                 files: suite === 'activation' ? [path.join(repoRoot, 'test/fixtures/samples/javascript.js')] : [],
