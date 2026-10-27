@@ -1,5 +1,5 @@
 {
-    // The object form of lineComment, as the built-in Makefile config uses from some VS Code version after 1.65.0.
+    // The object form of lineComment, as the built-in Makefile config uses from some VS Code version after 1.101.0.
     // A fixture keeps the config the same on every version the host baseline runs (P1, and the second route to P3)
     "comments": {
         "lineComment": { "comment": "#", "noIndent": true }

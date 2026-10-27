@@ -76,7 +76,7 @@ Whether empty tags should be ignored altogether is a separate decision. The real
 An empty tag string adds an empty alternative to the single-line regex, `(!|)`. `RegExp.exec` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` never ends if the regex can match zero characters. It can whenever nothing before the tags has to match:
 
 - **Plain text, with `highlightPlainText` on.** The regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `gm` flags, which matches zero characters on an empty line. Any plain text document that is empty or ends with a newline hangs. Whitespace-only lines and text with no empty lines finish normally.
-- **Any language with an empty delimiter.** An object-form `lineComment` gives the delimiter `""` (P1), and so would `lineComment: []`. The regex is then `()+( |\t)*(<tags>)+(.*)`, which matches zero characters anywhere. No other setting is needed: on a VS Code version whose built-in Makefile config uses the object form (1.143.1 does, 1.65.0 doesn't), opening a Makefile hangs. Reproduced in Node against the v3.0.2 build; not yet tried in real VS Code.
+- **Any language with an empty delimiter.** An object-form `lineComment` gives the delimiter `""` (P1), and so would `lineComment: []`. The regex is then `()+( |\t)*(<tags>)+(.*)`, which matches zero characters anywhere. No other setting is needed: on a VS Code version whose built-in Makefile config uses the object form (1.143.1 does; 1.65.0 and 1.101.0 don't), opening a Makefile hangs. Reproduced in Node against the v3.0.2 build; not yet tried in real VS Code.
 - **Languages with a delimiter are safe.** The same tags in JavaScript, or in Python with `"#"`, finish normally, because the delimiter has to match.
 - **Real VS Code, plain text route:** with `better-comments.highlightPlainText: true` and a tag `{ "tag": "" }` in `settings.json` at startup, opening a new untitled file (Ctrl+N, which is empty plain text) freezes the extension host. The run had to be killed after 60 s. The same steps with `TODO` instead of `""` finish in 8 s.
 - **Reach:** an empty tag, plus either `highlightPlainText` or a Makefile (or any other object-form language) on a recent VS Code. That the empty tag is needed is presumably why it hasn't been reported. The `tags` schema doesn't constrain its items, so an empty tag is a valid setting, for example halfway through editing. The only related-looking issue is #187 ("Extension causes high cpu load", 2019, v2.0.5, no profile or settings), and there's no evidence it's the same thing.
@@ -133,7 +133,7 @@ The current parser carries state from one language to the next (pinned items 1, 
 | Command | What it runs | Time |
 |---|---|---|
 | `npm test` | Unit tests on `src/core`, the Node baseline (the full host matrix against the real `Parser` with a fake `vscode`) and the overlapping-switch test | ~2 s |
-| `npm run test:host` | The host baseline, the integration suite (harness and wiring) and the activation suite, in real VS Code 1.65.0 and stable | ~1 min |
+| `npm run test:host` | The host baseline, the integration suite (harness and wiring) and the activation suite, in real VS Code 1.101.0 and stable | ~1 min |
 | `npm run test:all` | Both of the above | ~1 min |
 | `npm run coverage` | `test:all` under c8, including coverage from VS Code's extension host. The HTML report goes to `coverage/` | ~1 min |
 | `npm run test:baseline:host -- --update-snapshots` | Rewrites the host snapshots. Review every diff; any change is a behaviour change. | ~30 s |
@@ -146,11 +146,11 @@ The current parser carries state from one language to the next (pinned items 1, 
 
 Only what's needed to run tests. Nothing in `src/` changes, and no production dependency changes.
 
-- Dev dependencies: Mocha 10 (VS Code 1.65's extension host runs Node 14, and Mocha 11 needs 18), `@types/mocha`, ts-node (for the Node suites in Phase 1), `@vscode/test-electron`.
+- Dev dependencies: Mocha (it runs inside the oldest supported VS Code's extension host, so its Node version limits Mocha's: Node 22 in 1.101), `@types/mocha`, ts-node (for the Node suites in Phase 1), `@vscode/test-electron`.
 - The dead `src/test/index.ts` is deleted. The samples moved to `test/fixtures/samples/`.
 - `tsconfig.json` now has `"include": ["src"]`. Tests have their own `test/tsconfig.json` and compile to `out/test/`, which `.vscodeignore` already excludes. `docs/**` is added to `.vscodeignore`, since the VSIX would otherwise ship this plan.
 - **`@vscode/test-electron` is used directly, not `@vscode/test-cli`.** The shim has to be in place before any `out/` module loads and before the extension activates, and `ELECTRON_RUN_AS_NODE` has to be cleared. A small runner of our own makes both easy to guarantee.
-  - `test/host/runTests.ts` launches VS Code 1.65.0 (the lowest `engines` allows) and `stable` by default. It disables other extensions and uses a temporary user-data dir.
+  - `test/host/runTests.ts` launches VS Code 1.101.0 (the lowest `engines` allows) and `stable` by default. It disables other extensions and uses a temporary user-data dir.
   - `test/host/index.ts` installs the shim (`test/host/shim.ts`), then runs the Mocha suite in the folder named by `BC_TEST_SUITE`.
 - `test/host/integration/harness.test.ts` checks the harness itself. The shim is installed before activation, decoration types are recorded, the real configs are read, and the activated extension's decorations are captured after opening a file and after an edit. If the shim is disabled, these checks fail.
 - Scripts so far: `compile-tests` and `test:integration`. Mocha errors when a glob matches no files, so `test:baseline`, `test:baseline:host`, `test:unit` and `test` are added along with their first test files.
@@ -163,7 +163,7 @@ Built-in language configs can change between VS Code versions, so every version 
 
 As built:
 - **Snapshot files:** `test/baseline/snapshots/host/<settings>/<target>--<input>.json`, shared by every VS Code version. Each one records the decoration types once, then lists the results with the histories that produce each. A split between groups shows where carried-over state matters.
-- **Per-version files:** where a version's output differs from the shared file, `--update-snapshots` writes it to `test/baseline/snapshots/versions/<label>/` at the same path, and that version is compared against it instead. The first version run (1.65.0 by default) writes the shared set, so update with every version, not just one. There are none today.
+- **Per-version files:** where a version's output differs from the shared file, `--update-snapshots` writes it to `test/baseline/snapshots/versions/<label>/` at the same path, and that version is compared against it instead. The first version run (1.101.0 by default) writes the shared set, so update with every version, not just one. There are none today.
 - **Shared code:** the matrix (`test/baseline/matrix.ts`) and the input generator (`test/baseline/generate.ts`) will also drive the Node baseline.
 - **Settings** are written to the real user settings of the temporary profile, and each case uses a fresh `Parser` that does exactly what `updateDecorations` does.
 - **Histories** call only `SetRegex` (now `SetLanguage`). That's the only method that changes the carried-over flags.
@@ -268,7 +268,7 @@ Priming histories may use a language outside the three only to reach a state, no
 
 - Every pinned behaviour has at least one case that shows it. P1 (Makefile) is verified separately, as described in its section.
 - The Node and real-host baselines agree on every case they share.
-- Snapshots exist for VS Code 1.65 and `stable`.
+- Snapshots exist for VS Code 1.101 and `stable` (one shared set).
 
 ## Phase 1.5: Dependency refresh, guarded by the baseline
 
@@ -340,7 +340,7 @@ GitHub Actions workflow `.github/workflows/ci.yml`:
 | Job | Runs on | Steps |
 |---|---|---|
 | lint + baseline + unit | ubuntu | `npm ci`, `npm run lint`, `npm test` |
-| host baseline + integration | ubuntu (`xvfb-run`), windows, macos; VS Code 1.65 and stable | `npm ci`, `npm run compile`, `npm run test:baseline:host`, `npm run test:integration` |
+| host baseline + integration | ubuntu (`xvfb-run`), windows, macos; VS Code 1.101 and stable | `npm ci`, `npm run compile`, `npm run test:baseline:host`, `npm run test:integration` |
 | package | ubuntu | `npx @vscode/vsce package` to make sure the VSIX builds; upload it as an artifact |
 
 The host baseline is slow, so it can run on PRs and `main` only, not on every push to a branch. Add Dependabot for npm and GitHub Actions. Publishing is gated on a green `main`.
