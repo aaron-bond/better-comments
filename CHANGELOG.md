@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### House Keeping
 * Better Comments now requires VS Code 1.101 (June 2025) or later, up from 1.65. Older versions of VS Code keep the release they already have.
+* Updated json5 to 2.2.3, which fixes a security advisory (CVE-2022-46175). Better Comments only uses it to read VS Code's language configuration files.
 
 ## [3.0.2] (2022-07-30)
 ### House Keeping
