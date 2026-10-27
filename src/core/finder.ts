@@ -1,13 +1,47 @@
+import { findsBlockComments, findsJSDocComments, findsLineComments, LanguageSettings, LanguageState, lineCommentExpression } from './languageState';
 import { buildBlockCommentExpression, buildBlockLineExpression, buildJSDocLineExpression, jsDocCommentExpression } from './regex';
+import { PreparedTag } from './tags';
 
 // Finds tagged comments in a document's text. Matches are document offsets.
-// ? each finder pushes into an array the caller passes in, as it goes, as the parser always has:
-// ? if a tag lookup throws partway through, the matches found before it are already in the array
 
 export interface TagMatch {
     tagIndex: number; // index into the configured tags
     start: number;
     end: number;
+}
+
+// What findTags needs of each configured tag
+export type MatchTag = Pick<PreparedTag, 'tag' | 'escapedTag'>;
+
+/**
+ * Finds every tagged comment in the text: single line comments, then block comments, then JSDoc comments,
+ * each scan only if the language state allows it. Within each tag, ranges are applied in this order.
+ * @param text The document's text
+ * @param state The language state after applyLanguage
+ * @param tags The configured tags, in configuration order
+ * @param settings The better-comments settings
+ */
+export function findTags(text: string, state: LanguageState, tags: MatchTag[], settings: LanguageSettings): TagMatch[] {
+    let matches: TagMatch[] = [];
+    let tagNames = tags.map(t => t.tag);
+    let escapedTags = tags.map(t => t.escapedTag);
+
+    if (findsLineComments(state)) {
+        let expression = lineCommentExpression(state, escapedTags, settings);
+        findLineComments(text, expression, state, tagNames, matches);
+    }
+
+    if (findsBlockComments(state)) {
+        let blockRegEx = new RegExp(buildBlockCommentExpression(state.blockCommentStart, state.blockCommentEnd), "gm");
+        findTaggedLines(text, blockRegEx, new RegExp(buildBlockLineExpression(escapedTags), "igm"), tagNames, matches);
+    }
+
+    if (findsJSDocComments(state)) {
+        let jsDocRegEx = new RegExp(jsDocCommentExpression, "gm");
+        findTaggedLines(text, jsDocRegEx, new RegExp(buildJSDocLineExpression(escapedTags), "igm"), tagNames, matches);
+    }
+
+    return matches;
 }
 
 /**
@@ -26,24 +60,15 @@ function skipZeroLength(regEx: RegExp, match: RegExpExecArray): boolean {
 
 /**
  * Finds the first configured tag a matched tag string belongs to, ignoring case
- * Throws if nothing was captured, as the parser always has
  */
-function findTagIndex(tags: string[], matched: string): number {
-    return tags.findIndex(tag => tag.toLowerCase() === matched.toLowerCase());
+function findTagIndex(tagNames: string[], matched: string): number {
+    return tagNames.findIndex(tag => tag.toLowerCase() === matched.toLowerCase());
 }
 
-/**
- * Finds all single line comments matching the expression built by buildLineCommentExpression
- * @param text The document's text
- * @param expression The single line comment expression
- * @param isPlainText True for plaintext, where tags are matched at the start of each line
- * @param ignoreFirstLine True to skip a match at the very start of the document
- * @param tags The configured tags, in configuration order
- * @param matches Receives each match as it's found
- */
-export function findLineComments(text: string, expression: string, isPlainText: boolean, ignoreFirstLine: boolean, tags: string[], matches: TagMatch[]): void {
+// Single line comments, matching the expression built by lineCommentExpression
+function findLineComments(text: string, expression: string, state: LanguageState, tagNames: string[], matches: TagMatch[]): void {
     // if it's plain text, we have to do mutliline regex to catch the start of the line with ^
-    let regexFlags = (isPlainText) ? "igm" : "ig";
+    let regexFlags = (state.isPlainText) ? "igm" : "ig";
     let regEx = new RegExp(expression, regexFlags);
 
     let match: RegExpExecArray | null;
@@ -51,12 +76,12 @@ export function findLineComments(text: string, expression: string, isPlainText: 
         if (skipZeroLength(regEx, match)) continue;
 
         // Required to ignore the first line of .py files (#61)
-        if (ignoreFirstLine && match.index === 0) {
+        if (state.ignoreFirstLine && match.index === 0) {
             continue;
         }
 
         // Find which custom delimiter was used in order to add it to the collection
-        let tagIndex = findTagIndex(tags, match[3]);
+        let tagIndex = findTagIndex(tagNames, match[3]);
 
         if (tagIndex >= 0) {
             matches.push({ tagIndex, start: match.index, end: match.index + match[0].length });
@@ -64,41 +89,8 @@ export function findLineComments(text: string, expression: string, isPlainText: 
     }
 }
 
-/**
- * Finds tagged lines in block comments as indicated by start and end delimiter
- * @param text The document's text
- * @param escapedTags The escaped tags, in configuration order
- * @param tags The configured tags, in configuration order
- * @param blockCommentStart The escaped start delimiter
- * @param blockCommentEnd The escaped end delimiter
- * @param matches Receives each match as it's found
- */
-export function findBlockComments(text: string, escapedTags: string[], tags: string[], blockCommentStart: string, blockCommentEnd: string, matches: TagMatch[]): void {
-    // Combine custom delimiters and the rest of the comment block matcher
-    let commentMatchString = buildBlockLineExpression(escapedTags);
-
-    // Use start and end delimiters to find block comments
-    let regexString = buildBlockCommentExpression(blockCommentStart, blockCommentEnd);
-
-    findTaggedLines(text, new RegExp(regexString, "gm"), new RegExp(commentMatchString, "igm"), tags, matches);
-}
-
-/**
- * Finds tagged lines in multiline comments starting with "*"
- * @param text The document's text
- * @param escapedTags The escaped tags, in configuration order
- * @param tags The configured tags, in configuration order
- * @param matches Receives each match as it's found
- */
-export function findJSDocComments(text: string, escapedTags: string[], tags: string[], matches: TagMatch[]): void {
-    // Combine custom delimiters and the rest of the comment block matcher
-    let commentMatchString = buildJSDocLineExpression(escapedTags);
-    let regEx = new RegExp(jsDocCommentExpression, "gm");
-
-    findTaggedLines(text, regEx, new RegExp(commentMatchString, "igm"), tags, matches);
-}
-
-function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tags: string[], matches: TagMatch[]): void {
+// Tagged lines inside the comments regEx finds: block comments, or JSDoc comments after the leading *
+function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tagNames: string[], matches: TagMatch[]): void {
     // Find the multiline comment block
     let match: RegExpExecArray | null;
     while (match = regEx.exec(text)) {
@@ -113,7 +105,7 @@ function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tags
 
             // Find which custom delimiter was used in order to add it to the collection
             let matchString = line[3] as string;
-            let tagIndex = findTagIndex(tags, matchString);
+            let tagIndex = findTagIndex(tagNames, matchString);
 
             if (tagIndex >= 0) {
                 matches.push({

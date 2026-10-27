@@ -1,15 +1,11 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
-import { findBlockComments, findJSDocComments, findLineComments, TagMatch } from './core/finder';
-import {
-    applyLanguage, beginLanguageSwitch, findsBlockComments, findsJSDocComments, findsLineComments,
-    initialLanguageState, LanguageState, lineCommentExpression,
-} from './core/languageState';
+import { findTags } from './core/finder';
+import { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './core/languageState';
 import { prepareTag } from './core/tags';
 
 export class Parser {
     private tags: CommentTag[] = [];
-    private expression: string = "";
 
     // Carried from one language to the next
     private state: LanguageState = initialLanguageState;
@@ -37,58 +33,27 @@ export class Parser {
     }
 
     /**
-     * Sets the regex to be used by the matcher based on the config specified in the package.json
+     * Sets the language whose comments FindComments looks for, based on its comment syntax
      * @param languageCode The short code of the current language
      * https://code.visualstudio.com/docs/languages/identifiers
      */
     public async SetRegex(languageCode: string) {
         await this.setDelimiter(languageCode);
+    }
 
-        // if the language isn't supported, we don't need to go any further
-        if (!this.state.supportedLanguage) {
-            return;
+    /**
+     * Finds all tagged comments in the document, ready for ApplyDecorations
+     * @param activeEditor The active text editor containing the code document
+     */
+    public FindComments(activeEditor: vscode.TextEditor): void {
+        let text = activeEditor.document.getText();
+
+        for (let match of findTags(text, this.state, this.tags, this.contributions)) {
+            let startPos = activeEditor.document.positionAt(match.start);
+            let endPos = activeEditor.document.positionAt(match.end);
+
+            this.tags[match.tagIndex].ranges.push({ range: new vscode.Range(startPos, endPos) });
         }
-
-        this.expression = lineCommentExpression(this.state, this.escapedTags(), this.contributions);
-    }
-
-    /**
-     * Finds all single line comments delimited by a given delimiter and matching tags specified in package.json
-     * @param activeEditor The active text editor containing the code document
-     */
-    public FindSingleLineComments(activeEditor: vscode.TextEditor): void {
-
-        if (!findsLineComments(this.state)) return;
-
-        let text = activeEditor.document.getText();
-
-        this.collectRanges(activeEditor, matches => findLineComments(text, this.expression, this.state.isPlainText, this.state.ignoreFirstLine, this.tagNames(), matches));
-    }
-
-    /**
-     * Finds block comments as indicated by start and end delimiter
-     * @param activeEditor The active text editor containing the code document
-     */
-    public FindBlockComments(activeEditor: vscode.TextEditor): void {
-
-        if (!findsBlockComments(this.state)) return;
-
-        let text = activeEditor.document.getText();
-
-        this.collectRanges(activeEditor, matches => findBlockComments(text, this.escapedTags(), this.tagNames(), this.state.blockCommentStart, this.state.blockCommentEnd, matches));
-    }
-
-    /**
-     * Finds all multiline comments starting with "*"
-     * @param activeEditor The active text editor containing the code document
-     */
-    public FindJSDocComments(activeEditor: vscode.TextEditor): void {
-
-        if (!findsJSDocComments(this.state)) return;
-
-        let text = activeEditor.document.getText();
-
-        this.collectRanges(activeEditor, matches => findJSDocComments(text, this.escapedTags(), this.tagNames(), matches));
     }
 
     /**
@@ -105,34 +70,6 @@ export class Parser {
     }
 
     //#region  Private Methods
-
-    /**
-     * Runs a finder and adds its matches to their tags' ranges
-     * ? in finally, so if the finder throws partway through, the matches before it are still added, as they always have been
-     * @param activeEditor The active text editor containing the code document
-     * @param find Runs a finder, which pushes its matches (document offsets) into the array
-     */
-    private collectRanges(activeEditor: vscode.TextEditor, find: (matches: TagMatch[]) => void): void {
-        let matches: TagMatch[] = [];
-        try {
-            find(matches);
-        } finally {
-            for (let match of matches) {
-                let startPos = activeEditor.document.positionAt(match.start);
-                let endPos = activeEditor.document.positionAt(match.end);
-
-                this.tags[match.tagIndex].ranges.push({ range: new vscode.Range(startPos, endPos) });
-            }
-        }
-    }
-
-    private tagNames(): string[] {
-        return this.tags.map(commentTag => commentTag.tag);
-    }
-
-    private escapedTags(): string[] {
-        return this.tags.map(commentTag => commentTag.escapedTag);
-    }
 
     /**
      * Sets the comment delimiter [//, #, --, '] of a given language

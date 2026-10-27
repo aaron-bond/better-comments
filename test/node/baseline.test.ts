@@ -9,6 +9,7 @@ import {
 } from '../baseline/matrix';
 import { CaseResult, groupByResult, matchSnapshot, snapshotRoot, Snapshot } from '../baseline/snapshot';
 import { repoRoot } from '../repo';
+import { runUpdate } from '../parserUpdate';
 
 // The host baseline's matrix, run in plain Node against the real Parser with a fake vscode and the language
 // configs the host recorded. It compares against the host's snapshots and never writes them, so passing
@@ -62,10 +63,7 @@ async function runCase(doc: FakeDocument, history: string[], configs: Record<str
     const result: CaseResult = { supported: parser.supportedLanguage, setDecorationsCalls: 0, applied: [] };
     if (parser.supportedLanguage) {
         try {
-            parser.FindSingleLineComments(editor);
-            parser.FindBlockComments(editor);
-            parser.FindJSDocComments(editor);
-            parser.ApplyDecorations(editor);
+            runUpdate(parser, editor);
         } catch (e) {
             result.error = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
         }

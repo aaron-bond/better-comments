@@ -2,6 +2,7 @@ import { FakeDocument, loadParser, Range, setSettings } from './fakeVscode';
 
 import * as assert from 'assert';
 import { matchSnapshot } from '../baseline/snapshot';
+import { runUpdate } from '../parserUpdate';
 
 // Pinned 9: language switches are async and change state shared by every editor, so two switches can
 // overlap. The baseline only ever switches one language at a time, so this records what happens when
@@ -41,10 +42,7 @@ function observe(parser: any): string {
     let error: string | undefined;
     if (supported) {
         try {
-            parser.FindSingleLineComments(editor);
-            parser.FindBlockComments(editor);
-            parser.FindJSDocComments(editor);
-            parser.ApplyDecorations(editor);
+            runUpdate(parser, editor);
         } catch (e) {
             error = String(e);
         }

@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { CommentSyntax } from '../../baseline/generate';
 import { NodeResult } from '../results';
 import { caseKey, defaultSizes, documentText, editLine, lineCount, perfLanguages, perfTagSets, stats } from '../workloads';
+import { runUpdate } from '../../parserUpdate';
 
 // Layer 1: the time one decoration update spends in the parser, in plain Node with a fake vscode.
 // Runs the build in BC_PARSER_PATH and writes its results to BC_PERF_OUT.
@@ -41,10 +42,7 @@ async function measure(tagSet: typeof perfTagSets[number], language: typeof perf
     const update = (i: number) => {
         const editor = editors[i % 2];
         const start = now();
-        parser.FindSingleLineComments(editor);
-        parser.FindBlockComments(editor);
-        parser.FindJSDocComments(editor);
-        parser.ApplyDecorations(editor);
+        runUpdate(parser, editor);
         return now() - start;
     };
 

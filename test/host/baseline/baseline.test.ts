@@ -8,6 +8,7 @@ import {
 } from '../../baseline/matrix';
 import { CaseResult, groupByResult, matchSnapshot, RecordedRange, Snapshot } from '../../baseline/snapshot';
 import { loadOut, recorder, samplesDir, toRanges } from '../shim';
+import { runUpdate } from '../../parserUpdate';
 
 // Records what the unmodified parser does for every case in the matrix, in a real VS Code.
 // Each case does exactly what updateDecorations in extension.ts does, on a fresh Parser.
@@ -79,10 +80,7 @@ async function runCase(doc: vscode.TextDocument, history: string[]): Promise<{ r
     const result: CaseResult = { supported: parser.supportedLanguage, setDecorationsCalls: 0, applied: [] };
     if (parser.supportedLanguage) {
         try {
-            parser.FindSingleLineComments(editor);
-            parser.FindBlockComments(editor);
-            parser.FindJSDocComments(editor);
-            parser.ApplyDecorations(editor);
+            runUpdate(parser, editor);
         } catch (e) {
             result.error = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
         }

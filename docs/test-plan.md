@@ -113,6 +113,7 @@ export interface TagStyle { color: string; backgroundColor?: string; textDecorat
 // src/core/languageRules.ts   → per-language flags (jsdoc, ignoreFirstLine, plaintext)
 // src/core/regex.ts           → buildLineRegex / buildBlockRegex / escapeTag
 // src/core/finder.ts          → findTags(text, syntax, settings, languageId): TagMatch[]
+//                                as built: findTags(text, state, tags, settings), with state from languageState.ts
 // src/core/style.ts           → toTagStyle(tag: TagSetting): TagStyle
 // src/core/languageConfig.ts  → parseLanguageConfig(rawJson5): CommentSyntax | undefined
 ```
@@ -286,15 +287,16 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 - **The end-to-end harness stays usable at every step.** `Parser` and `Configuration` keep their public APIs, so the host baseline and the harness checks run unchanged against each step's code.
 - **Overlapping language switches** (pinned 9) aren't covered by the baseline. Step 3 was checked with a scratch script that compares builds side by side across 882 overlapping-switch scenarios. In Phase 3 that check becomes a permanent test. Fast switching by hand is in [manual-checks.md](manual-checks.md), which you run against the v3.0.2 VSIX and the refactored VSIX.
-- **Performance benchmark at the end:** done as `npm run perf`, which builds `084a906` into `.perf/builds/` and loads it in the host through `test/host/launch.ts`. See [performance.md](performance.md). It caught a slowdown in step 4: passing matches through generators made the scans 5–30% slower than v3.0.2. The finders now push into an array the caller passes in, and the parser collects it in a `finally`.
+- **A scan that throws isn't preserved.** In v3.0.2, matches found before a throw stay in the tags' ranges, and the next update applies them. Nothing the parser builds can throw: the tag group always captures, and `escapeTag` escapes every character that could break the grouping. So `findTags` simply returns its matches, and a throw would lose the partial results. If a later change makes a scan throw, that's a bug to fix, not behaviour to keep.
+- **The line expression is rebuilt on every scan.** It used to be built at the end of `SetRegex` and stored. Whenever a scan runs, the stored copy equals one built from the current state: a switch sets `supportedLanguage` to false, which stops scans until it finishes, and the rebuild happens before the next timer can fire. The overlap test confirms it across all 882 scenarios.
+- **Performance benchmark at the end:** done as `npm run perf`, which builds `084a906` into `.perf/builds/` and loads it in the host through `test/host/launch.ts`. See [performance.md](performance.md). It caught a slowdown in step 4: passing matches through generators made the scans 5–30% slower than v3.0.2. The scans are plain loops again.
 
 ## Phase 3: Unit tests and the test seam
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 90 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Unit tests** (`test/unit/`, 93 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the host snapshots for both VS Code versions. All 204 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
-- **A scan that throws partway through** (`test/node/partial.test.ts`): the matches before the throw stay in the ranges and are applied by the next update, as in v3.0.2. Nothing the parser builds throws today, so the test swaps in an expression that does. Without it, collecting outside the `finally` passed every other suite.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.

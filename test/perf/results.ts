@@ -9,7 +9,7 @@ export interface NodeResult {
     lines: number;
     chars: number;
     ranges: number;
-    // One update: FindSingleLineComments, FindBlockComments, FindJSDocComments and ApplyDecorations, in ms
+    // One update, as extension.ts runs it: finding the comments and ApplyDecorations, in ms
     update: Stats;
 }
 

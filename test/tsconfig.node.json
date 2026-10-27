@@ -18,6 +18,7 @@
 		"node",
 		"baseline",
 		"repo.ts",
+		"parserUpdate.ts",
 		"../src/typings"
 	]
 }

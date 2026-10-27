@@ -17,14 +17,8 @@ export async function activate(context: vscode.ExtensionContext) {
         // if lanugage isn't supported, return
         if (!parser.supportedLanguage) return;
 
-        // Finds the single line comments using the language comment delimiter
-        parser.FindSingleLineComments(activeEditor);
-
-        // Finds the multi line comments using the language comment delimiter
-        parser.FindBlockComments(activeEditor);
-
-        // Finds the jsdoc comments
-        parser.FindJSDocComments(activeEditor);
+        // Finds the single line, block and jsdoc comments using the language comment delimiters
+        parser.FindComments(activeEditor);
 
         // Apply the styles set in the package.json
         parser.ApplyDecorations(activeEditor);
