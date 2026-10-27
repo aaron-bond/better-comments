@@ -5,14 +5,21 @@ import { buildLineCommentExpression, escapeLineDelimiter, escapeTag } from '../.
 const tags = ['!', '?', '//', 'todo', '*'];
 const escaped = tags.map(escapeTag);
 
+/** Runs a finder and returns what it pushed */
+function collect(find: (matches: TagMatch[]) => void): TagMatch[] {
+    const matches: TagMatch[] = [];
+    find(matches);
+    return matches;
+}
+
 /** The matched text for each match, with its tag */
-function texts(text: string, matches: Iterable<TagMatch>): string[] {
-    return [...matches].map(m => `${tags[m.tagIndex]}: ${text.slice(m.start, m.end)}`);
+function texts(text: string, matches: TagMatch[]): string[] {
+    return matches.map(m => `${tags[m.tagIndex]}: ${text.slice(m.start, m.end)}`);
 }
 
 const line = (text: string, delimiter = '//', options: { plainText?: boolean; ignoreFirstLine?: boolean } = {}) =>
-    texts(text, findLineComments(text, buildLineCommentExpression(escaped, escapeLineDelimiter(delimiter), !!options.plainText),
-        !!options.plainText, !!options.ignoreFirstLine, tags));
+    texts(text, collect(m => findLineComments(text, buildLineCommentExpression(escaped, escapeLineDelimiter(delimiter), !!options.plainText),
+        !!options.plainText, !!options.ignoreFirstLine, tags, m)));
 
 describe('finder', () => {
     describe('findLineComments', () => {
@@ -53,24 +60,20 @@ describe('finder', () => {
             const withEmpty = [...tags, ''];
             const text = '! alert\n\nplain\n';
             const expression = buildLineCommentExpression(withEmpty.map(escapeTag), '', true);
-            const found = [...findLineComments(text, expression, true, false, withEmpty)].map(m => [withEmpty[m.tagIndex], text.slice(m.start, m.end)]);
+            const found = collect(m => findLineComments(text, expression, true, false, withEmpty, m)).map(m => [withEmpty[m.tagIndex], text.slice(m.start, m.end)]);
             assert.deepStrictEqual(found, [['!', '! alert'], ['', 'plain']]);
         });
 
-        it('yields each match as it is found, so a later failure keeps the earlier matches', () => {
+        it('pushes each match as it is found, so a later failure keeps the earlier matches', () => {
             // Group 3 doesn't take part on the second line, so the tag lookup throws there
-            const found: string[] = [];
-            assert.throws(() => {
-                for (const m of findLineComments('// ! first\n// x\n', '(\\/\\/)+( )*(!)?(.*)', false, false, tags)) {
-                    found.push(tags[m.tagIndex]);
-                }
-            }, TypeError);
-            assert.deepStrictEqual(found, ['!']);
+            const found: TagMatch[] = [];
+            assert.throws(() => findLineComments('// ! first\n// x\n', '(\\/\\/)+( )*(!)?(.*)', false, false, tags, found), TypeError);
+            assert.deepStrictEqual(found.map(m => tags[m.tagIndex]), ['!']);
         });
     });
 
     describe('findBlockComments', () => {
-        const block = (text: string) => texts(text, findBlockComments(text, escaped, tags, '/\\*', '\\*/'));
+        const block = (text: string) => texts(text, collect(m => findBlockComments(text, escaped, tags, '/\\*', '\\*/', m)));
 
         it('matches tagged lines inside a block, from the tag to the end of the line', () => {
             assert.deepStrictEqual(block('/*\n  ! alert\n  plain\n  TODO: later\n*/\n'), ['!: ! alert', 'todo: TODO: later']);
@@ -90,12 +93,12 @@ describe('finder', () => {
 
         it('pinned 4: finds nothing with empty delimiters', () => {
             const text = '/*\n  ! alert\n*/\n# ! line\n';
-            assert.deepStrictEqual(texts(text, findBlockComments(text, escaped, tags, '', '')), []);
+            assert.deepStrictEqual(texts(text, collect(m => findBlockComments(text, escaped, tags, '', '', m))), []);
         });
     });
 
     describe('findJSDocComments', () => {
-        const jsdoc = (text: string) => texts(text, findJSDocComments(text, escaped, tags));
+        const jsdoc = (text: string) => texts(text, collect(m => findJSDocComments(text, escaped, tags, m)));
 
         it('matches tagged lines after the leading *', () => {
             assert.deepStrictEqual(jsdoc('/**\n * ! alert\n * plain\n *   ? question\n */\n'), ['!: ! alert', '?: ? question']);

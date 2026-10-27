@@ -62,7 +62,7 @@ export class Parser {
 
         let text = activeEditor.document.getText();
 
-        this.collectRanges(activeEditor, findLineComments(text, this.expression, this.state.isPlainText, this.state.ignoreFirstLine, this.tagNames()));
+        this.collectRanges(activeEditor, matches => findLineComments(text, this.expression, this.state.isPlainText, this.state.ignoreFirstLine, this.tagNames(), matches));
     }
 
     /**
@@ -75,7 +75,7 @@ export class Parser {
 
         let text = activeEditor.document.getText();
 
-        this.collectRanges(activeEditor, findBlockComments(text, this.escapedTags(), this.tagNames(), this.state.blockCommentStart, this.state.blockCommentEnd));
+        this.collectRanges(activeEditor, matches => findBlockComments(text, this.escapedTags(), this.tagNames(), this.state.blockCommentStart, this.state.blockCommentEnd, matches));
     }
 
     /**
@@ -88,7 +88,7 @@ export class Parser {
 
         let text = activeEditor.document.getText();
 
-        this.collectRanges(activeEditor, findJSDocComments(text, this.escapedTags(), this.tagNames()));
+        this.collectRanges(activeEditor, matches => findJSDocComments(text, this.escapedTags(), this.tagNames(), matches));
     }
 
     /**
@@ -107,16 +107,22 @@ export class Parser {
     //#region  Private Methods
 
     /**
-     * Adds each match to its tag's ranges as it's found
+     * Runs a finder and adds its matches to their tags' ranges
+     * ? in finally, so if the finder throws partway through, the matches before it are still added, as they always have been
      * @param activeEditor The active text editor containing the code document
-     * @param matches The matches, as document offsets
+     * @param find Runs a finder, which pushes its matches (document offsets) into the array
      */
-    private collectRanges(activeEditor: vscode.TextEditor, matches: Iterable<TagMatch>): void {
-        for (let match of matches) {
-            let startPos = activeEditor.document.positionAt(match.start);
-            let endPos = activeEditor.document.positionAt(match.end);
+    private collectRanges(activeEditor: vscode.TextEditor, find: (matches: TagMatch[]) => void): void {
+        let matches: TagMatch[] = [];
+        try {
+            find(matches);
+        } finally {
+            for (let match of matches) {
+                let startPos = activeEditor.document.positionAt(match.start);
+                let endPos = activeEditor.document.positionAt(match.end);
 
-            this.tags[match.tagIndex].ranges.push({ range: new vscode.Range(startPos, endPos) });
+                this.tags[match.tagIndex].ranges.push({ range: new vscode.Range(startPos, endPos) });
+            }
         }
     }
 

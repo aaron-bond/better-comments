@@ -1,8 +1,8 @@
 import { buildBlockCommentExpression, buildBlockLineExpression, buildJSDocLineExpression, jsDocCommentExpression } from './regex';
 
 // Finds tagged comments in a document's text. Matches are document offsets.
-// ? these are generators so callers collect each match as it's found, as the parser always has:
-// ? if a tag lookup throws partway through, the matches found before it have already been collected
+// ? each finder pushes into an array the caller passes in, as it goes, as the parser always has:
+// ? if a tag lookup throws partway through, the matches found before it are already in the array
 
 export interface TagMatch {
     tagIndex: number; // index into the configured tags
@@ -11,20 +11,17 @@ export interface TagMatch {
 }
 
 /**
- * Runs a global regex over the text, skipping zero-length matches
+ * True for a zero-length match, after moving the regex past it so the caller can skip it
  * ? exec doesn't move past a zero-length match, so without this the loop never ends.
  * ? the plaintext expression with an empty tag matches zero characters on an empty line
  */
-function* matchAll(regEx: RegExp, text: string): Generator<RegExpExecArray> {
-    let match: RegExpExecArray | null;
-    while (match = regEx.exec(text)) {
-        if (match[0].length === 0) {
-            regEx.lastIndex++;
-            continue;
-        }
-
-        yield match;
+function skipZeroLength(regEx: RegExp, match: RegExpExecArray): boolean {
+    if (match[0].length === 0) {
+        regEx.lastIndex++;
+        return true;
     }
+
+    return false;
 }
 
 /**
@@ -42,13 +39,17 @@ function findTagIndex(tags: string[], matched: string): number {
  * @param isPlainText True for plaintext, where tags are matched at the start of each line
  * @param ignoreFirstLine True to skip a match at the very start of the document
  * @param tags The configured tags, in configuration order
+ * @param matches Receives each match as it's found
  */
-export function* findLineComments(text: string, expression: string, isPlainText: boolean, ignoreFirstLine: boolean, tags: string[]): Generator<TagMatch> {
+export function findLineComments(text: string, expression: string, isPlainText: boolean, ignoreFirstLine: boolean, tags: string[], matches: TagMatch[]): void {
     // if it's plain text, we have to do mutliline regex to catch the start of the line with ^
     let regexFlags = (isPlainText) ? "igm" : "ig";
     let regEx = new RegExp(expression, regexFlags);
 
-    for (let match of matchAll(regEx, text)) {
+    let match: RegExpExecArray | null;
+    while (match = regEx.exec(text)) {
+        if (skipZeroLength(regEx, match)) continue;
+
         // Required to ignore the first line of .py files (#61)
         if (ignoreFirstLine && match.index === 0) {
             continue;
@@ -58,7 +59,7 @@ export function* findLineComments(text: string, expression: string, isPlainText:
         let tagIndex = findTagIndex(tags, match[3]);
 
         if (tagIndex >= 0) {
-            yield { tagIndex, start: match.index, end: match.index + match[0].length };
+            matches.push({ tagIndex, start: match.index, end: match.index + match[0].length });
         }
     }
 }
@@ -70,15 +71,16 @@ export function* findLineComments(text: string, expression: string, isPlainText:
  * @param tags The configured tags, in configuration order
  * @param blockCommentStart The escaped start delimiter
  * @param blockCommentEnd The escaped end delimiter
+ * @param matches Receives each match as it's found
  */
-export function* findBlockComments(text: string, escapedTags: string[], tags: string[], blockCommentStart: string, blockCommentEnd: string): Generator<TagMatch> {
+export function findBlockComments(text: string, escapedTags: string[], tags: string[], blockCommentStart: string, blockCommentEnd: string, matches: TagMatch[]): void {
     // Combine custom delimiters and the rest of the comment block matcher
     let commentMatchString = buildBlockLineExpression(escapedTags);
 
     // Use start and end delimiters to find block comments
     let regexString = buildBlockCommentExpression(blockCommentStart, blockCommentEnd);
 
-    yield* findTaggedLines(text, new RegExp(regexString, "gm"), new RegExp(commentMatchString, "igm"), tags);
+    findTaggedLines(text, new RegExp(regexString, "gm"), new RegExp(commentMatchString, "igm"), tags, matches);
 }
 
 /**
@@ -86,32 +88,39 @@ export function* findBlockComments(text: string, escapedTags: string[], tags: st
  * @param text The document's text
  * @param escapedTags The escaped tags, in configuration order
  * @param tags The configured tags, in configuration order
+ * @param matches Receives each match as it's found
  */
-export function* findJSDocComments(text: string, escapedTags: string[], tags: string[]): Generator<TagMatch> {
+export function findJSDocComments(text: string, escapedTags: string[], tags: string[], matches: TagMatch[]): void {
     // Combine custom delimiters and the rest of the comment block matcher
     let commentMatchString = buildJSDocLineExpression(escapedTags);
     let regEx = new RegExp(jsDocCommentExpression, "gm");
 
-    yield* findTaggedLines(text, regEx, new RegExp(commentMatchString, "igm"), tags);
+    findTaggedLines(text, regEx, new RegExp(commentMatchString, "igm"), tags, matches);
 }
 
-function* findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tags: string[]): Generator<TagMatch> {
+function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tags: string[], matches: TagMatch[]): void {
     // Find the multiline comment block
-    for (let match of matchAll(regEx, text)) {
+    let match: RegExpExecArray | null;
+    while (match = regEx.exec(text)) {
+        if (skipZeroLength(regEx, match)) continue;
+
         let commentBlock = match[0];
 
         // Find the line
-        for (let line of matchAll(commentRegEx, commentBlock)) {
+        let line: RegExpExecArray | null;
+        while (line = commentRegEx.exec(commentBlock)) {
+            if (skipZeroLength(commentRegEx, line)) continue;
+
             // Find which custom delimiter was used in order to add it to the collection
             let matchString = line[3] as string;
             let tagIndex = findTagIndex(tags, matchString);
 
             if (tagIndex >= 0) {
-                yield {
+                matches.push({
                     tagIndex,
                     start: match.index + line.index + line[2].length,
                     end: match.index + line.index + line[0].length,
-                };
+                });
             }
         }
     }
