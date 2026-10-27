@@ -2,7 +2,7 @@ import { FakeDocument, loadParser, Range, setSettings } from './fakeVscode';
 
 import * as assert from 'assert';
 import { matchSnapshot } from '../baseline/snapshot';
-import { runUpdate } from '../parserUpdate';
+import { runUpdate, setLanguage } from '../parserUpdate';
 
 // Pinned 9: language switches are async and change state shared by every editor, so two switches can
 // overlap. The baseline only ever switches one language at a time, so this records what happens when
@@ -62,17 +62,17 @@ async function scenario(prime: string[], first: string, second: string, reversed
     const log: string[] = [];
 
     for (const language of prime) {
-        const done = parser.SetRegex(language);
+        const done = setLanguage(parser, language);
         await tick();
         pending.shift()!();
         await done;
     }
 
-    const a = parser.SetRegex(first);
+    const a = setLanguage(parser, first);
     await tick();
     log.push(`during first: ${observe(parser)}`);
 
-    const b = parser.SetRegex(second);
+    const b = setLanguage(parser, second);
     await tick();
     log.push(`during both: ${observe(parser)}`);
 

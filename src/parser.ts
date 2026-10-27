@@ -33,12 +33,17 @@ export class Parser {
     }
 
     /**
-     * Sets the language whose comments FindComments looks for, based on its comment syntax
+     * Sets the language whose comments FindComments looks for, from its comment syntax
+     * ? called SetRegex up to v3.0.2
      * @param languageCode The short code of the current language
      * https://code.visualstudio.com/docs/languages/identifiers
      */
-    public async SetRegex(languageCode: string) {
-        await this.setDelimiter(languageCode);
+    public async SetLanguage(languageCode: string): Promise<void> {
+        this.state = beginLanguageSwitch(this.state);
+
+        const config = await this.configuration.GetCommentConfiguration(languageCode);
+
+        this.state = applyLanguage(this.state, languageCode, config, this.contributions);
     }
 
     /**
@@ -48,7 +53,7 @@ export class Parser {
     public FindComments(activeEditor: vscode.TextEditor): void {
         let text = activeEditor.document.getText();
 
-        for (let match of findTags(text, this.state, this.tags, this.contributions)) {
+        for (let match of findTags(text, this.state, this.tags)) {
             let startPos = activeEditor.document.positionAt(match.start);
             let endPos = activeEditor.document.positionAt(match.end);
 
@@ -70,19 +75,6 @@ export class Parser {
     }
 
     //#region  Private Methods
-
-    /**
-     * Sets the comment delimiter [//, #, --, '] of a given language
-     * @param languageCode The short code of the current language
-     * https://code.visualstudio.com/docs/languages/identifiers
-     */
-    private async setDelimiter(languageCode: string): Promise<void> {
-        this.state = beginLanguageSwitch(this.state);
-
-        const config = await this.configuration.GetCommentConfiguration(languageCode);
-
-        this.state = applyLanguage(this.state, languageCode, config, this.contributions);
-    }
 
     /**
      * Sets the highlighting tags up for use by the parser

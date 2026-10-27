@@ -8,7 +8,7 @@ import {
 } from '../../baseline/matrix';
 import { CaseResult, groupByResult, matchSnapshot, RecordedRange, Snapshot } from '../../baseline/snapshot';
 import { loadOut, recorder, samplesDir, toRanges } from '../shim';
-import { runUpdate } from '../../parserUpdate';
+import { runUpdate, setLanguage } from '../../parserUpdate';
 
 // Records what the unmodified parser does for every case in the matrix, in a real VS Code.
 // Each case does exactly what updateDecorations in extension.ts does, on a fresh Parser.
@@ -71,11 +71,11 @@ async function runCase(doc: vscode.TextDocument, history: string[]): Promise<{ r
         },
     };
 
-    // Only SetRegex changes the carried-over flags; Find* only collect ranges and ApplyDecorations clears them
+    // Only SetLanguage changes the carried-over flags; FindComments only collects ranges and ApplyDecorations clears them
     for (const languageId of history) {
-        await parser.SetRegex(languageId);
+        await setLanguage(parser, languageId);
     }
-    await parser.SetRegex(doc.languageId);
+    await setLanguage(parser, doc.languageId);
 
     const result: CaseResult = { supported: parser.supportedLanguage, setDecorationsCalls: 0, applied: [] };
     if (parser.supportedLanguage) {

@@ -37,7 +37,7 @@ These came from reading the code and probing the compiled `Parser` with a stubbe
 6. **Tag escaping is done twice, in two different ways.** `setTags` uses its own character class plus hardcoded `/` escaping, and `escapeRegExp` is used for delimiters. Without the `u` flag, `]`, `}` and `-` are literal outside a class, so they're probably fine. An **empty tag** gives an empty alternative, which may match every comment. All of these need pinning.
 7. **Settings changes need a restart**, because tags are read once at construction.
 8. **`ignoreFirstLine`** applies to Python, Elixir and Tcl, and only skips a match that starts at line 0, character 0.
-9. **Overlapping language switches race.** `SetRegex` is async and changes parser state shared by every editor. Two quick editor switches can overlap, leaving one language's regex applied to the other editor. *To fix, incrementally (Phase 5).*
+9. **Overlapping language switches race.** `SetRegex` (now `SetLanguage`) is async and changes parser state shared by every editor. Two quick editor switches can overlap, leaving one language's regex applied to the other editor. *To fix, incrementally (Phase 5).*
 10. **Only the active editor is decorated.** Other visible editors in a split view are not decorated.
 11. **Plain text keeps the previous language's block delimiters.** No plain text language config exists, so `setCommentFormat` isn't called and the delimiters and `highlightMultilineComments` stay as the last language left them. With `highlightPlainText` on, the same generated `.txt` gives 89 ranges fresh, 114 after JavaScript or C#, 99 after Python, and 0 after a language that switched off single-line matching.
 12. **The empty tag matches differently with CRLF.** With the `empty-tag` settings, generated C# and JavaScript give 56 ranges with LF and 59 with CRLF. For every other settings variant, LF and CRLF give the same counts. Not yet looked into.
@@ -113,7 +113,7 @@ export interface TagStyle { color: string; backgroundColor?: string; textDecorat
 // src/core/languageRules.ts   → per-language flags (jsdoc, ignoreFirstLine, plaintext)
 // src/core/regex.ts           → buildLineRegex / buildBlockRegex / escapeTag
 // src/core/finder.ts          → findTags(text, syntax, settings, languageId): TagMatch[]
-//                                as built: findTags(text, state, tags, settings), with state from languageState.ts
+//                                as built: findTags(text, state, tags), with state from languageState.ts
 // src/core/style.ts           → toTagStyle(tag: TagSetting): TagStyle
 // src/core/languageConfig.ts  → parseLanguageConfig(rawJson5): CommentSyntax | undefined
 ```
@@ -157,7 +157,7 @@ As built:
 - **Snapshot files:** `test/baseline/snapshots/<label>/<settings>/<target>--<input>.json`. Each one records the decoration types once, then lists the results with the histories that produce each. A split between groups shows where carried-over state matters.
 - **Shared code:** the matrix (`test/baseline/matrix.ts`) and the input generator (`test/baseline/generate.ts`) will also drive the Node baseline.
 - **Settings** are written to the real user settings of the temporary profile, and each case uses a fresh `Parser` that does exactly what `updateDecorations` does.
-- **Histories** call only `SetRegex`. That's the only method that changes the carried-over flags.
+- **Histories** call only `SetRegex` (now `SetLanguage`). That's the only method that changes the carried-over flags.
 - **`language-configs.json`** in each label folder is the config dump the Node baseline reads.
 
 ### How output is captured
@@ -289,6 +289,9 @@ Each step is small enough to review in one sitting and can be released on its ow
 - **Overlapping language switches** (pinned 9) aren't covered by the baseline. Step 3 was checked with a scratch script that compares builds side by side across 882 overlapping-switch scenarios. In Phase 3 that check becomes a permanent test. Fast switching by hand is in [manual-checks.md](manual-checks.md), which you run against the v3.0.2 VSIX and the refactored VSIX.
 - **A scan that throws isn't preserved.** In v3.0.2, matches found before a throw stay in the tags' ranges, and the next update applies them. Nothing the parser builds can throw: the tag group always captures, and `escapeTag` escapes every character that could break the grouping. So `findTags` simply returns its matches, and a throw would lose the partial results. If a later change makes a scan throw, that's a bug to fix, not behaviour to keep.
 - **The line expression is rebuilt on every scan.** It used to be built at the end of `SetRegex` and stored. Whenever a scan runs, the stored copy equals one built from the current state: a switch sets `supportedLanguage` to false, which stops scans until it finishes, and the rebuild happens before the next timer can fire. The overlap test confirms it across all 882 scenarios.
+- **`findTags` checks `supportedLanguage` itself,** as well as `updateDecorations` in `extension.ts`. The rebuilt-expression argument above depends on scans never running mid-switch, so the core enforces it rather than relying on its caller. `extension.ts` keeps its check, because it also skips `ApplyDecorations`. Removing it would clear decorations in unsupported languages, which is a behaviour change.
+- **Line-start matching is a state flag, `matchLineStart`.** It's set and reset with `isPlainText`, to `isPlainText && highlightPlainText`, so `findTags` doesn't need the settings. The setting still matters mid-switch: when plain text's config resolves and then another language's, before the next reset, `isPlainText` stays true while the language is supported (pinned 9). Ignoring the setting there fails the overlap test.
+- **`SetRegex` is now `SetLanguage`.** It no longer builds a regex. The test helpers in `test/parserUpdate.ts` call whichever name the build has, so the Node suites and the benchmark still drive v3.0.2.
 - **Performance benchmark at the end:** done as `npm run perf`, which builds `084a906` into `.perf/builds/` and loads it in the host through `test/host/launch.ts`. See [performance.md](performance.md). It caught a slowdown in step 4: passing matches through generators made the scans 5–30% slower than v3.0.2. The scans are plain loops again.
 
 ## Phase 3: Unit tests and the test seam

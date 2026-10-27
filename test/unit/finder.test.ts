@@ -23,7 +23,7 @@ function stateAfter(languages: Array<[string, CommentConfig | undefined]>, setti
 
 /** The matched text for each match, with its tag, in the order findTags returns them */
 function find(text: string, languages: Array<[string, CommentConfig | undefined]>, settings = defaults, withTags = tags): string[] {
-    return findTags(text, stateAfter(languages, settings), withTags, settings)
+    return findTags(text, stateAfter(languages, settings), withTags)
         .map(m => `${withTags[m.tagIndex].tag}: ${text.slice(m.start, m.end)}`);
 }
 
@@ -37,6 +37,13 @@ describe('finder', () => {
         it('only runs the scans the language state allows', () => {
             const text = '/*\n ! block\n*/\n/**\n * ? doc\n */\n// ! line\n';
             assert.deepStrictEqual(find(text, [['bc-line', lineOnly]]), ['!: // ! line']);
+        });
+
+        it('finds nothing while the language is unsupported, as it is partway through a switch', () => {
+            const text = '// ! line\n';
+            const state = stateAfter([['javascript', cStyle]]);
+            assert.strictEqual(findTags(text, state, tags).length, 1);
+            assert.deepStrictEqual(findTags(text, beginLanguageSwitch(state), tags), []);
         });
 
         it('returns nothing when there are no tags in the text', () => {

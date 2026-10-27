@@ -25,18 +25,20 @@ describe('languageState', () => {
         assert.deepStrictEqual(initialLanguageState, {
             delimiter: '', blockCommentStart: '', blockCommentEnd: '',
             highlightSingleLineComments: true, highlightMultilineComments: false, highlightJSDoc: false,
-            isPlainText: false, ignoreFirstLine: false, supportedLanguage: true,
+            isPlainText: false, matchLineStart: false, ignoreFirstLine: false, supportedLanguage: true,
         });
     });
 
     describe('beginLanguageSwitch', () => {
-        it('resets only supportedLanguage, ignoreFirstLine and isPlainText', () => {
+        it('resets only supportedLanguage, ignoreFirstLine, isPlainText and matchLineStart', () => {
             const busy: LanguageState = {
                 delimiter: 'd', blockCommentStart: 's', blockCommentEnd: 'e',
                 highlightSingleLineComments: false, highlightMultilineComments: true, highlightJSDoc: true,
-                isPlainText: true, ignoreFirstLine: true, supportedLanguage: true,
+                isPlainText: true, matchLineStart: true, ignoreFirstLine: true, supportedLanguage: true,
             };
-            assert.deepStrictEqual(beginLanguageSwitch(busy), { ...busy, supportedLanguage: false, ignoreFirstLine: false, isPlainText: false });
+            assert.deepStrictEqual(beginLanguageSwitch(busy), {
+                ...busy, supportedLanguage: false, ignoreFirstLine: false, isPlainText: false, matchLineStart: false,
+            });
         });
 
         it('does not change the state it is given', () => {
@@ -102,11 +104,19 @@ describe('languageState', () => {
             assert.strictEqual(switchTo(after([['python', python]]), 'ruby', shell).ignoreFirstLine, false);
         });
 
-        it('makes plaintext supported only when highlightPlainText is on', () => {
-            assert.strictEqual(switchTo(initialLanguageState, 'plaintext', undefined).supportedLanguage, false);
+        it('makes plaintext supported, and matched at line starts, only when highlightPlainText is on', () => {
+            const off = switchTo(initialLanguageState, 'plaintext', undefined);
+            assert.deepStrictEqual([off.isPlainText, off.supportedLanguage, off.matchLineStart], [true, false, false]);
             const on = switchTo(initialLanguageState, 'plaintext', undefined, { ...defaults, highlightPlainText: true });
-            assert.strictEqual(on.supportedLanguage, true);
-            assert.strictEqual(on.isPlainText, true);
+            assert.deepStrictEqual([on.isPlainText, on.supportedLanguage, on.matchLineStart], [true, true, true]);
+        });
+
+        it('pinned 9: a language applied over plaintext mid-switch keeps isPlainText, and matchLineStart follows the setting', () => {
+            // Two overlapping switches: plaintext's config resolves, then JavaScript's, with no reset in between
+            const plain = applyLanguage(beginLanguageSwitch(initialLanguageState), 'plaintext', undefined, defaults);
+            const both = applyLanguage(plain, 'javascript', js, defaults);
+            assert.deepStrictEqual([both.isPlainText, both.supportedLanguage, both.matchLineStart], [true, true, false]);
+            assert.strictEqual(lineCommentExpression(both, ['!']), '(\\/\\/)+( |\t)*(!)+(.*)');
         });
 
         it('passes a non-boolean highlightPlainText straight through to supportedLanguage', () => {
@@ -140,12 +150,12 @@ describe('languageState', () => {
 
     describe('lineCommentExpression', () => {
         it('matches after the delimiter for a code language', () => {
-            assert.strictEqual(lineCommentExpression(after([['python', python]]), ['!'], defaults), '(#)+( |\t)*(!)+(.*)');
+            assert.strictEqual(lineCommentExpression(after([['python', python]]), ['!']), '(#)+( |\t)*(!)+(.*)');
         });
 
         it('matches from the start of the line for plaintext with highlightPlainText on', () => {
             const settings = { ...defaults, highlightPlainText: true };
-            assert.strictEqual(lineCommentExpression(after([['plaintext', undefined]], settings), ['!'], settings), '(^)+([ \\t]*[ \\t]*)(!)+(.*)');
+            assert.strictEqual(lineCommentExpression(after([['plaintext', undefined]], settings), ['!']), '(^)+([ \\t]*[ \\t]*)(!)+(.*)');
         });
     });
 

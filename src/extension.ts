@@ -24,12 +24,12 @@ export async function activate(context: vscode.ExtensionContext) {
         parser.ApplyDecorations(activeEditor);
     };
 
-    // Get the active editor for the first time and initialise the regex
+    // Get the active editor for the first time and set its language
     if (vscode.window.activeTextEditor) {
         activeEditor = vscode.window.activeTextEditor;
 
-        // Set the regex patterns for the specified language's comments
-        await parser.SetRegex(activeEditor.document.languageId);
+        // Set the comment syntax for the specified language
+        await parser.SetLanguage(activeEditor.document.languageId);
 
         // Trigger first update of decorators
         triggerUpdateDecorations();
@@ -45,8 +45,8 @@ export async function activate(context: vscode.ExtensionContext) {
         if (editor) {
             activeEditor = editor;
 
-            // Set regex for updated language
-            await parser.SetRegex(editor.document.languageId);
+            // Set the comment syntax for the updated language
+            await parser.SetLanguage(editor.document.languageId);
 
             // Trigger update to set decorations for newly active file
             triggerUpdateDecorations();

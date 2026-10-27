@@ -1,4 +1,4 @@
-import { findsBlockComments, findsJSDocComments, findsLineComments, LanguageSettings, LanguageState, lineCommentExpression } from './languageState';
+import { findsBlockComments, findsJSDocComments, findsLineComments, LanguageState, lineCommentExpression } from './languageState';
 import { buildBlockCommentExpression, buildBlockLineExpression, buildJSDocLineExpression, jsDocCommentExpression } from './regex';
 import { PreparedTag } from './tags';
 
@@ -16,18 +16,24 @@ export type MatchTag = Pick<PreparedTag, 'tag' | 'escapedTag'>;
 /**
  * Finds every tagged comment in the text: single line comments, then block comments, then JSDoc comments,
  * each scan only if the language state allows it. Within each tag, ranges are applied in this order.
+ * Finds nothing while the language isn't supported, which includes partway through a language switch.
  * @param text The document's text
  * @param state The language state after applyLanguage
  * @param tags The configured tags, in configuration order
- * @param settings The better-comments settings
  */
-export function findTags(text: string, state: LanguageState, tags: MatchTag[], settings: LanguageSettings): TagMatch[] {
+export function findTags(text: string, state: LanguageState, tags: MatchTag[]): TagMatch[] {
     let matches: TagMatch[] = [];
+
+    // ? a switch makes the language unsupported until it finishes, so this also keeps scans off a half-switched state
+    if (!state.supportedLanguage) {
+        return matches;
+    }
+
     let tagNames = tags.map(t => t.tag);
     let escapedTags = tags.map(t => t.escapedTag);
 
     if (findsLineComments(state)) {
-        let expression = lineCommentExpression(state, escapedTags, settings);
+        let expression = lineCommentExpression(state, escapedTags);
         findLineComments(text, expression, state, tagNames, matches);
     }
 

@@ -15,6 +15,10 @@ export interface LanguageState {
     // * this will allow plaintext files to show comment highlighting if switched on
     isPlainText: boolean;
 
+    // True when single line comments are matched at the start of a line instead of after a delimiter:
+    // plaintext with highlightPlainText on. Set and reset with isPlainText
+    matchLineStart: boolean;
+
     // * this is used to prevent the first line of the file (specifically python) from coloring like other comments
     ignoreFirstLine: boolean;
 
@@ -35,6 +39,7 @@ export const initialLanguageState: LanguageState = {
     highlightMultilineComments: false,
     highlightJSDoc: false,
     isPlainText: false,
+    matchLineStart: false,
     ignoreFirstLine: false,
     supportedLanguage: true,
 };
@@ -49,6 +54,7 @@ export function beginLanguageSwitch(state: LanguageState): LanguageState {
         supportedLanguage: false,
         ignoreFirstLine: false,
         isPlainText: false,
+        matchLineStart: false,
     };
 }
 
@@ -94,6 +100,7 @@ export function applyLanguage(
 
         case "plaintext":
             next.isPlainText = true;
+            next.matchLineStart = settings.highlightPlainText;
 
             // If highlight plaintext is enabled, this is a supported language
             next.supportedLanguage = settings.highlightPlainText;
@@ -107,10 +114,9 @@ export function applyLanguage(
  * Builds the single line comment expression for the current language
  * @param state The state after applyLanguage
  * @param escapedTags The escaped tags, in configuration order
- * @param settings The better-comments settings
  */
-export function lineCommentExpression(state: LanguageState, escapedTags: string[], settings: LanguageSettings): string {
-    return buildLineCommentExpression(escapedTags, state.delimiter, state.isPlainText && settings.highlightPlainText);
+export function lineCommentExpression(state: LanguageState, escapedTags: string[]): string {
+    return buildLineCommentExpression(escapedTags, state.delimiter, state.matchLineStart);
 }
 
 // If highlight single line comments is off, single line comments are not supported for this language

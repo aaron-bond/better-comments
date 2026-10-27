@@ -56,7 +56,7 @@ From the same run:
 - **How the refactor got there:**
   - The first version passed matches through nested generators, which made the Node scans 5–30% slower.
   - Plain loops into an array the parser passed in brought it level with v3.0.2.
-  - The core now has one entry point, `findTags(text, state, tags, settings)` in `src/core/finder.ts`, which returns the matches. That costs the 3–7% above.
+  - The core now has one entry point, `findTags(text, state, tags)` in `src/core/finder.ts`, which returns the matches. That costs the 3–7% above.
 
 ## Layer 3: on-screen latency (not built yet)
 
