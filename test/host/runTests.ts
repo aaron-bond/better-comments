@@ -1,8 +1,6 @@
-import * as fs from 'fs';
-import * as os from 'os';
 import * as path from 'path';
-import { runTests } from '@vscode/test-electron';
 import { repoRoot } from '../repo';
+import { launchSuite } from './launch';
 
 // The lowest version allowed by "engines" in package.json, and the current stable release
 const defaultVersions = ['1.65.0', 'stable'];
@@ -16,47 +14,23 @@ async function main(): Promise<void> {
 
     const versions = versionArgs.length ? versionArgs : defaultVersions;
 
-    // Set when running from VS Code's integrated terminal; it makes the downloaded VS Code start as plain Node
-    delete process.env.ELECTRON_RUN_AS_NODE;
-
     const failed: string[] = [];
     for (const version of versions) {
-        const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'better-comments-test-'));
-
-        // New and empty documents get the OS line ending by default, which would make snapshots differ on Windows
-        fs.mkdirSync(path.join(userDataDir, 'User'));
-        fs.writeFileSync(path.join(userDataDir, 'User', 'settings.json'), JSON.stringify({ 'files.eol': '\n' }));
         try {
-            await runTests({
+            await launchSuite({
+                suite,
                 version,
-                extensionDevelopmentPath: [
-                    repoRoot,
-                    path.join(repoRoot, 'test/fixtures/extensions/no-comment-syntax'),
-                ],
-                extensionTestsPath: path.join(__dirname, 'index'),
-                extensionTestsEnv: {
-                    BC_TEST_SUITE: suite,
+                env: {
                     // Snapshots are kept per version label ("1.65.0", "stable"), not per resolved version
                     BC_VSCODE_LABEL: version,
                     BC_UPDATE_SNAPSHOTS: updateSnapshots ? '1' : '',
                 },
-                launchArgs: [
-                    // The activation suite starts with a file open, as when VS Code is opened on a file
-                    ...(suite === 'activation' ? [path.join(repoRoot, 'test/fixtures/samples/javascript.js')] : []),
-                    '--disable-extensions',
-                    '--user-data-dir', userDataDir,
-                    '--no-sandbox',
-                    '--disable-gpu',
-                    '--disable-workspace-trust',
-                    '--skip-welcome',
-                    '--skip-release-notes',
-                ],
+                // The activation suite starts with a file open, as when VS Code is opened on a file
+                files: suite === 'activation' ? [path.join(repoRoot, 'test/fixtures/samples/javascript.js')] : [],
             });
         } catch (e) {
             console.error(`Suite "${suite}" failed on VS Code ${version}:`, e);
             failed.push(version);
-        } finally {
-            fs.rmSync(userDataDir, { recursive: true, force: true });
         }
     }
 

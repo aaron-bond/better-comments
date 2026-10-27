@@ -128,6 +128,7 @@ The current parser carries state from one language to the next (pinned items 1, 
 | `npm run test:all` | Both of the above | ~1 min |
 | `npm run coverage` | `test:all` under c8, including coverage from VS Code's extension host. The HTML report goes to `coverage/` | ~1 min |
 | `npm run test:baseline:host -- --update-snapshots` | Rewrites the host snapshots. Review every diff; any change is a behaviour change. | ~30 s |
+| `npm run perf` | The performance benchmark: the Node and host layers for this checkout and v3.0.2, and a report pairing them up. See [performance.md](performance.md) | ~10 min |
 
 - Running from VS Code's terminal works; the runner clears `ELECTRON_RUN_AS_NODE` itself. On Linux without a display, use `xvfb-run -a npm run test:host`.
 - `BC_PARSER_PATH=<path to a build's parser.js> npm run test:node` runs the Node suites against another build, e.g. v3.0.2. It's how the overlapping-switch snapshot was recorded (with `BC_UPDATE_SNAPSHOTS=1`). v3.0.2 hangs on the `empty-tag-plaintext-on` cases (P3), so expect the Node baseline to stall there.
@@ -285,7 +286,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 - **The end-to-end harness stays usable at every step.** `Parser` and `Configuration` keep their public APIs, so the host baseline and the harness checks run unchanged against each step's code.
 - **Overlapping language switches** (pinned 9) aren't covered by the baseline. Step 3 was checked with a scratch script that compares builds side by side across 882 overlapping-switch scenarios. In Phase 3 that check becomes a permanent test. Fast switching by hand is in [manual-checks.md](manual-checks.md), which you run against the v3.0.2 VSIX and the refactored VSIX.
-- **Performance benchmark at the end:** build `084a906` in a separate worktree and run one benchmark suite against both builds on the same machine (large files, typing bursts, language switches). The harness needs an option to load the extension from another folder for this.
+- **Performance benchmark at the end:** done as `npm run perf`, which builds `084a906` into `.perf/builds/` and loads it in the host through `test/host/launch.ts`. See [performance.md](performance.md). It caught a slowdown in step 4: passing matches through generators made the scans 5–30% slower than v3.0.2. The finders now push into an array the caller passes in, and the parser collects it in a `finally`.
 
 ## Phase 3: Unit tests and the test seam
 
@@ -293,6 +294,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 - **Unit tests** (`test/unit/`, 90 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the host snapshots for both VS Code versions. All 204 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
+- **A scan that throws partway through** (`test/node/partial.test.ts`): the matches before the throw stay in the ranges and are applied by the next update, as in v3.0.2. Nothing the parser builds throws today, so the test swaps in an expression that does. Without it, collecting outside the `finally` passed every other suite.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.

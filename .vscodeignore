@@ -12,3 +12,4 @@ npm-debug.log
 docs/**
 coverage/**
 .gitattributes
+.perf/**

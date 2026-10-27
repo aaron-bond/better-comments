@@ -53,6 +53,8 @@
         "test": "npm run test:unit && npm run test:node",
         "test:host": "npm run compile && npm run compile-tests && node out/test/host/runTests.js baseline && node out/test/host/runTests.js integration && node out/test/host/runTests.js activation",
         "test:all": "npm test && npm run test:host",
+        "perf": "npm run compile && npm run compile-tests && node out/test/perf/run.js",
+        "perf:report": "node out/test/perf/report.js",
         "coverage": "c8 --all --include \"src/**\" --include \"out/**\" --exclude \"out/test/**\" --exclude \"out/web/**\" --exclude \"src/core/types.ts\" --exclude \"out/core/types.js\" --exclude \"src/**/*.d.ts\" --reporter text --reporter html --reports-dir coverage npm run test:all"
     },
     "contributes": {
