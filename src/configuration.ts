@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { TextDecoder } from 'util';
-import { parseLanguageConfig } from './core/languageConfig';
+import { parseLanguageConfig } from './core';
 
 export class Configuration {
     private readonly commentConfig = new Map<string, CommentConfig | undefined>();

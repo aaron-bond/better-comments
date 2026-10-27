@@ -307,7 +307,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 96 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Unit tests** (`test/unit/`, 99 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 126 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
@@ -315,6 +315,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 - **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
 - **Coverage:** 99.9% of lines and 99.2% of branches across all suites. The only uncovered line is `extension.ts:46` (the handler for extensions being added or removed), which needs an extension installed during the run.
 - **Portability:** `.gitattributes` keeps the fixtures and snapshots byte-exact on Windows, and the test profile sets `files.eol` to `\n`. Neither has been tried on Windows yet; that comes with CI.
+- **The core's boundary** (`test/unit/boundary.test.ts`): `src/core` is pure functions on plain values, with no `vscode`, no Node modules and no I/O. The rest of `src/` (the classes that own state and talk to VS Code) reaches it only through `src/core/index.ts`, its public API. The test fails on any import that breaks either rule.
 - **No test seam needed.** The shim records the real extension's calls without any change to `src/`, so `activate()` doesn't need to return a test API.
 
 The original plan for this phase follows.

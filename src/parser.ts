@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
-import { findTags } from './core/finder';
-import { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './core/languageState';
-import { prepareTag } from './core/tags';
+import { applyLanguage, beginLanguageSwitch, findTags, initialLanguageState, LanguageState, prepareTag } from './core';
 
 export class Parser {
     private tags: CommentTag[] = [];
