@@ -53,6 +53,8 @@ export const settingsVariants: SettingsVariant[] = [
 
 // Languages set on the parser before the target, in order. The parser carries state between them.
 export const noCommentSyntaxLanguage = 'bc-no-comment-syntax';
+// A fixture language with an object-form lineComment, which leaves the parser an empty delimiter (P1)
+export const objectLineCommentLanguage = 'bc-object-line-comment';
 export const histories: string[][] = [
     [],
     ['javascript'],
@@ -91,6 +93,13 @@ export const targets: Target[] = [
         { kind: 'sample', file: 'plaintext.txt' },
         { kind: 'sample', file: 'unsupported/cobol.cbl' },
         { kind: 'generated', syntaxFrom: 'javascript', eol: 'LF', bareTags: true },
+    ] },
+    // An empty delimiter, so tags match anywhere in a line, and an empty tag can match nothing (P3, the second route)
+    { languageId: objectLineCommentLanguage, inputs: [
+        { kind: 'generated', syntaxFrom: 'python', eol: 'LF' },
+        { kind: 'generated', syntaxFrom: 'python', eol: 'CRLF' },
+        { kind: 'generated', syntaxFrom: 'python', eol: 'LF', bareTags: true },
+        { kind: 'empty' },
     ] },
     // No language config at all: the unsupported case
     { languageId: 'log', inputs: [{ kind: 'generated', syntaxFrom: 'javascript', eol: 'LF', bareTags: true }] },

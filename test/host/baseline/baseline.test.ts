@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import { CommentSyntax } from '../../baseline/generate';
 import {
     effectiveTags, generatedText, histories, historyName, InputSpec, inputName, languagesUsed,
-    noCommentSyntaxLanguage, SettingsVariant, settingsVariants, targets,
+    noCommentSyntaxLanguage, objectLineCommentLanguage, SettingsVariant, settingsVariants, targets,
 } from '../../baseline/matrix';
 import { CaseResult, groupByResult, matchHostSnapshot, RecordedRange, Snapshot } from '../../baseline/snapshot';
 import { loadOut, recorder, samplesDir, toRanges } from '../shim';
@@ -102,6 +102,10 @@ describe(`host baseline (${label})`, function () {
 
     it('has the fixture language with an empty comments object', async () => {
         assert.deepStrictEqual(await syntaxOf(noCommentSyntaxLanguage), {});
+    });
+
+    it('has the fixture language with an object-form lineComment', async () => {
+        assert.deepStrictEqual(await syntaxOf(objectLineCommentLanguage), { lineComment: { comment: '#', noIndent: true } });
     });
 
     it('records the language configs the Node baseline uses', async () => {

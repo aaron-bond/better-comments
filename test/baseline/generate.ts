@@ -1,14 +1,17 @@
 // Builds a document that puts every tag in every position we care about, from a language's comment syntax
 
 export interface CommentSyntax {
-    lineComment?: string | string[];
+    // The object form is newer than VS Code 1.65.0 (P1)
+    lineComment?: string | string[] | { comment: string; noIndent?: boolean };
     blockComment?: [string, string];
 }
 
 export function generateDocument(syntax: CommentSyntax | undefined, tags: string[], options: { bareTags?: boolean } = {}): string {
     const lines: string[] = [];
-    const lineDelimiters = syntax?.lineComment === undefined ? []
-        : Array.isArray(syntax.lineComment) ? syntax.lineComment : [syntax.lineComment];
+    const lineComment = syntax?.lineComment;
+    const lineDelimiters = lineComment === undefined ? []
+        : typeof lineComment === 'string' ? [lineComment]
+        : Array.isArray(lineComment) ? lineComment : [lineComment.comment];
     const block = syntax?.blockComment;
 
     // Line 0 matters for languages with ignoreFirstLine

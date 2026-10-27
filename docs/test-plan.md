@@ -61,18 +61,26 @@ To verify:
 
 If confirmed, `CommentSyntax` needs to accept the object shape and the config parsing needs to turn it into a plain string.
 
-### P3: Empty tag with `highlightPlainText` hangs the extension host (confirmed, fixed)
+The host baseline now records this case in real VS Code: the fixture language `bc-object-line-comment` has `{ "comment": "#", "noIndent": true }` on every version, and tags are matched anywhere in a line, from just after the `#`. The empty delimiter is also the second route to the P3 hang.
 
-**Fixed** on `task/improve-test-coverage`. The matching loops in `src/core/finder.ts` now step past zero-length matches without recording them. Any run that finished before the fix never produced a zero-length match, so only the runs that used to hang are affected. All existing snapshots were unchanged. A new settings variant, `empty-tag-plaintext-on`, records the fixed behaviour: with an empty tag, every non-empty plain text line gets that tag's colour, the same way an empty tag colours every comment in other languages. Whether empty tags should be ignored altogether is a separate decision. The real-VS Code repro (empty untitled file, then typing) now finishes in 8 s instead of freezing.
+### P3: An empty tag can hang the extension host (confirmed, fixed)
+
+**Fixed** on `task/improve-test-coverage`. The matching loops in `src/core/finder.ts` now step past zero-length matches without recording them. Any run that finished before the fix never produced a zero-length match, so only the runs that used to hang are affected. All existing snapshots were unchanged. Two sets of cases record the fixed behaviour, one per route to the hang (below):
+- The settings variant `empty-tag-plaintext-on`: with an empty tag, every non-empty plain text line gets that tag's colour, the same way an empty tag colours every comment in other languages.
+- The fixture language `bc-object-line-comment` under the `empty-tag` variants: an object-form `lineComment`, as the built-in Makefile config has in current VS Code. v3.0.2 hangs on these too.
+
+Whether empty tags should be ignored altogether is a separate decision. The real-VS Code repro (empty untitled file, then typing) now finishes in 8 s instead of freezing.
 
 **Confirmed on 2026-10-26**, in Node against the compiled parser and in real VS Code 1.143.1.
 
-With plain text on, the single-line regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `gm` flags. An empty tag string adds an empty alternative, `(!|)`, so the regex can match zero characters on an empty line. `RegExp.exec` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` never ends.
+An empty tag string adds an empty alternative to the single-line regex, `(!|)`. `RegExp.exec` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` never ends if the regex can match zero characters. It can whenever nothing before the tags has to match:
 
-- **Node:** any plain text document that is empty or ends with a newline hangs. Whitespace-only lines and text with no empty lines finish normally. The same tags in JavaScript are fine, because the delimiter prevents zero-length matches.
-- **Real VS Code:** with `better-comments.highlightPlainText: true` and a tag `{ "tag": "" }` in `settings.json` at startup, opening a new untitled file (Ctrl+N, which is empty plain text) freezes the extension host. The run had to be killed after 60 s. The same steps with `TODO` instead of `""` finish in 8 s.
-- **Reach:** it needs both settings, which is presumably why it hasn't been reported. The `tags` schema doesn't constrain its items, so an empty tag is a valid setting, for example halfway through editing. The only related-looking issue is #187 ("Extension causes high cpu load", 2019, v2.0.5, no profile or settings), and there's no evidence it's the same thing.
-- **In the baseline:** the host matrix can't include this combination, because it would hang the run. Record it in the Node baseline as a case that times out in a child process, so the fix (Phase 5) shows up as a deliberate snapshot change.
+- **Plain text, with `highlightPlainText` on.** The regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `gm` flags, which matches zero characters on an empty line. Any plain text document that is empty or ends with a newline hangs. Whitespace-only lines and text with no empty lines finish normally.
+- **Any language with an empty delimiter.** An object-form `lineComment` gives the delimiter `""` (P1), and so would `lineComment: []`. The regex is then `()+( |\t)*(<tags>)+(.*)`, which matches zero characters anywhere. No other setting is needed: on a VS Code version whose built-in Makefile config uses the object form (1.143.1 does, 1.65.0 doesn't), opening a Makefile hangs. Reproduced in Node against the v3.0.2 build; not yet tried in real VS Code.
+- **Languages with a delimiter are safe.** The same tags in JavaScript, or in Python with `"#"`, finish normally, because the delimiter has to match.
+- **Real VS Code, plain text route:** with `better-comments.highlightPlainText: true` and a tag `{ "tag": "" }` in `settings.json` at startup, opening a new untitled file (Ctrl+N, which is empty plain text) freezes the extension host. The run had to be killed after 60 s. The same steps with `TODO` instead of `""` finish in 8 s.
+- **Reach:** an empty tag, plus either `highlightPlainText` or a Makefile (or any other object-form language) on a recent VS Code. That the empty tag is needed is presumably why it hasn't been reported. The `tags` schema doesn't constrain its items, so an empty tag is a valid setting, for example halfway through editing. The only related-looking issue is #187 ("Extension causes high cpu load", 2019, v2.0.5, no profile or settings), and there's no evidence it's the same thing.
+- **In the baseline:** both routes are in the host and Node baselines (above). They were added with the fix, since before it they hung the run, so expect v3.0.2 to stall on them.
 - **Possible fixes, to decide later:** ignore empty tags when building the regex, and/or advance `lastIndex` after a zero-length match. Either is a behaviour change and needs its own snapshot diff.
 
 ### P2: Stale language-config entries
@@ -132,7 +140,7 @@ The current parser carries state from one language to the next (pinned items 1, 
 | `npm run perf` | The performance benchmark: the Node and host layers for this checkout and v3.0.2, and a report pairing them up. See [performance.md](performance.md) | ~10 min |
 
 - Running from VS Code's terminal works; the runner clears `ELECTRON_RUN_AS_NODE` itself. On Linux without a display, use `xvfb-run -a npm run test:host`.
-- `BC_PARSER_PATH=<path to a build's parser.js> npm run test:node` runs the Node suites against another build, e.g. v3.0.2. It's how the overlapping-switch snapshot was recorded (with `BC_UPDATE_SNAPSHOTS=1`). v3.0.2 hangs on the `empty-tag-plaintext-on` cases (P3), so expect the Node baseline to stall there.
+- `BC_PARSER_PATH=<path to a build's parser.js> npm run test:node` runs the Node suites against another build, e.g. v3.0.2. It's how the overlapping-switch snapshot was recorded (with `BC_UPDATE_SNAPSHOTS=1`). v3.0.2 hangs on the `empty-tag-plaintext-on` cases and the `bc-object-line-comment` cases under `empty-tag` (P3), so expect the Node baseline to stall there.
 
 ## Phase 0: Test tooling only (done)
 
@@ -299,8 +307,8 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 93 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
-- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 102 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
+- **Unit tests** (`test/unit/`, 96 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 126 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.

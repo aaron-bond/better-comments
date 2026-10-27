@@ -1,0 +1,5145 @@
+{
+  "settings": "custom-tags",
+  "target": "bc-object-line-comment",
+  "input": "generated-from-python-lf",
+  "languageId": "bc-object-line-comment",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "?",
+      "options": {
+        "color": "#100000",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#1A0B0C",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "+",
+      "options": {
+        "color": "#241618",
+        "textDecoration": " underline"
+      }
+    },
+    {
+      "tag": ".",
+      "options": {
+        "color": "#2E2124",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through underline"
+      }
+    },
+    {
+      "tag": "$",
+      "options": {
+        "color": "#382C30",
+        "backgroundColor": "#00000020",
+        "textDecoration": "",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": "^",
+      "options": {
+        "color": "#42373C",
+        "textDecoration": "line-through",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": "|",
+      "options": {
+        "color": "#4C4248",
+        "backgroundColor": "transparent",
+        "textDecoration": " underline",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": "(",
+      "options": {
+        "color": "#564D54",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through underline",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "tag": ")",
+      "options": {
+        "color": "#605860",
+        "textDecoration": "",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "[",
+      "options": {
+        "color": "#6A636C",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "]",
+      "options": {
+        "color": "#746E78",
+        "backgroundColor": "#00000020",
+        "textDecoration": " underline",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "{",
+      "options": {
+        "color": "#7E7984",
+        "textDecoration": "line-through underline",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "}",
+      "options": {
+        "color": "#888490",
+        "backgroundColor": "transparent",
+        "textDecoration": "",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "\\",
+      "options": {
+        "color": "#928F9C",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "/",
+      "options": {
+        "color": "#9C9AA8",
+        "textDecoration": " underline",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "-",
+      "options": {
+        "color": "#A6A5B4",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through underline",
+        "fontWeight": "bold",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "tag": "@note",
+      "options": {
+        "color": "#B0B0C0",
+        "backgroundColor": "#00000020",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "FIXME:",
+      "options": {
+        "color": "#BABBCC",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "⚠",
+      "options": {
+        "color": "#C4C6D8",
+        "backgroundColor": "transparent",
+        "textDecoration": " underline"
+      }
+    },
+    {
+      "tag": "**",
+      "options": {
+        "color": "#CED1E4",
+        "backgroundColor": "#00000020",
+        "textDecoration": "line-through underline"
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 20,
+      "applied": [
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "0:1",
+              "end": "0:26",
+              "text": " ? first line of the file"
+            },
+            {
+              "start": "3:1",
+              "end": "3:17",
+              "text": " ? start of line"
+            },
+            {
+              "start": "4:5",
+              "end": "4:28",
+              "text": " ? indented with spaces"
+            },
+            {
+              "start": "5:2",
+              "end": "5:24",
+              "text": " ? indented with a tab"
+            },
+            {
+              "start": "6:1",
+              "end": "6:31",
+              "text": "? no space after the delimiter"
+            },
+            {
+              "start": "7:1",
+              "end": "7:40",
+              "text": "   ? several spaces after the delimiter"
+            },
+            {
+              "start": "9:10",
+              "end": "9:38",
+              "text": " ? inside a string literal\";"
+            },
+            {
+              "start": "10:5",
+              "end": "10:32",
+              "text": " ? tag after the first word"
+            },
+            {
+              "start": "11:1",
+              "end": "11:3",
+              "text": " ?"
+            },
+            {
+              "start": "12:3",
+              "end": "12:27",
+              "text": " ? single-line block \"\"\""
+            },
+            {
+              "start": "15:0",
+              "end": "15:24",
+              "text": "? block line at column 0"
+            },
+            {
+              "start": "16:0",
+              "end": "16:25",
+              "text": "    ? indented block line"
+            },
+            {
+              "start": "17:0",
+              "end": "17:19",
+              "text": "    ?: with a colon"
+            },
+            {
+              "start": "18:7",
+              "end": "18:34",
+              "text": " ? tag after the first word"
+            },
+            {
+              "start": "485:0",
+              "end": "485:34",
+              "text": "    ? inside an unterminated block"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "20:0",
+              "end": "20:3",
+              "text": "/**"
+            },
+            {
+              "start": "21:0",
+              "end": "21:15",
+              "text": " * ? jsdoc line"
+            },
+            {
+              "start": "22:0",
+              "end": "22:31",
+              "text": " *   ?: jsdoc line with a colon"
+            },
+            {
+              "start": "23:0",
+              "end": "23:33",
+              "text": " * not ? tag after the first word"
+            },
+            {
+              "start": "27:1",
+              "end": "27:17",
+              "text": " * start of line"
+            },
+            {
+              "start": "28:5",
+              "end": "28:28",
+              "text": " * indented with spaces"
+            },
+            {
+              "start": "29:2",
+              "end": "29:24",
+              "text": " * indented with a tab"
+            },
+            {
+              "start": "30:1",
+              "end": "30:31",
+              "text": "* no space after the delimiter"
+            },
+            {
+              "start": "31:1",
+              "end": "31:40",
+              "text": "   * several spaces after the delimiter"
+            },
+            {
+              "start": "33:10",
+              "end": "33:38",
+              "text": " * inside a string literal\";"
+            },
+            {
+              "start": "34:5",
+              "end": "34:32",
+              "text": " * tag after the first word"
+            },
+            {
+              "start": "35:1",
+              "end": "35:3",
+              "text": " *"
+            },
+            {
+              "start": "36:3",
+              "end": "36:27",
+              "text": " * single-line block \"\"\""
+            },
+            {
+              "start": "39:0",
+              "end": "39:24",
+              "text": "* block line at column 0"
+            },
+            {
+              "start": "40:0",
+              "end": "40:25",
+              "text": "    * indented block line"
+            },
+            {
+              "start": "41:0",
+              "end": "41:19",
+              "text": "    *: with a colon"
+            },
+            {
+              "start": "42:7",
+              "end": "42:34",
+              "text": " * tag after the first word"
+            },
+            {
+              "start": "44:0",
+              "end": "44:3",
+              "text": "/**"
+            },
+            {
+              "start": "45:0",
+              "end": "45:15",
+              "text": " * * jsdoc line"
+            },
+            {
+              "start": "46:0",
+              "end": "46:31",
+              "text": " *   *: jsdoc line with a colon"
+            },
+            {
+              "start": "47:0",
+              "end": "47:33",
+              "text": " * not * tag after the first word"
+            },
+            {
+              "start": "68:0",
+              "end": "68:3",
+              "text": "/**"
+            },
+            {
+              "start": "69:0",
+              "end": "69:15",
+              "text": " * + jsdoc line"
+            },
+            {
+              "start": "70:0",
+              "end": "70:31",
+              "text": " *   +: jsdoc line with a colon"
+            },
+            {
+              "start": "71:0",
+              "end": "71:33",
+              "text": " * not + tag after the first word"
+            },
+            {
+              "start": "92:0",
+              "end": "92:3",
+              "text": "/**"
+            },
+            {
+              "start": "93:0",
+              "end": "93:15",
+              "text": " * . jsdoc line"
+            },
+            {
+              "start": "94:0",
+              "end": "94:31",
+              "text": " *   .: jsdoc line with a colon"
+            },
+            {
+              "start": "95:0",
+              "end": "95:33",
+              "text": " * not . tag after the first word"
+            },
+            {
+              "start": "116:0",
+              "end": "116:3",
+              "text": "/**"
+            },
+            {
+              "start": "117:0",
+              "end": "117:15",
+              "text": " * $ jsdoc line"
+            },
+            {
+              "start": "118:0",
+              "end": "118:31",
+              "text": " *   $: jsdoc line with a colon"
+            },
+            {
+              "start": "119:0",
+              "end": "119:33",
+              "text": " * not $ tag after the first word"
+            },
+            {
+              "start": "140:0",
+              "end": "140:3",
+              "text": "/**"
+            },
+            {
+              "start": "141:0",
+              "end": "141:15",
+              "text": " * ^ jsdoc line"
+            },
+            {
+              "start": "142:0",
+              "end": "142:31",
+              "text": " *   ^: jsdoc line with a colon"
+            },
+            {
+              "start": "143:0",
+              "end": "143:33",
+              "text": " * not ^ tag after the first word"
+            },
+            {
+              "start": "164:0",
+              "end": "164:3",
+              "text": "/**"
+            },
+            {
+              "start": "165:0",
+              "end": "165:15",
+              "text": " * | jsdoc line"
+            },
+            {
+              "start": "166:0",
+              "end": "166:31",
+              "text": " *   |: jsdoc line with a colon"
+            },
+            {
+              "start": "167:0",
+              "end": "167:33",
+              "text": " * not | tag after the first word"
+            },
+            {
+              "start": "188:0",
+              "end": "188:3",
+              "text": "/**"
+            },
+            {
+              "start": "189:0",
+              "end": "189:15",
+              "text": " * ( jsdoc line"
+            },
+            {
+              "start": "190:0",
+              "end": "190:31",
+              "text": " *   (: jsdoc line with a colon"
+            },
+            {
+              "start": "191:0",
+              "end": "191:33",
+              "text": " * not ( tag after the first word"
+            },
+            {
+              "start": "212:0",
+              "end": "212:3",
+              "text": "/**"
+            },
+            {
+              "start": "213:0",
+              "end": "213:15",
+              "text": " * ) jsdoc line"
+            },
+            {
+              "start": "214:0",
+              "end": "214:31",
+              "text": " *   ): jsdoc line with a colon"
+            },
+            {
+              "start": "215:0",
+              "end": "215:33",
+              "text": " * not ) tag after the first word"
+            },
+            {
+              "start": "236:0",
+              "end": "236:3",
+              "text": "/**"
+            },
+            {
+              "start": "237:0",
+              "end": "237:15",
+              "text": " * [ jsdoc line"
+            },
+            {
+              "start": "238:0",
+              "end": "238:31",
+              "text": " *   [: jsdoc line with a colon"
+            },
+            {
+              "start": "239:0",
+              "end": "239:33",
+              "text": " * not [ tag after the first word"
+            },
+            {
+              "start": "260:0",
+              "end": "260:3",
+              "text": "/**"
+            },
+            {
+              "start": "261:0",
+              "end": "261:15",
+              "text": " * ] jsdoc line"
+            },
+            {
+              "start": "262:0",
+              "end": "262:31",
+              "text": " *   ]: jsdoc line with a colon"
+            },
+            {
+              "start": "263:0",
+              "end": "263:33",
+              "text": " * not ] tag after the first word"
+            },
+            {
+              "start": "284:0",
+              "end": "284:3",
+              "text": "/**"
+            },
+            {
+              "start": "285:0",
+              "end": "285:15",
+              "text": " * { jsdoc line"
+            },
+            {
+              "start": "286:0",
+              "end": "286:31",
+              "text": " *   {: jsdoc line with a colon"
+            },
+            {
+              "start": "287:0",
+              "end": "287:33",
+              "text": " * not { tag after the first word"
+            },
+            {
+              "start": "308:0",
+              "end": "308:3",
+              "text": "/**"
+            },
+            {
+              "start": "309:0",
+              "end": "309:15",
+              "text": " * } jsdoc line"
+            },
+            {
+              "start": "310:0",
+              "end": "310:31",
+              "text": " *   }: jsdoc line with a colon"
+            },
+            {
+              "start": "311:0",
+              "end": "311:33",
+              "text": " * not } tag after the first word"
+            },
+            {
+              "start": "332:0",
+              "end": "332:3",
+              "text": "/**"
+            },
+            {
+              "start": "333:0",
+              "end": "333:15",
+              "text": " * \\ jsdoc line"
+            },
+            {
+              "start": "334:0",
+              "end": "334:31",
+              "text": " *   \\: jsdoc line with a colon"
+            },
+            {
+              "start": "335:0",
+              "end": "335:33",
+              "text": " * not \\ tag after the first word"
+            },
+            {
+              "start": "356:0",
+              "end": "356:3",
+              "text": "/**"
+            },
+            {
+              "start": "357:0",
+              "end": "357:15",
+              "text": " * / jsdoc line"
+            },
+            {
+              "start": "358:0",
+              "end": "358:31",
+              "text": " *   /: jsdoc line with a colon"
+            },
+            {
+              "start": "359:0",
+              "end": "359:33",
+              "text": " * not / tag after the first word"
+            },
+            {
+              "start": "380:0",
+              "end": "380:3",
+              "text": "/**"
+            },
+            {
+              "start": "381:0",
+              "end": "381:15",
+              "text": " * - jsdoc line"
+            },
+            {
+              "start": "382:0",
+              "end": "382:31",
+              "text": " *   -: jsdoc line with a colon"
+            },
+            {
+              "start": "383:0",
+              "end": "383:33",
+              "text": " * not - tag after the first word"
+            },
+            {
+              "start": "405:0",
+              "end": "405:3",
+              "text": "/**"
+            },
+            {
+              "start": "406:0",
+              "end": "406:19",
+              "text": " * @note jsdoc line"
+            },
+            {
+              "start": "407:0",
+              "end": "407:35",
+              "text": " *   @note: jsdoc line with a colon"
+            },
+            {
+              "start": "408:0",
+              "end": "408:37",
+              "text": " * not @note tag after the first word"
+            },
+            {
+              "start": "429:0",
+              "end": "429:3",
+              "text": "/**"
+            },
+            {
+              "start": "430:0",
+              "end": "430:20",
+              "text": " * FIXME: jsdoc line"
+            },
+            {
+              "start": "431:0",
+              "end": "431:36",
+              "text": " *   FIXME:: jsdoc line with a colon"
+            },
+            {
+              "start": "432:0",
+              "end": "432:38",
+              "text": " * not FIXME: tag after the first word"
+            },
+            {
+              "start": "453:0",
+              "end": "453:3",
+              "text": "/**"
+            },
+            {
+              "start": "454:0",
+              "end": "454:15",
+              "text": " * ⚠ jsdoc line"
+            },
+            {
+              "start": "455:0",
+              "end": "455:31",
+              "text": " *   ⚠: jsdoc line with a colon"
+            },
+            {
+              "start": "456:0",
+              "end": "456:33",
+              "text": " * not ⚠ tag after the first word"
+            },
+            {
+              "start": "460:1",
+              "end": "460:18",
+              "text": " ** start of line"
+            },
+            {
+              "start": "461:5",
+              "end": "461:29",
+              "text": " ** indented with spaces"
+            },
+            {
+              "start": "462:2",
+              "end": "462:25",
+              "text": " ** indented with a tab"
+            },
+            {
+              "start": "463:1",
+              "end": "463:32",
+              "text": "** no space after the delimiter"
+            },
+            {
+              "start": "464:1",
+              "end": "464:41",
+              "text": "   ** several spaces after the delimiter"
+            },
+            {
+              "start": "466:10",
+              "end": "466:39",
+              "text": " ** inside a string literal\";"
+            },
+            {
+              "start": "467:5",
+              "end": "467:33",
+              "text": " ** tag after the first word"
+            },
+            {
+              "start": "468:1",
+              "end": "468:4",
+              "text": " **"
+            },
+            {
+              "start": "469:3",
+              "end": "469:28",
+              "text": " ** single-line block \"\"\""
+            },
+            {
+              "start": "472:0",
+              "end": "472:25",
+              "text": "** block line at column 0"
+            },
+            {
+              "start": "473:0",
+              "end": "473:26",
+              "text": "    ** indented block line"
+            },
+            {
+              "start": "474:0",
+              "end": "474:20",
+              "text": "    **: with a colon"
+            },
+            {
+              "start": "475:7",
+              "end": "475:35",
+              "text": " ** tag after the first word"
+            },
+            {
+              "start": "477:0",
+              "end": "477:3",
+              "text": "/**"
+            },
+            {
+              "start": "478:0",
+              "end": "478:16",
+              "text": " * ** jsdoc line"
+            },
+            {
+              "start": "479:0",
+              "end": "479:32",
+              "text": " *   **: jsdoc line with a colon"
+            },
+            {
+              "start": "480:0",
+              "end": "480:34",
+              "text": " * not ** tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "+",
+          "ranges": [
+            {
+              "start": "51:1",
+              "end": "51:17",
+              "text": " + start of line"
+            },
+            {
+              "start": "52:5",
+              "end": "52:28",
+              "text": " + indented with spaces"
+            },
+            {
+              "start": "53:2",
+              "end": "53:24",
+              "text": " + indented with a tab"
+            },
+            {
+              "start": "54:1",
+              "end": "54:31",
+              "text": "+ no space after the delimiter"
+            },
+            {
+              "start": "55:1",
+              "end": "55:40",
+              "text": "   + several spaces after the delimiter"
+            },
+            {
+              "start": "57:10",
+              "end": "57:38",
+              "text": " + inside a string literal\";"
+            },
+            {
+              "start": "58:5",
+              "end": "58:32",
+              "text": " + tag after the first word"
+            },
+            {
+              "start": "59:1",
+              "end": "59:3",
+              "text": " +"
+            },
+            {
+              "start": "60:3",
+              "end": "60:27",
+              "text": " + single-line block \"\"\""
+            },
+            {
+              "start": "63:0",
+              "end": "63:24",
+              "text": "+ block line at column 0"
+            },
+            {
+              "start": "64:0",
+              "end": "64:25",
+              "text": "    + indented block line"
+            },
+            {
+              "start": "65:0",
+              "end": "65:19",
+              "text": "    +: with a colon"
+            },
+            {
+              "start": "66:7",
+              "end": "66:34",
+              "text": " + tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": ".",
+          "ranges": [
+            {
+              "start": "75:1",
+              "end": "75:17",
+              "text": " . start of line"
+            },
+            {
+              "start": "76:5",
+              "end": "76:28",
+              "text": " . indented with spaces"
+            },
+            {
+              "start": "77:2",
+              "end": "77:24",
+              "text": " . indented with a tab"
+            },
+            {
+              "start": "78:1",
+              "end": "78:31",
+              "text": ". no space after the delimiter"
+            },
+            {
+              "start": "79:1",
+              "end": "79:40",
+              "text": "   . several spaces after the delimiter"
+            },
+            {
+              "start": "81:10",
+              "end": "81:38",
+              "text": " . inside a string literal\";"
+            },
+            {
+              "start": "82:5",
+              "end": "82:32",
+              "text": " . tag after the first word"
+            },
+            {
+              "start": "83:1",
+              "end": "83:3",
+              "text": " ."
+            },
+            {
+              "start": "84:3",
+              "end": "84:27",
+              "text": " . single-line block \"\"\""
+            },
+            {
+              "start": "87:0",
+              "end": "87:24",
+              "text": ". block line at column 0"
+            },
+            {
+              "start": "88:0",
+              "end": "88:25",
+              "text": "    . indented block line"
+            },
+            {
+              "start": "89:0",
+              "end": "89:19",
+              "text": "    .: with a colon"
+            },
+            {
+              "start": "90:7",
+              "end": "90:34",
+              "text": " . tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "$",
+          "ranges": [
+            {
+              "start": "99:1",
+              "end": "99:17",
+              "text": " $ start of line"
+            },
+            {
+              "start": "100:5",
+              "end": "100:28",
+              "text": " $ indented with spaces"
+            },
+            {
+              "start": "101:2",
+              "end": "101:24",
+              "text": " $ indented with a tab"
+            },
+            {
+              "start": "102:1",
+              "end": "102:31",
+              "text": "$ no space after the delimiter"
+            },
+            {
+              "start": "103:1",
+              "end": "103:40",
+              "text": "   $ several spaces after the delimiter"
+            },
+            {
+              "start": "105:10",
+              "end": "105:38",
+              "text": " $ inside a string literal\";"
+            },
+            {
+              "start": "106:5",
+              "end": "106:32",
+              "text": " $ tag after the first word"
+            },
+            {
+              "start": "107:1",
+              "end": "107:3",
+              "text": " $"
+            },
+            {
+              "start": "108:3",
+              "end": "108:27",
+              "text": " $ single-line block \"\"\""
+            },
+            {
+              "start": "111:0",
+              "end": "111:24",
+              "text": "$ block line at column 0"
+            },
+            {
+              "start": "112:0",
+              "end": "112:25",
+              "text": "    $ indented block line"
+            },
+            {
+              "start": "113:0",
+              "end": "113:19",
+              "text": "    $: with a colon"
+            },
+            {
+              "start": "114:7",
+              "end": "114:34",
+              "text": " $ tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "^",
+          "ranges": [
+            {
+              "start": "123:1",
+              "end": "123:17",
+              "text": " ^ start of line"
+            },
+            {
+              "start": "124:5",
+              "end": "124:28",
+              "text": " ^ indented with spaces"
+            },
+            {
+              "start": "125:2",
+              "end": "125:24",
+              "text": " ^ indented with a tab"
+            },
+            {
+              "start": "126:1",
+              "end": "126:31",
+              "text": "^ no space after the delimiter"
+            },
+            {
+              "start": "127:1",
+              "end": "127:40",
+              "text": "   ^ several spaces after the delimiter"
+            },
+            {
+              "start": "129:10",
+              "end": "129:38",
+              "text": " ^ inside a string literal\";"
+            },
+            {
+              "start": "130:5",
+              "end": "130:32",
+              "text": " ^ tag after the first word"
+            },
+            {
+              "start": "131:1",
+              "end": "131:3",
+              "text": " ^"
+            },
+            {
+              "start": "132:3",
+              "end": "132:27",
+              "text": " ^ single-line block \"\"\""
+            },
+            {
+              "start": "135:0",
+              "end": "135:24",
+              "text": "^ block line at column 0"
+            },
+            {
+              "start": "136:0",
+              "end": "136:25",
+              "text": "    ^ indented block line"
+            },
+            {
+              "start": "137:0",
+              "end": "137:19",
+              "text": "    ^: with a colon"
+            },
+            {
+              "start": "138:7",
+              "end": "138:34",
+              "text": " ^ tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "|",
+          "ranges": [
+            {
+              "start": "147:1",
+              "end": "147:17",
+              "text": " | start of line"
+            },
+            {
+              "start": "148:5",
+              "end": "148:28",
+              "text": " | indented with spaces"
+            },
+            {
+              "start": "149:2",
+              "end": "149:24",
+              "text": " | indented with a tab"
+            },
+            {
+              "start": "150:1",
+              "end": "150:31",
+              "text": "| no space after the delimiter"
+            },
+            {
+              "start": "151:1",
+              "end": "151:40",
+              "text": "   | several spaces after the delimiter"
+            },
+            {
+              "start": "153:10",
+              "end": "153:38",
+              "text": " | inside a string literal\";"
+            },
+            {
+              "start": "154:5",
+              "end": "154:32",
+              "text": " | tag after the first word"
+            },
+            {
+              "start": "155:1",
+              "end": "155:3",
+              "text": " |"
+            },
+            {
+              "start": "156:3",
+              "end": "156:27",
+              "text": " | single-line block \"\"\""
+            },
+            {
+              "start": "159:0",
+              "end": "159:24",
+              "text": "| block line at column 0"
+            },
+            {
+              "start": "160:0",
+              "end": "160:25",
+              "text": "    | indented block line"
+            },
+            {
+              "start": "161:0",
+              "end": "161:19",
+              "text": "    |: with a colon"
+            },
+            {
+              "start": "162:7",
+              "end": "162:34",
+              "text": " | tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "(",
+          "ranges": [
+            {
+              "start": "171:1",
+              "end": "171:17",
+              "text": " ( start of line"
+            },
+            {
+              "start": "172:5",
+              "end": "172:28",
+              "text": " ( indented with spaces"
+            },
+            {
+              "start": "173:2",
+              "end": "173:24",
+              "text": " ( indented with a tab"
+            },
+            {
+              "start": "174:1",
+              "end": "174:31",
+              "text": "( no space after the delimiter"
+            },
+            {
+              "start": "175:1",
+              "end": "175:40",
+              "text": "   ( several spaces after the delimiter"
+            },
+            {
+              "start": "177:10",
+              "end": "177:38",
+              "text": " ( inside a string literal\";"
+            },
+            {
+              "start": "178:5",
+              "end": "178:32",
+              "text": " ( tag after the first word"
+            },
+            {
+              "start": "179:1",
+              "end": "179:3",
+              "text": " ("
+            },
+            {
+              "start": "180:3",
+              "end": "180:27",
+              "text": " ( single-line block \"\"\""
+            },
+            {
+              "start": "183:0",
+              "end": "183:24",
+              "text": "( block line at column 0"
+            },
+            {
+              "start": "184:0",
+              "end": "184:25",
+              "text": "    ( indented block line"
+            },
+            {
+              "start": "185:0",
+              "end": "185:19",
+              "text": "    (: with a colon"
+            },
+            {
+              "start": "186:7",
+              "end": "186:34",
+              "text": " ( tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": ")",
+          "ranges": [
+            {
+              "start": "2:4",
+              "end": "2:18",
+              "text": "(); // tag \"?\""
+            },
+            {
+              "start": "8:4",
+              "end": "8:22",
+              "text": "(); # ? after code"
+            },
+            {
+              "start": "13:4",
+              "end": "13:34",
+              "text": "(); \"\"\" ? block after code \"\"\""
+            },
+            {
+              "start": "26:4",
+              "end": "26:18",
+              "text": "(); // tag \"*\""
+            },
+            {
+              "start": "32:4",
+              "end": "32:22",
+              "text": "(); # * after code"
+            },
+            {
+              "start": "37:4",
+              "end": "37:34",
+              "text": "(); \"\"\" * block after code \"\"\""
+            },
+            {
+              "start": "50:4",
+              "end": "50:18",
+              "text": "(); // tag \"+\""
+            },
+            {
+              "start": "56:4",
+              "end": "56:22",
+              "text": "(); # + after code"
+            },
+            {
+              "start": "61:4",
+              "end": "61:34",
+              "text": "(); \"\"\" + block after code \"\"\""
+            },
+            {
+              "start": "74:4",
+              "end": "74:18",
+              "text": "(); // tag \".\""
+            },
+            {
+              "start": "80:4",
+              "end": "80:22",
+              "text": "(); # . after code"
+            },
+            {
+              "start": "85:4",
+              "end": "85:34",
+              "text": "(); \"\"\" . block after code \"\"\""
+            },
+            {
+              "start": "98:4",
+              "end": "98:18",
+              "text": "(); // tag \"$\""
+            },
+            {
+              "start": "104:4",
+              "end": "104:22",
+              "text": "(); # $ after code"
+            },
+            {
+              "start": "109:4",
+              "end": "109:34",
+              "text": "(); \"\"\" $ block after code \"\"\""
+            },
+            {
+              "start": "122:4",
+              "end": "122:18",
+              "text": "(); // tag \"^\""
+            },
+            {
+              "start": "128:4",
+              "end": "128:22",
+              "text": "(); # ^ after code"
+            },
+            {
+              "start": "133:4",
+              "end": "133:34",
+              "text": "(); \"\"\" ^ block after code \"\"\""
+            },
+            {
+              "start": "146:4",
+              "end": "146:18",
+              "text": "(); // tag \"|\""
+            },
+            {
+              "start": "152:4",
+              "end": "152:22",
+              "text": "(); # | after code"
+            },
+            {
+              "start": "157:4",
+              "end": "157:34",
+              "text": "(); \"\"\" | block after code \"\"\""
+            },
+            {
+              "start": "170:4",
+              "end": "170:18",
+              "text": "(); // tag \"(\""
+            },
+            {
+              "start": "176:4",
+              "end": "176:22",
+              "text": "(); # ( after code"
+            },
+            {
+              "start": "181:4",
+              "end": "181:34",
+              "text": "(); \"\"\" ( block after code \"\"\""
+            },
+            {
+              "start": "194:4",
+              "end": "194:18",
+              "text": "(); // tag \")\""
+            },
+            {
+              "start": "195:1",
+              "end": "195:17",
+              "text": " ) start of line"
+            },
+            {
+              "start": "196:5",
+              "end": "196:28",
+              "text": " ) indented with spaces"
+            },
+            {
+              "start": "197:2",
+              "end": "197:24",
+              "text": " ) indented with a tab"
+            },
+            {
+              "start": "198:1",
+              "end": "198:31",
+              "text": ") no space after the delimiter"
+            },
+            {
+              "start": "199:1",
+              "end": "199:40",
+              "text": "   ) several spaces after the delimiter"
+            },
+            {
+              "start": "200:4",
+              "end": "200:22",
+              "text": "(); # ) after code"
+            },
+            {
+              "start": "201:10",
+              "end": "201:38",
+              "text": " ) inside a string literal\";"
+            },
+            {
+              "start": "202:5",
+              "end": "202:32",
+              "text": " ) tag after the first word"
+            },
+            {
+              "start": "203:1",
+              "end": "203:3",
+              "text": " )"
+            },
+            {
+              "start": "204:3",
+              "end": "204:27",
+              "text": " ) single-line block \"\"\""
+            },
+            {
+              "start": "205:4",
+              "end": "205:34",
+              "text": "(); \"\"\" ) block after code \"\"\""
+            },
+            {
+              "start": "207:0",
+              "end": "207:24",
+              "text": ") block line at column 0"
+            },
+            {
+              "start": "208:0",
+              "end": "208:25",
+              "text": "    ) indented block line"
+            },
+            {
+              "start": "209:0",
+              "end": "209:19",
+              "text": "    ): with a colon"
+            },
+            {
+              "start": "210:7",
+              "end": "210:34",
+              "text": " ) tag after the first word"
+            },
+            {
+              "start": "218:4",
+              "end": "218:18",
+              "text": "(); // tag \"[\""
+            },
+            {
+              "start": "224:4",
+              "end": "224:22",
+              "text": "(); # [ after code"
+            },
+            {
+              "start": "229:4",
+              "end": "229:34",
+              "text": "(); \"\"\" [ block after code \"\"\""
+            },
+            {
+              "start": "242:4",
+              "end": "242:18",
+              "text": "(); // tag \"]\""
+            },
+            {
+              "start": "248:4",
+              "end": "248:22",
+              "text": "(); # ] after code"
+            },
+            {
+              "start": "253:4",
+              "end": "253:34",
+              "text": "(); \"\"\" ] block after code \"\"\""
+            },
+            {
+              "start": "266:4",
+              "end": "266:18",
+              "text": "(); // tag \"{\""
+            },
+            {
+              "start": "272:4",
+              "end": "272:22",
+              "text": "(); # { after code"
+            },
+            {
+              "start": "277:4",
+              "end": "277:34",
+              "text": "(); \"\"\" { block after code \"\"\""
+            },
+            {
+              "start": "290:4",
+              "end": "290:18",
+              "text": "(); // tag \"}\""
+            },
+            {
+              "start": "296:4",
+              "end": "296:22",
+              "text": "(); # } after code"
+            },
+            {
+              "start": "301:4",
+              "end": "301:34",
+              "text": "(); \"\"\" } block after code \"\"\""
+            },
+            {
+              "start": "314:4",
+              "end": "314:19",
+              "text": "(); // tag \"\\\\\""
+            },
+            {
+              "start": "320:4",
+              "end": "320:22",
+              "text": "(); # \\ after code"
+            },
+            {
+              "start": "325:4",
+              "end": "325:34",
+              "text": "(); \"\"\" \\ block after code \"\"\""
+            },
+            {
+              "start": "338:4",
+              "end": "338:18",
+              "text": "(); // tag \"/\""
+            },
+            {
+              "start": "344:4",
+              "end": "344:22",
+              "text": "(); # / after code"
+            },
+            {
+              "start": "349:4",
+              "end": "349:34",
+              "text": "(); \"\"\" / block after code \"\"\""
+            },
+            {
+              "start": "362:4",
+              "end": "362:18",
+              "text": "(); // tag \"-\""
+            },
+            {
+              "start": "368:4",
+              "end": "368:22",
+              "text": "(); # - after code"
+            },
+            {
+              "start": "373:4",
+              "end": "373:34",
+              "text": "(); \"\"\" - block after code \"\"\""
+            },
+            {
+              "start": "386:4",
+              "end": "386:22",
+              "text": "(); // tag \"@note\""
+            },
+            {
+              "start": "392:4",
+              "end": "392:26",
+              "text": "(); # @note after code"
+            },
+            {
+              "start": "398:4",
+              "end": "398:38",
+              "text": "(); \"\"\" @note block after code \"\"\""
+            },
+            {
+              "start": "411:4",
+              "end": "411:23",
+              "text": "(); // tag \"FIXME:\""
+            },
+            {
+              "start": "417:4",
+              "end": "417:27",
+              "text": "(); # FIXME: after code"
+            },
+            {
+              "start": "422:4",
+              "end": "422:39",
+              "text": "(); \"\"\" FIXME: block after code \"\"\""
+            },
+            {
+              "start": "435:4",
+              "end": "435:18",
+              "text": "(); // tag \"⚠\""
+            },
+            {
+              "start": "441:4",
+              "end": "441:22",
+              "text": "(); # ⚠ after code"
+            },
+            {
+              "start": "446:4",
+              "end": "446:34",
+              "text": "(); \"\"\" ⚠ block after code \"\"\""
+            },
+            {
+              "start": "459:4",
+              "end": "459:19",
+              "text": "(); // tag \"**\""
+            },
+            {
+              "start": "465:4",
+              "end": "465:23",
+              "text": "(); # ** after code"
+            },
+            {
+              "start": "470:4",
+              "end": "470:35",
+              "text": "(); \"\"\" ** block after code \"\"\""
+            }
+          ]
+        },
+        {
+          "tag": "[",
+          "ranges": [
+            {
+              "start": "219:1",
+              "end": "219:17",
+              "text": " [ start of line"
+            },
+            {
+              "start": "220:5",
+              "end": "220:28",
+              "text": " [ indented with spaces"
+            },
+            {
+              "start": "221:2",
+              "end": "221:24",
+              "text": " [ indented with a tab"
+            },
+            {
+              "start": "222:1",
+              "end": "222:31",
+              "text": "[ no space after the delimiter"
+            },
+            {
+              "start": "223:1",
+              "end": "223:40",
+              "text": "   [ several spaces after the delimiter"
+            },
+            {
+              "start": "225:10",
+              "end": "225:38",
+              "text": " [ inside a string literal\";"
+            },
+            {
+              "start": "226:5",
+              "end": "226:32",
+              "text": " [ tag after the first word"
+            },
+            {
+              "start": "227:1",
+              "end": "227:3",
+              "text": " ["
+            },
+            {
+              "start": "228:3",
+              "end": "228:27",
+              "text": " [ single-line block \"\"\""
+            },
+            {
+              "start": "231:0",
+              "end": "231:24",
+              "text": "[ block line at column 0"
+            },
+            {
+              "start": "232:0",
+              "end": "232:25",
+              "text": "    [ indented block line"
+            },
+            {
+              "start": "233:0",
+              "end": "233:19",
+              "text": "    [: with a colon"
+            },
+            {
+              "start": "234:7",
+              "end": "234:34",
+              "text": " [ tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "]",
+          "ranges": [
+            {
+              "start": "243:1",
+              "end": "243:17",
+              "text": " ] start of line"
+            },
+            {
+              "start": "244:5",
+              "end": "244:28",
+              "text": " ] indented with spaces"
+            },
+            {
+              "start": "245:2",
+              "end": "245:24",
+              "text": " ] indented with a tab"
+            },
+            {
+              "start": "246:1",
+              "end": "246:31",
+              "text": "] no space after the delimiter"
+            },
+            {
+              "start": "247:1",
+              "end": "247:40",
+              "text": "   ] several spaces after the delimiter"
+            },
+            {
+              "start": "249:10",
+              "end": "249:38",
+              "text": " ] inside a string literal\";"
+            },
+            {
+              "start": "250:5",
+              "end": "250:32",
+              "text": " ] tag after the first word"
+            },
+            {
+              "start": "251:1",
+              "end": "251:3",
+              "text": " ]"
+            },
+            {
+              "start": "252:3",
+              "end": "252:27",
+              "text": " ] single-line block \"\"\""
+            },
+            {
+              "start": "255:0",
+              "end": "255:24",
+              "text": "] block line at column 0"
+            },
+            {
+              "start": "256:0",
+              "end": "256:25",
+              "text": "    ] indented block line"
+            },
+            {
+              "start": "257:0",
+              "end": "257:19",
+              "text": "    ]: with a colon"
+            },
+            {
+              "start": "258:7",
+              "end": "258:34",
+              "text": " ] tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "{",
+          "ranges": [
+            {
+              "start": "267:1",
+              "end": "267:17",
+              "text": " { start of line"
+            },
+            {
+              "start": "268:5",
+              "end": "268:28",
+              "text": " { indented with spaces"
+            },
+            {
+              "start": "269:2",
+              "end": "269:24",
+              "text": " { indented with a tab"
+            },
+            {
+              "start": "270:1",
+              "end": "270:31",
+              "text": "{ no space after the delimiter"
+            },
+            {
+              "start": "271:1",
+              "end": "271:40",
+              "text": "   { several spaces after the delimiter"
+            },
+            {
+              "start": "273:10",
+              "end": "273:38",
+              "text": " { inside a string literal\";"
+            },
+            {
+              "start": "274:5",
+              "end": "274:32",
+              "text": " { tag after the first word"
+            },
+            {
+              "start": "275:1",
+              "end": "275:3",
+              "text": " {"
+            },
+            {
+              "start": "276:3",
+              "end": "276:27",
+              "text": " { single-line block \"\"\""
+            },
+            {
+              "start": "279:0",
+              "end": "279:24",
+              "text": "{ block line at column 0"
+            },
+            {
+              "start": "280:0",
+              "end": "280:25",
+              "text": "    { indented block line"
+            },
+            {
+              "start": "281:0",
+              "end": "281:19",
+              "text": "    {: with a colon"
+            },
+            {
+              "start": "282:7",
+              "end": "282:34",
+              "text": " { tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "}",
+          "ranges": [
+            {
+              "start": "291:1",
+              "end": "291:17",
+              "text": " } start of line"
+            },
+            {
+              "start": "292:5",
+              "end": "292:28",
+              "text": " } indented with spaces"
+            },
+            {
+              "start": "293:2",
+              "end": "293:24",
+              "text": " } indented with a tab"
+            },
+            {
+              "start": "294:1",
+              "end": "294:31",
+              "text": "} no space after the delimiter"
+            },
+            {
+              "start": "295:1",
+              "end": "295:40",
+              "text": "   } several spaces after the delimiter"
+            },
+            {
+              "start": "297:10",
+              "end": "297:38",
+              "text": " } inside a string literal\";"
+            },
+            {
+              "start": "298:5",
+              "end": "298:32",
+              "text": " } tag after the first word"
+            },
+            {
+              "start": "299:1",
+              "end": "299:3",
+              "text": " }"
+            },
+            {
+              "start": "300:3",
+              "end": "300:27",
+              "text": " } single-line block \"\"\""
+            },
+            {
+              "start": "303:0",
+              "end": "303:24",
+              "text": "} block line at column 0"
+            },
+            {
+              "start": "304:0",
+              "end": "304:25",
+              "text": "    } indented block line"
+            },
+            {
+              "start": "305:0",
+              "end": "305:19",
+              "text": "    }: with a colon"
+            },
+            {
+              "start": "306:7",
+              "end": "306:34",
+              "text": " } tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "\\",
+          "ranges": [
+            {
+              "start": "315:1",
+              "end": "315:17",
+              "text": " \\ start of line"
+            },
+            {
+              "start": "316:5",
+              "end": "316:28",
+              "text": " \\ indented with spaces"
+            },
+            {
+              "start": "317:2",
+              "end": "317:24",
+              "text": " \\ indented with a tab"
+            },
+            {
+              "start": "318:1",
+              "end": "318:31",
+              "text": "\\ no space after the delimiter"
+            },
+            {
+              "start": "319:1",
+              "end": "319:40",
+              "text": "   \\ several spaces after the delimiter"
+            },
+            {
+              "start": "321:10",
+              "end": "321:38",
+              "text": " \\ inside a string literal\";"
+            },
+            {
+              "start": "322:5",
+              "end": "322:32",
+              "text": " \\ tag after the first word"
+            },
+            {
+              "start": "323:1",
+              "end": "323:3",
+              "text": " \\"
+            },
+            {
+              "start": "324:3",
+              "end": "324:27",
+              "text": " \\ single-line block \"\"\""
+            },
+            {
+              "start": "327:0",
+              "end": "327:24",
+              "text": "\\ block line at column 0"
+            },
+            {
+              "start": "328:0",
+              "end": "328:25",
+              "text": "    \\ indented block line"
+            },
+            {
+              "start": "329:0",
+              "end": "329:19",
+              "text": "    \\: with a colon"
+            },
+            {
+              "start": "330:7",
+              "end": "330:34",
+              "text": " \\ tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "/",
+          "ranges": [
+            {
+              "start": "24:0",
+              "end": "24:3",
+              "text": " */"
+            },
+            {
+              "start": "48:0",
+              "end": "48:3",
+              "text": " */"
+            },
+            {
+              "start": "72:0",
+              "end": "72:3",
+              "text": " */"
+            },
+            {
+              "start": "96:0",
+              "end": "96:3",
+              "text": " */"
+            },
+            {
+              "start": "120:0",
+              "end": "120:3",
+              "text": " */"
+            },
+            {
+              "start": "144:0",
+              "end": "144:3",
+              "text": " */"
+            },
+            {
+              "start": "168:0",
+              "end": "168:3",
+              "text": " */"
+            },
+            {
+              "start": "192:0",
+              "end": "192:3",
+              "text": " */"
+            },
+            {
+              "start": "216:0",
+              "end": "216:3",
+              "text": " */"
+            },
+            {
+              "start": "240:0",
+              "end": "240:3",
+              "text": " */"
+            },
+            {
+              "start": "264:0",
+              "end": "264:3",
+              "text": " */"
+            },
+            {
+              "start": "288:0",
+              "end": "288:3",
+              "text": " */"
+            },
+            {
+              "start": "312:0",
+              "end": "312:3",
+              "text": " */"
+            },
+            {
+              "start": "336:0",
+              "end": "336:3",
+              "text": " */"
+            },
+            {
+              "start": "339:1",
+              "end": "339:17",
+              "text": " / start of line"
+            },
+            {
+              "start": "340:5",
+              "end": "340:28",
+              "text": " / indented with spaces"
+            },
+            {
+              "start": "341:2",
+              "end": "341:24",
+              "text": " / indented with a tab"
+            },
+            {
+              "start": "342:1",
+              "end": "342:31",
+              "text": "/ no space after the delimiter"
+            },
+            {
+              "start": "343:1",
+              "end": "343:40",
+              "text": "   / several spaces after the delimiter"
+            },
+            {
+              "start": "345:10",
+              "end": "345:38",
+              "text": " / inside a string literal\";"
+            },
+            {
+              "start": "346:5",
+              "end": "346:32",
+              "text": " / tag after the first word"
+            },
+            {
+              "start": "347:1",
+              "end": "347:3",
+              "text": " /"
+            },
+            {
+              "start": "348:3",
+              "end": "348:27",
+              "text": " / single-line block \"\"\""
+            },
+            {
+              "start": "351:0",
+              "end": "351:24",
+              "text": "/ block line at column 0"
+            },
+            {
+              "start": "352:0",
+              "end": "352:25",
+              "text": "    / indented block line"
+            },
+            {
+              "start": "353:0",
+              "end": "353:19",
+              "text": "    /: with a colon"
+            },
+            {
+              "start": "354:7",
+              "end": "354:34",
+              "text": " / tag after the first word"
+            },
+            {
+              "start": "360:0",
+              "end": "360:3",
+              "text": " */"
+            },
+            {
+              "start": "384:0",
+              "end": "384:3",
+              "text": " */"
+            },
+            {
+              "start": "409:0",
+              "end": "409:3",
+              "text": " */"
+            },
+            {
+              "start": "433:0",
+              "end": "433:3",
+              "text": " */"
+            },
+            {
+              "start": "457:0",
+              "end": "457:3",
+              "text": " */"
+            },
+            {
+              "start": "481:0",
+              "end": "481:3",
+              "text": " */"
+            }
+          ]
+        },
+        {
+          "tag": "-",
+          "ranges": [
+            {
+              "start": "363:1",
+              "end": "363:17",
+              "text": " - start of line"
+            },
+            {
+              "start": "364:5",
+              "end": "364:28",
+              "text": " - indented with spaces"
+            },
+            {
+              "start": "365:2",
+              "end": "365:24",
+              "text": " - indented with a tab"
+            },
+            {
+              "start": "366:1",
+              "end": "366:31",
+              "text": "- no space after the delimiter"
+            },
+            {
+              "start": "367:1",
+              "end": "367:40",
+              "text": "   - several spaces after the delimiter"
+            },
+            {
+              "start": "369:10",
+              "end": "369:38",
+              "text": " - inside a string literal\";"
+            },
+            {
+              "start": "370:5",
+              "end": "370:32",
+              "text": " - tag after the first word"
+            },
+            {
+              "start": "371:1",
+              "end": "371:3",
+              "text": " -"
+            },
+            {
+              "start": "372:3",
+              "end": "372:27",
+              "text": " - single-line block \"\"\""
+            },
+            {
+              "start": "375:0",
+              "end": "375:24",
+              "text": "- block line at column 0"
+            },
+            {
+              "start": "376:0",
+              "end": "376:25",
+              "text": "    - indented block line"
+            },
+            {
+              "start": "377:0",
+              "end": "377:19",
+              "text": "    -: with a colon"
+            },
+            {
+              "start": "378:7",
+              "end": "378:34",
+              "text": " - tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "@note",
+          "ranges": [
+            {
+              "start": "387:1",
+              "end": "387:21",
+              "text": " @note start of line"
+            },
+            {
+              "start": "388:5",
+              "end": "388:32",
+              "text": " @note indented with spaces"
+            },
+            {
+              "start": "389:2",
+              "end": "389:28",
+              "text": " @note indented with a tab"
+            },
+            {
+              "start": "390:1",
+              "end": "390:35",
+              "text": "@note no space after the delimiter"
+            },
+            {
+              "start": "391:1",
+              "end": "391:44",
+              "text": "   @note several spaces after the delimiter"
+            },
+            {
+              "start": "393:10",
+              "end": "393:42",
+              "text": " @note inside a string literal\";"
+            },
+            {
+              "start": "394:5",
+              "end": "394:36",
+              "text": " @note tag after the first word"
+            },
+            {
+              "start": "395:1",
+              "end": "395:18",
+              "text": " @NOTE upper case"
+            },
+            {
+              "start": "396:1",
+              "end": "396:7",
+              "text": " @note"
+            },
+            {
+              "start": "397:3",
+              "end": "397:31",
+              "text": " @note single-line block \"\"\""
+            },
+            {
+              "start": "400:0",
+              "end": "400:28",
+              "text": "@note block line at column 0"
+            },
+            {
+              "start": "401:0",
+              "end": "401:29",
+              "text": "    @note indented block line"
+            },
+            {
+              "start": "402:0",
+              "end": "402:23",
+              "text": "    @note: with a colon"
+            },
+            {
+              "start": "403:7",
+              "end": "403:38",
+              "text": " @note tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "FIXME:",
+          "ranges": [
+            {
+              "start": "412:1",
+              "end": "412:22",
+              "text": " FIXME: start of line"
+            },
+            {
+              "start": "413:5",
+              "end": "413:33",
+              "text": " FIXME: indented with spaces"
+            },
+            {
+              "start": "414:2",
+              "end": "414:29",
+              "text": " FIXME: indented with a tab"
+            },
+            {
+              "start": "415:1",
+              "end": "415:36",
+              "text": "FIXME: no space after the delimiter"
+            },
+            {
+              "start": "416:1",
+              "end": "416:45",
+              "text": "   FIXME: several spaces after the delimiter"
+            },
+            {
+              "start": "418:10",
+              "end": "418:43",
+              "text": " FIXME: inside a string literal\";"
+            },
+            {
+              "start": "419:5",
+              "end": "419:37",
+              "text": " FIXME: tag after the first word"
+            },
+            {
+              "start": "420:1",
+              "end": "420:8",
+              "text": " FIXME:"
+            },
+            {
+              "start": "421:3",
+              "end": "421:32",
+              "text": " FIXME: single-line block \"\"\""
+            },
+            {
+              "start": "424:0",
+              "end": "424:29",
+              "text": "FIXME: block line at column 0"
+            },
+            {
+              "start": "425:0",
+              "end": "425:30",
+              "text": "    FIXME: indented block line"
+            },
+            {
+              "start": "426:0",
+              "end": "426:24",
+              "text": "    FIXME:: with a colon"
+            },
+            {
+              "start": "427:7",
+              "end": "427:39",
+              "text": " FIXME: tag after the first word"
+            }
+          ]
+        },
+        {
+          "tag": "⚠",
+          "ranges": [
+            {
+              "start": "436:1",
+              "end": "436:17",
+              "text": " ⚠ start of line"
+            },
+            {
+              "start": "437:5",
+              "end": "437:28",
+              "text": " ⚠ indented with spaces"
+            },
+            {
+              "start": "438:2",
+              "end": "438:24",
+              "text": " ⚠ indented with a tab"
+            },
+            {
+              "start": "439:1",
+              "end": "439:31",
+              "text": "⚠ no space after the delimiter"
+            },
+            {
+              "start": "440:1",
+              "end": "440:40",
+              "text": "   ⚠ several spaces after the delimiter"
+            },
+            {
+              "start": "442:10",
+              "end": "442:38",
+              "text": " ⚠ inside a string literal\";"
+            },
+            {
+              "start": "443:5",
+              "end": "443:32",
+              "text": " ⚠ tag after the first word"
+            },
+            {
+              "start": "444:1",
+              "end": "444:3",
+              "text": " ⚠"
+            },
+            {
+              "start": "445:3",
+              "end": "445:27",
+              "text": " ⚠ single-line block \"\"\""
+            },
+            {
+              "start": "448:0",
+              "end": "448:24",
+              "text": "⚠ block line at column 0"
+            },
+            {
+              "start": "449:0",
+              "end": "449:25",
+              "text": "    ⚠ indented block line"
+            },
+            {
+              "start": "450:0",
+              "end": "450:19",
+              "text": "    ⚠: with a colon"
+            },
+            {
+              "start": "451:7",
+              "end": "451:34",
+              "text": " ⚠ tag after the first word"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "javascript",
+        "csharp",
+        "python"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 20,
+      "applied": [
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "0:1",
+              "end": "0:26",
+              "text": " ? first line of the file"
+            },
+            {
+              "start": "3:1",
+              "end": "3:17",
+              "text": " ? start of line"
+            },
+            {
+              "start": "4:5",
+              "end": "4:28",
+              "text": " ? indented with spaces"
+            },
+            {
+              "start": "5:2",
+              "end": "5:24",
+              "text": " ? indented with a tab"
+            },
+            {
+              "start": "6:1",
+              "end": "6:31",
+              "text": "? no space after the delimiter"
+            },
+            {
+              "start": "7:1",
+              "end": "7:40",
+              "text": "   ? several spaces after the delimiter"
+            },
+            {
+              "start": "9:10",
+              "end": "9:38",
+              "text": " ? inside a string literal\";"
+            },
+            {
+              "start": "10:5",
+              "end": "10:32",
+              "text": " ? tag after the first word"
+            },
+            {
+              "start": "11:1",
+              "end": "11:3",
+              "text": " ?"
+            },
+            {
+              "start": "12:3",
+              "end": "12:27",
+              "text": " ? single-line block \"\"\""
+            },
+            {
+              "start": "15:0",
+              "end": "15:24",
+              "text": "? block line at column 0"
+            },
+            {
+              "start": "16:0",
+              "end": "16:25",
+              "text": "    ? indented block line"
+            },
+            {
+              "start": "17:0",
+              "end": "17:19",
+              "text": "    ?: with a colon"
+            },
+            {
+              "start": "18:7",
+              "end": "18:34",
+              "text": " ? tag after the first word"
+            },
+            {
+              "start": "485:0",
+              "end": "485:34",
+              "text": "    ? inside an unterminated block"
+            },
+            {
+              "start": "21:3",
+              "end": "21:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "22:5",
+              "end": "22:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "20:0",
+              "end": "20:3",
+              "text": "/**"
+            },
+            {
+              "start": "21:0",
+              "end": "21:15",
+              "text": " * ? jsdoc line"
+            },
+            {
+              "start": "22:0",
+              "end": "22:31",
+              "text": " *   ?: jsdoc line with a colon"
+            },
+            {
+              "start": "23:0",
+              "end": "23:33",
+              "text": " * not ? tag after the first word"
+            },
+            {
+              "start": "27:1",
+              "end": "27:17",
+              "text": " * start of line"
+            },
+            {
+              "start": "28:5",
+              "end": "28:28",
+              "text": " * indented with spaces"
+            },
+            {
+              "start": "29:2",
+              "end": "29:24",
+              "text": " * indented with a tab"
+            },
+            {
+              "start": "30:1",
+              "end": "30:31",
+              "text": "* no space after the delimiter"
+            },
+            {
+              "start": "31:1",
+              "end": "31:40",
+              "text": "   * several spaces after the delimiter"
+            },
+            {
+              "start": "33:10",
+              "end": "33:38",
+              "text": " * inside a string literal\";"
+            },
+            {
+              "start": "34:5",
+              "end": "34:32",
+              "text": " * tag after the first word"
+            },
+            {
+              "start": "35:1",
+              "end": "35:3",
+              "text": " *"
+            },
+            {
+              "start": "36:3",
+              "end": "36:27",
+              "text": " * single-line block \"\"\""
+            },
+            {
+              "start": "39:0",
+              "end": "39:24",
+              "text": "* block line at column 0"
+            },
+            {
+              "start": "40:0",
+              "end": "40:25",
+              "text": "    * indented block line"
+            },
+            {
+              "start": "41:0",
+              "end": "41:19",
+              "text": "    *: with a colon"
+            },
+            {
+              "start": "42:7",
+              "end": "42:34",
+              "text": " * tag after the first word"
+            },
+            {
+              "start": "44:0",
+              "end": "44:3",
+              "text": "/**"
+            },
+            {
+              "start": "45:0",
+              "end": "45:15",
+              "text": " * * jsdoc line"
+            },
+            {
+              "start": "46:0",
+              "end": "46:31",
+              "text": " *   *: jsdoc line with a colon"
+            },
+            {
+              "start": "47:0",
+              "end": "47:33",
+              "text": " * not * tag after the first word"
+            },
+            {
+              "start": "68:0",
+              "end": "68:3",
+              "text": "/**"
+            },
+            {
+              "start": "69:0",
+              "end": "69:15",
+              "text": " * + jsdoc line"
+            },
+            {
+              "start": "70:0",
+              "end": "70:31",
+              "text": " *   +: jsdoc line with a colon"
+            },
+            {
+              "start": "71:0",
+              "end": "71:33",
+              "text": " * not + tag after the first word"
+            },
+            {
+              "start": "92:0",
+              "end": "92:3",
+              "text": "/**"
+            },
+            {
+              "start": "93:0",
+              "end": "93:15",
+              "text": " * . jsdoc line"
+            },
+            {
+              "start": "94:0",
+              "end": "94:31",
+              "text": " *   .: jsdoc line with a colon"
+            },
+            {
+              "start": "95:0",
+              "end": "95:33",
+              "text": " * not . tag after the first word"
+            },
+            {
+              "start": "116:0",
+              "end": "116:3",
+              "text": "/**"
+            },
+            {
+              "start": "117:0",
+              "end": "117:15",
+              "text": " * $ jsdoc line"
+            },
+            {
+              "start": "118:0",
+              "end": "118:31",
+              "text": " *   $: jsdoc line with a colon"
+            },
+            {
+              "start": "119:0",
+              "end": "119:33",
+              "text": " * not $ tag after the first word"
+            },
+            {
+              "start": "140:0",
+              "end": "140:3",
+              "text": "/**"
+            },
+            {
+              "start": "141:0",
+              "end": "141:15",
+              "text": " * ^ jsdoc line"
+            },
+            {
+              "start": "142:0",
+              "end": "142:31",
+              "text": " *   ^: jsdoc line with a colon"
+            },
+            {
+              "start": "143:0",
+              "end": "143:33",
+              "text": " * not ^ tag after the first word"
+            },
+            {
+              "start": "164:0",
+              "end": "164:3",
+              "text": "/**"
+            },
+            {
+              "start": "165:0",
+              "end": "165:15",
+              "text": " * | jsdoc line"
+            },
+            {
+              "start": "166:0",
+              "end": "166:31",
+              "text": " *   |: jsdoc line with a colon"
+            },
+            {
+              "start": "167:0",
+              "end": "167:33",
+              "text": " * not | tag after the first word"
+            },
+            {
+              "start": "188:0",
+              "end": "188:3",
+              "text": "/**"
+            },
+            {
+              "start": "189:0",
+              "end": "189:15",
+              "text": " * ( jsdoc line"
+            },
+            {
+              "start": "190:0",
+              "end": "190:31",
+              "text": " *   (: jsdoc line with a colon"
+            },
+            {
+              "start": "191:0",
+              "end": "191:33",
+              "text": " * not ( tag after the first word"
+            },
+            {
+              "start": "212:0",
+              "end": "212:3",
+              "text": "/**"
+            },
+            {
+              "start": "213:0",
+              "end": "213:15",
+              "text": " * ) jsdoc line"
+            },
+            {
+              "start": "214:0",
+              "end": "214:31",
+              "text": " *   ): jsdoc line with a colon"
+            },
+            {
+              "start": "215:0",
+              "end": "215:33",
+              "text": " * not ) tag after the first word"
+            },
+            {
+              "start": "236:0",
+              "end": "236:3",
+              "text": "/**"
+            },
+            {
+              "start": "237:0",
+              "end": "237:15",
+              "text": " * [ jsdoc line"
+            },
+            {
+              "start": "238:0",
+              "end": "238:31",
+              "text": " *   [: jsdoc line with a colon"
+            },
+            {
+              "start": "239:0",
+              "end": "239:33",
+              "text": " * not [ tag after the first word"
+            },
+            {
+              "start": "260:0",
+              "end": "260:3",
+              "text": "/**"
+            },
+            {
+              "start": "261:0",
+              "end": "261:15",
+              "text": " * ] jsdoc line"
+            },
+            {
+              "start": "262:0",
+              "end": "262:31",
+              "text": " *   ]: jsdoc line with a colon"
+            },
+            {
+              "start": "263:0",
+              "end": "263:33",
+              "text": " * not ] tag after the first word"
+            },
+            {
+              "start": "284:0",
+              "end": "284:3",
+              "text": "/**"
+            },
+            {
+              "start": "285:0",
+              "end": "285:15",
+              "text": " * { jsdoc line"
+            },
+            {
+              "start": "286:0",
+              "end": "286:31",
+              "text": " *   {: jsdoc line with a colon"
+            },
+            {
+              "start": "287:0",
+              "end": "287:33",
+              "text": " * not { tag after the first word"
+            },
+            {
+              "start": "308:0",
+              "end": "308:3",
+              "text": "/**"
+            },
+            {
+              "start": "309:0",
+              "end": "309:15",
+              "text": " * } jsdoc line"
+            },
+            {
+              "start": "310:0",
+              "end": "310:31",
+              "text": " *   }: jsdoc line with a colon"
+            },
+            {
+              "start": "311:0",
+              "end": "311:33",
+              "text": " * not } tag after the first word"
+            },
+            {
+              "start": "332:0",
+              "end": "332:3",
+              "text": "/**"
+            },
+            {
+              "start": "333:0",
+              "end": "333:15",
+              "text": " * \\ jsdoc line"
+            },
+            {
+              "start": "334:0",
+              "end": "334:31",
+              "text": " *   \\: jsdoc line with a colon"
+            },
+            {
+              "start": "335:0",
+              "end": "335:33",
+              "text": " * not \\ tag after the first word"
+            },
+            {
+              "start": "356:0",
+              "end": "356:3",
+              "text": "/**"
+            },
+            {
+              "start": "357:0",
+              "end": "357:15",
+              "text": " * / jsdoc line"
+            },
+            {
+              "start": "358:0",
+              "end": "358:31",
+              "text": " *   /: jsdoc line with a colon"
+            },
+            {
+              "start": "359:0",
+              "end": "359:33",
+              "text": " * not / tag after the first word"
+            },
+            {
+              "start": "380:0",
+              "end": "380:3",
+              "text": "/**"
+            },
+            {
+              "start": "381:0",
+              "end": "381:15",
+              "text": " * - jsdoc line"
+            },
+            {
+              "start": "382:0",
+              "end": "382:31",
+              "text": " *   -: jsdoc line with a colon"
+            },
+            {
+              "start": "383:0",
+              "end": "383:33",
+              "text": " * not - tag after the first word"
+            },
+            {
+              "start": "405:0",
+              "end": "405:3",
+              "text": "/**"
+            },
+            {
+              "start": "406:0",
+              "end": "406:19",
+              "text": " * @note jsdoc line"
+            },
+            {
+              "start": "407:0",
+              "end": "407:35",
+              "text": " *   @note: jsdoc line with a colon"
+            },
+            {
+              "start": "408:0",
+              "end": "408:37",
+              "text": " * not @note tag after the first word"
+            },
+            {
+              "start": "429:0",
+              "end": "429:3",
+              "text": "/**"
+            },
+            {
+              "start": "430:0",
+              "end": "430:20",
+              "text": " * FIXME: jsdoc line"
+            },
+            {
+              "start": "431:0",
+              "end": "431:36",
+              "text": " *   FIXME:: jsdoc line with a colon"
+            },
+            {
+              "start": "432:0",
+              "end": "432:38",
+              "text": " * not FIXME: tag after the first word"
+            },
+            {
+              "start": "453:0",
+              "end": "453:3",
+              "text": "/**"
+            },
+            {
+              "start": "454:0",
+              "end": "454:15",
+              "text": " * ⚠ jsdoc line"
+            },
+            {
+              "start": "455:0",
+              "end": "455:31",
+              "text": " *   ⚠: jsdoc line with a colon"
+            },
+            {
+              "start": "456:0",
+              "end": "456:33",
+              "text": " * not ⚠ tag after the first word"
+            },
+            {
+              "start": "460:1",
+              "end": "460:18",
+              "text": " ** start of line"
+            },
+            {
+              "start": "461:5",
+              "end": "461:29",
+              "text": " ** indented with spaces"
+            },
+            {
+              "start": "462:2",
+              "end": "462:25",
+              "text": " ** indented with a tab"
+            },
+            {
+              "start": "463:1",
+              "end": "463:32",
+              "text": "** no space after the delimiter"
+            },
+            {
+              "start": "464:1",
+              "end": "464:41",
+              "text": "   ** several spaces after the delimiter"
+            },
+            {
+              "start": "466:10",
+              "end": "466:39",
+              "text": " ** inside a string literal\";"
+            },
+            {
+              "start": "467:5",
+              "end": "467:33",
+              "text": " ** tag after the first word"
+            },
+            {
+              "start": "468:1",
+              "end": "468:4",
+              "text": " **"
+            },
+            {
+              "start": "469:3",
+              "end": "469:28",
+              "text": " ** single-line block \"\"\""
+            },
+            {
+              "start": "472:0",
+              "end": "472:25",
+              "text": "** block line at column 0"
+            },
+            {
+              "start": "473:0",
+              "end": "473:26",
+              "text": "    ** indented block line"
+            },
+            {
+              "start": "474:0",
+              "end": "474:20",
+              "text": "    **: with a colon"
+            },
+            {
+              "start": "475:7",
+              "end": "475:35",
+              "text": " ** tag after the first word"
+            },
+            {
+              "start": "477:0",
+              "end": "477:3",
+              "text": "/**"
+            },
+            {
+              "start": "478:0",
+              "end": "478:16",
+              "text": " * ** jsdoc line"
+            },
+            {
+              "start": "479:0",
+              "end": "479:32",
+              "text": " *   **: jsdoc line with a colon"
+            },
+            {
+              "start": "480:0",
+              "end": "480:34",
+              "text": " * not ** tag after the first word"
+            },
+            {
+              "start": "45:3",
+              "end": "45:15",
+              "text": "* jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:31",
+              "text": "*: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "+",
+          "ranges": [
+            {
+              "start": "51:1",
+              "end": "51:17",
+              "text": " + start of line"
+            },
+            {
+              "start": "52:5",
+              "end": "52:28",
+              "text": " + indented with spaces"
+            },
+            {
+              "start": "53:2",
+              "end": "53:24",
+              "text": " + indented with a tab"
+            },
+            {
+              "start": "54:1",
+              "end": "54:31",
+              "text": "+ no space after the delimiter"
+            },
+            {
+              "start": "55:1",
+              "end": "55:40",
+              "text": "   + several spaces after the delimiter"
+            },
+            {
+              "start": "57:10",
+              "end": "57:38",
+              "text": " + inside a string literal\";"
+            },
+            {
+              "start": "58:5",
+              "end": "58:32",
+              "text": " + tag after the first word"
+            },
+            {
+              "start": "59:1",
+              "end": "59:3",
+              "text": " +"
+            },
+            {
+              "start": "60:3",
+              "end": "60:27",
+              "text": " + single-line block \"\"\""
+            },
+            {
+              "start": "63:0",
+              "end": "63:24",
+              "text": "+ block line at column 0"
+            },
+            {
+              "start": "64:0",
+              "end": "64:25",
+              "text": "    + indented block line"
+            },
+            {
+              "start": "65:0",
+              "end": "65:19",
+              "text": "    +: with a colon"
+            },
+            {
+              "start": "66:7",
+              "end": "66:34",
+              "text": " + tag after the first word"
+            },
+            {
+              "start": "69:3",
+              "end": "69:15",
+              "text": "+ jsdoc line"
+            },
+            {
+              "start": "70:5",
+              "end": "70:31",
+              "text": "+: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": ".",
+          "ranges": [
+            {
+              "start": "75:1",
+              "end": "75:17",
+              "text": " . start of line"
+            },
+            {
+              "start": "76:5",
+              "end": "76:28",
+              "text": " . indented with spaces"
+            },
+            {
+              "start": "77:2",
+              "end": "77:24",
+              "text": " . indented with a tab"
+            },
+            {
+              "start": "78:1",
+              "end": "78:31",
+              "text": ". no space after the delimiter"
+            },
+            {
+              "start": "79:1",
+              "end": "79:40",
+              "text": "   . several spaces after the delimiter"
+            },
+            {
+              "start": "81:10",
+              "end": "81:38",
+              "text": " . inside a string literal\";"
+            },
+            {
+              "start": "82:5",
+              "end": "82:32",
+              "text": " . tag after the first word"
+            },
+            {
+              "start": "83:1",
+              "end": "83:3",
+              "text": " ."
+            },
+            {
+              "start": "84:3",
+              "end": "84:27",
+              "text": " . single-line block \"\"\""
+            },
+            {
+              "start": "87:0",
+              "end": "87:24",
+              "text": ". block line at column 0"
+            },
+            {
+              "start": "88:0",
+              "end": "88:25",
+              "text": "    . indented block line"
+            },
+            {
+              "start": "89:0",
+              "end": "89:19",
+              "text": "    .: with a colon"
+            },
+            {
+              "start": "90:7",
+              "end": "90:34",
+              "text": " . tag after the first word"
+            },
+            {
+              "start": "93:3",
+              "end": "93:15",
+              "text": ". jsdoc line"
+            },
+            {
+              "start": "94:5",
+              "end": "94:31",
+              "text": ".: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "$",
+          "ranges": [
+            {
+              "start": "99:1",
+              "end": "99:17",
+              "text": " $ start of line"
+            },
+            {
+              "start": "100:5",
+              "end": "100:28",
+              "text": " $ indented with spaces"
+            },
+            {
+              "start": "101:2",
+              "end": "101:24",
+              "text": " $ indented with a tab"
+            },
+            {
+              "start": "102:1",
+              "end": "102:31",
+              "text": "$ no space after the delimiter"
+            },
+            {
+              "start": "103:1",
+              "end": "103:40",
+              "text": "   $ several spaces after the delimiter"
+            },
+            {
+              "start": "105:10",
+              "end": "105:38",
+              "text": " $ inside a string literal\";"
+            },
+            {
+              "start": "106:5",
+              "end": "106:32",
+              "text": " $ tag after the first word"
+            },
+            {
+              "start": "107:1",
+              "end": "107:3",
+              "text": " $"
+            },
+            {
+              "start": "108:3",
+              "end": "108:27",
+              "text": " $ single-line block \"\"\""
+            },
+            {
+              "start": "111:0",
+              "end": "111:24",
+              "text": "$ block line at column 0"
+            },
+            {
+              "start": "112:0",
+              "end": "112:25",
+              "text": "    $ indented block line"
+            },
+            {
+              "start": "113:0",
+              "end": "113:19",
+              "text": "    $: with a colon"
+            },
+            {
+              "start": "114:7",
+              "end": "114:34",
+              "text": " $ tag after the first word"
+            },
+            {
+              "start": "117:3",
+              "end": "117:15",
+              "text": "$ jsdoc line"
+            },
+            {
+              "start": "118:5",
+              "end": "118:31",
+              "text": "$: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "^",
+          "ranges": [
+            {
+              "start": "123:1",
+              "end": "123:17",
+              "text": " ^ start of line"
+            },
+            {
+              "start": "124:5",
+              "end": "124:28",
+              "text": " ^ indented with spaces"
+            },
+            {
+              "start": "125:2",
+              "end": "125:24",
+              "text": " ^ indented with a tab"
+            },
+            {
+              "start": "126:1",
+              "end": "126:31",
+              "text": "^ no space after the delimiter"
+            },
+            {
+              "start": "127:1",
+              "end": "127:40",
+              "text": "   ^ several spaces after the delimiter"
+            },
+            {
+              "start": "129:10",
+              "end": "129:38",
+              "text": " ^ inside a string literal\";"
+            },
+            {
+              "start": "130:5",
+              "end": "130:32",
+              "text": " ^ tag after the first word"
+            },
+            {
+              "start": "131:1",
+              "end": "131:3",
+              "text": " ^"
+            },
+            {
+              "start": "132:3",
+              "end": "132:27",
+              "text": " ^ single-line block \"\"\""
+            },
+            {
+              "start": "135:0",
+              "end": "135:24",
+              "text": "^ block line at column 0"
+            },
+            {
+              "start": "136:0",
+              "end": "136:25",
+              "text": "    ^ indented block line"
+            },
+            {
+              "start": "137:0",
+              "end": "137:19",
+              "text": "    ^: with a colon"
+            },
+            {
+              "start": "138:7",
+              "end": "138:34",
+              "text": " ^ tag after the first word"
+            },
+            {
+              "start": "141:3",
+              "end": "141:15",
+              "text": "^ jsdoc line"
+            },
+            {
+              "start": "142:5",
+              "end": "142:31",
+              "text": "^: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "|",
+          "ranges": [
+            {
+              "start": "147:1",
+              "end": "147:17",
+              "text": " | start of line"
+            },
+            {
+              "start": "148:5",
+              "end": "148:28",
+              "text": " | indented with spaces"
+            },
+            {
+              "start": "149:2",
+              "end": "149:24",
+              "text": " | indented with a tab"
+            },
+            {
+              "start": "150:1",
+              "end": "150:31",
+              "text": "| no space after the delimiter"
+            },
+            {
+              "start": "151:1",
+              "end": "151:40",
+              "text": "   | several spaces after the delimiter"
+            },
+            {
+              "start": "153:10",
+              "end": "153:38",
+              "text": " | inside a string literal\";"
+            },
+            {
+              "start": "154:5",
+              "end": "154:32",
+              "text": " | tag after the first word"
+            },
+            {
+              "start": "155:1",
+              "end": "155:3",
+              "text": " |"
+            },
+            {
+              "start": "156:3",
+              "end": "156:27",
+              "text": " | single-line block \"\"\""
+            },
+            {
+              "start": "159:0",
+              "end": "159:24",
+              "text": "| block line at column 0"
+            },
+            {
+              "start": "160:0",
+              "end": "160:25",
+              "text": "    | indented block line"
+            },
+            {
+              "start": "161:0",
+              "end": "161:19",
+              "text": "    |: with a colon"
+            },
+            {
+              "start": "162:7",
+              "end": "162:34",
+              "text": " | tag after the first word"
+            },
+            {
+              "start": "165:3",
+              "end": "165:15",
+              "text": "| jsdoc line"
+            },
+            {
+              "start": "166:5",
+              "end": "166:31",
+              "text": "|: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "(",
+          "ranges": [
+            {
+              "start": "171:1",
+              "end": "171:17",
+              "text": " ( start of line"
+            },
+            {
+              "start": "172:5",
+              "end": "172:28",
+              "text": " ( indented with spaces"
+            },
+            {
+              "start": "173:2",
+              "end": "173:24",
+              "text": " ( indented with a tab"
+            },
+            {
+              "start": "174:1",
+              "end": "174:31",
+              "text": "( no space after the delimiter"
+            },
+            {
+              "start": "175:1",
+              "end": "175:40",
+              "text": "   ( several spaces after the delimiter"
+            },
+            {
+              "start": "177:10",
+              "end": "177:38",
+              "text": " ( inside a string literal\";"
+            },
+            {
+              "start": "178:5",
+              "end": "178:32",
+              "text": " ( tag after the first word"
+            },
+            {
+              "start": "179:1",
+              "end": "179:3",
+              "text": " ("
+            },
+            {
+              "start": "180:3",
+              "end": "180:27",
+              "text": " ( single-line block \"\"\""
+            },
+            {
+              "start": "183:0",
+              "end": "183:24",
+              "text": "( block line at column 0"
+            },
+            {
+              "start": "184:0",
+              "end": "184:25",
+              "text": "    ( indented block line"
+            },
+            {
+              "start": "185:0",
+              "end": "185:19",
+              "text": "    (: with a colon"
+            },
+            {
+              "start": "186:7",
+              "end": "186:34",
+              "text": " ( tag after the first word"
+            },
+            {
+              "start": "189:3",
+              "end": "189:15",
+              "text": "( jsdoc line"
+            },
+            {
+              "start": "190:5",
+              "end": "190:31",
+              "text": "(: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": ")",
+          "ranges": [
+            {
+              "start": "2:4",
+              "end": "2:18",
+              "text": "(); // tag \"?\""
+            },
+            {
+              "start": "8:4",
+              "end": "8:22",
+              "text": "(); # ? after code"
+            },
+            {
+              "start": "13:4",
+              "end": "13:34",
+              "text": "(); \"\"\" ? block after code \"\"\""
+            },
+            {
+              "start": "26:4",
+              "end": "26:18",
+              "text": "(); // tag \"*\""
+            },
+            {
+              "start": "32:4",
+              "end": "32:22",
+              "text": "(); # * after code"
+            },
+            {
+              "start": "37:4",
+              "end": "37:34",
+              "text": "(); \"\"\" * block after code \"\"\""
+            },
+            {
+              "start": "50:4",
+              "end": "50:18",
+              "text": "(); // tag \"+\""
+            },
+            {
+              "start": "56:4",
+              "end": "56:22",
+              "text": "(); # + after code"
+            },
+            {
+              "start": "61:4",
+              "end": "61:34",
+              "text": "(); \"\"\" + block after code \"\"\""
+            },
+            {
+              "start": "74:4",
+              "end": "74:18",
+              "text": "(); // tag \".\""
+            },
+            {
+              "start": "80:4",
+              "end": "80:22",
+              "text": "(); # . after code"
+            },
+            {
+              "start": "85:4",
+              "end": "85:34",
+              "text": "(); \"\"\" . block after code \"\"\""
+            },
+            {
+              "start": "98:4",
+              "end": "98:18",
+              "text": "(); // tag \"$\""
+            },
+            {
+              "start": "104:4",
+              "end": "104:22",
+              "text": "(); # $ after code"
+            },
+            {
+              "start": "109:4",
+              "end": "109:34",
+              "text": "(); \"\"\" $ block after code \"\"\""
+            },
+            {
+              "start": "122:4",
+              "end": "122:18",
+              "text": "(); // tag \"^\""
+            },
+            {
+              "start": "128:4",
+              "end": "128:22",
+              "text": "(); # ^ after code"
+            },
+            {
+              "start": "133:4",
+              "end": "133:34",
+              "text": "(); \"\"\" ^ block after code \"\"\""
+            },
+            {
+              "start": "146:4",
+              "end": "146:18",
+              "text": "(); // tag \"|\""
+            },
+            {
+              "start": "152:4",
+              "end": "152:22",
+              "text": "(); # | after code"
+            },
+            {
+              "start": "157:4",
+              "end": "157:34",
+              "text": "(); \"\"\" | block after code \"\"\""
+            },
+            {
+              "start": "170:4",
+              "end": "170:18",
+              "text": "(); // tag \"(\""
+            },
+            {
+              "start": "176:4",
+              "end": "176:22",
+              "text": "(); # ( after code"
+            },
+            {
+              "start": "181:4",
+              "end": "181:34",
+              "text": "(); \"\"\" ( block after code \"\"\""
+            },
+            {
+              "start": "194:4",
+              "end": "194:18",
+              "text": "(); // tag \")\""
+            },
+            {
+              "start": "195:1",
+              "end": "195:17",
+              "text": " ) start of line"
+            },
+            {
+              "start": "196:5",
+              "end": "196:28",
+              "text": " ) indented with spaces"
+            },
+            {
+              "start": "197:2",
+              "end": "197:24",
+              "text": " ) indented with a tab"
+            },
+            {
+              "start": "198:1",
+              "end": "198:31",
+              "text": ") no space after the delimiter"
+            },
+            {
+              "start": "199:1",
+              "end": "199:40",
+              "text": "   ) several spaces after the delimiter"
+            },
+            {
+              "start": "200:4",
+              "end": "200:22",
+              "text": "(); # ) after code"
+            },
+            {
+              "start": "201:10",
+              "end": "201:38",
+              "text": " ) inside a string literal\";"
+            },
+            {
+              "start": "202:5",
+              "end": "202:32",
+              "text": " ) tag after the first word"
+            },
+            {
+              "start": "203:1",
+              "end": "203:3",
+              "text": " )"
+            },
+            {
+              "start": "204:3",
+              "end": "204:27",
+              "text": " ) single-line block \"\"\""
+            },
+            {
+              "start": "205:4",
+              "end": "205:34",
+              "text": "(); \"\"\" ) block after code \"\"\""
+            },
+            {
+              "start": "207:0",
+              "end": "207:24",
+              "text": ") block line at column 0"
+            },
+            {
+              "start": "208:0",
+              "end": "208:25",
+              "text": "    ) indented block line"
+            },
+            {
+              "start": "209:0",
+              "end": "209:19",
+              "text": "    ): with a colon"
+            },
+            {
+              "start": "210:7",
+              "end": "210:34",
+              "text": " ) tag after the first word"
+            },
+            {
+              "start": "218:4",
+              "end": "218:18",
+              "text": "(); // tag \"[\""
+            },
+            {
+              "start": "224:4",
+              "end": "224:22",
+              "text": "(); # [ after code"
+            },
+            {
+              "start": "229:4",
+              "end": "229:34",
+              "text": "(); \"\"\" [ block after code \"\"\""
+            },
+            {
+              "start": "242:4",
+              "end": "242:18",
+              "text": "(); // tag \"]\""
+            },
+            {
+              "start": "248:4",
+              "end": "248:22",
+              "text": "(); # ] after code"
+            },
+            {
+              "start": "253:4",
+              "end": "253:34",
+              "text": "(); \"\"\" ] block after code \"\"\""
+            },
+            {
+              "start": "266:4",
+              "end": "266:18",
+              "text": "(); // tag \"{\""
+            },
+            {
+              "start": "272:4",
+              "end": "272:22",
+              "text": "(); # { after code"
+            },
+            {
+              "start": "277:4",
+              "end": "277:34",
+              "text": "(); \"\"\" { block after code \"\"\""
+            },
+            {
+              "start": "290:4",
+              "end": "290:18",
+              "text": "(); // tag \"}\""
+            },
+            {
+              "start": "296:4",
+              "end": "296:22",
+              "text": "(); # } after code"
+            },
+            {
+              "start": "301:4",
+              "end": "301:34",
+              "text": "(); \"\"\" } block after code \"\"\""
+            },
+            {
+              "start": "314:4",
+              "end": "314:19",
+              "text": "(); // tag \"\\\\\""
+            },
+            {
+              "start": "320:4",
+              "end": "320:22",
+              "text": "(); # \\ after code"
+            },
+            {
+              "start": "325:4",
+              "end": "325:34",
+              "text": "(); \"\"\" \\ block after code \"\"\""
+            },
+            {
+              "start": "338:4",
+              "end": "338:18",
+              "text": "(); // tag \"/\""
+            },
+            {
+              "start": "344:4",
+              "end": "344:22",
+              "text": "(); # / after code"
+            },
+            {
+              "start": "349:4",
+              "end": "349:34",
+              "text": "(); \"\"\" / block after code \"\"\""
+            },
+            {
+              "start": "362:4",
+              "end": "362:18",
+              "text": "(); // tag \"-\""
+            },
+            {
+              "start": "368:4",
+              "end": "368:22",
+              "text": "(); # - after code"
+            },
+            {
+              "start": "373:4",
+              "end": "373:34",
+              "text": "(); \"\"\" - block after code \"\"\""
+            },
+            {
+              "start": "386:4",
+              "end": "386:22",
+              "text": "(); // tag \"@note\""
+            },
+            {
+              "start": "392:4",
+              "end": "392:26",
+              "text": "(); # @note after code"
+            },
+            {
+              "start": "398:4",
+              "end": "398:38",
+              "text": "(); \"\"\" @note block after code \"\"\""
+            },
+            {
+              "start": "411:4",
+              "end": "411:23",
+              "text": "(); // tag \"FIXME:\""
+            },
+            {
+              "start": "417:4",
+              "end": "417:27",
+              "text": "(); # FIXME: after code"
+            },
+            {
+              "start": "422:4",
+              "end": "422:39",
+              "text": "(); \"\"\" FIXME: block after code \"\"\""
+            },
+            {
+              "start": "435:4",
+              "end": "435:18",
+              "text": "(); // tag \"⚠\""
+            },
+            {
+              "start": "441:4",
+              "end": "441:22",
+              "text": "(); # ⚠ after code"
+            },
+            {
+              "start": "446:4",
+              "end": "446:34",
+              "text": "(); \"\"\" ⚠ block after code \"\"\""
+            },
+            {
+              "start": "459:4",
+              "end": "459:19",
+              "text": "(); // tag \"**\""
+            },
+            {
+              "start": "465:4",
+              "end": "465:23",
+              "text": "(); # ** after code"
+            },
+            {
+              "start": "470:4",
+              "end": "470:35",
+              "text": "(); \"\"\" ** block after code \"\"\""
+            },
+            {
+              "start": "213:3",
+              "end": "213:15",
+              "text": ") jsdoc line"
+            },
+            {
+              "start": "214:5",
+              "end": "214:31",
+              "text": "): jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "[",
+          "ranges": [
+            {
+              "start": "219:1",
+              "end": "219:17",
+              "text": " [ start of line"
+            },
+            {
+              "start": "220:5",
+              "end": "220:28",
+              "text": " [ indented with spaces"
+            },
+            {
+              "start": "221:2",
+              "end": "221:24",
+              "text": " [ indented with a tab"
+            },
+            {
+              "start": "222:1",
+              "end": "222:31",
+              "text": "[ no space after the delimiter"
+            },
+            {
+              "start": "223:1",
+              "end": "223:40",
+              "text": "   [ several spaces after the delimiter"
+            },
+            {
+              "start": "225:10",
+              "end": "225:38",
+              "text": " [ inside a string literal\";"
+            },
+            {
+              "start": "226:5",
+              "end": "226:32",
+              "text": " [ tag after the first word"
+            },
+            {
+              "start": "227:1",
+              "end": "227:3",
+              "text": " ["
+            },
+            {
+              "start": "228:3",
+              "end": "228:27",
+              "text": " [ single-line block \"\"\""
+            },
+            {
+              "start": "231:0",
+              "end": "231:24",
+              "text": "[ block line at column 0"
+            },
+            {
+              "start": "232:0",
+              "end": "232:25",
+              "text": "    [ indented block line"
+            },
+            {
+              "start": "233:0",
+              "end": "233:19",
+              "text": "    [: with a colon"
+            },
+            {
+              "start": "234:7",
+              "end": "234:34",
+              "text": " [ tag after the first word"
+            },
+            {
+              "start": "237:3",
+              "end": "237:15",
+              "text": "[ jsdoc line"
+            },
+            {
+              "start": "238:5",
+              "end": "238:31",
+              "text": "[: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "]",
+          "ranges": [
+            {
+              "start": "243:1",
+              "end": "243:17",
+              "text": " ] start of line"
+            },
+            {
+              "start": "244:5",
+              "end": "244:28",
+              "text": " ] indented with spaces"
+            },
+            {
+              "start": "245:2",
+              "end": "245:24",
+              "text": " ] indented with a tab"
+            },
+            {
+              "start": "246:1",
+              "end": "246:31",
+              "text": "] no space after the delimiter"
+            },
+            {
+              "start": "247:1",
+              "end": "247:40",
+              "text": "   ] several spaces after the delimiter"
+            },
+            {
+              "start": "249:10",
+              "end": "249:38",
+              "text": " ] inside a string literal\";"
+            },
+            {
+              "start": "250:5",
+              "end": "250:32",
+              "text": " ] tag after the first word"
+            },
+            {
+              "start": "251:1",
+              "end": "251:3",
+              "text": " ]"
+            },
+            {
+              "start": "252:3",
+              "end": "252:27",
+              "text": " ] single-line block \"\"\""
+            },
+            {
+              "start": "255:0",
+              "end": "255:24",
+              "text": "] block line at column 0"
+            },
+            {
+              "start": "256:0",
+              "end": "256:25",
+              "text": "    ] indented block line"
+            },
+            {
+              "start": "257:0",
+              "end": "257:19",
+              "text": "    ]: with a colon"
+            },
+            {
+              "start": "258:7",
+              "end": "258:34",
+              "text": " ] tag after the first word"
+            },
+            {
+              "start": "261:3",
+              "end": "261:15",
+              "text": "] jsdoc line"
+            },
+            {
+              "start": "262:5",
+              "end": "262:31",
+              "text": "]: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "{",
+          "ranges": [
+            {
+              "start": "267:1",
+              "end": "267:17",
+              "text": " { start of line"
+            },
+            {
+              "start": "268:5",
+              "end": "268:28",
+              "text": " { indented with spaces"
+            },
+            {
+              "start": "269:2",
+              "end": "269:24",
+              "text": " { indented with a tab"
+            },
+            {
+              "start": "270:1",
+              "end": "270:31",
+              "text": "{ no space after the delimiter"
+            },
+            {
+              "start": "271:1",
+              "end": "271:40",
+              "text": "   { several spaces after the delimiter"
+            },
+            {
+              "start": "273:10",
+              "end": "273:38",
+              "text": " { inside a string literal\";"
+            },
+            {
+              "start": "274:5",
+              "end": "274:32",
+              "text": " { tag after the first word"
+            },
+            {
+              "start": "275:1",
+              "end": "275:3",
+              "text": " {"
+            },
+            {
+              "start": "276:3",
+              "end": "276:27",
+              "text": " { single-line block \"\"\""
+            },
+            {
+              "start": "279:0",
+              "end": "279:24",
+              "text": "{ block line at column 0"
+            },
+            {
+              "start": "280:0",
+              "end": "280:25",
+              "text": "    { indented block line"
+            },
+            {
+              "start": "281:0",
+              "end": "281:19",
+              "text": "    {: with a colon"
+            },
+            {
+              "start": "282:7",
+              "end": "282:34",
+              "text": " { tag after the first word"
+            },
+            {
+              "start": "285:3",
+              "end": "285:15",
+              "text": "{ jsdoc line"
+            },
+            {
+              "start": "286:5",
+              "end": "286:31",
+              "text": "{: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "}",
+          "ranges": [
+            {
+              "start": "291:1",
+              "end": "291:17",
+              "text": " } start of line"
+            },
+            {
+              "start": "292:5",
+              "end": "292:28",
+              "text": " } indented with spaces"
+            },
+            {
+              "start": "293:2",
+              "end": "293:24",
+              "text": " } indented with a tab"
+            },
+            {
+              "start": "294:1",
+              "end": "294:31",
+              "text": "} no space after the delimiter"
+            },
+            {
+              "start": "295:1",
+              "end": "295:40",
+              "text": "   } several spaces after the delimiter"
+            },
+            {
+              "start": "297:10",
+              "end": "297:38",
+              "text": " } inside a string literal\";"
+            },
+            {
+              "start": "298:5",
+              "end": "298:32",
+              "text": " } tag after the first word"
+            },
+            {
+              "start": "299:1",
+              "end": "299:3",
+              "text": " }"
+            },
+            {
+              "start": "300:3",
+              "end": "300:27",
+              "text": " } single-line block \"\"\""
+            },
+            {
+              "start": "303:0",
+              "end": "303:24",
+              "text": "} block line at column 0"
+            },
+            {
+              "start": "304:0",
+              "end": "304:25",
+              "text": "    } indented block line"
+            },
+            {
+              "start": "305:0",
+              "end": "305:19",
+              "text": "    }: with a colon"
+            },
+            {
+              "start": "306:7",
+              "end": "306:34",
+              "text": " } tag after the first word"
+            },
+            {
+              "start": "309:3",
+              "end": "309:15",
+              "text": "} jsdoc line"
+            },
+            {
+              "start": "310:5",
+              "end": "310:31",
+              "text": "}: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "\\",
+          "ranges": [
+            {
+              "start": "315:1",
+              "end": "315:17",
+              "text": " \\ start of line"
+            },
+            {
+              "start": "316:5",
+              "end": "316:28",
+              "text": " \\ indented with spaces"
+            },
+            {
+              "start": "317:2",
+              "end": "317:24",
+              "text": " \\ indented with a tab"
+            },
+            {
+              "start": "318:1",
+              "end": "318:31",
+              "text": "\\ no space after the delimiter"
+            },
+            {
+              "start": "319:1",
+              "end": "319:40",
+              "text": "   \\ several spaces after the delimiter"
+            },
+            {
+              "start": "321:10",
+              "end": "321:38",
+              "text": " \\ inside a string literal\";"
+            },
+            {
+              "start": "322:5",
+              "end": "322:32",
+              "text": " \\ tag after the first word"
+            },
+            {
+              "start": "323:1",
+              "end": "323:3",
+              "text": " \\"
+            },
+            {
+              "start": "324:3",
+              "end": "324:27",
+              "text": " \\ single-line block \"\"\""
+            },
+            {
+              "start": "327:0",
+              "end": "327:24",
+              "text": "\\ block line at column 0"
+            },
+            {
+              "start": "328:0",
+              "end": "328:25",
+              "text": "    \\ indented block line"
+            },
+            {
+              "start": "329:0",
+              "end": "329:19",
+              "text": "    \\: with a colon"
+            },
+            {
+              "start": "330:7",
+              "end": "330:34",
+              "text": " \\ tag after the first word"
+            },
+            {
+              "start": "333:3",
+              "end": "333:15",
+              "text": "\\ jsdoc line"
+            },
+            {
+              "start": "334:5",
+              "end": "334:31",
+              "text": "\\: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "/",
+          "ranges": [
+            {
+              "start": "24:0",
+              "end": "24:3",
+              "text": " */"
+            },
+            {
+              "start": "48:0",
+              "end": "48:3",
+              "text": " */"
+            },
+            {
+              "start": "72:0",
+              "end": "72:3",
+              "text": " */"
+            },
+            {
+              "start": "96:0",
+              "end": "96:3",
+              "text": " */"
+            },
+            {
+              "start": "120:0",
+              "end": "120:3",
+              "text": " */"
+            },
+            {
+              "start": "144:0",
+              "end": "144:3",
+              "text": " */"
+            },
+            {
+              "start": "168:0",
+              "end": "168:3",
+              "text": " */"
+            },
+            {
+              "start": "192:0",
+              "end": "192:3",
+              "text": " */"
+            },
+            {
+              "start": "216:0",
+              "end": "216:3",
+              "text": " */"
+            },
+            {
+              "start": "240:0",
+              "end": "240:3",
+              "text": " */"
+            },
+            {
+              "start": "264:0",
+              "end": "264:3",
+              "text": " */"
+            },
+            {
+              "start": "288:0",
+              "end": "288:3",
+              "text": " */"
+            },
+            {
+              "start": "312:0",
+              "end": "312:3",
+              "text": " */"
+            },
+            {
+              "start": "336:0",
+              "end": "336:3",
+              "text": " */"
+            },
+            {
+              "start": "339:1",
+              "end": "339:17",
+              "text": " / start of line"
+            },
+            {
+              "start": "340:5",
+              "end": "340:28",
+              "text": " / indented with spaces"
+            },
+            {
+              "start": "341:2",
+              "end": "341:24",
+              "text": " / indented with a tab"
+            },
+            {
+              "start": "342:1",
+              "end": "342:31",
+              "text": "/ no space after the delimiter"
+            },
+            {
+              "start": "343:1",
+              "end": "343:40",
+              "text": "   / several spaces after the delimiter"
+            },
+            {
+              "start": "345:10",
+              "end": "345:38",
+              "text": " / inside a string literal\";"
+            },
+            {
+              "start": "346:5",
+              "end": "346:32",
+              "text": " / tag after the first word"
+            },
+            {
+              "start": "347:1",
+              "end": "347:3",
+              "text": " /"
+            },
+            {
+              "start": "348:3",
+              "end": "348:27",
+              "text": " / single-line block \"\"\""
+            },
+            {
+              "start": "351:0",
+              "end": "351:24",
+              "text": "/ block line at column 0"
+            },
+            {
+              "start": "352:0",
+              "end": "352:25",
+              "text": "    / indented block line"
+            },
+            {
+              "start": "353:0",
+              "end": "353:19",
+              "text": "    /: with a colon"
+            },
+            {
+              "start": "354:7",
+              "end": "354:34",
+              "text": " / tag after the first word"
+            },
+            {
+              "start": "360:0",
+              "end": "360:3",
+              "text": " */"
+            },
+            {
+              "start": "384:0",
+              "end": "384:3",
+              "text": " */"
+            },
+            {
+              "start": "409:0",
+              "end": "409:3",
+              "text": " */"
+            },
+            {
+              "start": "433:0",
+              "end": "433:3",
+              "text": " */"
+            },
+            {
+              "start": "457:0",
+              "end": "457:3",
+              "text": " */"
+            },
+            {
+              "start": "481:0",
+              "end": "481:3",
+              "text": " */"
+            },
+            {
+              "start": "357:3",
+              "end": "357:15",
+              "text": "/ jsdoc line"
+            },
+            {
+              "start": "358:5",
+              "end": "358:31",
+              "text": "/: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "-",
+          "ranges": [
+            {
+              "start": "363:1",
+              "end": "363:17",
+              "text": " - start of line"
+            },
+            {
+              "start": "364:5",
+              "end": "364:28",
+              "text": " - indented with spaces"
+            },
+            {
+              "start": "365:2",
+              "end": "365:24",
+              "text": " - indented with a tab"
+            },
+            {
+              "start": "366:1",
+              "end": "366:31",
+              "text": "- no space after the delimiter"
+            },
+            {
+              "start": "367:1",
+              "end": "367:40",
+              "text": "   - several spaces after the delimiter"
+            },
+            {
+              "start": "369:10",
+              "end": "369:38",
+              "text": " - inside a string literal\";"
+            },
+            {
+              "start": "370:5",
+              "end": "370:32",
+              "text": " - tag after the first word"
+            },
+            {
+              "start": "371:1",
+              "end": "371:3",
+              "text": " -"
+            },
+            {
+              "start": "372:3",
+              "end": "372:27",
+              "text": " - single-line block \"\"\""
+            },
+            {
+              "start": "375:0",
+              "end": "375:24",
+              "text": "- block line at column 0"
+            },
+            {
+              "start": "376:0",
+              "end": "376:25",
+              "text": "    - indented block line"
+            },
+            {
+              "start": "377:0",
+              "end": "377:19",
+              "text": "    -: with a colon"
+            },
+            {
+              "start": "378:7",
+              "end": "378:34",
+              "text": " - tag after the first word"
+            },
+            {
+              "start": "381:3",
+              "end": "381:15",
+              "text": "- jsdoc line"
+            },
+            {
+              "start": "382:5",
+              "end": "382:31",
+              "text": "-: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "@note",
+          "ranges": [
+            {
+              "start": "387:1",
+              "end": "387:21",
+              "text": " @note start of line"
+            },
+            {
+              "start": "388:5",
+              "end": "388:32",
+              "text": " @note indented with spaces"
+            },
+            {
+              "start": "389:2",
+              "end": "389:28",
+              "text": " @note indented with a tab"
+            },
+            {
+              "start": "390:1",
+              "end": "390:35",
+              "text": "@note no space after the delimiter"
+            },
+            {
+              "start": "391:1",
+              "end": "391:44",
+              "text": "   @note several spaces after the delimiter"
+            },
+            {
+              "start": "393:10",
+              "end": "393:42",
+              "text": " @note inside a string literal\";"
+            },
+            {
+              "start": "394:5",
+              "end": "394:36",
+              "text": " @note tag after the first word"
+            },
+            {
+              "start": "395:1",
+              "end": "395:18",
+              "text": " @NOTE upper case"
+            },
+            {
+              "start": "396:1",
+              "end": "396:7",
+              "text": " @note"
+            },
+            {
+              "start": "397:3",
+              "end": "397:31",
+              "text": " @note single-line block \"\"\""
+            },
+            {
+              "start": "400:0",
+              "end": "400:28",
+              "text": "@note block line at column 0"
+            },
+            {
+              "start": "401:0",
+              "end": "401:29",
+              "text": "    @note indented block line"
+            },
+            {
+              "start": "402:0",
+              "end": "402:23",
+              "text": "    @note: with a colon"
+            },
+            {
+              "start": "403:7",
+              "end": "403:38",
+              "text": " @note tag after the first word"
+            },
+            {
+              "start": "406:3",
+              "end": "406:19",
+              "text": "@note jsdoc line"
+            },
+            {
+              "start": "407:5",
+              "end": "407:35",
+              "text": "@note: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "FIXME:",
+          "ranges": [
+            {
+              "start": "412:1",
+              "end": "412:22",
+              "text": " FIXME: start of line"
+            },
+            {
+              "start": "413:5",
+              "end": "413:33",
+              "text": " FIXME: indented with spaces"
+            },
+            {
+              "start": "414:2",
+              "end": "414:29",
+              "text": " FIXME: indented with a tab"
+            },
+            {
+              "start": "415:1",
+              "end": "415:36",
+              "text": "FIXME: no space after the delimiter"
+            },
+            {
+              "start": "416:1",
+              "end": "416:45",
+              "text": "   FIXME: several spaces after the delimiter"
+            },
+            {
+              "start": "418:10",
+              "end": "418:43",
+              "text": " FIXME: inside a string literal\";"
+            },
+            {
+              "start": "419:5",
+              "end": "419:37",
+              "text": " FIXME: tag after the first word"
+            },
+            {
+              "start": "420:1",
+              "end": "420:8",
+              "text": " FIXME:"
+            },
+            {
+              "start": "421:3",
+              "end": "421:32",
+              "text": " FIXME: single-line block \"\"\""
+            },
+            {
+              "start": "424:0",
+              "end": "424:29",
+              "text": "FIXME: block line at column 0"
+            },
+            {
+              "start": "425:0",
+              "end": "425:30",
+              "text": "    FIXME: indented block line"
+            },
+            {
+              "start": "426:0",
+              "end": "426:24",
+              "text": "    FIXME:: with a colon"
+            },
+            {
+              "start": "427:7",
+              "end": "427:39",
+              "text": " FIXME: tag after the first word"
+            },
+            {
+              "start": "430:3",
+              "end": "430:20",
+              "text": "FIXME: jsdoc line"
+            },
+            {
+              "start": "431:5",
+              "end": "431:36",
+              "text": "FIXME:: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "⚠",
+          "ranges": [
+            {
+              "start": "436:1",
+              "end": "436:17",
+              "text": " ⚠ start of line"
+            },
+            {
+              "start": "437:5",
+              "end": "437:28",
+              "text": " ⚠ indented with spaces"
+            },
+            {
+              "start": "438:2",
+              "end": "438:24",
+              "text": " ⚠ indented with a tab"
+            },
+            {
+              "start": "439:1",
+              "end": "439:31",
+              "text": "⚠ no space after the delimiter"
+            },
+            {
+              "start": "440:1",
+              "end": "440:40",
+              "text": "   ⚠ several spaces after the delimiter"
+            },
+            {
+              "start": "442:10",
+              "end": "442:38",
+              "text": " ⚠ inside a string literal\";"
+            },
+            {
+              "start": "443:5",
+              "end": "443:32",
+              "text": " ⚠ tag after the first word"
+            },
+            {
+              "start": "444:1",
+              "end": "444:3",
+              "text": " ⚠"
+            },
+            {
+              "start": "445:3",
+              "end": "445:27",
+              "text": " ⚠ single-line block \"\"\""
+            },
+            {
+              "start": "448:0",
+              "end": "448:24",
+              "text": "⚠ block line at column 0"
+            },
+            {
+              "start": "449:0",
+              "end": "449:25",
+              "text": "    ⚠ indented block line"
+            },
+            {
+              "start": "450:0",
+              "end": "450:19",
+              "text": "    ⚠: with a colon"
+            },
+            {
+              "start": "451:7",
+              "end": "451:34",
+              "text": " ⚠ tag after the first word"
+            },
+            {
+              "start": "454:3",
+              "end": "454:15",
+              "text": "⚠ jsdoc line"
+            },
+            {
+              "start": "455:5",
+              "end": "455:31",
+              "text": "⚠: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "**",
+          "ranges": [
+            {
+              "start": "478:3",
+              "end": "478:16",
+              "text": "** jsdoc line"
+            },
+            {
+              "start": "479:5",
+              "end": "479:32",
+              "text": "**: jsdoc line with a colon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 20,
+      "applied": []
+    },
+    {
+      "histories": [
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 20,
+      "applied": [
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "21:3",
+              "end": "21:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "22:5",
+              "end": "22:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "45:3",
+              "end": "45:15",
+              "text": "* jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:31",
+              "text": "*: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "+",
+          "ranges": [
+            {
+              "start": "69:3",
+              "end": "69:15",
+              "text": "+ jsdoc line"
+            },
+            {
+              "start": "70:5",
+              "end": "70:31",
+              "text": "+: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": ".",
+          "ranges": [
+            {
+              "start": "93:3",
+              "end": "93:15",
+              "text": ". jsdoc line"
+            },
+            {
+              "start": "94:5",
+              "end": "94:31",
+              "text": ".: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "$",
+          "ranges": [
+            {
+              "start": "117:3",
+              "end": "117:15",
+              "text": "$ jsdoc line"
+            },
+            {
+              "start": "118:5",
+              "end": "118:31",
+              "text": "$: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "^",
+          "ranges": [
+            {
+              "start": "141:3",
+              "end": "141:15",
+              "text": "^ jsdoc line"
+            },
+            {
+              "start": "142:5",
+              "end": "142:31",
+              "text": "^: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "|",
+          "ranges": [
+            {
+              "start": "165:3",
+              "end": "165:15",
+              "text": "| jsdoc line"
+            },
+            {
+              "start": "166:5",
+              "end": "166:31",
+              "text": "|: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "(",
+          "ranges": [
+            {
+              "start": "189:3",
+              "end": "189:15",
+              "text": "( jsdoc line"
+            },
+            {
+              "start": "190:5",
+              "end": "190:31",
+              "text": "(: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": ")",
+          "ranges": [
+            {
+              "start": "213:3",
+              "end": "213:15",
+              "text": ") jsdoc line"
+            },
+            {
+              "start": "214:5",
+              "end": "214:31",
+              "text": "): jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "[",
+          "ranges": [
+            {
+              "start": "237:3",
+              "end": "237:15",
+              "text": "[ jsdoc line"
+            },
+            {
+              "start": "238:5",
+              "end": "238:31",
+              "text": "[: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "]",
+          "ranges": [
+            {
+              "start": "261:3",
+              "end": "261:15",
+              "text": "] jsdoc line"
+            },
+            {
+              "start": "262:5",
+              "end": "262:31",
+              "text": "]: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "{",
+          "ranges": [
+            {
+              "start": "285:3",
+              "end": "285:15",
+              "text": "{ jsdoc line"
+            },
+            {
+              "start": "286:5",
+              "end": "286:31",
+              "text": "{: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "}",
+          "ranges": [
+            {
+              "start": "309:3",
+              "end": "309:15",
+              "text": "} jsdoc line"
+            },
+            {
+              "start": "310:5",
+              "end": "310:31",
+              "text": "}: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "\\",
+          "ranges": [
+            {
+              "start": "333:3",
+              "end": "333:15",
+              "text": "\\ jsdoc line"
+            },
+            {
+              "start": "334:5",
+              "end": "334:31",
+              "text": "\\: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "/",
+          "ranges": [
+            {
+              "start": "357:3",
+              "end": "357:15",
+              "text": "/ jsdoc line"
+            },
+            {
+              "start": "358:5",
+              "end": "358:31",
+              "text": "/: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "-",
+          "ranges": [
+            {
+              "start": "381:3",
+              "end": "381:15",
+              "text": "- jsdoc line"
+            },
+            {
+              "start": "382:5",
+              "end": "382:31",
+              "text": "-: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "@note",
+          "ranges": [
+            {
+              "start": "406:3",
+              "end": "406:19",
+              "text": "@note jsdoc line"
+            },
+            {
+              "start": "407:5",
+              "end": "407:35",
+              "text": "@note: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "FIXME:",
+          "ranges": [
+            {
+              "start": "430:3",
+              "end": "430:20",
+              "text": "FIXME: jsdoc line"
+            },
+            {
+              "start": "431:5",
+              "end": "431:36",
+              "text": "FIXME:: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "⚠",
+          "ranges": [
+            {
+              "start": "454:3",
+              "end": "454:15",
+              "text": "⚠ jsdoc line"
+            },
+            {
+              "start": "455:5",
+              "end": "455:31",
+              "text": "⚠: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "**",
+          "ranges": [
+            {
+              "start": "478:3",
+              "end": "478:16",
+              "text": "** jsdoc line"
+            },
+            {
+              "start": "479:5",
+              "end": "479:32",
+              "text": "**: jsdoc line with a colon"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

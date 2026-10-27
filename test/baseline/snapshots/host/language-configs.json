@@ -1,5 +1,11 @@
 {
   "bc-no-comment-syntax": {},
+  "bc-object-line-comment": {
+    "lineComment": {
+      "comment": "#",
+      "noIndent": true
+    }
+  },
   "csharp": {
     "lineComment": "//",
     "blockComment": [

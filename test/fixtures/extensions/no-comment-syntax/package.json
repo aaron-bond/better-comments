@@ -28,6 +28,13 @@
                     ".bcmissing"
                 ],
                 "configuration": "./does-not-exist.json"
+            },
+            {
+                "id": "bc-object-line-comment",
+                "extensions": [
+                    ".bcobject"
+                ],
+                "configuration": "./object-line-comment-language-configuration.json"
             }
         ]
     }

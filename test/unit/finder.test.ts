@@ -11,6 +11,8 @@ const defaults: LanguageSettings = { multilineComments: true, highlightPlainText
 const lineOnly = { lineComment: '//' };
 const cStyle: CommentConfig = { lineComment: '//', blockComment: ['/*', '*/'] };
 const python = { lineComment: '#' };
+// As the built-in Makefile config has it in newer VS Code versions. The parser's types don't allow it (P1)
+const objectForm = { lineComment: { comment: '#', noIndent: true } } as any as CommentConfig;
 
 /** The state after switching through these languages in turn */
 function stateAfter(languages: Array<[string, CommentConfig | undefined]>, settings = defaults): LanguageState {
@@ -92,6 +94,11 @@ describe('finder', () => {
             const settings = { ...defaults, highlightPlainText: true };
             const withEmpty = [...tags, { tag: '', escapedTag: '' }];
             assert.deepStrictEqual(find('! alert\n\nplain\n', [['plaintext', undefined]], settings, withEmpty), ['!: ! alert', ': plain']);
+        });
+
+        it('P3: steps past zero-length matches with the empty delimiter of an object-form lineComment', () => {
+            const withEmpty = [...tags, { tag: '', escapedTag: '' }];
+            assert.deepStrictEqual(find('x != y\n\n', [['bc-object', objectForm]], defaults, withEmpty), [': x != y']);
         });
     });
 
