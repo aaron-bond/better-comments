@@ -1,0 +1,5 @@
+{
+    "require": "./test/register.js",
+    "node-option": ["no-experimental-strip-types"],
+    "timeout": 20000
+}

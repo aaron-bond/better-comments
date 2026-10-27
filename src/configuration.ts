@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 
-import * as json5 from 'json5'
 import { TextDecoder } from 'util';
+import { parseLanguageConfig } from './core';
 
 export class Configuration {
     private readonly commentConfig = new Map<string, CommentConfig | undefined>();
@@ -59,12 +59,11 @@ export class Configuration {
             const rawContent = await vscode.workspace.fs.readFile(vscode.Uri.file(filePath));
             const content = new TextDecoder().decode(rawContent);
 
-            // use json5, because the config can contains comments
-            const config = json5.parse(content);
+            const comments = parseLanguageConfig(content);
 
-            this.commentConfig.set(languageCode, config.comments);
+            this.commentConfig.set(languageCode, comments);
 
-            return config.comments;
+            return comments;
         } catch (error) {
             this.commentConfig.set(languageCode, undefined);
             return undefined;
