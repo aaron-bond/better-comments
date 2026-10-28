@@ -43,6 +43,25 @@ describe('test harness', () => {
         assert.deepStrictEqual(created.map(c => c.options.color), defaultTags.map(t => t.color));
     });
 
+    it('passes theme colours from the settings through to the decoration types', async () => {
+        const config = vscode.workspace.getConfiguration('better-comments');
+        const themeColour = { tag: '!', color: { id: 'editorError.foreground' }, backgroundColor: { id: 'editor.background' } };
+        await config.update('tags', [themeColour], vscode.ConfigurationTarget.Global);
+        try {
+            const Configuration = loadConfiguration();
+            const Parser = loadParser();
+
+            const before = recorder.createdTypes.length;
+            new Parser(new Configuration());
+            const created = recorder.createdTypes.slice(before);
+
+            assert.deepStrictEqual(created.map(c => [c.options.color, c.options.backgroundColor]),
+                [[{ id: 'editorError.foreground' }, { id: 'editor.background' }]]);
+        } finally {
+            await config.update('tags', undefined, vscode.ConfigurationTarget.Global);
+        }
+    });
+
     it('reads the real built-in language configs', async () => {
         const Configuration = loadConfiguration();
         const config = new Configuration();

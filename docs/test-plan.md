@@ -310,7 +310,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 105 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Unit tests** (`test/unit/`, 107 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 126 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.

@@ -1,5 +1,5 @@
 import { LanguageSettings } from './languageState';
-import { TagSetting } from './types';
+import { ColorSetting, TagSetting } from './types';
 import { property } from './unknown';
 
 // The better-comments settings, once checked
@@ -8,10 +8,11 @@ export interface Settings extends LanguageSettings {
 }
 
 /**
- * Checks the better-comments settings. They come from settings.json, so they can hold any JSON value: VS Code
- * warns about values that don't match the schema in package.json, but still passes them on.
+ * Checks the better-comments settings. They come from settings.json, so they can hold any JSON value: the schema
+ * in package.json only says tags is an array, so VS Code passes on whatever the items contain.
  * - Flags are only ever tested for truthiness, so any value is read as a boolean.
- * - A colour that isn't a string can't be used by a decoration, so it's dropped.
+ * - A colour is kept if it's a string or a theme colour ({ "id": "editorError.foreground" }), the shapes VS Code can
+ *   use. Anything else is dropped.
  * - Tags that aren't a list of objects with a string tag have always stopped the parser, so they still throw.
  * @param raw The value of vscode.workspace.getConfiguration('better-comments')
  */
@@ -39,8 +40,8 @@ function readTag(item: unknown): TagSetting {
 
     return {
         tag,
-        color: stringOrUndefined(property(item, 'color')),
-        backgroundColor: stringOrUndefined(property(item, 'backgroundColor')),
+        color: readColor(property(item, 'color')),
+        backgroundColor: readColor(property(item, 'backgroundColor')),
         strikethrough: Boolean(property(item, 'strikethrough')),
         underline: Boolean(property(item, 'underline')),
         bold: Boolean(property(item, 'bold')),
@@ -48,4 +49,11 @@ function readTag(item: unknown): TagSetting {
     };
 }
 
-const stringOrUndefined = (value: unknown): string | undefined => typeof value === 'string' ? value : undefined;
+function readColor(value: unknown): ColorSetting | undefined {
+    if (typeof value === 'string') {
+        return value;
+    }
+
+    const id = property(value, 'id');
+    return typeof id === 'string' ? { id } : undefined;
+}

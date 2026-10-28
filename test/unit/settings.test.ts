@@ -25,10 +25,21 @@ describe('readSettings', () => {
         assert.strictEqual(readSettings({ tags: [] }).multilineComments, false);
     });
 
-    it('drops a colour that is not a string, which a decoration could not use', () => {
+    it('keeps a colour string', () => {
         assert.strictEqual(tag({ color: '#fff' }).color, '#fff');
-        assert.strictEqual(tag({ color: 5 }).color, undefined);
-        assert.strictEqual(tag({ backgroundColor: { r: 0 } }).backgroundColor, undefined);
+        assert.strictEqual(tag({ backgroundColor: 'transparent' }).backgroundColor, 'transparent');
+    });
+
+    it('keeps a theme colour, an object with a string id, as VS Code reads it', () => {
+        assert.deepStrictEqual(tag({ color: { id: 'editorError.foreground' } }).color, { id: 'editorError.foreground' });
+        assert.deepStrictEqual(tag({ backgroundColor: { id: 'editor.background', alpha: 1 } }).backgroundColor, { id: 'editor.background' });
+    });
+
+    it('drops any other colour, which VS Code could not use', () => {
+        for (const value of [5, true, ['#fff'], {}, { id: 5 }, null]) {
+            assert.strictEqual(tag({ color: value, backgroundColor: value }).color, undefined, JSON.stringify(value));
+            assert.strictEqual(tag({ color: value, backgroundColor: value }).backgroundColor, undefined, JSON.stringify(value));
+        }
         assert.strictEqual(tag({}).color, undefined);
     });
 
