@@ -1,6 +1,7 @@
 import { execFileSync, spawnSync } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
+import { hostSnapshotFile } from '../baseline/snapshot';
 import { launchSuite } from '../host/launch';
 import { repoRoot } from '../repo';
 import { perfDir, writeReport } from './report';
@@ -40,7 +41,8 @@ function referenceBuild(label: string, commit: string): Build {
             fs.writeFileSync(path.join(root, file), git('show', `${commit}:${file}`));
         }
 
-        execFileSync(process.execPath, [require.resolve('typescript/bin/tsc'), '-p', root], { stdio: 'inherit' });
+        // Emit only: an old commit's types needn't check against this checkout's @types (v3.0.2 uses NodeJS.Timer)
+        execFileSync(process.execPath, [require.resolve('typescript/bin/tsc'), '-p', root, '--noCheck'], { stdio: 'inherit' });
     }
     return { label, root };
 }
@@ -62,8 +64,7 @@ async function main(): Promise<void> {
     fs.mkdirSync(resultsDir, { recursive: true });
 
     // The language configs the host baseline recorded, so the Node layer parses the same syntax as the host
-    const configsLabel = fs.existsSync(path.join(repoRoot, 'test/baseline/snapshots', version)) ? version : 'stable';
-    const configs = path.join(repoRoot, 'test/baseline/snapshots', configsLabel, 'language-configs.json');
+    const configs = hostSnapshotFile('language-configs.json', version);
 
     const common: Record<string, string> = {
         ...(sizes ? { BC_PERF_SIZES: sizes } : {}),

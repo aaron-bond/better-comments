@@ -3,7 +3,7 @@ import { repoRoot } from '../repo';
 import { launchSuite } from './launch';
 
 // The lowest version allowed by "engines" in package.json, and the current stable release
-const defaultVersions = ['1.65.0', 'stable'];
+const defaultVersions = ['1.101.0', 'stable'];
 
 // Usage: node out/test/host/runTests.js <suite> [--update-snapshots] [version...]
 async function main(): Promise<void> {
@@ -21,7 +21,7 @@ async function main(): Promise<void> {
                 suite,
                 version,
                 env: {
-                    // Versions share one snapshot set and differ by label ("1.65.0", "stable"), not by resolved version
+                    // Versions share one snapshot set and differ by label ("1.101.0", "stable"), not by resolved version
                     BC_VSCODE_LABEL: version,
                     BC_UPDATE_SNAPSHOTS: updateSnapshots ? '1' : '',
                     // The first version run writes the shared set; the rest only record where they differ

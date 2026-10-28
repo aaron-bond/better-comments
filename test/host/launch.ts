@@ -7,7 +7,7 @@ import { repoRoot } from '../repo';
 export interface LaunchOptions {
     // A folder next to index.js, e.g. "integration"
     suite: string;
-    // A VS Code version, e.g. "1.65.0" or "stable"
+    // A VS Code version, e.g. "1.101.0" or "stable"
     version: string;
     // The Better Comments build to load. Defaults to this repository
     extensionRoot?: string;

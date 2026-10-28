@@ -4,7 +4,7 @@
     "publisher": "better-comments-tests",
     "version": "0.0.1",
     "engines": {
-        "vscode": "^1.65.0"
+        "vscode": "^1.101.0"
     },
     "contributes": {
         "languages": [
