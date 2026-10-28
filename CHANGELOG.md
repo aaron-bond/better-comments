@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.0.3] (2026-10-28)
+### House Keeping
+* Removed the Sponsor link and GitHub funding file, which pointed to a GitHub Sponsors page that no longer exists
+
 ## [3.0.2] (2022-07-30)
 ### House Keeping
 * Adding Sponsor link to package.json ([c2b4992](https://github.com/aaron-bond/better-comments/commit/c2b4992)), closes [#409](https://github.com/aaron-bond/better-comments/issues/409)
