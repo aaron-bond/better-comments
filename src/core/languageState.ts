@@ -143,7 +143,7 @@ export function findsJSDocComments(state: LanguageState): boolean {
 function setCommentFormat(
         state: LanguageState,
         settings: LanguageSettings,
-        singleLine: string | string[] | null,
+        singleLine: string | string[] | LineCommentObject | null,
         start: string | null = null,
         end: string | null = null): LanguageState {
 

@@ -12,7 +12,7 @@ const lineOnly = { lineComment: '//' };
 const cStyle: CommentConfig = { lineComment: '//', blockComment: ['/*', '*/'] };
 const python = { lineComment: '#' };
 // As the built-in Makefile config has it in newer VS Code versions. The parser's types don't allow it (P1)
-const objectForm = { lineComment: { comment: '#', noIndent: true } } as unknown as CommentConfig;
+const objectForm: CommentConfig = { lineComment: { comment: '#', noIndent: true } };
 
 /** The state after switching through these languages in turn */
 function stateAfter(languages: Array<[string, CommentConfig | undefined]>, settings = defaults): LanguageState {

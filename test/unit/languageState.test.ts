@@ -126,14 +126,14 @@ describe('languageState', () => {
         });
 
         it('P1: an object-form lineComment gives an empty delimiter', () => {
-            const makefile = { lineComment: { comment: '#', noIndent: true } } as unknown as CommentConfig;
+            const makefile: CommentConfig = { lineComment: { comment: '#', noIndent: true } };
             const state = switchTo(initialLanguageState, 'makefile', makefile);
             assert.strictEqual(state.delimiter, '');
             assert.strictEqual(state.supportedLanguage, true);
         });
 
         it('uses every delimiter of a language with several line comment formats', () => {
-            assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: ['//', '#'] } as unknown as CommentConfig).delimiter, '//|#');
+            assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: ['//', '#'] }).delimiter, '//|#');
         });
 
         it('does not change the state it is given', () => {
