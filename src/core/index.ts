@@ -6,6 +6,6 @@
 
 export { findTags } from './finder';
 export { parseLanguageConfig } from './languageConfig';
-export { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageSettings, LanguageState } from './languageState';
+export { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './languageState';
+export { readSettings } from './settings';
 export { prepareTag } from './tags';
-export { TagSetting } from './types';

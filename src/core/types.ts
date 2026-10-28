@@ -2,7 +2,7 @@
 
 export interface TagSetting {
     tag: string;
-    color: string;
+    color?: string;
     strikethrough?: boolean;
     underline?: boolean;
     bold?: boolean;
@@ -12,7 +12,7 @@ export interface TagSetting {
 
 // Matches the shape of vscode.DecorationRenderOptions that the parser has always produced
 export interface TagStyle {
-    color: string;
+    color: string | undefined;
     backgroundColor: string | undefined;
     textDecoration?: string;
     fontWeight?: string;

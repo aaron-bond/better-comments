@@ -119,10 +119,6 @@ describe('languageState', () => {
             assert.strictEqual(lineCommentExpression(both, ['!']), '(\\/\\/)+( |\t)*(!)+(.*)');
         });
 
-        it('passes a non-boolean highlightPlainText straight through to supportedLanguage', () => {
-            assert.strictEqual(switchTo(initialLanguageState, 'plaintext', undefined, { ...defaults, highlightPlainText: undefined as unknown as boolean }).supportedLanguage, undefined);
-        });
-
         it('pinned 11: plaintext keeps the previous language\'s delimiters and block matching', () => {
             const state = after([['javascript', js], ['plaintext', undefined]], { ...defaults, highlightPlainText: true });
             assert.strictEqual(state.blockCommentStart, '/\\*');
