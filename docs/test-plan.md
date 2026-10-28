@@ -273,6 +273,8 @@ Priming histories may use a language outside the three only to reach a state, no
 
 ## Phase 1.5: Dependency refresh, guarded by the baseline
 
+**Status (2026-10-28): done.** Items 1, 2 and 4 shipped in 3.1.0, along with removing `.travis.yml`. Item 3 and the rest of item 5 are in 3.1.1, which goes further than item 3 planned: TypeScript 6, and typescript-eslint's `recommendedTypeChecked` rules as errors across `src/` and `test/`, with the code fixed to pass them.
+
 Only once the baseline is green, and one change per PR, with the baseline unchanged after each:
 
 1. Bump json5 to `^2.2.3`. This changes the config parser, so check that the language-config dump is identical.
