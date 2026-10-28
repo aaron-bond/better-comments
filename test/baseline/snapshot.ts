@@ -50,9 +50,9 @@ export function groupByResult(byHistory: Array<[string, CaseResult]>): Snapshot[
 
 export const updateSnapshots = process.env.BC_UPDATE_SNAPSHOTS === '1';
 
-const readJson = (file: string) => JSON.parse(fs.readFileSync(file, 'utf8'));
+const readJson = (file: string): unknown => JSON.parse(fs.readFileSync(file, 'utf8'));
 // Round-trip so undefined properties compare the same way they're stored
-const normalise = (actual: unknown) => JSON.parse(JSON.stringify(actual));
+const normalise = (actual: unknown): unknown => JSON.parse(JSON.stringify(actual));
 
 function writeJson(file: string, value: unknown): void {
     fs.mkdirSync(path.dirname(file), { recursive: true });

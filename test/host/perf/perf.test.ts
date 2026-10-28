@@ -40,15 +40,17 @@ function timedSetTimeout(this: unknown, handler: unknown, delay?: number, ...arg
             const uri = vscode.window.activeTextEditor?.document.uri.toString();
             const start = performance.now();
             try {
-                return handler.apply(this, callArgs);
+                return (handler as (...a: unknown[]) => unknown).apply(this, callArgs);
             } finally {
                 runs.push({ uri, scheduledAt, start, end: performance.now() });
             }
         }, delay, ...args);
     }
-    return (realSetTimeout as any).apply(this, arguments);
+    return (realSetTimeout as (...args: unknown[]) => NodeJS.Timeout).call(this, handler, delay, ...args);
 }
-(timedSetTimeout as any)[util.promisify.custom] = (realSetTimeout as any)[util.promisify.custom];
+// Keeps util.promisify(setTimeout) working while the wrapper is installed
+(timedSetTimeout as unknown as Record<symbol, unknown>)[util.promisify.custom] =
+    (realSetTimeout as unknown as Record<symbol, unknown>)[util.promisify.custom];
 
 const sleep = (ms: number) => new Promise(resolve => realSetTimeout(resolve, ms));
 
@@ -94,7 +96,7 @@ describe(`performance: ${build}, ${tagSet} tags`, function () {
     let plainText: vscode.TextDocument;
 
     before(async () => {
-        (global as any).setTimeout = timedSetTimeout;
+        global.setTimeout = timedSetTimeout as unknown as typeof setTimeout;
 
         const extension = vscode.extensions.getExtension(extensionId)!;
         assert.strictEqual(path.resolve(extension.extensionPath), path.resolve(env('BC_EXTENSION_ROOT')), 'the build under test is loaded');
@@ -104,7 +106,7 @@ describe(`performance: ${build}, ${tagSet} tags`, function () {
     });
 
     after(() => {
-        (global as any).setTimeout = realSetTimeout;
+        global.setTimeout = realSetTimeout;
         fs.writeFileSync(out, JSON.stringify(results, null, 2));
     });
 

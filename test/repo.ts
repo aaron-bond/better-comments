@@ -5,9 +5,16 @@ import * as path from 'path';
 function findRepoRoot(from: string): string {
     for (let dir = from; ; dir = path.dirname(dir)) {
         const pkg = path.join(dir, 'package.json');
-        if (fs.existsSync(pkg) && JSON.parse(fs.readFileSync(pkg, 'utf8')).name === 'better-comments') return dir;
+        if (fs.existsSync(pkg) && (JSON.parse(fs.readFileSync(pkg, 'utf8')) as { name?: string }).name === 'better-comments') return dir;
         if (path.dirname(dir) === dir) throw new Error(`No better-comments package.json above ${from}`);
     }
 }
 
 export const repoRoot = findRepoRoot(__dirname);
+
+// The parts of this repository's package.json that the tests read
+interface PackageJson {
+    contributes: { configuration: { properties: Record<string, { default?: unknown }> } };
+}
+
+export const packageJson = JSON.parse(fs.readFileSync(path.join(repoRoot, 'package.json'), 'utf8')) as PackageJson;

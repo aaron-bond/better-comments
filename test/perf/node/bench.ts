@@ -17,7 +17,7 @@ const env = (name: string): string => {
 
 const build = env('BC_BUILD');
 const out = env('BC_PERF_OUT');
-const configs: Record<string, CommentSyntax | null> = JSON.parse(fs.readFileSync(env('BC_PERF_CONFIGS'), 'utf8'));
+const configs = JSON.parse(fs.readFileSync(env('BC_PERF_CONFIGS'), 'utf8')) as Record<string, CommentSyntax | null>;
 const sizes = process.env.BC_PERF_SIZES ? process.env.BC_PERF_SIZES.split(',').map(Number) : defaultSizes;
 
 const Parser = loadParser();
@@ -26,7 +26,7 @@ const now = () => Number(process.hrtime.bigint()) / 1e6;
 async function measure(tagSet: typeof perfTagSets[number], language: typeof perfLanguages[number], lines: number): Promise<NodeResult> {
     setSettings({ tags: tagSet.tags, multilineComments: true, highlightPlainText: false });
 
-    const parser = new Parser({ GetCommentConfiguration: async (languageId: string) => configs[languageId] ?? undefined });
+    const parser = new Parser({ GetCommentConfiguration: (languageId: string) => Promise.resolve(configs[languageId] ?? undefined) });
     await setLanguage(parser, language.languageId);
 
     // Alternate between the document with and without the edit line, as the host benchmark's edits do

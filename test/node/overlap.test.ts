@@ -2,7 +2,7 @@ import { FakeDocument, loadParser, Range, setSettings } from './fakeVscode';
 
 import * as assert from 'assert';
 import { matchSnapshot } from '../baseline/snapshot';
-import { runUpdate, setLanguage } from '../parserUpdate';
+import { ParserLike, runUpdate, setLanguage } from '../parserUpdate';
 
 // Pinned 9: language switches are async and change state shared by every editor, so two switches can
 // overlap. The baseline only ever switches one language at a time, so this records what happens when
@@ -29,7 +29,7 @@ const settingsVariants = [
 const text = '# ! py\n// ! js\n/* ! block */\n/*\n ! inside\n*/\n/**\n * ! jsdoc\n */\n! bare\n';
 const doc = new FakeDocument(text, 'irrelevant');
 
-function observe(parser: any): string {
+function observe(parser: ParserLike): string {
     const applied: string[] = [];
     const editor = {
         document: doc,
@@ -56,7 +56,7 @@ async function scenario(prime: string[], first: string, second: string, reversed
     // Each config read waits until the scenario releases it
     const pending: Array<() => void> = [];
     const configuration = {
-        GetCommentConfiguration: (id: string) => new Promise(resolve => pending.push(() => resolve(configs[id]))),
+        GetCommentConfiguration: (id: string) => new Promise<CommentConfig | undefined>(resolve => pending.push(() => resolve(configs[id]))),
     };
     const parser = new Parser(configuration);
     const log: string[] = [];

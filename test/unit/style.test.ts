@@ -35,8 +35,8 @@ describe('style', () => {
     });
 
     it('treats style flags by truthiness, as settings.json allows any value', () => {
-        assert.strictEqual(toTagStyle({ tag: '!', color: '#fff', bold: 'yes' as any }).fontWeight, 'bold');
-        assert.strictEqual(toTagStyle({ tag: '!', color: '#fff', bold: 0 as any }).fontWeight, undefined);
+        assert.strictEqual(toTagStyle({ tag: '!', color: '#fff', bold: 'yes' as unknown as boolean }).fontWeight, 'bold');
+        assert.strictEqual(toTagStyle({ tag: '!', color: '#fff', bold: 0 as unknown as boolean }).fontWeight, undefined);
     });
 
     describe('prepareTag', () => {
@@ -49,7 +49,7 @@ describe('style', () => {
         });
 
         it('throws for a tag that is not a string, as the parser always has', () => {
-            assert.throws(() => prepareTag({ tag: 5 as any, color: '#fff' }), TypeError);
+            assert.throws(() => prepareTag({ tag: 5 as unknown as string, color: '#fff' }), TypeError);
         });
     });
 });

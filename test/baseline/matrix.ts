@@ -1,5 +1,4 @@
-import * as path from 'path';
-import { repoRoot } from '../repo';
+import { packageJson } from '../repo';
 import { CommentSyntax, generateDocument } from './generate';
 
 // The case matrix shared by the host and Node baselines
@@ -22,8 +21,7 @@ export interface SettingsVariant {
     highlightPlainText?: boolean;
 }
 
-export const defaultTags: TagSetting[] =
-    require(path.join(repoRoot, 'package.json')).contributes.configuration.properties['better-comments.tags'].default;
+export const defaultTags = packageJson.contributes.configuration.properties['better-comments.tags'].default as TagSetting[];
 
 const styleCombinations = Array.from({ length: 16 }, (_, i) => ({
     strikethrough: !!(i & 1), underline: !!(i & 2), bold: !!(i & 4), italic: !!(i & 8),
@@ -107,7 +105,7 @@ export const targets: Target[] = [
 
 export function inputName(input: InputSpec): string {
     switch (input.kind) {
-        case 'sample': return `sample-${input.file.replace(/[\/\\]/g, '_')}`;
+        case 'sample': return `sample-${input.file.replace(/[/\\]/g, '_')}`;
         case 'generated': return `generated-from-${input.syntaxFrom}${input.bareTags ? '-bare' : ''}-${input.eol.toLowerCase()}`;
         case 'empty': return 'empty';
     }

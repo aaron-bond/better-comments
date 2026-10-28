@@ -19,6 +19,7 @@
 		"baseline",
 		"repo.ts",
 		"parserUpdate.ts",
+		"requireHook.ts",
 		"../src/typings"
 	]
 }
