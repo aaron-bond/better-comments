@@ -140,7 +140,7 @@ The current parser carries state from one language to the next (pinned items 1, 
 | `npm run perf` | The performance benchmark: the Node and host layers for this checkout and v3.0.2, and a report pairing them up. See [performance.md](performance.md) | ~10 min |
 
 - Running from VS Code's terminal works; the runner clears `ELECTRON_RUN_AS_NODE` itself. On Linux without a display, use `xvfb-run -a npm run test:host`.
-- **CI** (`.github/workflows/ci.yml`) runs on every PR and on pushes to `master` and `feature/**`, on Linux with Node 22 (VS Code 1.101's version): lint, both builds, `npm run coverage` under `xvfb-run`, then `vsce package` as a check that the extension still packages. The coverage table goes in the run summary but never fails the build, and nothing is published or uploaded.
+- **CI** (`.github/workflows/ci.yml`) runs on every PR and on pushes to `main` and `feature/**`, on Linux with Node 22 (VS Code 1.101's version): lint, both builds, `npm run coverage` under `xvfb-run`, then `vsce package` as a check that the extension still packages. The coverage table goes in the run summary but never fails the build, and nothing is published or uploaded.
 - `BC_PARSER_PATH=<path to a build's parser.js> npm run test:node` runs the Node suites against another build, e.g. v3.0.2. It's how the overlapping-switch snapshot was recorded (with `BC_UPDATE_SNAPSHOTS=1`). v3.0.2 hangs on the `empty-tag-plaintext-on` cases and the `bc-object-line-comment` cases under `empty-tag` (P3), so expect the Node baseline to stall there.
 
 ## Phase 0: Test tooling only (done)
