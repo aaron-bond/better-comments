@@ -78,7 +78,7 @@ function findLineComments(text: string, expression: string, state: LanguageState
     const regEx = new RegExp(expression, regexFlags);
 
     let match: RegExpExecArray | null;
-    while (match = regEx.exec(text)) {
+    while ((match = regEx.exec(text)) !== null) {
         if (skipZeroLength(regEx, match)) continue;
 
         // Required to ignore the first line of .py files (#61)
@@ -99,18 +99,18 @@ function findLineComments(text: string, expression: string, state: LanguageState
 function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tagNames: string[], matches: TagMatch[]): void {
     // Find the multiline comment block
     let match: RegExpExecArray | null;
-    while (match = regEx.exec(text)) {
+    while ((match = regEx.exec(text)) !== null) {
         if (skipZeroLength(regEx, match)) continue;
 
         const commentBlock = match[0];
 
         // Find the line
         let line: RegExpExecArray | null;
-        while (line = commentRegEx.exec(commentBlock)) {
+        while ((line = commentRegEx.exec(commentBlock)) !== null) {
             if (skipZeroLength(commentRegEx, line)) continue;
 
             // Find which custom delimiter was used in order to add it to the collection
-            const matchString = line[3] as string;
+            const matchString = line[3];
             const tagIndex = findTagIndex(tagNames, matchString);
 
             if (tagIndex >= 0) {

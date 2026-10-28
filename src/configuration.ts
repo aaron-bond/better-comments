@@ -71,7 +71,7 @@ export class Configuration {
             this.commentConfig.set(languageCode, comments);
 
             return comments;
-        } catch (error) {
+        } catch {
             this.commentConfig.set(languageCode, undefined);
             return undefined;
         }
