@@ -20,6 +20,11 @@ export default defineConfig(
             curly: ['error', 'multi-line'],
             eqeqeq: 'error',
             '@typescript-eslint/naming-convention': ['error', { selector: 'class', format: ['PascalCase'] }],
+            // A double cast asserts a type without checking it: narrow the value instead
+            'no-restricted-syntax': ['error', {
+                selector: "TSAsExpression > TSAsExpression[typeAnnotation.type='TSUnknownKeyword']",
+                message: '`as unknown as` asserts a type without checking it. Narrow the value instead.',
+            }],
         },
     },
 );
