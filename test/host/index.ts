@@ -5,7 +5,13 @@ installShim();
 
 import * as fs from 'fs';
 import * as path from 'path';
-import Mocha = require('mocha');
+import MochaTypes = require('mocha');
+
+// Mocha 12 is an ES module. Requiring it gives the Mocha class on Node 24 (current VS Code), but the module
+// namespace, with the class as its default export, on Node 22 (VS Code 1.101). Once the minimum VS Code is 1.124
+// (Node 24) or later, this can be a plain import
+const mochaModule = require('mocha');
+const Mocha: typeof MochaTypes = mochaModule.default ?? mochaModule;
 
 // Entry point inside the extension host. Runs the *.test.js files of the suite named in
 // BC_TEST_SUITE (a folder next to this file), e.g. "integration".
