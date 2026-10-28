@@ -140,6 +140,7 @@ The current parser carries state from one language to the next (pinned items 1, 
 | `npm run perf` | The performance benchmark: the Node and host layers for this checkout and v3.0.2, and a report pairing them up. See [performance.md](performance.md) | ~10 min |
 
 - Running from VS Code's terminal works; the runner clears `ELECTRON_RUN_AS_NODE` itself. On Linux without a display, use `xvfb-run -a npm run test:host`.
+- **CI** (`.github/workflows/ci.yml`) runs on every PR and on pushes to `master` and `feature/**`, on Linux with Node 22 (VS Code 1.101's version): lint, both builds, `npm run coverage` under `xvfb-run`, then `vsce package` as a check that the extension still packages. The coverage table goes in the run summary but never fails the build, and nothing is published or uploaded.
 - `BC_PARSER_PATH=<path to a build's parser.js> npm run test:node` runs the Node suites against another build, e.g. v3.0.2. It's how the overlapping-switch snapshot was recorded (with `BC_UPDATE_SNAPSHOTS=1`). v3.0.2 hangs on the `empty-tag-plaintext-on` cases and the `bc-object-line-comment` cases under `empty-tag` (P3), so expect the Node baseline to stall there.
 
 ## Phase 0: Test tooling only (done)
@@ -314,7 +315,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.
 - **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
 - **Coverage:** 99.9% of lines and 97.6% of branches across all suites. The only uncovered line is `extension.ts:40` (the handler for extensions being added or removed), which needs an extension installed during the run. The uncovered branches are that line and the zero-length skip in the block and JSDoc scans (`finder.ts:103` and `110`), which can't fire there: both patterns always match at least one character. The skip stays so every scan loop is safe the same way.
-- **Portability:** `.gitattributes` keeps the fixtures and snapshots byte-exact on Windows, and the test profile sets `files.eol` to `\n`. Neither has been tried on Windows yet; that comes with CI.
+- **Portability:** `.gitattributes` keeps the fixtures and snapshots byte-exact on Windows, and the test profile sets `files.eol` to `\n`. Neither has been tried on Windows yet: CI runs on Linux only.
 - **The core's boundary** (`test/unit/boundary.test.ts`): `src/core` is pure functions on plain values, with no `vscode`, no Node modules and no I/O. The rest of `src/` (the classes that own state and talk to VS Code) reaches it only through `src/core/index.ts`, its public API. The test fails on any import that breaks either rule.
 - **No test seam needed.** The shim records the real extension's calls without any change to `src/`, so `activate()` doesn't need to return a test API.
 

@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [master, 'feature/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or PR replaces a run still in progress
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Node 22 is what VS Code 1.101, the lowest supported version, runs extensions on
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      # Install scripts are only needed by vsce's optional keychain and signing support, which packaging doesn't use
+      - run: npm ci --ignore-scripts
+
+      - run: npm run lint
+      - run: npm run compile
+      - run: npm run compile-web
+
+      # Unit, Node and host tests, the host suites on VS Code 1.101.0 and stable. VS Code needs a display
+      - name: Test with coverage
+        run: xvfb-run -a npm run coverage 2>&1 | tee coverage.log
+
+      # Coverage is reported, never enforced
+      - name: Coverage summary
+        if: ${{ !cancelled() && hashFiles('coverage.log') != '' }}
+        run: |
+          {
+            echo '### Coverage'
+            echo '```'
+            awk '/^-+\|/ { table = 1 } table && /\|/' coverage.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # A check that the extension still packages, including the production web build. Nothing is uploaded
+      - run: npx vsce package --out "$RUNNER_TEMP"
