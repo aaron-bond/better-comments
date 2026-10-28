@@ -1,9 +1,22 @@
 import * as vscode from 'vscode';
 import { Configuration } from './configuration';
-import { applyLanguage, beginLanguageSwitch, findTags, initialLanguageState, LanguageState, prepareTag } from './core';
+import { applyLanguage, beginLanguageSwitch, findTags, initialLanguageState, LanguageSettings, LanguageState, prepareTag, TagSetting } from './core';
+
+// A configured tag with its decoration type, and the ranges found for it since the last ApplyDecorations
+interface DecoratedTag {
+    tag: string;
+    escapedTag: string;
+    decoration: vscode.TextEditorDecorationType;
+    ranges: vscode.DecorationOptions[];
+}
+
+// The better-comments settings, as contributed in package.json
+interface Contributions extends LanguageSettings {
+    tags: TagSetting[];
+}
 
 export class Parser {
-    private tags: CommentTag[] = [];
+    private tags: DecoratedTag[] = [];
 
     // Carried from one language to the next
     private state: LanguageState = initialLanguageState;
@@ -14,7 +27,7 @@ export class Parser {
     }
 
     // Read from the package.json
-    private contributions: Contributions = vscode.workspace.getConfiguration('better-comments') as any;
+    private contributions = vscode.workspace.getConfiguration('better-comments') as unknown as Contributions;
 
     // The configuration necessary to find supported languages on startup
     private configuration: Configuration;

@@ -4,6 +4,13 @@ import * as vscode from 'vscode';
 import { TextDecoder } from 'util';
 import { parseLanguageConfig } from './core';
 
+// The part of an extension's package.json that contributes languages
+interface LanguageContributions {
+    contributes?: {
+        languages?: Array<{ id: string; configuration?: string }>;
+    };
+}
+
 export class Configuration {
     private readonly commentConfig = new Map<string, CommentConfig | undefined>();
     private readonly languageConfigFiles = new Map<string, string>();
@@ -23,7 +30,7 @@ export class Configuration {
         this.commentConfig.clear();
 
         for (const extension of vscode.extensions.all) {
-            const packageJSON = extension.packageJSON;
+            const packageJSON = extension.packageJSON as LanguageContributions;
 
             if (packageJSON.contributes && packageJSON.contributes.languages) {
                 for (const language of packageJSON.contributes.languages) {
