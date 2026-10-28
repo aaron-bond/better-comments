@@ -22,28 +22,28 @@ export type MatchTag = Pick<PreparedTag, 'tag' | 'escapedTag'>;
  * @param tags The configured tags, in configuration order
  */
 export function findTags(text: string, state: LanguageState, tags: MatchTag[]): TagMatch[] {
-    let matches: TagMatch[] = [];
+    const matches: TagMatch[] = [];
 
     // ? a switch makes the language unsupported until it finishes, so this also keeps scans off a half-switched state
     if (!state.supportedLanguage) {
         return matches;
     }
 
-    let tagNames = tags.map(t => t.tag);
-    let escapedTags = tags.map(t => t.escapedTag);
+    const tagNames = tags.map(t => t.tag);
+    const escapedTags = tags.map(t => t.escapedTag);
 
     if (findsLineComments(state)) {
-        let expression = lineCommentExpression(state, escapedTags);
+        const expression = lineCommentExpression(state, escapedTags);
         findLineComments(text, expression, state, tagNames, matches);
     }
 
     if (findsBlockComments(state)) {
-        let blockRegEx = new RegExp(buildBlockCommentExpression(state.blockCommentStart, state.blockCommentEnd), "gm");
+        const blockRegEx = new RegExp(buildBlockCommentExpression(state.blockCommentStart, state.blockCommentEnd), "gm");
         findTaggedLines(text, blockRegEx, new RegExp(buildBlockLineExpression(escapedTags), "igm"), tagNames, matches);
     }
 
     if (findsJSDocComments(state)) {
-        let jsDocRegEx = new RegExp(jsDocCommentExpression, "gm");
+        const jsDocRegEx = new RegExp(jsDocCommentExpression, "gm");
         findTaggedLines(text, jsDocRegEx, new RegExp(buildJSDocLineExpression(escapedTags), "igm"), tagNames, matches);
     }
 
@@ -74,8 +74,8 @@ function findTagIndex(tagNames: string[], matched: string): number {
 // Single line comments, matching the expression built by lineCommentExpression
 function findLineComments(text: string, expression: string, state: LanguageState, tagNames: string[], matches: TagMatch[]): void {
     // if it's plain text, we have to do mutliline regex to catch the start of the line with ^
-    let regexFlags = (state.isPlainText) ? "igm" : "ig";
-    let regEx = new RegExp(expression, regexFlags);
+    const regexFlags = (state.isPlainText) ? "igm" : "ig";
+    const regEx = new RegExp(expression, regexFlags);
 
     let match: RegExpExecArray | null;
     while (match = regEx.exec(text)) {
@@ -87,7 +87,7 @@ function findLineComments(text: string, expression: string, state: LanguageState
         }
 
         // Find which custom delimiter was used in order to add it to the collection
-        let tagIndex = findTagIndex(tagNames, match[3]);
+        const tagIndex = findTagIndex(tagNames, match[3]);
 
         if (tagIndex >= 0) {
             matches.push({ tagIndex, start: match.index, end: match.index + match[0].length });
@@ -102,7 +102,7 @@ function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tagN
     while (match = regEx.exec(text)) {
         if (skipZeroLength(regEx, match)) continue;
 
-        let commentBlock = match[0];
+        const commentBlock = match[0];
 
         // Find the line
         let line: RegExpExecArray | null;
@@ -110,8 +110,8 @@ function findTaggedLines(text: string, regEx: RegExp, commentRegEx: RegExp, tagN
             if (skipZeroLength(commentRegEx, line)) continue;
 
             // Find which custom delimiter was used in order to add it to the collection
-            let matchString = line[3] as string;
-            let tagIndex = findTagIndex(tagNames, matchString);
+            const matchString = line[3] as string;
+            const tagIndex = findTagIndex(tagNames, matchString);
 
             if (tagIndex >= 0) {
                 matches.push({

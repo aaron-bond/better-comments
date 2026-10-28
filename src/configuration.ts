@@ -22,13 +22,13 @@ export class Configuration {
     public UpdateLanguagesDefinitions() {
         this.commentConfig.clear();
 
-        for (let extension of vscode.extensions.all) {
-            let packageJSON = extension.packageJSON;
+        for (const extension of vscode.extensions.all) {
+            const packageJSON = extension.packageJSON;
 
             if (packageJSON.contributes && packageJSON.contributes.languages) {
-                for (let language of packageJSON.contributes.languages) {
+                for (const language of packageJSON.contributes.languages) {
                     if (language.configuration) {
-                        let configPath = path.join(extension.extensionPath, language.configuration);
+                        const configPath = path.join(extension.extensionPath, language.configuration);
                         this.languageConfigFiles.set(language.id, configPath);
                     }
                 }

@@ -5,7 +5,7 @@
  * @param tag The tag as configured, e.g. "!" or "TODO"
  */
 export function escapeTag(tag: string): string {
-    let escapedSequence = tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+    const escapedSequence = tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
     return escapedSequence.replace(/\//gi, "\\/"); // ! hardcoded to escape slashes
 }
 

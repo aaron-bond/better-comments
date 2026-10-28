@@ -75,8 +75,8 @@ export function applyLanguage(
     let next = { ...state };
 
     if (config) {
-        let blockCommentStart = config.blockComment ? config.blockComment[0] : null;
-        let blockCommentEnd = config.blockComment ? config.blockComment[1] : null;
+        const blockCommentStart = config.blockComment ? config.blockComment[0] : null;
+        const blockCommentEnd = config.blockComment ? config.blockComment[1] : null;
 
         next = setCommentFormat(next, settings, config.lineComment || blockCommentStart, blockCommentStart, blockCommentEnd);
 
@@ -147,7 +147,7 @@ function setCommentFormat(
         start: string | null = null,
         end: string | null = null): LanguageState {
 
-    let next = { ...state };
+    const next = { ...state };
 
     next.delimiter = "";
     next.blockCommentStart = "";

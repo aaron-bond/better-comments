@@ -49,11 +49,11 @@ export class Parser {
      * @param activeEditor The active text editor containing the code document
      */
     public FindComments(activeEditor: vscode.TextEditor): void {
-        let text = activeEditor.document.getText();
+        const text = activeEditor.document.getText();
 
-        for (let match of findTags(text, this.state, this.tags)) {
-            let startPos = activeEditor.document.positionAt(match.start);
-            let endPos = activeEditor.document.positionAt(match.end);
+        for (const match of findTags(text, this.state, this.tags)) {
+            const startPos = activeEditor.document.positionAt(match.start);
+            const endPos = activeEditor.document.positionAt(match.end);
 
             this.tags[match.tagIndex].ranges.push({ range: new vscode.Range(startPos, endPos) });
         }
@@ -64,7 +64,7 @@ export class Parser {
      * @param activeEditor The active text editor containing the code document
      */
     public ApplyDecorations(activeEditor: vscode.TextEditor): void {
-        for (let tag of this.tags) {
+        for (const tag of this.tags) {
             activeEditor.setDecorations(tag.decoration, tag.ranges);
 
             // clear the ranges for the next pass
@@ -78,9 +78,9 @@ export class Parser {
      * Sets the highlighting tags up for use by the parser
      */
     private setTags(): void {
-        let items = this.contributions.tags;
-        for (let item of items) {
-            let prepared = prepareTag(item);
+        const items = this.contributions.tags;
+        for (const item of items) {
+            const prepared = prepareTag(item);
             this.tags.push({
                 tag: prepared.tag,
                 escapedTag: prepared.escapedTag,
