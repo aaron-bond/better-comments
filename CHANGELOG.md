@@ -1,9 +1,13 @@
 # Change Log
 
-## [Unreleased]
+## [3.1.0] (unreleased)
+### Bug Fixes
+* Fixing a hang when a tag is empty (`"tag": ""`). VS Code could stop responding when opening a plain text file with `highlightPlainText` on, or a file in a language like Makefile ([8768887](https://github.com/aaron-bond/better-comments/commit/8768887))
+
 ### House Keeping
 * Better Comments now requires VS Code 1.101 (June 2025) or later, up from 1.65. Older versions of VS Code keep the release they already have.
 * Updated json5 to 2.2.3, which fixes a security advisory (CVE-2022-46175). Better Comments only uses it to read VS Code's language configuration files.
+* Rewrote the comment matching, with a new test suite that checks it behaves exactly as 3.0.3 did, apart from the fix above
 
 ## [3.0.3] (2026-10-28)
 ### House Keeping
