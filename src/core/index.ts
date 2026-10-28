@@ -4,6 +4,7 @@
 // Anything that owns state or talks to VS Code lives in src/ as a class (Parser, Configuration) and calls in.
 // test/unit/boundary.test.ts enforces both rules.
 
+export { readLanguageContributions } from './contributions';
 export { findTags } from './finder';
 export { parseLanguageConfig } from './languageConfig';
 export { applyLanguage, beginLanguageSwitch, initialLanguageState, LanguageState } from './languageState';

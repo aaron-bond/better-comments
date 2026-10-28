@@ -2,14 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { TextDecoder } from 'util';
-import { parseLanguageConfig } from './core';
-
-// The part of an extension's package.json that contributes languages
-interface LanguageContributions {
-    contributes?: {
-        languages?: Array<{ id: string; configuration?: string }>;
-    };
-}
+import { parseLanguageConfig, readLanguageContributions } from './core';
 
 export class Configuration {
     private readonly commentConfig = new Map<string, CommentConfig | undefined>();
@@ -30,15 +23,9 @@ export class Configuration {
         this.commentConfig.clear();
 
         for (const extension of vscode.extensions.all) {
-            const packageJSON = extension.packageJSON as LanguageContributions;
-
-            if (packageJSON.contributes && packageJSON.contributes.languages) {
-                for (const language of packageJSON.contributes.languages) {
-                    if (language.configuration) {
-                        const configPath = path.join(extension.extensionPath, language.configuration);
-                        this.languageConfigFiles.set(language.id, configPath);
-                    }
-                }
+            for (const language of readLanguageContributions(extension.packageJSON)) {
+                const configPath = path.join(extension.extensionPath, language.configuration);
+                this.languageConfigFiles.set(language.id, configPath);
             }
         }
     }
@@ -56,13 +43,12 @@ export class Configuration {
         }
 
         // * if no config exists for this language, back out and leave the language unsupported
-        if (!this.languageConfigFiles.has(languageCode)) {
+        const filePath = this.languageConfigFiles.get(languageCode);
+        if (filePath === undefined) {
             return undefined;
         }
 
         try {
-            // Get the filepath from the map
-            const filePath = this.languageConfigFiles.get(languageCode) as string;
             const rawContent = await vscode.workspace.fs.readFile(vscode.Uri.file(filePath));
             const content = new TextDecoder().decode(rawContent);
 
