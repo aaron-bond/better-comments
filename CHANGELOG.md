@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.1.1] (unreleased)
+### House Keeping
+* Moved to TypeScript 6, with the extension now compiled for ES2022, which VS Code 1.101 and later fully support
+* Replaced TSLint with ESLint and typescript-eslint's type-checked rules, and tightened the code to pass them, including replacing `any` with real types. Nothing about what the extension does changes
+
 ## [3.1.0] (2026-10-28)
 ### Bug Fixes
 * Fixing a hang when a tag is empty (`"tag": ""`). VS Code could stop responding when opening a plain text file with `highlightPlainText` on, or a file in a language like Makefile ([8768887](https://github.com/aaron-bond/better-comments/commit/8768887))
