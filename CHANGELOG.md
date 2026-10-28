@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.1.0] (unreleased)
+## [3.1.0] (2026-10-28)
 ### Bug Fixes
 * Fixing a hang when a tag is empty (`"tag": ""`). VS Code could stop responding when opening a plain text file with `highlightPlainText` on, or a file in a language like Makefile ([8768887](https://github.com/aaron-bond/better-comments/commit/8768887))
 
