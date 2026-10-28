@@ -29,7 +29,7 @@ describe('parseLanguageConfig', () => {
         assert.throws(() => parseLanguageConfig('{ comments: '));
     });
 
-    it('throws for content that parses to null', () => {
-        assert.throws(() => parseLanguageConfig('null'), TypeError);
+    it('returns undefined for content that parses to null', () => {
+        assert.strictEqual(parseLanguageConfig('null'), undefined);
     });
 });

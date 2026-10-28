@@ -9,7 +9,8 @@ export interface LanguageContribution {
 /**
  * The languages an extension's package.json contributes that have a language configuration. The manifest is
  * another extension's, so it's read as unknown: entries without a string id and configuration are skipped, and
- * the shapes that reading it has always thrown for still throw, at the same entry.
+ * the shapes that reading it has always thrown for still throw, at the same entry, except a manifest that is itself
+ * null or undefined, which is skipped (VS Code always supplies one).
  * @param packageJSON An extension's packageJSON
  */
 export function* readLanguageContributions(packageJSON: unknown): Generator<LanguageContribution> {
