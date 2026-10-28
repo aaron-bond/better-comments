@@ -1,0 +1,3 @@
+{
+    // Not valid JSON5, so reading this config fails
+    "comments": {

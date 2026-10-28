@@ -1,0 +1,41 @@
+{
+    "name": "no-comment-syntax",
+    "displayName": "Better Comments test fixture: languages with unusual configs",
+    "publisher": "better-comments-tests",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.101.0"
+    },
+    "contributes": {
+        "languages": [
+            {
+                "id": "bc-no-comment-syntax",
+                "extensions": [
+                    ".bcnocomment"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "bc-broken-config",
+                "extensions": [
+                    ".bcbroken"
+                ],
+                "configuration": "./broken-language-configuration.json"
+            },
+            {
+                "id": "bc-missing-config",
+                "extensions": [
+                    ".bcmissing"
+                ],
+                "configuration": "./does-not-exist.json"
+            },
+            {
+                "id": "bc-object-line-comment",
+                "extensions": [
+                    ".bcobject"
+                ],
+                "configuration": "./object-line-comment-language-configuration.json"
+            }
+        ]
+    }
+}

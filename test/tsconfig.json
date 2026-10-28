@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"module": "commonjs",
+		"target": "es2019",
+		"lib": [
+			"es2019"
+		],
+		"types": [
+			"node",
+			"mocha"
+		],
+		"outDir": "../out/test",
+		"rootDir": ".",
+		"sourceMap": true,
+		"noUnusedLocals": true
+	},
+	"exclude": [
+		"fixtures",
+		"unit",
+		"node"
+	]
+}

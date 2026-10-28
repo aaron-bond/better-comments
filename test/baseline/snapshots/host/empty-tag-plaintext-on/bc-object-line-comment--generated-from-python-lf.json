@@ -1,0 +1,1448 @@
+{
+  "settings": "empty-tag-plaintext-on",
+  "target": "bc-object-line-comment",
+  "input": "generated-from-python-lf",
+  "languageId": "bc-object-line-comment",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "",
+      "options": {
+        "color": "#ABCDEF",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "15:0",
+              "end": "15:24",
+              "text": "! block line at column 0"
+            },
+            {
+              "start": "16:0",
+              "end": "16:25",
+              "text": "    ! indented block line"
+            },
+            {
+              "start": "17:0",
+              "end": "17:19",
+              "text": "    !: with a colon"
+            },
+            {
+              "start": "76:0",
+              "end": "76:34",
+              "text": "    ! inside an unterminated block"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "39:0",
+              "end": "39:24",
+              "text": "? block line at column 0"
+            },
+            {
+              "start": "40:0",
+              "end": "40:25",
+              "text": "    ? indented block line"
+            },
+            {
+              "start": "41:0",
+              "end": "41:19",
+              "text": "    ?: with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:26",
+              "text": "# ! first line of the file"
+            },
+            {
+              "start": "2:0",
+              "end": "2:18",
+              "text": "code(); // tag \"!\""
+            },
+            {
+              "start": "3:0",
+              "end": "3:17",
+              "text": "# ! start of line"
+            },
+            {
+              "start": "4:0",
+              "end": "4:28",
+              "text": "    # ! indented with spaces"
+            },
+            {
+              "start": "5:0",
+              "end": "5:24",
+              "text": "\t# ! indented with a tab"
+            },
+            {
+              "start": "6:0",
+              "end": "6:31",
+              "text": "#! no space after the delimiter"
+            },
+            {
+              "start": "7:0",
+              "end": "7:40",
+              "text": "#   ! several spaces after the delimiter"
+            },
+            {
+              "start": "8:0",
+              "end": "8:22",
+              "text": "code(); # ! after code"
+            },
+            {
+              "start": "9:0",
+              "end": "9:38",
+              "text": "let s = \"# ! inside a string literal\";"
+            },
+            {
+              "start": "10:0",
+              "end": "10:32",
+              "text": "# not ! tag after the first word"
+            },
+            {
+              "start": "11:0",
+              "end": "11:3",
+              "text": "# !"
+            },
+            {
+              "start": "12:0",
+              "end": "12:27",
+              "text": "\"\"\" ! single-line block \"\"\""
+            },
+            {
+              "start": "13:0",
+              "end": "13:34",
+              "text": "code(); \"\"\" ! block after code \"\"\""
+            },
+            {
+              "start": "14:0",
+              "end": "14:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "18:0",
+              "end": "18:34",
+              "text": "    not ! tag after the first word"
+            },
+            {
+              "start": "19:0",
+              "end": "19:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "20:0",
+              "end": "20:3",
+              "text": "/**"
+            },
+            {
+              "start": "21:0",
+              "end": "21:15",
+              "text": " * ! jsdoc line"
+            },
+            {
+              "start": "22:0",
+              "end": "22:31",
+              "text": " *   !: jsdoc line with a colon"
+            },
+            {
+              "start": "23:0",
+              "end": "23:33",
+              "text": " * not ! tag after the first word"
+            },
+            {
+              "start": "24:0",
+              "end": "24:3",
+              "text": " */"
+            },
+            {
+              "start": "26:0",
+              "end": "26:18",
+              "text": "code(); // tag \"?\""
+            },
+            {
+              "start": "27:0",
+              "end": "27:17",
+              "text": "# ? start of line"
+            },
+            {
+              "start": "28:0",
+              "end": "28:28",
+              "text": "    # ? indented with spaces"
+            },
+            {
+              "start": "29:0",
+              "end": "29:24",
+              "text": "\t# ? indented with a tab"
+            },
+            {
+              "start": "30:0",
+              "end": "30:31",
+              "text": "#? no space after the delimiter"
+            },
+            {
+              "start": "31:0",
+              "end": "31:40",
+              "text": "#   ? several spaces after the delimiter"
+            },
+            {
+              "start": "32:0",
+              "end": "32:22",
+              "text": "code(); # ? after code"
+            },
+            {
+              "start": "33:0",
+              "end": "33:38",
+              "text": "let s = \"# ? inside a string literal\";"
+            },
+            {
+              "start": "34:0",
+              "end": "34:32",
+              "text": "# not ? tag after the first word"
+            },
+            {
+              "start": "35:0",
+              "end": "35:3",
+              "text": "# ?"
+            },
+            {
+              "start": "36:0",
+              "end": "36:27",
+              "text": "\"\"\" ? single-line block \"\"\""
+            },
+            {
+              "start": "37:0",
+              "end": "37:34",
+              "text": "code(); \"\"\" ? block after code \"\"\""
+            },
+            {
+              "start": "38:0",
+              "end": "38:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "42:0",
+              "end": "42:34",
+              "text": "    not ? tag after the first word"
+            },
+            {
+              "start": "43:0",
+              "end": "43:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "44:0",
+              "end": "44:3",
+              "text": "/**"
+            },
+            {
+              "start": "45:0",
+              "end": "45:15",
+              "text": " * ? jsdoc line"
+            },
+            {
+              "start": "46:0",
+              "end": "46:31",
+              "text": " *   ?: jsdoc line with a colon"
+            },
+            {
+              "start": "47:0",
+              "end": "47:33",
+              "text": " * not ? tag after the first word"
+            },
+            {
+              "start": "48:0",
+              "end": "48:3",
+              "text": " */"
+            },
+            {
+              "start": "50:0",
+              "end": "50:17",
+              "text": "code(); // tag \"\""
+            },
+            {
+              "start": "51:0",
+              "end": "51:16",
+              "text": "#  start of line"
+            },
+            {
+              "start": "52:0",
+              "end": "52:27",
+              "text": "    #  indented with spaces"
+            },
+            {
+              "start": "53:0",
+              "end": "53:23",
+              "text": "\t#  indented with a tab"
+            },
+            {
+              "start": "54:0",
+              "end": "54:30",
+              "text": "# no space after the delimiter"
+            },
+            {
+              "start": "55:0",
+              "end": "55:39",
+              "text": "#    several spaces after the delimiter"
+            },
+            {
+              "start": "56:0",
+              "end": "56:21",
+              "text": "code(); #  after code"
+            },
+            {
+              "start": "57:0",
+              "end": "57:37",
+              "text": "let s = \"#  inside a string literal\";"
+            },
+            {
+              "start": "58:0",
+              "end": "58:31",
+              "text": "# not  tag after the first word"
+            },
+            {
+              "start": "59:0",
+              "end": "59:2",
+              "text": "# "
+            },
+            {
+              "start": "60:0",
+              "end": "60:26",
+              "text": "\"\"\"  single-line block \"\"\""
+            },
+            {
+              "start": "61:0",
+              "end": "61:33",
+              "text": "code(); \"\"\"  block after code \"\"\""
+            },
+            {
+              "start": "62:0",
+              "end": "62:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "63:0",
+              "end": "63:23",
+              "text": " block line at column 0"
+            },
+            {
+              "start": "64:0",
+              "end": "64:24",
+              "text": "     indented block line"
+            },
+            {
+              "start": "65:0",
+              "end": "65:18",
+              "text": "    : with a colon"
+            },
+            {
+              "start": "66:0",
+              "end": "66:33",
+              "text": "    not  tag after the first word"
+            },
+            {
+              "start": "67:0",
+              "end": "67:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "68:0",
+              "end": "68:3",
+              "text": "/**"
+            },
+            {
+              "start": "69:0",
+              "end": "69:14",
+              "text": " *  jsdoc line"
+            },
+            {
+              "start": "70:0",
+              "end": "70:30",
+              "text": " *   : jsdoc line with a colon"
+            },
+            {
+              "start": "71:0",
+              "end": "71:32",
+              "text": " * not  tag after the first word"
+            },
+            {
+              "start": "72:0",
+              "end": "72:3",
+              "text": " */"
+            },
+            {
+              "start": "74:0",
+              "end": "74:1",
+              "text": "#"
+            },
+            {
+              "start": "75:0",
+              "end": "75:3",
+              "text": "\"\"\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "javascript",
+        "csharp",
+        "python"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "15:0",
+              "end": "15:24",
+              "text": "! block line at column 0"
+            },
+            {
+              "start": "16:0",
+              "end": "16:25",
+              "text": "    ! indented block line"
+            },
+            {
+              "start": "17:0",
+              "end": "17:19",
+              "text": "    !: with a colon"
+            },
+            {
+              "start": "76:0",
+              "end": "76:34",
+              "text": "    ! inside an unterminated block"
+            },
+            {
+              "start": "21:3",
+              "end": "21:15",
+              "text": "! jsdoc line"
+            },
+            {
+              "start": "22:5",
+              "end": "22:31",
+              "text": "!: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "39:0",
+              "end": "39:24",
+              "text": "? block line at column 0"
+            },
+            {
+              "start": "40:0",
+              "end": "40:25",
+              "text": "    ? indented block line"
+            },
+            {
+              "start": "41:0",
+              "end": "41:19",
+              "text": "    ?: with a colon"
+            },
+            {
+              "start": "45:3",
+              "end": "45:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:26",
+              "text": "# ! first line of the file"
+            },
+            {
+              "start": "2:0",
+              "end": "2:18",
+              "text": "code(); // tag \"!\""
+            },
+            {
+              "start": "3:0",
+              "end": "3:17",
+              "text": "# ! start of line"
+            },
+            {
+              "start": "4:0",
+              "end": "4:28",
+              "text": "    # ! indented with spaces"
+            },
+            {
+              "start": "5:0",
+              "end": "5:24",
+              "text": "\t# ! indented with a tab"
+            },
+            {
+              "start": "6:0",
+              "end": "6:31",
+              "text": "#! no space after the delimiter"
+            },
+            {
+              "start": "7:0",
+              "end": "7:40",
+              "text": "#   ! several spaces after the delimiter"
+            },
+            {
+              "start": "8:0",
+              "end": "8:22",
+              "text": "code(); # ! after code"
+            },
+            {
+              "start": "9:0",
+              "end": "9:38",
+              "text": "let s = \"# ! inside a string literal\";"
+            },
+            {
+              "start": "10:0",
+              "end": "10:32",
+              "text": "# not ! tag after the first word"
+            },
+            {
+              "start": "11:0",
+              "end": "11:3",
+              "text": "# !"
+            },
+            {
+              "start": "12:0",
+              "end": "12:27",
+              "text": "\"\"\" ! single-line block \"\"\""
+            },
+            {
+              "start": "13:0",
+              "end": "13:34",
+              "text": "code(); \"\"\" ! block after code \"\"\""
+            },
+            {
+              "start": "14:0",
+              "end": "14:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "18:0",
+              "end": "18:34",
+              "text": "    not ! tag after the first word"
+            },
+            {
+              "start": "19:0",
+              "end": "19:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "20:0",
+              "end": "20:3",
+              "text": "/**"
+            },
+            {
+              "start": "21:0",
+              "end": "21:15",
+              "text": " * ! jsdoc line"
+            },
+            {
+              "start": "22:0",
+              "end": "22:31",
+              "text": " *   !: jsdoc line with a colon"
+            },
+            {
+              "start": "23:0",
+              "end": "23:33",
+              "text": " * not ! tag after the first word"
+            },
+            {
+              "start": "24:0",
+              "end": "24:3",
+              "text": " */"
+            },
+            {
+              "start": "26:0",
+              "end": "26:18",
+              "text": "code(); // tag \"?\""
+            },
+            {
+              "start": "27:0",
+              "end": "27:17",
+              "text": "# ? start of line"
+            },
+            {
+              "start": "28:0",
+              "end": "28:28",
+              "text": "    # ? indented with spaces"
+            },
+            {
+              "start": "29:0",
+              "end": "29:24",
+              "text": "\t# ? indented with a tab"
+            },
+            {
+              "start": "30:0",
+              "end": "30:31",
+              "text": "#? no space after the delimiter"
+            },
+            {
+              "start": "31:0",
+              "end": "31:40",
+              "text": "#   ? several spaces after the delimiter"
+            },
+            {
+              "start": "32:0",
+              "end": "32:22",
+              "text": "code(); # ? after code"
+            },
+            {
+              "start": "33:0",
+              "end": "33:38",
+              "text": "let s = \"# ? inside a string literal\";"
+            },
+            {
+              "start": "34:0",
+              "end": "34:32",
+              "text": "# not ? tag after the first word"
+            },
+            {
+              "start": "35:0",
+              "end": "35:3",
+              "text": "# ?"
+            },
+            {
+              "start": "36:0",
+              "end": "36:27",
+              "text": "\"\"\" ? single-line block \"\"\""
+            },
+            {
+              "start": "37:0",
+              "end": "37:34",
+              "text": "code(); \"\"\" ? block after code \"\"\""
+            },
+            {
+              "start": "38:0",
+              "end": "38:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "42:0",
+              "end": "42:34",
+              "text": "    not ? tag after the first word"
+            },
+            {
+              "start": "43:0",
+              "end": "43:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "44:0",
+              "end": "44:3",
+              "text": "/**"
+            },
+            {
+              "start": "45:0",
+              "end": "45:15",
+              "text": " * ? jsdoc line"
+            },
+            {
+              "start": "46:0",
+              "end": "46:31",
+              "text": " *   ?: jsdoc line with a colon"
+            },
+            {
+              "start": "47:0",
+              "end": "47:33",
+              "text": " * not ? tag after the first word"
+            },
+            {
+              "start": "48:0",
+              "end": "48:3",
+              "text": " */"
+            },
+            {
+              "start": "50:0",
+              "end": "50:17",
+              "text": "code(); // tag \"\""
+            },
+            {
+              "start": "51:0",
+              "end": "51:16",
+              "text": "#  start of line"
+            },
+            {
+              "start": "52:0",
+              "end": "52:27",
+              "text": "    #  indented with spaces"
+            },
+            {
+              "start": "53:0",
+              "end": "53:23",
+              "text": "\t#  indented with a tab"
+            },
+            {
+              "start": "54:0",
+              "end": "54:30",
+              "text": "# no space after the delimiter"
+            },
+            {
+              "start": "55:0",
+              "end": "55:39",
+              "text": "#    several spaces after the delimiter"
+            },
+            {
+              "start": "56:0",
+              "end": "56:21",
+              "text": "code(); #  after code"
+            },
+            {
+              "start": "57:0",
+              "end": "57:37",
+              "text": "let s = \"#  inside a string literal\";"
+            },
+            {
+              "start": "58:0",
+              "end": "58:31",
+              "text": "# not  tag after the first word"
+            },
+            {
+              "start": "59:0",
+              "end": "59:2",
+              "text": "# "
+            },
+            {
+              "start": "60:0",
+              "end": "60:26",
+              "text": "\"\"\"  single-line block \"\"\""
+            },
+            {
+              "start": "61:0",
+              "end": "61:33",
+              "text": "code(); \"\"\"  block after code \"\"\""
+            },
+            {
+              "start": "62:0",
+              "end": "62:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "63:0",
+              "end": "63:23",
+              "text": " block line at column 0"
+            },
+            {
+              "start": "64:0",
+              "end": "64:24",
+              "text": "     indented block line"
+            },
+            {
+              "start": "65:0",
+              "end": "65:18",
+              "text": "    : with a colon"
+            },
+            {
+              "start": "66:0",
+              "end": "66:33",
+              "text": "    not  tag after the first word"
+            },
+            {
+              "start": "67:0",
+              "end": "67:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "68:0",
+              "end": "68:3",
+              "text": "/**"
+            },
+            {
+              "start": "69:0",
+              "end": "69:14",
+              "text": " *  jsdoc line"
+            },
+            {
+              "start": "70:0",
+              "end": "70:30",
+              "text": " *   : jsdoc line with a colon"
+            },
+            {
+              "start": "71:0",
+              "end": "71:32",
+              "text": " * not  tag after the first word"
+            },
+            {
+              "start": "72:0",
+              "end": "72:3",
+              "text": " */"
+            },
+            {
+              "start": "74:0",
+              "end": "74:1",
+              "text": "#"
+            },
+            {
+              "start": "75:0",
+              "end": "75:3",
+              "text": "\"\"\""
+            },
+            {
+              "start": "1:0",
+              "end": "2:0",
+              "text": "\n"
+            },
+            {
+              "start": "4:3",
+              "end": "4:4",
+              "text": " "
+            },
+            {
+              "start": "5:0",
+              "end": "5:1",
+              "text": "\t"
+            },
+            {
+              "start": "7:3",
+              "end": "7:4",
+              "text": " "
+            },
+            {
+              "start": "16:3",
+              "end": "16:4",
+              "text": " "
+            },
+            {
+              "start": "17:3",
+              "end": "17:4",
+              "text": " "
+            },
+            {
+              "start": "18:3",
+              "end": "18:4",
+              "text": " "
+            },
+            {
+              "start": "21:0",
+              "end": "21:1",
+              "text": " "
+            },
+            {
+              "start": "22:0",
+              "end": "22:1",
+              "text": " "
+            },
+            {
+              "start": "22:4",
+              "end": "22:5",
+              "text": " "
+            },
+            {
+              "start": "23:0",
+              "end": "23:1",
+              "text": " "
+            },
+            {
+              "start": "24:0",
+              "end": "24:1",
+              "text": " "
+            },
+            {
+              "start": "25:0",
+              "end": "26:0",
+              "text": "\n"
+            },
+            {
+              "start": "28:3",
+              "end": "28:4",
+              "text": " "
+            },
+            {
+              "start": "29:0",
+              "end": "29:1",
+              "text": "\t"
+            },
+            {
+              "start": "31:3",
+              "end": "31:4",
+              "text": " "
+            },
+            {
+              "start": "40:3",
+              "end": "40:4",
+              "text": " "
+            },
+            {
+              "start": "41:3",
+              "end": "41:4",
+              "text": " "
+            },
+            {
+              "start": "42:3",
+              "end": "42:4",
+              "text": " "
+            },
+            {
+              "start": "45:0",
+              "end": "45:1",
+              "text": " "
+            },
+            {
+              "start": "46:0",
+              "end": "46:1",
+              "text": " "
+            },
+            {
+              "start": "46:4",
+              "end": "46:5",
+              "text": " "
+            },
+            {
+              "start": "47:0",
+              "end": "47:1",
+              "text": " "
+            },
+            {
+              "start": "48:0",
+              "end": "48:1",
+              "text": " "
+            },
+            {
+              "start": "49:0",
+              "end": "50:0",
+              "text": "\n"
+            },
+            {
+              "start": "51:2",
+              "end": "51:3",
+              "text": " "
+            },
+            {
+              "start": "52:3",
+              "end": "52:4",
+              "text": " "
+            },
+            {
+              "start": "52:6",
+              "end": "52:7",
+              "text": " "
+            },
+            {
+              "start": "53:0",
+              "end": "53:1",
+              "text": "\t"
+            },
+            {
+              "start": "53:3",
+              "end": "53:4",
+              "text": " "
+            },
+            {
+              "start": "55:4",
+              "end": "55:5",
+              "text": " "
+            },
+            {
+              "start": "56:10",
+              "end": "56:11",
+              "text": " "
+            },
+            {
+              "start": "57:11",
+              "end": "57:12",
+              "text": " "
+            },
+            {
+              "start": "58:6",
+              "end": "58:7",
+              "text": " "
+            },
+            {
+              "start": "59:2",
+              "end": "60:0",
+              "text": "\n"
+            },
+            {
+              "start": "60:4",
+              "end": "60:5",
+              "text": " "
+            },
+            {
+              "start": "61:12",
+              "end": "61:13",
+              "text": " "
+            },
+            {
+              "start": "63:0",
+              "end": "63:1",
+              "text": " "
+            },
+            {
+              "start": "64:4",
+              "end": "64:5",
+              "text": " "
+            },
+            {
+              "start": "65:3",
+              "end": "65:4",
+              "text": " "
+            },
+            {
+              "start": "66:3",
+              "end": "66:4",
+              "text": " "
+            },
+            {
+              "start": "66:8",
+              "end": "66:9",
+              "text": " "
+            },
+            {
+              "start": "69:0",
+              "end": "69:1",
+              "text": " "
+            },
+            {
+              "start": "69:3",
+              "end": "69:4",
+              "text": " "
+            },
+            {
+              "start": "70:0",
+              "end": "70:1",
+              "text": " "
+            },
+            {
+              "start": "70:4",
+              "end": "70:5",
+              "text": " "
+            },
+            {
+              "start": "71:0",
+              "end": "71:1",
+              "text": " "
+            },
+            {
+              "start": "71:7",
+              "end": "71:8",
+              "text": " "
+            },
+            {
+              "start": "72:0",
+              "end": "72:1",
+              "text": " "
+            },
+            {
+              "start": "73:0",
+              "end": "74:0",
+              "text": "\n"
+            },
+            {
+              "start": "76:3",
+              "end": "76:4",
+              "text": " "
+            },
+            {
+              "start": "23:3",
+              "end": "23:33",
+              "text": "not ! tag after the first word"
+            },
+            {
+              "start": "47:3",
+              "end": "47:33",
+              "text": "not ? tag after the first word"
+            },
+            {
+              "start": "69:4",
+              "end": "69:14",
+              "text": "jsdoc line"
+            },
+            {
+              "start": "70:5",
+              "end": "70:30",
+              "text": ": jsdoc line with a colon"
+            },
+            {
+              "start": "71:3",
+              "end": "71:32",
+              "text": "not  tag after the first word"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": []
+    },
+    {
+      "histories": [
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "21:3",
+              "end": "21:15",
+              "text": "! jsdoc line"
+            },
+            {
+              "start": "22:5",
+              "end": "22:31",
+              "text": "!: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "45:3",
+              "end": "45:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "1:0",
+              "end": "2:0",
+              "text": "\n"
+            },
+            {
+              "start": "4:3",
+              "end": "4:4",
+              "text": " "
+            },
+            {
+              "start": "5:0",
+              "end": "5:1",
+              "text": "\t"
+            },
+            {
+              "start": "7:3",
+              "end": "7:4",
+              "text": " "
+            },
+            {
+              "start": "16:3",
+              "end": "16:4",
+              "text": " "
+            },
+            {
+              "start": "17:3",
+              "end": "17:4",
+              "text": " "
+            },
+            {
+              "start": "18:3",
+              "end": "18:4",
+              "text": " "
+            },
+            {
+              "start": "21:0",
+              "end": "21:1",
+              "text": " "
+            },
+            {
+              "start": "22:0",
+              "end": "22:1",
+              "text": " "
+            },
+            {
+              "start": "22:4",
+              "end": "22:5",
+              "text": " "
+            },
+            {
+              "start": "23:0",
+              "end": "23:1",
+              "text": " "
+            },
+            {
+              "start": "24:0",
+              "end": "24:1",
+              "text": " "
+            },
+            {
+              "start": "25:0",
+              "end": "26:0",
+              "text": "\n"
+            },
+            {
+              "start": "28:3",
+              "end": "28:4",
+              "text": " "
+            },
+            {
+              "start": "29:0",
+              "end": "29:1",
+              "text": "\t"
+            },
+            {
+              "start": "31:3",
+              "end": "31:4",
+              "text": " "
+            },
+            {
+              "start": "40:3",
+              "end": "40:4",
+              "text": " "
+            },
+            {
+              "start": "41:3",
+              "end": "41:4",
+              "text": " "
+            },
+            {
+              "start": "42:3",
+              "end": "42:4",
+              "text": " "
+            },
+            {
+              "start": "45:0",
+              "end": "45:1",
+              "text": " "
+            },
+            {
+              "start": "46:0",
+              "end": "46:1",
+              "text": " "
+            },
+            {
+              "start": "46:4",
+              "end": "46:5",
+              "text": " "
+            },
+            {
+              "start": "47:0",
+              "end": "47:1",
+              "text": " "
+            },
+            {
+              "start": "48:0",
+              "end": "48:1",
+              "text": " "
+            },
+            {
+              "start": "49:0",
+              "end": "50:0",
+              "text": "\n"
+            },
+            {
+              "start": "51:2",
+              "end": "51:3",
+              "text": " "
+            },
+            {
+              "start": "52:3",
+              "end": "52:4",
+              "text": " "
+            },
+            {
+              "start": "52:6",
+              "end": "52:7",
+              "text": " "
+            },
+            {
+              "start": "53:0",
+              "end": "53:1",
+              "text": "\t"
+            },
+            {
+              "start": "53:3",
+              "end": "53:4",
+              "text": " "
+            },
+            {
+              "start": "55:4",
+              "end": "55:5",
+              "text": " "
+            },
+            {
+              "start": "56:10",
+              "end": "56:11",
+              "text": " "
+            },
+            {
+              "start": "57:11",
+              "end": "57:12",
+              "text": " "
+            },
+            {
+              "start": "58:6",
+              "end": "58:7",
+              "text": " "
+            },
+            {
+              "start": "59:2",
+              "end": "60:0",
+              "text": "\n"
+            },
+            {
+              "start": "60:4",
+              "end": "60:5",
+              "text": " "
+            },
+            {
+              "start": "61:12",
+              "end": "61:13",
+              "text": " "
+            },
+            {
+              "start": "63:0",
+              "end": "63:1",
+              "text": " "
+            },
+            {
+              "start": "64:4",
+              "end": "64:5",
+              "text": " "
+            },
+            {
+              "start": "65:3",
+              "end": "65:4",
+              "text": " "
+            },
+            {
+              "start": "66:3",
+              "end": "66:4",
+              "text": " "
+            },
+            {
+              "start": "66:8",
+              "end": "66:9",
+              "text": " "
+            },
+            {
+              "start": "69:0",
+              "end": "69:1",
+              "text": " "
+            },
+            {
+              "start": "69:3",
+              "end": "69:4",
+              "text": " "
+            },
+            {
+              "start": "70:0",
+              "end": "70:1",
+              "text": " "
+            },
+            {
+              "start": "70:4",
+              "end": "70:5",
+              "text": " "
+            },
+            {
+              "start": "71:0",
+              "end": "71:1",
+              "text": " "
+            },
+            {
+              "start": "71:7",
+              "end": "71:8",
+              "text": " "
+            },
+            {
+              "start": "72:0",
+              "end": "72:1",
+              "text": " "
+            },
+            {
+              "start": "73:0",
+              "end": "74:0",
+              "text": "\n"
+            },
+            {
+              "start": "76:3",
+              "end": "76:4",
+              "text": " "
+            },
+            {
+              "start": "23:3",
+              "end": "23:33",
+              "text": "not ! tag after the first word"
+            },
+            {
+              "start": "47:3",
+              "end": "47:33",
+              "text": "not ? tag after the first word"
+            },
+            {
+              "start": "69:4",
+              "end": "69:14",
+              "text": "jsdoc line"
+            },
+            {
+              "start": "70:5",
+              "end": "70:30",
+              "text": ": jsdoc line with a colon"
+            },
+            {
+              "start": "71:3",
+              "end": "71:32",
+              "text": "not  tag after the first word"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "settings": "multiline-off",
+  "target": "csharp",
+  "input": "sample-nested.cs",
+  "languageId": "csharp",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "//",
+      "options": {
+        "color": "#474747",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "todo",
+      "options": {
+        "color": "#FF8C00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#98C379",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "9:4",
+              "end": "9:47",
+              "text": "// ! backing member for the public property"
+            },
+            {
+              "start": "48:4",
+              "end": "48:47",
+              "text": "// ! backing member for the public property"
+            },
+            {
+              "start": "87:4",
+              "end": "87:47",
+              "text": "// ! backing member for the public property"
+            },
+            {
+              "start": "126:4",
+              "end": "126:47",
+              "text": "// ! backing member for the public property"
+            },
+            {
+              "start": "165:4",
+              "end": "165:47",
+              "text": "// ! backing member for the public property"
+            },
+            {
+              "start": "204:4",
+              "end": "204:47",
+              "text": "// ! backing member for the public property"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "18:8",
+              "end": "18:52",
+              "text": "// ? should this value be transformed first?"
+            },
+            {
+              "start": "57:8",
+              "end": "57:52",
+              "text": "// ? should this value be transformed first?"
+            },
+            {
+              "start": "96:8",
+              "end": "96:52",
+              "text": "// ? should this value be transformed first?"
+            },
+            {
+              "start": "135:8",
+              "end": "135:52",
+              "text": "// ? should this value be transformed first?"
+            },
+            {
+              "start": "174:8",
+              "end": "174:52",
+              "text": "// ? should this value be transformed first?"
+            },
+            {
+              "start": "213:8",
+              "end": "213:52",
+              "text": "// ? should this value be transformed first?"
+            }
+          ]
+        },
+        {
+          "tag": "todo",
+          "ranges": [
+            {
+              "start": "15:8",
+              "end": "15:40",
+              "text": "// TODO add some better comments"
+            },
+            {
+              "start": "54:8",
+              "end": "54:40",
+              "text": "// TODO add some better comments"
+            },
+            {
+              "start": "93:8",
+              "end": "93:40",
+              "text": "// TODO add some better comments"
+            },
+            {
+              "start": "132:8",
+              "end": "132:40",
+              "text": "// TODO add some better comments"
+            },
+            {
+              "start": "171:8",
+              "end": "171:40",
+              "text": "// TODO add some better comments"
+            },
+            {
+              "start": "210:8",
+              "end": "210:40",
+              "text": "// TODO add some better comments"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "12:4",
+              "end": "12:33",
+              "text": "// * Available for public use"
+            },
+            {
+              "start": "51:4",
+              "end": "51:33",
+              "text": "// * Available for public use"
+            },
+            {
+              "start": "90:4",
+              "end": "90:33",
+              "text": "// * Available for public use"
+            },
+            {
+              "start": "129:4",
+              "end": "129:33",
+              "text": "// * Available for public use"
+            },
+            {
+              "start": "168:4",
+              "end": "168:33",
+              "text": "// * Available for public use"
+            },
+            {
+              "start": "207:4",
+              "end": "207:33",
+              "text": "// * Available for public use"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": []
+    }
+  ]
+}

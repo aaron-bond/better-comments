@@ -1,0 +1,32 @@
+{
+  "bc-no-comment-syntax": {},
+  "bc-object-line-comment": {
+    "lineComment": {
+      "comment": "#",
+      "noIndent": true
+    }
+  },
+  "csharp": {
+    "lineComment": "//",
+    "blockComment": [
+      "/*",
+      "*/"
+    ]
+  },
+  "javascript": {
+    "lineComment": "//",
+    "blockComment": [
+      "/*",
+      "*/"
+    ]
+  },
+  "log": null,
+  "plaintext": null,
+  "python": {
+    "lineComment": "#",
+    "blockComment": [
+      "\"\"\"",
+      "\"\"\""
+    ]
+  }
+}

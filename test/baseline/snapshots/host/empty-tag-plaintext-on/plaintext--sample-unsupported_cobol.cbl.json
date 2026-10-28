@@ -1,0 +1,565 @@
+{
+  "settings": "empty-tag-plaintext-on",
+  "target": "plaintext",
+  "input": "sample-unsupported_cobol.cbl",
+  "languageId": "plaintext",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "",
+      "options": {
+        "color": "#ABCDEF",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:30",
+              "text": "      $ SET SOURCEFORMAT\"FREE\""
+            },
+            {
+              "start": "1:0",
+              "end": "1:24",
+              "text": "IDENTIFICATION DIVISION."
+            },
+            {
+              "start": "2:0",
+              "end": "2:28",
+              "text": "PROGRAM-ID.  PerformFormat3."
+            },
+            {
+              "start": "3:0",
+              "end": "3:26",
+              "text": "AUTHOR.  Michael Coughlan."
+            },
+            {
+              "start": "4:0",
+              "end": "4:45",
+              "text": "* Demonstrates the use of the PERFORM..UNTIL."
+            },
+            {
+              "start": "5:0",
+              "end": "5:53",
+              "text": "* The PERFORM..UNTIL is most often used to process a "
+            },
+            {
+              "start": "6:0",
+              "end": "6:56",
+              "text": "* stream of data where the length of the stream can not "
+            },
+            {
+              "start": "7:0",
+              "end": "7:27",
+              "text": "* be determined in advance."
+            },
+            {
+              "start": "8:0",
+              "end": "8:59",
+              "text": "* Pay particular attention to the way the number stream is "
+            },
+            {
+              "start": "9:0",
+              "end": "9:28",
+              "text": "* processed in this program."
+            },
+            {
+              "start": "10:0",
+              "end": "10:59",
+              "text": "* Note how the ON SIZE ERROR can be used to detect when the"
+            },
+            {
+              "start": "11:0",
+              "end": "11:63",
+              "text": "* result of a computation is tot big for the data-item intended"
+            },
+            {
+              "start": "12:0",
+              "end": "12:13",
+              "text": "* to hold it."
+            },
+            {
+              "start": "13:0",
+              "end": "13:57",
+              "text": "* The INITIALIZE verb sets a data-item to its initial or "
+            },
+            {
+              "start": "14:0",
+              "end": "14:17",
+              "text": "* starting value."
+            },
+            {
+              "start": "15:0",
+              "end": "15:40",
+              "text": "*> TODO: Check if this format is correct"
+            },
+            {
+              "start": "16:0",
+              "end": "16:14",
+              "text": "DATA DIVISION."
+            },
+            {
+              "start": "17:0",
+              "end": "17:24",
+              "text": "WORKING-STORAGE SECTION."
+            },
+            {
+              "start": "18:0",
+              "end": "18:43",
+              "text": "01 IterCount           PIC 99  VALUE ZEROS."
+            },
+            {
+              "start": "19:0",
+              "end": "19:32",
+              "text": "   88 MaxCountReached  VALUE 99."
+            },
+            {
+              "start": "20:0",
+              "end": "20:43",
+              "text": "01 UserInput           PIC 99  VALUE ZEROS."
+            },
+            {
+              "start": "21:0",
+              "end": "21:35",
+              "text": "   88 EndOfUserInput   VALUE ZEROS."
+            },
+            {
+              "start": "22:0",
+              "end": "22:43",
+              "text": "01 RunningTotal        PIC 999 VALUE ZEROS."
+            },
+            {
+              "start": "23:0",
+              "end": "23:44",
+              "text": "01 AverageValue        PIC 99  VALUES ZEROS."
+            },
+            {
+              "start": "25:0",
+              "end": "25:19",
+              "text": "PROCEDURE DIVISION."
+            },
+            {
+              "start": "26:0",
+              "end": "26:6",
+              "text": "Begin."
+            },
+            {
+              "start": "27:0",
+              "end": "27:31",
+              "text": "    PERFORM UNTIL IterCount = 5"
+            },
+            {
+              "start": "28:0",
+              "end": "28:39",
+              "text": "       DISPLAY \"IterCount = \" IterCount"
+            },
+            {
+              "start": "29:0",
+              "end": "29:25",
+              "text": "       ADD 1 TO IterCount"
+            },
+            {
+              "start": "30:0",
+              "end": "30:15",
+              "text": "    END-PERFORM"
+            },
+            {
+              "start": "31:0",
+              "end": "31:57",
+              "text": "    DISPLAY \"Finished in line Perform.\" *> ! comment here"
+            },
+            {
+              "start": "33:0",
+              "end": "33:24",
+              "text": "    INITIALIZE Itercount"
+            },
+            {
+              "start": "35:0",
+              "end": "35:49",
+              "text": "    DISPLAY \"Enter a stream of up to 99 numbers.\""
+            },
+            {
+              "start": "36:0",
+              "end": "36:70",
+              "text": "    DISPLAY \"Each number must be in the range 1-99.  Enter 0 to stop.\""
+            },
+            {
+              "start": "37:0",
+              "end": "37:48",
+              "text": "    DISPLAY \"Enter number :- \" WITH NO ADVANCING"
+            },
+            {
+              "start": "38:0",
+              "end": "38:20",
+              "text": "    ACCEPT UserInput"
+            },
+            {
+              "start": "39:0",
+              "end": "39:64",
+              "text": "    PERFORM GetUserInput UNTIL EndOfUserInput OR MaxCountReached"
+            },
+            {
+              "start": "41:0",
+              "end": "41:48",
+              "text": "    DISPLAY \"The final total is - \" RunningTotal"
+            },
+            {
+              "start": "42:0",
+              "end": "42:45",
+              "text": "    DISPLAY \"The final count is - \" IterCount"
+            },
+            {
+              "start": "43:0",
+              "end": "43:51",
+              "text": "    COMPUTE AverageValue = RunningTotal / IterCount"
+            },
+            {
+              "start": "44:0",
+              "end": "44:58",
+              "text": "    DISPLAY \"The average value entered is - \" AverageValue"
+            },
+            {
+              "start": "45:0",
+              "end": "45:13",
+              "text": "    STOP RUN."
+            },
+            {
+              "start": "48:0",
+              "end": "48:13",
+              "text": "GetUserInput."
+            },
+            {
+              "start": "49:0",
+              "end": "49:33",
+              "text": "    ADD UserInput TO RunningTotal"
+            },
+            {
+              "start": "50:0",
+              "end": "50:74",
+              "text": "        ON SIZE ERROR DISPLAY \"Error - new total too large for data-item.\""
+            },
+            {
+              "start": "51:0",
+              "end": "51:52",
+              "text": "        NOT ON SIZE ERROR ADD 1 TO IterCount END-ADD"
+            },
+            {
+              "start": "52:0",
+              "end": "52:11",
+              "text": "    END-ADD"
+            },
+            {
+              "start": "53:0",
+              "end": "53:45",
+              "text": "    DISPLAY \"Total so far is - \" RunningTotal"
+            },
+            {
+              "start": "54:0",
+              "end": "54:42",
+              "text": "    DISPLAY \"Count so far is - \" IterCount"
+            },
+            {
+              "start": "55:0",
+              "end": "55:48",
+              "text": "    DISPLAY \"Enter number :- \" WITH NO ADVANCING"
+            },
+            {
+              "start": "56:0",
+              "end": "56:21",
+              "text": "    ACCEPT UserInput."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": []
+    },
+    {
+      "histories": [
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "0:5",
+              "end": "0:6",
+              "text": " "
+            },
+            {
+              "start": "2:12",
+              "end": "2:13",
+              "text": " "
+            },
+            {
+              "start": "3:8",
+              "end": "3:9",
+              "text": " "
+            },
+            {
+              "start": "5:53",
+              "end": "6:0",
+              "text": "\n"
+            },
+            {
+              "start": "6:56",
+              "end": "7:0",
+              "text": "\n"
+            },
+            {
+              "start": "8:59",
+              "end": "9:0",
+              "text": "\n"
+            },
+            {
+              "start": "13:57",
+              "end": "14:0",
+              "text": "\n"
+            },
+            {
+              "start": "18:22",
+              "end": "18:23",
+              "text": " "
+            },
+            {
+              "start": "18:30",
+              "end": "18:31",
+              "text": " "
+            },
+            {
+              "start": "19:2",
+              "end": "19:3",
+              "text": " "
+            },
+            {
+              "start": "19:22",
+              "end": "19:23",
+              "text": " "
+            },
+            {
+              "start": "20:22",
+              "end": "20:23",
+              "text": " "
+            },
+            {
+              "start": "20:30",
+              "end": "20:31",
+              "text": " "
+            },
+            {
+              "start": "21:2",
+              "end": "21:3",
+              "text": " "
+            },
+            {
+              "start": "21:22",
+              "end": "21:23",
+              "text": " "
+            },
+            {
+              "start": "22:22",
+              "end": "22:23",
+              "text": " "
+            },
+            {
+              "start": "23:22",
+              "end": "23:23",
+              "text": " "
+            },
+            {
+              "start": "23:30",
+              "end": "23:31",
+              "text": " "
+            },
+            {
+              "start": "24:0",
+              "end": "25:0",
+              "text": "\n"
+            },
+            {
+              "start": "27:3",
+              "end": "27:4",
+              "text": " "
+            },
+            {
+              "start": "28:6",
+              "end": "28:7",
+              "text": " "
+            },
+            {
+              "start": "29:6",
+              "end": "29:7",
+              "text": " "
+            },
+            {
+              "start": "30:3",
+              "end": "30:4",
+              "text": " "
+            },
+            {
+              "start": "31:3",
+              "end": "31:4",
+              "text": " "
+            },
+            {
+              "start": "32:0",
+              "end": "33:4",
+              "text": "\n    "
+            },
+            {
+              "start": "34:0",
+              "end": "35:4",
+              "text": "\n    "
+            },
+            {
+              "start": "36:3",
+              "end": "36:4",
+              "text": " "
+            },
+            {
+              "start": "36:52",
+              "end": "36:53",
+              "text": " "
+            },
+            {
+              "start": "37:3",
+              "end": "37:4",
+              "text": " "
+            },
+            {
+              "start": "38:3",
+              "end": "38:4",
+              "text": " "
+            },
+            {
+              "start": "39:3",
+              "end": "39:4",
+              "text": " "
+            },
+            {
+              "start": "40:0",
+              "end": "41:4",
+              "text": "\n    "
+            },
+            {
+              "start": "42:3",
+              "end": "42:4",
+              "text": " "
+            },
+            {
+              "start": "43:3",
+              "end": "43:4",
+              "text": " "
+            },
+            {
+              "start": "44:3",
+              "end": "44:4",
+              "text": " "
+            },
+            {
+              "start": "45:3",
+              "end": "45:4",
+              "text": " "
+            },
+            {
+              "start": "46:0",
+              "end": "47:0",
+              "text": "\n"
+            },
+            {
+              "start": "47:0",
+              "end": "48:0",
+              "text": "\n"
+            },
+            {
+              "start": "49:3",
+              "end": "49:4",
+              "text": " "
+            },
+            {
+              "start": "50:7",
+              "end": "50:8",
+              "text": " "
+            },
+            {
+              "start": "51:7",
+              "end": "51:8",
+              "text": " "
+            },
+            {
+              "start": "52:3",
+              "end": "52:4",
+              "text": " "
+            },
+            {
+              "start": "53:3",
+              "end": "53:4",
+              "text": " "
+            },
+            {
+              "start": "54:3",
+              "end": "54:4",
+              "text": " "
+            },
+            {
+              "start": "55:3",
+              "end": "55:4",
+              "text": " "
+            },
+            {
+              "start": "56:3",
+              "end": "56:4",
+              "text": " "
+            },
+            {
+              "start": "57:0",
+              "end": "58:0",
+              "text": "\n"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

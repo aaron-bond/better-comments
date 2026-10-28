@@ -1,0 +1,3 @@
+# Test fixtures and snapshots must keep their exact bytes on every OS: the baselines compare offsets and line endings
+test/fixtures/** -text
+test/baseline/snapshots/** -text
