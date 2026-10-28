@@ -76,7 +76,9 @@ const shimWindow = Object.create(vscode.window, {
     },
 });
 
-const shimApi = Object.create(vscode, { window: { value: shimWindow } });
+// Own properties, not inherited ones: the compiled `import * as vscode` (esModuleInterop, always on from
+// TypeScript 6) copies only the module's own properties
+const shimApi = { ...vscode, window: shimWindow };
 
 export function installShim(): void {
     if (extensionActiveAtInstall !== undefined) return;

@@ -184,7 +184,7 @@ The fake editor gives `getText`, `positionAt` (from real line offsets, CRLF-awar
 
 **Real host.** Tests run in the extension host and load the unmodified `out/parser.js` and `out/configuration.js`, so `Configuration` reads the real built-in language configs. Each case opens a real `TextDocument` and passes the parser a plain object, `{ document, setDecorations: spy }`. The parser only ever uses `document.getText`, `document.positionAt` and `setDecorations`. The same suite also writes the language-config dump the Node run uses.
 
-Output is captured through a **`require('vscode')` shim** (see "Spike results"). The test entry file replaces `Module._load` before anything from `out/` is loaded. Modules under `out/` then get an object that inherits from the real API, with a `window` that:
+Output is captured through a **`require('vscode')` shim** (see "Spike results"). The test entry file replaces `Module._load` before anything from `out/` is loaded. Modules under `out/` then get a copy of the real API, with its own properties (a compiled `import * as vscode` copies only those), and a `window` that:
 - records every `createTextEditorDecorationType` call and its options
 - returns wrapped editors from `activeTextEditor` and `onDidChangeActiveTextEditor`, whose `setDecorations` records the call and then forwards it to the real editor
 

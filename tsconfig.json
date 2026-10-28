@@ -1,25 +1,22 @@
 {
 	"compilerOptions": {
-        "strict": true,   /* enable all strict type-checking options */
-		"alwaysStrict": true,
+		"strict": true,
 		"module": "commonjs",
-		"target": "es6",
-		"outDir": "out",
-		"noImplicitAny": true,
-		"noImplicitReturns": true,
+		// VS Code 1.101, the oldest supported version, runs extensions on Node 22
+		"target": "es2022",
 		"lib": [
-			"es6"
+			"es2022"
 		],
-		"sourceMap": true,
-		"strictNullChecks": true,
+		"types": [
+			"node"
+		],
+		"outDir": "out",
 		"rootDir": "src",
-        "noUnusedLocals": true /* Report errors on unused locals. */
+		"sourceMap": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true
 	},
 	"include": [
 		"src"
-	],
-	"exclude": [
-		"node_modules",
-		".vscode-test"
 	]
 }
