@@ -4,6 +4,7 @@
 ### House Keeping
 * Moved to TypeScript 6, with the extension now compiled for ES2022, which VS Code 1.101 and later fully support
 * Replaced TSLint with ESLint and typescript-eslint's type-checked rules, and tightened the code to pass them, including replacing `any` with real types. Nothing about what the extension does changes
+* Settings, and the languages other extensions contribute, are now checked as they're read rather than assumed to have the right shape. Invalid values behave as before, except that a tag colour that isn't a string is now ignored rather than passed to VS Code, which couldn't use it either
 
 ## [3.1.0] (2026-10-28)
 ### Bug Fixes
