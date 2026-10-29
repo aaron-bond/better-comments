@@ -35,7 +35,7 @@ These came from reading the code and probing the compiled `Parser` with a stubbe
 4. **`highlightMultilineComments` is never reset.** It is set from the setting whenever a language has block comments, and is still `true` after switching to a language without them (TS → YAML). The block regex then runs with empty delimiters. It finds nothing, but it shouldn't run at all. *To fix (Phase 5).*
 5. **`textDecoration` is built by joining strings.** Most tags get `""` (an empty string, not undefined), strikethrough gives `"line-through"`, and underline-only gives `" underline"` with a leading space.
 6. **Tag escaping is done twice, in two different ways.** `setTags` uses its own character class plus hardcoded `/` escaping, and `escapeRegExp` is used for delimiters. Without the `u` flag, `]`, `}` and `-` are literal outside a class, so they're probably fine. An **empty tag** gives an empty alternative, which may match every comment. All of these need pinning.
-7. **Settings changes need a restart**, because tags are read once at construction.
+7. **Settings changes need a restart**, because tags are read once at construction. *Fixed: settings are read again when they change, and invalid new settings leave the current ones in use.*
 8. **`ignoreFirstLine`** applies to Python, Elixir and Tcl, and only skips a match that starts at line 0, character 0.
 9. **Overlapping language switches race.** `SetRegex` (now `SetLanguage`) is async and changes parser state shared by every editor. Two quick editor switches can overlap, leaving one language's regex applied to the other editor. *To fix, incrementally (Phase 5).*
 10. **Only the active editor is decorated.** Other visible editors in a split view are not decorated.
@@ -261,7 +261,7 @@ Priming histories may use a language outside the three only to reach a state, no
 1. Opening a file decorates it.
 2. An edit (`WorkspaceEdit` inserting `// todo new`) updates the decorations, with no stale ranges.
 3. Switching TS → Python → TS gives the same results as the matrix's priming histories.
-4. Changing `better-comments.tags` through `getConfiguration().update(...)` has no effect until a restart (current behaviour).
+4. Changing `better-comments.tags` through `getConfiguration().update(...)` takes effect straight away: an added tag is decorated, a removed one isn't, and invalid tags leave the current ones in use. (Until pinned 7 was fixed, it had no effect until a restart.)
 5. *Later, once more languages are in scope:* a fixture extension contributes a made-up language with `;;` comments, and that language gets highlighted (covers `vscode.extensions.all` discovery).
 6. Fast editor switching (pinned item 9): record the outcome. It's timing-dependent, so assert only the stable parts and run it many times to measure how often it happens.
 
@@ -313,7 +313,7 @@ Each step is small enough to review in one sitting and can be released on its ow
 - **Unit tests** (`test/unit/`, 107 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 126 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
-- **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
+- **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, settings changes (pinned 7, now fixed) and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.
 - **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
 - **Coverage:** 99.9% of lines and 98.1% of branches across all suites. The only uncovered line is `extension.ts:43` (the handler for extensions being added or removed), which needs an extension installed during the run. The uncovered branches are that line and the zero-length skip in the block and JSDoc scans (`finder.ts:103` and `110`), which can't fire there: both patterns always match at least one character. The skip stays so every scan loop is safe the same way.
@@ -356,7 +356,7 @@ Each is its own PR and release, with the snapshot diff reviewed and described in
 - Pinned 9: make language switches race-free (incrementally, e.g. ignore results from a superseded switch)
 - Pinned 1 and 2: decide what the intended behaviour is, then stop the flags carrying over
 - Pinned 5: clean `textDecoration`
-- Pinned 7: read settings live
+- Pinned 7: read settings live (done)
 - P1 and P2, if verified
 
 ## Order of work and size

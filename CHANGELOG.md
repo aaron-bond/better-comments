@@ -1,5 +1,9 @@
 # Change Log
 
+## [Unreleased]
+### Bug Fixes
+* Changes to Better Comments' settings now take effect straight away, without restarting VS Code. If the new settings can't be read, the previous ones stay in use. Closes [#326](https://github.com/aaron-bond/better-comments/issues/326), [#371](https://github.com/aaron-bond/better-comments/issues/371), [#416](https://github.com/aaron-bond/better-comments/issues/416), [#421](https://github.com/aaron-bond/better-comments/issues/421) and [#479](https://github.com/aaron-bond/better-comments/issues/479)
+
 ## [3.1.1] (2026-10-29)
 ### House Keeping
 * Moved to TypeScript 6, with the extension now compiled for ES2022, which VS Code 1.101 and later fully support

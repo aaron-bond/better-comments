@@ -43,6 +43,19 @@ export async function activate(context: vscode.ExtensionContext) {
         configuration.UpdateLanguagesDefinitions();
     }, null, context.subscriptions);
 
+    // * Handle the better-comments settings changing
+    vscode.workspace.onDidChangeConfiguration(async event => {
+        if (!event.affectsConfiguration('better-comments')) return;
+
+        parser.UpdateSettings();
+
+        // The new settings can change how the current language is matched, as well as the tags
+        if (activeEditor) {
+            await parser.SetLanguage(activeEditor.document.languageId);
+            triggerUpdateDecorations();
+        }
+    }, null, context.subscriptions);
+
     // * Handle active file changed
     vscode.window.onDidChangeActiveTextEditor(async editor => {
         if (editor) {

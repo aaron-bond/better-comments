@@ -26,7 +26,7 @@ code --user-data-dir $B/data --extensions-dir $B/ext --install-extension ../bett
 code --user-data-dir $B/data --extensions-dir $B/ext ~/git/better-comments/test/fixtures/samples
 ```
 
-Each check says which settings it needs. Put them in that profile's settings (`Ctrl+,`, then the `{}` icon) and **restart VS Code afterwards**, because the extension only reads settings at startup (pinned 7).
+Each check says which settings it needs. Put them in that profile's settings (`Ctrl+,`, then the `{}` icon) and **restart VS Code afterwards**. Builds before the pinned 7 fix only read settings at startup.
 
 ## Checks
 
@@ -40,7 +40,7 @@ Mark each column ✅ (as expected), ❌ (wrong) or ⚠️ (differs from the othe
 | 4 | **Switching on first open.** Restart VS Code. Open `test.py`, then within a second open `javascript.js` from the explorer. Go back to `test.py`. | Both files are highlighted correctly. | | | Repeat a few times; it's timing-dependent (pinned 9). |
 | 5 | **Split view.** Open `javascript.js` and `test.py` side by side. Click between them. | Currently only the active editor gets updated decorations (pinned 10). Note what the inactive one shows. | | | |
 | 6 | **Changing language mode.** Open `plaintext.txt`. Use "Change Language Mode" to switch to JavaScript, then back to Plain Text. | Record what happens. The extension doesn't listen for language changes directly, so it may not update until you switch tabs. | | | |
-| 7 | **Settings need a restart.** Add a tag `{ "tag": "@note", "color": "#00FF00" }` and type `// @note hi` *without* restarting. Then restart. | Not coloured before the restart; coloured after it. | | | |
+| 7 | **Settings changes** (pinned 7). Add a tag `{ "tag": "@note", "color": "#00FF00" }` and type `// @note hi` *without* restarting. Then restart. | **Before the fix:** not coloured until the restart. **After:** coloured as soon as the setting is saved. | | | |
 | 8 | **Plain text keeps the last language's delimiters** (pinned 11). Settings: `"better-comments.highlightPlainText": true`. Open `javascript.js`, then a new untitled file. Type `/* ! in a block */` and `! bare` into it. | Record what's coloured. Then repeat with `test.py` as the previous file, and compare. | | | |
 | 9 | **Makefile** (P1). Create a file called `Makefile` containing `if (a != b) { x = a ? 1 : 2; } # ! real`. | Record whether `!=` or `?` outside the comment get coloured. | | | VS Code 1.143 uses the object-form `lineComment` here. |
 | 10 | **Large file.** Make a copy of `nested.cs` with its contents pasted 100 times (about 23,000 lines). Scroll and type near the bottom. | No noticeable lag compared with a small file. | | | Rough feel only; `npm run perf` measures this (see [performance.md](performance.md)). |

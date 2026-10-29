@@ -94,20 +94,52 @@ describe('extension wiring', () => {
         assert.ok(passes >= 1 && passes < edits, `expected fewer than ${edits} passes, got ${passes}`);
     });
 
-    it('pinned 7: ignores a tag added to the settings until VS Code restarts', async () => {
-        const config = vscode.workspace.getConfiguration('better-comments');
-        const original = config.inspect('tags')!.globalValue;
-        await config.update('tags', [...config.get<object[]>('tags')!, { tag: '@note', color: '#00FF00' }], vscode.ConfigurationTarget.Global);
-        try {
-            const doc = await vscode.workspace.openTextDocument({ language: 'javascript', content: '// @note added at runtime\n// ! alert\n' });
+    describe('settings changes, without a restart', () => {
+        const config = () => vscode.workspace.getConfiguration('better-comments');
+        let original: unknown;
+
+        before(() => { original = config().inspect('tags')!.globalValue; });
+        afterEach(async () => { await config().update('tags', original, vscode.ConfigurationTarget.Global); });
+
+        // Opens a JavaScript document and waits for its first pass to decorate the alert
+        async function showDecorated(content: string): Promise<vscode.TextDocument> {
+            const doc = await vscode.workspace.openTextDocument({ language: 'javascript', content });
             const since = recorder.editorCalls.length;
             await vscode.window.showTextDocument(doc);
-            const pass = await waitFor('a pass that decorates the alert', () =>
-                callsFor(doc, since).some(c => c.ranges.some(r => doc.getText(r) === '// ! alert')) ? callsFor(doc, since) : undefined);
-            assert.ok(!pass.some(c => c.ranges.some(r => doc.getText(r).includes('@note'))), '@note was decorated without a restart');
-        } finally {
-            await config.update('tags', original, vscode.ConfigurationTarget.Global);
+            await waitFor('the alert to be decorated', () => callsFor(doc, since).some(c => c.ranges.some(r => doc.getText(r) === '// ! alert')));
+            await sleep(300);
+            return doc;
         }
+
+        const decorates = (doc: vscode.TextDocument, since: number, text: string) =>
+            callsFor(doc, since).some(c => c.ranges.some(r => doc.getText(r) === text));
+
+        it('decorates a tag added to the settings', async () => {
+            const doc = await showDecorated('// @note added at runtime\n// ! alert\n');
+            const since = recorder.editorCalls.length;
+            await config().update('tags', [...config().get<object[]>('tags')!, { tag: '@note', color: '#00FF00' }], vscode.ConfigurationTarget.Global);
+            await waitFor('@note to be decorated', () => decorates(doc, since, '// @note added at runtime'));
+        });
+
+        it('stops decorating a tag removed from the settings', async () => {
+            const doc = await showDecorated('// ! alert\n// ? query\n');
+            const since = recorder.editorCalls.length;
+            await config().update('tags', config().get<Array<{ tag: string }>>('tags')!.filter(t => t.tag !== '!'), vscode.ConfigurationTarget.Global);
+            const pass = await onePass(doc, since);
+            assert.ok(decoratedText(doc, pass).some(t => t.endsWith(': // ? query')), 'the query is still decorated');
+            assert.ok(!decorates(doc, since, '// ! alert'), 'the removed alert tag was still decorated');
+        });
+
+        it('keeps the current tags when the new settings are invalid', async () => {
+            const doc = await showDecorated('// ! alert\n');
+            await config().update('tags', [{ color: '#00FF00' }], vscode.ConfigurationTarget.Global);
+            await sleep(300);
+
+            // An edit still decorates with the tags from before
+            const since = recorder.editorCalls.length;
+            await vscode.window.activeTextEditor!.edit(b => b.insert(new vscode.Position(1, 0), '// ! second alert\n'));
+            await waitFor('the second alert to be decorated', () => decorates(doc, since, '// ! second alert'));
+        });
     });
 
     it('pinned 10: does not redecorate an editor that is visible but not active', async () => {

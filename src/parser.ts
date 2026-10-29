@@ -21,7 +21,7 @@ export class Parser {
         return this.state.supportedLanguage;
     }
 
-    // The better-comments settings, read and checked once, so changes need a restart (pinned 7)
+    // The better-comments settings, read and checked at startup and again by UpdateSettings
     private contributions = readSettings(vscode.workspace.getConfiguration('better-comments'));
 
     // The configuration necessary to find supported languages on startup
@@ -50,6 +50,23 @@ export class Parser {
         const config = await this.configuration.GetCommentConfiguration(languageCode);
 
         this.state = applyLanguage(this.state, languageCode, config, this.contributions);
+    }
+
+    /**
+     * Reads the better-comments settings again and replaces the decoration types, which removes the old ones from
+     * every editor. Call SetLanguage afterwards, because the language state depends on the settings.
+     * Throws if the new settings can't be read, and keeps the current ones.
+     */
+    public UpdateSettings(): void {
+        const contributions = readSettings(vscode.workspace.getConfiguration('better-comments'));
+
+        for (const tag of this.tags) {
+            tag.decoration.dispose();
+        }
+        this.tags = [];
+
+        this.contributions = contributions;
+        this.setTags();
     }
 
     /**
