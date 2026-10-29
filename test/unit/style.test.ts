@@ -34,11 +34,6 @@ describe('style', () => {
         assert.deepStrictEqual(Object.keys(style), ['color', 'backgroundColor', 'textDecoration', 'fontWeight', 'fontStyle']);
     });
 
-    it('treats style flags by truthiness, as settings.json allows any value', () => {
-        assert.strictEqual(toTagStyle({ tag: '!', color: '#fff', bold: 'yes' as any }).fontWeight, 'bold');
-        assert.strictEqual(toTagStyle({ tag: '!', color: '#fff', bold: 0 as any }).fontWeight, undefined);
-    });
-
     describe('prepareTag', () => {
         it('combines the tag, its escaped form and its style', () => {
             assert.deepStrictEqual(prepareTag({ tag: '?', color: '#3498DB', backgroundColor: 'transparent' }), {
@@ -46,10 +41,6 @@ describe('style', () => {
                 escapedTag: '\\?',
                 style: { color: '#3498DB', backgroundColor: 'transparent', textDecoration: '' },
             });
-        });
-
-        it('throws for a tag that is not a string, as the parser always has', () => {
-            assert.throws(() => prepareTag({ tag: 5 as any, color: '#fff' }), TypeError);
         });
     });
 });

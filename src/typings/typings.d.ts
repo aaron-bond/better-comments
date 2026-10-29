@@ -1,26 +1,11 @@
-interface CommentTag {
-    tag: string;
-    escapedTag: string;
-    decoration: any;
-    ranges: Array<any>;
-}
-
-interface Contributions {
-    multilineComments: boolean;
-    useJSDocStyle: boolean;
-    highlightPlainText: boolean;
-    tags: [{
-        tag: string;
-        color: string;
-        strikethrough: boolean;
-        underline: boolean;
-        bold: boolean;
-        italic: boolean;
-        backgroundColor: string;
-    }];
-}
-
+// A language's comment syntax, from its language-configuration.json
 interface CommentConfig {
-    lineComment?: string;
+    // VS Code's built-in configs use the object form only after 1.101.0 (P1: it isn't read yet)
+    lineComment?: string | string[] | LineCommentObject;
     blockComment?: [string, string];
+}
+
+interface LineCommentObject {
+    comment: string;
+    noIndent?: boolean;
 }

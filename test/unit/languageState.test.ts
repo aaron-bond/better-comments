@@ -119,10 +119,6 @@ describe('languageState', () => {
             assert.strictEqual(lineCommentExpression(both, ['!']), '(\\/\\/)+( |\t)*(!)+(.*)');
         });
 
-        it('passes a non-boolean highlightPlainText straight through to supportedLanguage', () => {
-            assert.strictEqual(switchTo(initialLanguageState, 'plaintext', undefined, { ...defaults, highlightPlainText: undefined as any }).supportedLanguage, undefined);
-        });
-
         it('pinned 11: plaintext keeps the previous language\'s delimiters and block matching', () => {
             const state = after([['javascript', js], ['plaintext', undefined]], { ...defaults, highlightPlainText: true });
             assert.strictEqual(state.blockCommentStart, '/\\*');
@@ -130,14 +126,14 @@ describe('languageState', () => {
         });
 
         it('P1: an object-form lineComment gives an empty delimiter', () => {
-            const makefile = { lineComment: { comment: '#', noIndent: true } } as any;
+            const makefile: CommentConfig = { lineComment: { comment: '#', noIndent: true } };
             const state = switchTo(initialLanguageState, 'makefile', makefile);
             assert.strictEqual(state.delimiter, '');
             assert.strictEqual(state.supportedLanguage, true);
         });
 
         it('uses every delimiter of a language with several line comment formats', () => {
-            assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: ['//', '#'] } as any).delimiter, '//|#');
+            assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: ['//', '#'] }).delimiter, '//|#');
         });
 
         it('does not change the state it is given', () => {

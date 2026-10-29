@@ -2,13 +2,38 @@
 // SetLanguage is now, and FindSingleLineComments, FindBlockComments and FindJSDocComments where FindComments
 // is, and the overlap test and the benchmark still run against it.
 
-export function setLanguage(parser: any, languageId: string): Promise<void> {
-    return typeof parser.SetLanguage === 'function' ? parser.SetLanguage(languageId) : parser.SetRegex(languageId);
+import { CommentSyntax } from './baseline/generate';
+
+export interface ConfigurationLike {
+    GetCommentConfiguration(languageId: string): Promise<CommentSyntax | undefined>;
+}
+
+interface CurrentParser {
+    readonly supportedLanguage: boolean;
+    SetLanguage(languageId: string): Promise<void>;
+    FindComments(editor: unknown): void;
+    ApplyDecorations(editor: unknown): void;
+}
+
+interface V302Parser {
+    readonly supportedLanguage: boolean;
+    SetRegex(languageId: string): Promise<void>;
+    FindSingleLineComments(editor: unknown): void;
+    FindBlockComments(editor: unknown): void;
+    FindJSDocComments(editor: unknown): void;
+    ApplyDecorations(editor: unknown): void;
+}
+
+export type ParserLike = CurrentParser | V302Parser;
+export type ParserConstructor = new (configuration: ConfigurationLike) => ParserLike;
+
+export function setLanguage(parser: ParserLike, languageId: string): Promise<void> {
+    return 'SetLanguage' in parser ? parser.SetLanguage(languageId) : parser.SetRegex(languageId);
 }
 
 // One decoration update
-export function runUpdate(parser: any, editor: unknown): void {
-    if (typeof parser.FindComments === 'function') {
+export function runUpdate(parser: ParserLike, editor: unknown): void {
+    if ('FindComments' in parser) {
         parser.FindComments(editor);
     } else {
         parser.FindSingleLineComments(editor);

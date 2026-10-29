@@ -8,7 +8,7 @@ import {
 } from '../../baseline/matrix';
 import { CaseResult, groupByResult, matchHostSnapshot, RecordedRange, Snapshot } from '../../baseline/snapshot';
 import { loadOut, recorder, samplesDir, toRanges } from '../shim';
-import { runUpdate, setLanguage } from '../../parserUpdate';
+import { ConfigurationLike, ParserConstructor, runUpdate, setLanguage } from '../../parserUpdate';
 
 // Records what the unmodified parser does for every case in the matrix, in a real VS Code.
 // Each case does exactly what updateDecorations in extension.ts does, on a fresh Parser.
@@ -16,8 +16,8 @@ import { runUpdate, setLanguage } from '../../parserUpdate';
 const label = process.env.BC_VSCODE_LABEL;
 if (!label) throw new Error('BC_VSCODE_LABEL is not set');
 
-const { Configuration } = loadOut('configuration');
-const { Parser } = loadOut('parser');
+const { Configuration } = loadOut<{ Configuration: new () => ConfigurationLike }>('configuration');
+const { Parser } = loadOut<{ Parser: ParserConstructor }>('parser');
 
 async function applySettings(variant: SettingsVariant): Promise<void> {
     const config = vscode.workspace.getConfiguration('better-comments');

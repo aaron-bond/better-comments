@@ -5,7 +5,7 @@
  * @param tag The tag as configured, e.g. "!" or "TODO"
  */
 export function escapeTag(tag: string): string {
-    let escapedSequence = tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+    const escapedSequence = tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
     return escapedSequence.replace(/\//gi, "\\/"); // ! hardcoded to escape slashes
 }
 
@@ -20,21 +20,22 @@ export function escapeRegExp(input: string): string {
 
 /**
  * Escapes the single line comment delimiter(s) of a language
- * @param singleLine One delimiter, or several if the language has more than one single line comment format
+ * @param singleLine One delimiter, several if the language has more than one single line comment format, or the
+ * object form
  */
-export function escapeLineDelimiter(singleLine: string | string[]): string {
+export function escapeLineDelimiter(singleLine: string | string[] | LineCommentObject): string {
     if (typeof singleLine === 'string') {
         return escapeRegExp(singleLine).replace(/\//ig, "\\/");
     }
 
     // * if multiple delimiters are passed, the language has more than one single line comment format
-    // ? this is also what an object-form lineComment ({ comment, noIndent }) falls through to: no length, so ""
-    if (singleLine.length > 0) {
+    if (Array.isArray(singleLine)) {
         return singleLine
             .map(s => escapeRegExp(s))
             .join("|");
     }
 
+    // ! P1: the object form ({ comment, noIndent }) isn't read, so its delimiter is empty
     return "";
 }
 

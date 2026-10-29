@@ -2,7 +2,6 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as path from 'path';
 import { performance } from 'perf_hooks';
-import * as util from 'util';
 import * as vscode from 'vscode';
 import { HostResult } from '../../perf/results';
 import { caseKey, defaultSizes, documentText, editLine, lineCount, perfLanguages, stats } from '../../perf/workloads';
@@ -33,8 +32,9 @@ interface UpdateRun { uri?: string; scheduledAt: number; start: number; end: num
 const runs: UpdateRun[] = [];
 const realSetTimeout = global.setTimeout;
 
-function timedSetTimeout(this: unknown, handler: unknown, delay?: number, ...args: unknown[]) {
-    if (typeof handler === 'function' && handler.name === 'updateDecorations') {
+// Object.assign copies setTimeout's own properties, so util.promisify(setTimeout) still works while this is installed
+const timedSetTimeout = Object.assign(function (handler: (...args: unknown[]) => unknown, delay?: number, ...args: unknown[]) {
+    if (handler.name === 'updateDecorations') {
         const scheduledAt = performance.now();
         return realSetTimeout(function (this: unknown, ...callArgs: unknown[]) {
             const uri = vscode.window.activeTextEditor?.document.uri.toString();
@@ -46,9 +46,8 @@ function timedSetTimeout(this: unknown, handler: unknown, delay?: number, ...arg
             }
         }, delay, ...args);
     }
-    return (realSetTimeout as any).apply(this, arguments);
-}
-(timedSetTimeout as any)[util.promisify.custom] = (realSetTimeout as any)[util.promisify.custom];
+    return realSetTimeout(handler, delay, ...args);
+}, realSetTimeout);
 
 const sleep = (ms: number) => new Promise(resolve => realSetTimeout(resolve, ms));
 
@@ -94,7 +93,7 @@ describe(`performance: ${build}, ${tagSet} tags`, function () {
     let plainText: vscode.TextDocument;
 
     before(async () => {
-        (global as any).setTimeout = timedSetTimeout;
+        global.setTimeout = timedSetTimeout;
 
         const extension = vscode.extensions.getExtension(extensionId)!;
         assert.strictEqual(path.resolve(extension.extensionPath), path.resolve(env('BC_EXTENSION_ROOT')), 'the build under test is loaded');
@@ -104,7 +103,7 @@ describe(`performance: ${build}, ${tagSet} tags`, function () {
     });
 
     after(() => {
-        (global as any).setTimeout = realSetTimeout;
+        global.setTimeout = realSetTimeout;
         fs.writeFileSync(out, JSON.stringify(results, null, 2));
     });
 

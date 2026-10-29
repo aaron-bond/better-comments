@@ -3,9 +3,9 @@
 	"compilerOptions": {
 		"strict": true,
 		"module": "commonjs",
-		"target": "es2019",
+		"target": "es2022",
 		"lib": [
-			"es2019"
+			"es2022"
 		],
 		"types": [
 			"node",
@@ -19,6 +19,8 @@
 		"baseline",
 		"repo.ts",
 		"parserUpdate.ts",
+		"requireHook.ts",
+		"nodeInternals.d.ts",
 		"../src/typings"
 	]
 }

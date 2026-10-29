@@ -7,7 +7,7 @@ import * as json5 from 'json5';
  */
 export function parseLanguageConfig(content: string): CommentConfig | undefined {
     // use json5, because the config can contains comments
-    const config = json5.parse(content);
+    const config = json5.parse<{ comments?: CommentConfig } | null>(content);
 
-    return config.comments;
+    return config?.comments;
 }

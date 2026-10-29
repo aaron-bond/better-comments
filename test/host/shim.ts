@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
-import Module = require('module');
 import { repoRoot } from '../repo';
+import { wrapLoad } from '../requireHook';
 
 // Each extension gets its own copy of the vscode API, so wrapping the test's copy doesn't
 // reach the extension, and TextEditor objects are frozen, so they can't be spied on either.
@@ -44,7 +44,7 @@ function wrapEditor(real: vscode.TextEditor | undefined): vscode.TextEditor | un
             setDecorations: {
                 value(type: vscode.TextEditorDecorationType, ranges: vscode.Range[] | vscode.DecorationOptions[]) {
                     recorder.editorCalls.push({ uri: real.document.uri.toString(), key: type.key, ranges: toRanges(ranges) });
-                    return real.setDecorations(type, ranges as vscode.Range[]);
+                    return real.setDecorations(type, ranges);
                 },
             },
         }) as vscode.TextEditor;
@@ -70,29 +70,31 @@ const shimWindow = Object.create(vscode.window, {
         get() { return wrapEditor(vscode.window.activeTextEditor); },
     },
     onDidChangeActiveTextEditor: {
-        value(listener: (e: vscode.TextEditor | undefined) => any, thisArg?: any, disposables?: vscode.Disposable[]) {
+        value(listener: (e: vscode.TextEditor | undefined) => unknown, thisArg?: unknown, disposables?: vscode.Disposable[]) {
             return vscode.window.onDidChangeActiveTextEditor(e => listener.call(thisArg, wrapEditor(e)), undefined, disposables);
         },
     },
-});
+}) as typeof vscode.window;
 
-const shimApi = Object.create(vscode, { window: { value: shimWindow } });
+// Own properties, not inherited ones: the compiled `import * as vscode` (esModuleInterop, always on from
+// TypeScript 6) copies only the module's own properties
+const shimApi = { ...vscode, window: shimWindow };
 
 export function installShim(): void {
     if (extensionActiveAtInstall !== undefined) return;
     extensionActiveAtInstall = !!vscode.extensions.getExtension(extensionId)?.isActive;
 
-    const loader = Module as any;
-    const originalLoad = loader._load;
-    loader._load = function (request: string, parent: NodeModule | undefined) {
+    wrapLoad(original => function (request, parent, ...rest) {
         if (request === 'vscode' && parent?.filename?.startsWith(outDir + path.sep)) {
             return shimApi;
         }
-        return originalLoad.apply(this, arguments);
-    };
+        return original.call(this, request, parent, ...rest);
+    });
 }
 
 // Loads one of the extension's unmodified compiled modules, e.g. loadOut('parser')
-export function loadOut(name: string): any {
-    return require(path.join(outDir, name));
+export function loadOut<T>(name: string): T {
+    // The compiled module, which only exists at run time
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require(path.join(outDir, name)) as T;
 }

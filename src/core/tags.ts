@@ -13,7 +13,7 @@ export interface PreparedTag {
  * @param item The tag as configured in better-comments.tags
  */
 export function prepareTag(item: TagSetting): PreparedTag {
-    let style = toTagStyle(item);
+    const style = toTagStyle(item);
 
     return {
         tag: item.tag,

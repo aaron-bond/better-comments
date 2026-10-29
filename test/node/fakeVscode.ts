@@ -1,4 +1,5 @@
-import Module = require('module');
+import { ParserConstructor } from '../parserUpdate';
+import { wrapLoad } from '../requireHook';
 
 // A minimal stand-in for the vscode API: just what Parser uses. Importing this module installs it,
 // so it must be imported before anything that requires vscode.
@@ -44,12 +45,10 @@ const fakeApi = {
     },
 };
 
-const loader = Module as any;
-const originalLoad = loader._load;
-loader._load = function (request: string) {
+wrapLoad(original => function (request, ...rest) {
     if (request === 'vscode') return fakeApi;
-    return originalLoad.apply(this, arguments);
-};
+    return original.call(this, request, ...rest);
+});
 
 /** A TextDocument with VS Code's line handling: \r\n, \r and \n all end a line */
 export class FakeDocument {
@@ -95,6 +94,8 @@ export class FakeDocument {
 }
 
 /** Loads the Parser to test: the TypeScript source, or another build named in BC_PARSER_PATH */
-export function loadParser(): any {
-    return require(process.env.BC_PARSER_PATH || '../../src/parser').Parser;
+export function loadParser(): ParserConstructor {
+    // Which build is only known at run time
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return (require(process.env.BC_PARSER_PATH || '../../src/parser') as { Parser: ParserConstructor }).Parser;
 }

@@ -1,13 +1,17 @@
 import * as assert from 'assert';
 import * as path from 'path';
 import * as vscode from 'vscode';
-import { extensionActiveAtInstall, extensionId, loadOut, recorder, repoRoot, samplesDir, SetDecorationsCall } from '../shim';
+import { ConfigurationLike, ParserConstructor } from '../../parserUpdate';
+import { packageJson } from '../../repo';
+import { extensionActiveAtInstall, extensionId, loadOut, recorder, samplesDir, SetDecorationsCall } from '../shim';
 
 // Checks that the harness itself can see what the unmodified extension does.
 // If these fail, every other host test is suspect.
 
-const defaultTags: Array<{ tag: string; color: string }> =
-    require(path.join(repoRoot, 'package.json')).contributes.configuration.properties['better-comments.tags'].default;
+const defaultTags = packageJson.contributes.configuration.properties['better-comments.tags'].default as Array<{ tag: string; color: string }>;
+
+const loadConfiguration = () => loadOut<{ Configuration: new () => ConfigurationLike }>('configuration').Configuration;
+const loadParser = () => loadOut<{ Parser: ParserConstructor }>('parser').Parser;
 
 async function waitFor<T>(what: string, check: () => T | undefined, timeoutMs = 5000): Promise<T> {
     const deadline = Date.now() + timeoutMs;
@@ -28,8 +32,8 @@ describe('test harness', () => {
     });
 
     it('records the decoration types the unmodified parser creates', () => {
-        const { Configuration } = loadOut('configuration');
-        const { Parser } = loadOut('parser');
+        const Configuration = loadConfiguration();
+        const Parser = loadParser();
 
         // The constructor is synchronous, so nothing else can create types in between
         const before = recorder.createdTypes.length;
@@ -39,8 +43,27 @@ describe('test harness', () => {
         assert.deepStrictEqual(created.map(c => c.options.color), defaultTags.map(t => t.color));
     });
 
+    it('passes theme colours from the settings through to the decoration types', async () => {
+        const config = vscode.workspace.getConfiguration('better-comments');
+        const themeColour = { tag: '!', color: { id: 'editorError.foreground' }, backgroundColor: { id: 'editor.background' } };
+        await config.update('tags', [themeColour], vscode.ConfigurationTarget.Global);
+        try {
+            const Configuration = loadConfiguration();
+            const Parser = loadParser();
+
+            const before = recorder.createdTypes.length;
+            new Parser(new Configuration());
+            const created = recorder.createdTypes.slice(before);
+
+            assert.deepStrictEqual(created.map(c => [c.options.color, c.options.backgroundColor]),
+                [[{ id: 'editorError.foreground' }, { id: 'editor.background' }]]);
+        } finally {
+            await config.update('tags', undefined, vscode.ConfigurationTarget.Global);
+        }
+    });
+
     it('reads the real built-in language configs', async () => {
-        const { Configuration } = loadOut('configuration');
+        const Configuration = loadConfiguration();
         const config = new Configuration();
 
         const lineComments: Record<string, unknown> = {};
@@ -51,7 +74,7 @@ describe('test harness', () => {
     });
 
     it('treats a language whose config is unreadable or missing as having none', async () => {
-        const { Configuration } = loadOut('configuration');
+        const Configuration = loadConfiguration();
         const config = new Configuration();
 
         assert.strictEqual(await config.GetCommentConfiguration('bc-broken-config'), undefined);

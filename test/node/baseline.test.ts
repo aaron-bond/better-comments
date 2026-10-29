@@ -40,7 +40,7 @@ const position = (p: { line: number; character: number }) => `${p.line}:${p.char
 
 async function runCase(doc: FakeDocument, history: string[], configs: Record<string, CommentSyntax | null>, tags: string[]) {
     // Each GetCommentConfiguration call resolves asynchronously, as the real one does
-    const configuration = { GetCommentConfiguration: async (languageId: string) => configs[languageId] ?? undefined };
+    const configuration = { GetCommentConfiguration: (languageId: string) => Promise.resolve(configs[languageId] ?? undefined) };
 
     const before = createdTypes.length;
     const parser = new Parser(configuration);
@@ -89,7 +89,7 @@ describe('Node baseline', () => {
                 });
                 return;
             }
-            const configs: Record<string, CommentSyntax | null> = JSON.parse(fs.readFileSync(configsFile, 'utf8'));
+            const configs = JSON.parse(fs.readFileSync(configsFile, 'utf8')) as Record<string, CommentSyntax | null>;
 
             for (const variant of settingsVariants) {
                 describe(`settings: ${variant.name}`, () => {

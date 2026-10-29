@@ -5,7 +5,7 @@ import { TagSetting, TagStyle } from './types';
  * @param item The tag as configured in better-comments.tags
  */
 export function toTagStyle(item: TagSetting): TagStyle {
-    let options: TagStyle = { color: item.color, backgroundColor: item.backgroundColor };
+    const options: TagStyle = { color: item.color, backgroundColor: item.backgroundColor };
 
     // ? the textDecoration is initialised to empty so we can concat a preceeding space on it
     options.textDecoration = "";

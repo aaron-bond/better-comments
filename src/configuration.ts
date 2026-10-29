@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { TextDecoder } from 'util';
-import { parseLanguageConfig } from './core';
+import { parseLanguageConfig, readLanguageContributions } from './core';
 
 export class Configuration {
     private readonly commentConfig = new Map<string, CommentConfig | undefined>();
@@ -22,16 +22,10 @@ export class Configuration {
     public UpdateLanguagesDefinitions() {
         this.commentConfig.clear();
 
-        for (let extension of vscode.extensions.all) {
-            let packageJSON = extension.packageJSON;
-
-            if (packageJSON.contributes && packageJSON.contributes.languages) {
-                for (let language of packageJSON.contributes.languages) {
-                    if (language.configuration) {
-                        let configPath = path.join(extension.extensionPath, language.configuration);
-                        this.languageConfigFiles.set(language.id, configPath);
-                    }
-                }
+        for (const extension of vscode.extensions.all) {
+            for (const language of readLanguageContributions(extension.packageJSON)) {
+                const configPath = path.join(extension.extensionPath, language.configuration);
+                this.languageConfigFiles.set(language.id, configPath);
             }
         }
     }
@@ -49,13 +43,12 @@ export class Configuration {
         }
 
         // * if no config exists for this language, back out and leave the language unsupported
-        if (!this.languageConfigFiles.has(languageCode)) {
+        const filePath = this.languageConfigFiles.get(languageCode);
+        if (filePath === undefined) {
             return undefined;
         }
 
         try {
-            // Get the filepath from the map
-            const filePath = this.languageConfigFiles.get(languageCode) as string;
             const rawContent = await vscode.workspace.fs.readFile(vscode.Uri.file(filePath));
             const content = new TextDecoder().decode(rawContent);
 
@@ -64,7 +57,7 @@ export class Configuration {
             this.commentConfig.set(languageCode, comments);
 
             return comments;
-        } catch (error) {
+        } catch {
             this.commentConfig.set(languageCode, undefined);
             return undefined;
         }

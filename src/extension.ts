@@ -6,11 +6,14 @@ import { Parser } from './parser';
 export async function activate(context: vscode.ExtensionContext) {
     let activeEditor: vscode.TextEditor;
 
-    let configuration: Configuration = new Configuration();
-    let parser: Parser = new Parser(configuration);
+    const configuration: Configuration = new Configuration();
+    const parser: Parser = new Parser(configuration);
+
+    // The pending update, if any. Declared before the first triggerUpdateDecorations() call below
+    let timeout: NodeJS.Timeout | undefined;
 
     // Called to handle events below
-    let updateDecorations = function () {
+    const updateDecorations = function () {
         // if no active window is open, return
         if (!activeEditor) return;
 
@@ -65,7 +68,6 @@ export async function activate(context: vscode.ExtensionContext) {
     // * IMPORTANT:
     // * To avoid calling update too often,
     // * set a timer for 100ms to wait before updating decorations
-    var timeout: NodeJS.Timeout;
     function triggerUpdateDecorations() {
         if (timeout) {
             clearTimeout(timeout);

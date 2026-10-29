@@ -184,7 +184,7 @@ The fake editor gives `getText`, `positionAt` (from real line offsets, CRLF-awar
 
 **Real host.** Tests run in the extension host and load the unmodified `out/parser.js` and `out/configuration.js`, so `Configuration` reads the real built-in language configs. Each case opens a real `TextDocument` and passes the parser a plain object, `{ document, setDecorations: spy }`. The parser only ever uses `document.getText`, `document.positionAt` and `setDecorations`. The same suite also writes the language-config dump the Node run uses.
 
-Output is captured through a **`require('vscode')` shim** (see "Spike results"). The test entry file replaces `Module._load` before anything from `out/` is loaded. Modules under `out/` then get an object that inherits from the real API, with a `window` that:
+Output is captured through a **`require('vscode')` shim** (see "Spike results"). The test entry file replaces `Module._load` before anything from `out/` is loaded. Modules under `out/` then get a copy of the real API, with its own properties (a compiled `import * as vscode` copies only those), and a `window` that:
 - records every `createTextEditorDecorationType` call and its options
 - returns wrapped editors from `activeTextEditor` and `onDidChangeActiveTextEditor`, whose `setDecorations` records the call and then forwards it to the real editor
 
@@ -273,6 +273,8 @@ Priming histories may use a language outside the three only to reach a state, no
 
 ## Phase 1.5: Dependency refresh, guarded by the baseline
 
+**Status (2026-10-28): done.** Items 1, 2 and 4 shipped in 3.1.0, along with removing `.travis.yml`. Item 3 and the rest of item 5 are in 3.1.1, which goes further than item 3 planned: TypeScript 6, and typescript-eslint's `recommendedTypeChecked` rules as errors across `src/` and `test/`, with the code fixed to pass them.
+
 Only once the baseline is green, and one change per PR, with the baseline unchanged after each:
 
 1. Bump json5 to `^2.2.3`. This changes the config parser, so check that the language-config dump is identical.
@@ -308,13 +310,13 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 99 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Unit tests** (`test/unit/`, 107 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 126 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.
 - **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
-- **Coverage:** 99.9% of lines and 97.6% of branches across all suites. The only uncovered line is `extension.ts:40` (the handler for extensions being added or removed), which needs an extension installed during the run. The uncovered branches are that line and the zero-length skip in the block and JSDoc scans (`finder.ts:103` and `110`), which can't fire there: both patterns always match at least one character. The skip stays so every scan loop is safe the same way.
+- **Coverage:** 99.9% of lines and 98.1% of branches across all suites. The only uncovered line is `extension.ts:43` (the handler for extensions being added or removed), which needs an extension installed during the run. The uncovered branches are that line and the zero-length skip in the block and JSDoc scans (`finder.ts:103` and `110`), which can't fire there: both patterns always match at least one character. The skip stays so every scan loop is safe the same way.
 - **Portability:** `.gitattributes` keeps the fixtures and snapshots byte-exact on Windows, and the test profile sets `files.eol` to `\n`. Neither has been tried on Windows yet: CI runs on Linux only.
 - **The core's boundary** (`test/unit/boundary.test.ts`): `src/core` is pure functions on plain values, with no `vscode`, no Node modules and no I/O. The rest of `src/` (the classes that own state and talk to VS Code) reaches it only through `src/core/index.ts`, its public API. The test fails on any import that breaks either rule.
 - **No test seam needed.** The shim records the real extension's calls without any change to `src/`, so `activate()` doesn't need to return a test API.
