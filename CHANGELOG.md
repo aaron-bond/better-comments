@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.1.1] (unreleased)
+## [3.1.1] (2026-10-29)
 ### House Keeping
 * Moved to TypeScript 6, with the extension now compiled for ES2022, which VS Code 1.101 and later fully support
 * Replaced TSLint with ESLint and typescript-eslint's type-checked rules, and tightened the code to pass them, including replacing `any` with real types. Nothing about what the extension does changes
