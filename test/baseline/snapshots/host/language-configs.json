@@ -31,5 +31,8 @@
       "\"\"\"",
       "\"\"\""
     ]
+  },
+  "shellscript": {
+    "lineComment": "#"
   }
 }

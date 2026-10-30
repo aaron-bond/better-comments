@@ -34,7 +34,7 @@ Mark each column ✅ (as expected), ❌ (wrong) or ⚠️ (differs from the othe
 
 | # | Check | Expected | Before | After | Notes |
 |---|---|---|---|---|---|
-| 1 | **Basic highlighting.** Open `javascript.js`, `csharp.cs`, `nested.cs` and `test.py` in turn. | Each tag's colour shows, and `//// removed code` lines are struck through. In Python, the shebang on line 1 isn't coloured. | | | |
+| 1 | **Basic highlighting.** Open `javascript.js`, `csharp.cs`, `nested.cs` and `test.py` in turn. | Each tag's colour shows, and `//// removed code` lines are struck through. In Python, the shebang on line 1 isn't coloured. Since 3.2.0, a shell script's `#!/bin/bash` isn't either, and a `# ! comment` on line 1 of a Python file is. | | | |
 | 2 | **Typing.** In `javascript.js`, type `// ! new alert` on a new line, then delete it. | It's coloured almost straight away. Nothing is left behind after deleting. | | | |
 | 3 | **Fast tab switching.** Open `javascript.js`, `test.py`, `csharp.cs` and `plaintext.txt`. Hold `Ctrl+PageDown` for a few seconds, then let go. Repeat 5 times, stopping on a different tab each time. | The tab you stop on is highlighted correctly for its language. For example, `test.py` doesn't colour `//` lines, and `plaintext.txt` shows nothing. | | | Count the wrong results in each build. |
 | 4 | **Switching on first open.** Restart VS Code. Open `test.py`, then within a second open `javascript.js` from the explorer. Go back to `test.py`. | Both files are highlighted correctly. | | | Repeat a few times; it's timing-dependent (pinned 9). |
