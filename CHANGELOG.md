@@ -1,8 +1,9 @@
 # Change Log
 
-## [Unreleased]
+## [3.2.0]
 ### Bug Fixes
 * Changes to Better Comments' settings now take effect straight away, without restarting VS Code. If the new settings can't be read, the previous ones stay in use. Closes [#326](https://github.com/aaron-bond/better-comments/issues/326), [#371](https://github.com/aaron-bond/better-comments/issues/371), [#416](https://github.com/aaron-bond/better-comments/issues/416), [#421](https://github.com/aaron-bond/better-comments/issues/421) and [#479](https://github.com/aaron-bond/better-comments/issues/479)
+* Fixing tags being matched anywhere in a line in Makefiles on recent VS Code versions, such as `//` in `http://` ([#566](https://github.com/aaron-bond/better-comments/issues/566))
 
 ## [3.1.1] (2026-10-29)
 ### House Keeping
