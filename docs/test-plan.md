@@ -30,7 +30,7 @@ The project installs, compiles, lints (one warning) and builds the web bundle on
 These came from reading the code and probing the compiled `Parser` with a stubbed `vscode`. They are current behaviour, so the baseline records them as they are. Any that get fixed are fixed later, deliberately.
 
 1. **JSDoc matching runs in every language by default.** The check is `if (!highlightMultilineComments && !highlightJSDoc) return`, so with the default `multilineComments: true`, `/** … * ! x … */` is highlighted in Python and every other language. `highlightJSDoc` is set to `true` for JS/TS/JSX/TSX/Apex and never reset. That only makes a difference when `multilineComments` is `false`: after visiting a JS-family file, JSDoc matching stays on for every language.
-2. **Single-line highlighting can switch off for good.** `highlightSingleLineComments` is set to `false` when the language's `comments` object has neither `lineComment` nor `blockComment`, and nothing sets it back. Confirmed: after such a language, `// ! x` in TypeScript is no longer highlighted. CSS does *not* trigger this (see 3). No built-in language in 1.65.0 or 1.143.1 has such a config, so only third-party language extensions can trigger it. The baseline reaches it with a fixture extension.
+2. **Single-line highlighting can switch off for good.** `highlightSingleLineComments` is set to `false` when the language's `comments` object has neither `lineComment` nor `blockComment`, and nothing sets it back. Confirmed: after such a language, `// ! x` in TypeScript is no longer highlighted. CSS does *not* trigger this (see 3). No built-in language in 1.65.0 or 1.143.1 has such a config, so only third-party language extensions can trigger it. The baseline reaches it with a fixture extension. A `lineComment` of `""` with no `blockComment` does the same, since it gives `null` too. Since the P1 fix, the object form `{ "comment": "" }` with no block comment gives an empty delimiter instead, which finds no line comments in that language only. When this carry-over is fixed, `""`, `null` and `[]` should all mean the same thing, and `lineDelimiters` in `src/core/languageState.ts` can drop its `|| []`.
 3. **Block-only languages use the block opener as a line delimiter.** `setDelimiter` passes `config.lineComment || blockCommentStart`, so in CSS `/* ! alert */` matches as a single-line comment, closing `*/` included.
 4. **`highlightMultilineComments` is never reset.** It is set from the setting whenever a language has block comments, and is still `true` after switching to a language without them (TS → YAML). The block regex then runs with empty delimiters. It finds nothing, but it shouldn't run at all. *To fix (Phase 5).*
 5. **`textDecoration` is built by joining strings.** Most tags get `""` (an empty string, not undefined), strikethrough gives `"line-through"`, and underline-only gives `" underline"` with a leading space.
@@ -46,7 +46,11 @@ These came from reading the code and probing the compiled `Parser` with a stubbe
 
 Suspected from the code and partly reproduced with a stub, but nobody has reported them. Each needs confirming in a real VS Code before we decide whether it's a bug at all. The baseline (Phase 1) records whatever actually happens.
 
-### P1: `lineComment` given as an object
+### P1: `lineComment` given as an object (confirmed, fixed)
+
+**Fixed** on `task/object-line-comment`, for 3.2.0. `applyLanguage` reads the object form as its `comment` string, so a Makefile gets `#` as its delimiter again, as it did when the built-in config was a plain string. `noIndent` only changes where Toggle Comment puts the delimiter, so it's ignored. An empty `comment` falls back to the block opener, as `""` does (pinned 3). With no block comment either, it gives an empty delimiter rather than `null`, because `null` would switch line comments off for every later language too (pinned 2). Empty entries in an array (`["", "#"]`) are dropped. A delimiter that still comes out empty (`[]`, `[""]`, or an empty or malformed object with no block comment) now finds no line comments in that language, instead of matching tags anywhere in a line. `findsLineComments` checks for it rather than switching `highlightSingleLineComments` off, for the same reason. The baseline also has a real `makefile` target, from #566's review, with a sample at `test/fixtures/samples/makefile/Makefile`. The 18 host snapshots for `bc-object-line-comment`'s generated inputs changed: every range they gained starts at a `#`, and every range they lost was either a stray mid-line match or the same comment starting just after the `#`. Reported as [#566](https://github.com/aaron-bond/better-comments/issues/566) (`http://` in Makefile recipes styled by the `//` tag). The built-in XSL config's `"lineComment": ""` isn't affected: an empty string falls back to the block opener, `<!--`, as for any language without a line comment.
+
+The original analysis follows.
 
 VS Code's `CommentRule` now allows `lineComment: { comment: string; noIndent?: boolean }`, and the built-in Makefile `language-configuration.json` already uses it. `setCommentFormat` only handles a string or an array, so for an object the delimiter becomes `""`. With a stubbed config, the regex then matches tags anywhere in a line:
 
@@ -76,7 +80,7 @@ Whether empty tags should be ignored altogether is a separate decision. The real
 An empty tag string adds an empty alternative to the single-line regex, `(!|)`. `RegExp.exec` doesn't advance `lastIndex` after a zero-length match, so the `while` loop in `FindSingleLineComments` never ends if the regex can match zero characters. It can whenever nothing before the tags has to match:
 
 - **Plain text, with `highlightPlainText` on.** The regex is `(^)+([ \t]*[ \t]*)(<tags>)+(.*)` with the `gm` flags, which matches zero characters on an empty line. Any plain text document that is empty or ends with a newline hangs. Whitespace-only lines and text with no empty lines finish normally.
-- **Any language with an empty delimiter.** An object-form `lineComment` gives the delimiter `""` (P1), and so would `lineComment: []`. The regex is then `()+( |\t)*(<tags>)+(.*)`, which matches zero characters anywhere. No other setting is needed: on a VS Code version whose built-in Makefile config uses the object form (1.143.1 does; 1.65.0 and 1.101.0 don't), opening a Makefile hangs. Reproduced in Node against the v3.0.2 build; not yet tried in real VS Code.
+- **Any language with an empty delimiter.** Before the P1 fix, an object-form `lineComment` gave the delimiter `""`, and so would `lineComment: []`. Since the fix, an empty delimiter finds no line comments, so this route is closed. The regex is then `()+( |\t)*(<tags>)+(.*)`, which matches zero characters anywhere. No other setting is needed: on a VS Code version whose built-in Makefile config uses the object form (1.143.1 does; 1.65.0 and 1.101.0 don't), opening a Makefile hangs. Reproduced in Node against the v3.0.2 build; not yet tried in real VS Code.
 - **Languages with a delimiter are safe.** The same tags in JavaScript, or in Python with `"#"`, finish normally, because the delimiter has to match.
 - **Real VS Code, plain text route:** with `better-comments.highlightPlainText: true` and a tag `{ "tag": "" }` in `settings.json` at startup, opening a new untitled file (Ctrl+N, which is empty plain text) freezes the extension host. The run had to be killed after 60 s. The same steps with `TODO` instead of `""` finish in 8 s.
 - **Reach:** an empty tag, plus either `highlightPlainText` or a Makefile (or any other object-form language) on a recent VS Code. That the empty tag is needed is presumably why it hasn't been reported. The `tags` schema doesn't constrain its items, so an empty tag is a valid setting, for example halfway through editing. The only related-looking issue is #187 ("Extension causes high cpu load", 2019, v2.0.5, no profile or settings), and there's no evidence it's the same thing.
@@ -110,7 +114,7 @@ The first thing to check: `Configuration` builds paths with `path.join(extension
 
 ```ts
 // src/core/types.ts
-export interface CommentSyntax { lineComment?: string | string[]; blockComment?: [string, string]; } // + object form if P1 is confirmed
+export interface CommentSyntax { lineComment?: string | string[]; blockComment?: [string, string]; } // + the object form { comment, noIndent } (P1)
 export interface TagSetting { tag: string; color: string; backgroundColor?: string;
   strikethrough?: boolean; underline?: boolean; bold?: boolean; italic?: boolean; }
 export interface Settings { tags: TagSetting[]; multilineComments: boolean; highlightPlainText: boolean; }
@@ -164,7 +168,7 @@ Built-in language configs can change between VS Code versions, so every version 
 
 As built:
 - **Snapshot files:** `test/baseline/snapshots/host/<settings>/<target>--<input>.json`, shared by every VS Code version. Each one records the decoration types once, then lists the results with the histories that produce each. A split between groups shows where carried-over state matters.
-- **Per-version files:** where a version's output differs from the shared file, `--update-snapshots` writes it to `test/baseline/snapshots/versions/<label>/` at the same path, and that version is compared against it instead. The first version run (1.101.0 by default) writes the shared set, so update with every version, not just one. There are none today.
+- **Per-version files:** where a version's output differs from the shared file, `--update-snapshots` writes it to `test/baseline/snapshots/versions/<label>/` at the same path, and that version is compared against it instead. The first version run (1.101.0 by default) writes the shared set, so update with every version, not just one. There is one today: `versions/stable/language-configs.json`, because the built-in Makefile config is `"#"` on 1.101.0 and the object form on stable. The `makefile` target's decorations are shared, so the two forms agreeing is itself a check on P1 (#566): against the unfixed parser, the `makefile` cases fail under stable only.
 - **Shared code:** the matrix (`test/baseline/matrix.ts`) and the input generator (`test/baseline/generate.ts`) will also drive the Node baseline.
 - **Settings** are written to the real user settings of the temporary profile, and each case uses a fresh `Parser` that does exactly what `updateDecorations` does.
 - **Histories** call only `SetRegex` (now `SetLanguage`). That's the only method that changes the carried-over flags.
@@ -267,7 +271,7 @@ Priming histories may use a language outside the three only to reach a state, no
 
 ### Done when
 
-- Every pinned behaviour has at least one case that shows it. P1 (Makefile) is verified separately, as described in its section.
+- Every pinned behaviour has at least one case that shows it. P1 (Makefile) was verified separately, as described in its section, and is now fixed.
 - The Node and real-host baselines agree on every case they share.
 - Snapshots exist for VS Code 1.101 and `stable` (one shared set).
 
@@ -310,8 +314,8 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 107 tests): every module in `src/core`. Each pinned behaviour and P1 has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
-- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own. All 126 cases agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
+- **Unit tests** (`test/unit/`, 113 tests): every module in `src/core`. Each pinned behaviour has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own (stable, for the Makefile config), so 150 cases run twice. All of them agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, settings changes (pinned 7, now fixed) and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.
@@ -357,7 +361,8 @@ Each is its own PR and release, with the snapshot diff reviewed and described in
 - Pinned 1 and 2: decide what the intended behaviour is, then stop the flags carrying over
 - Pinned 5: clean `textDecoration`
 - Pinned 7: read settings live (done)
-- P1 and P2, if verified
+- P1: read the object-form `lineComment` (done)
+- P2, if verified
 
 ## Order of work and size
 
