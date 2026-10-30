@@ -1,0 +1,38 @@
+{
+  "bc-no-comment-syntax": {},
+  "bc-object-line-comment": {
+    "lineComment": {
+      "comment": "#",
+      "noIndent": true
+    }
+  },
+  "csharp": {
+    "lineComment": "//",
+    "blockComment": [
+      "/*",
+      "*/"
+    ]
+  },
+  "javascript": {
+    "lineComment": "//",
+    "blockComment": [
+      "/*",
+      "*/"
+    ]
+  },
+  "log": null,
+  "makefile": {
+    "lineComment": {
+      "comment": "#",
+      "noIndent": true
+    }
+  },
+  "plaintext": null,
+  "python": {
+    "lineComment": "#",
+    "blockComment": [
+      "\"\"\"",
+      "\"\"\""
+    ]
+  }
+}

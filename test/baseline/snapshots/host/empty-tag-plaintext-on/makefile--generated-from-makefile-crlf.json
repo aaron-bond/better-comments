@@ -1,0 +1,1198 @@
+{
+  "settings": "empty-tag-plaintext-on",
+  "target": "makefile",
+  "input": "generated-from-makefile-crlf",
+  "languageId": "makefile",
+  "eol": "CRLF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "",
+      "options": {
+        "color": "#ABCDEF",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:26",
+              "text": "# ! first line of the file"
+            },
+            {
+              "start": "3:0",
+              "end": "3:17",
+              "text": "# ! start of line"
+            },
+            {
+              "start": "4:4",
+              "end": "4:28",
+              "text": "# ! indented with spaces"
+            },
+            {
+              "start": "5:1",
+              "end": "5:24",
+              "text": "# ! indented with a tab"
+            },
+            {
+              "start": "6:0",
+              "end": "6:31",
+              "text": "#! no space after the delimiter"
+            },
+            {
+              "start": "7:0",
+              "end": "7:40",
+              "text": "#   ! several spaces after the delimiter"
+            },
+            {
+              "start": "8:8",
+              "end": "8:22",
+              "text": "# ! after code"
+            },
+            {
+              "start": "9:9",
+              "end": "9:38",
+              "text": "# ! inside a string literal\";"
+            },
+            {
+              "start": "11:0",
+              "end": "11:3",
+              "text": "# !"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "19:0",
+              "end": "19:17",
+              "text": "# ? start of line"
+            },
+            {
+              "start": "20:4",
+              "end": "20:28",
+              "text": "# ? indented with spaces"
+            },
+            {
+              "start": "21:1",
+              "end": "21:24",
+              "text": "# ? indented with a tab"
+            },
+            {
+              "start": "22:0",
+              "end": "22:31",
+              "text": "#? no space after the delimiter"
+            },
+            {
+              "start": "23:0",
+              "end": "23:40",
+              "text": "#   ? several spaces after the delimiter"
+            },
+            {
+              "start": "24:8",
+              "end": "24:22",
+              "text": "# ? after code"
+            },
+            {
+              "start": "25:9",
+              "end": "25:38",
+              "text": "# ? inside a string literal\";"
+            },
+            {
+              "start": "27:0",
+              "end": "27:3",
+              "text": "# ?"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "10:0",
+              "end": "10:32",
+              "text": "# not ! tag after the first word"
+            },
+            {
+              "start": "26:0",
+              "end": "26:32",
+              "text": "# not ? tag after the first word"
+            },
+            {
+              "start": "35:0",
+              "end": "35:16",
+              "text": "#  start of line"
+            },
+            {
+              "start": "36:4",
+              "end": "36:27",
+              "text": "#  indented with spaces"
+            },
+            {
+              "start": "37:1",
+              "end": "37:23",
+              "text": "#  indented with a tab"
+            },
+            {
+              "start": "38:0",
+              "end": "38:30",
+              "text": "# no space after the delimiter"
+            },
+            {
+              "start": "39:0",
+              "end": "39:39",
+              "text": "#    several spaces after the delimiter"
+            },
+            {
+              "start": "40:8",
+              "end": "40:21",
+              "text": "#  after code"
+            },
+            {
+              "start": "41:9",
+              "end": "41:37",
+              "text": "#  inside a string literal\";"
+            },
+            {
+              "start": "42:0",
+              "end": "42:31",
+              "text": "# not  tag after the first word"
+            },
+            {
+              "start": "43:0",
+              "end": "43:2",
+              "text": "# "
+            },
+            {
+              "start": "50:0",
+              "end": "50:1",
+              "text": "#"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "javascript",
+        "csharp",
+        "python"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:26",
+              "text": "# ! first line of the file"
+            },
+            {
+              "start": "3:0",
+              "end": "3:17",
+              "text": "# ! start of line"
+            },
+            {
+              "start": "4:4",
+              "end": "4:28",
+              "text": "# ! indented with spaces"
+            },
+            {
+              "start": "5:1",
+              "end": "5:24",
+              "text": "# ! indented with a tab"
+            },
+            {
+              "start": "6:0",
+              "end": "6:31",
+              "text": "#! no space after the delimiter"
+            },
+            {
+              "start": "7:0",
+              "end": "7:40",
+              "text": "#   ! several spaces after the delimiter"
+            },
+            {
+              "start": "8:8",
+              "end": "8:22",
+              "text": "# ! after code"
+            },
+            {
+              "start": "9:9",
+              "end": "9:38",
+              "text": "# ! inside a string literal\";"
+            },
+            {
+              "start": "11:0",
+              "end": "11:3",
+              "text": "# !"
+            },
+            {
+              "start": "13:3",
+              "end": "13:15",
+              "text": "! jsdoc line"
+            },
+            {
+              "start": "14:5",
+              "end": "14:31",
+              "text": "!: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "19:0",
+              "end": "19:17",
+              "text": "# ? start of line"
+            },
+            {
+              "start": "20:4",
+              "end": "20:28",
+              "text": "# ? indented with spaces"
+            },
+            {
+              "start": "21:1",
+              "end": "21:24",
+              "text": "# ? indented with a tab"
+            },
+            {
+              "start": "22:0",
+              "end": "22:31",
+              "text": "#? no space after the delimiter"
+            },
+            {
+              "start": "23:0",
+              "end": "23:40",
+              "text": "#   ? several spaces after the delimiter"
+            },
+            {
+              "start": "24:8",
+              "end": "24:22",
+              "text": "# ? after code"
+            },
+            {
+              "start": "25:9",
+              "end": "25:38",
+              "text": "# ? inside a string literal\";"
+            },
+            {
+              "start": "27:0",
+              "end": "27:3",
+              "text": "# ?"
+            },
+            {
+              "start": "29:3",
+              "end": "29:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "30:5",
+              "end": "30:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "10:0",
+              "end": "10:32",
+              "text": "# not ! tag after the first word"
+            },
+            {
+              "start": "26:0",
+              "end": "26:32",
+              "text": "# not ? tag after the first word"
+            },
+            {
+              "start": "35:0",
+              "end": "35:16",
+              "text": "#  start of line"
+            },
+            {
+              "start": "36:4",
+              "end": "36:27",
+              "text": "#  indented with spaces"
+            },
+            {
+              "start": "37:1",
+              "end": "37:23",
+              "text": "#  indented with a tab"
+            },
+            {
+              "start": "38:0",
+              "end": "38:30",
+              "text": "# no space after the delimiter"
+            },
+            {
+              "start": "39:0",
+              "end": "39:39",
+              "text": "#    several spaces after the delimiter"
+            },
+            {
+              "start": "40:8",
+              "end": "40:21",
+              "text": "#  after code"
+            },
+            {
+              "start": "41:9",
+              "end": "41:37",
+              "text": "#  inside a string literal\";"
+            },
+            {
+              "start": "42:0",
+              "end": "42:31",
+              "text": "# not  tag after the first word"
+            },
+            {
+              "start": "43:0",
+              "end": "43:2",
+              "text": "# "
+            },
+            {
+              "start": "50:0",
+              "end": "50:1",
+              "text": "#"
+            },
+            {
+              "start": "0:26",
+              "end": "1:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "1:0",
+              "end": "1:0",
+              "text": ""
+            },
+            {
+              "start": "1:0",
+              "end": "2:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "2:18",
+              "end": "3:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "3:17",
+              "end": "4:4",
+              "text": "\r\n    "
+            },
+            {
+              "start": "4:28",
+              "end": "5:1",
+              "text": "\r\n\t"
+            },
+            {
+              "start": "5:24",
+              "end": "6:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "6:31",
+              "end": "7:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "7:3",
+              "end": "7:4",
+              "text": " "
+            },
+            {
+              "start": "7:40",
+              "end": "8:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "8:22",
+              "end": "9:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "9:38",
+              "end": "10:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "10:32",
+              "end": "11:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "11:3",
+              "end": "12:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "12:3",
+              "end": "13:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "13:15",
+              "end": "14:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "14:4",
+              "end": "14:5",
+              "text": " "
+            },
+            {
+              "start": "14:31",
+              "end": "15:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "15:33",
+              "end": "16:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "16:3",
+              "end": "17:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "17:0",
+              "end": "17:0",
+              "text": ""
+            },
+            {
+              "start": "17:0",
+              "end": "18:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "18:18",
+              "end": "19:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "19:17",
+              "end": "20:4",
+              "text": "\r\n    "
+            },
+            {
+              "start": "20:28",
+              "end": "21:1",
+              "text": "\r\n\t"
+            },
+            {
+              "start": "21:24",
+              "end": "22:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "22:31",
+              "end": "23:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "23:3",
+              "end": "23:4",
+              "text": " "
+            },
+            {
+              "start": "23:40",
+              "end": "24:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "24:22",
+              "end": "25:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "25:38",
+              "end": "26:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "26:32",
+              "end": "27:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "27:3",
+              "end": "28:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "28:3",
+              "end": "29:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "29:15",
+              "end": "30:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "30:4",
+              "end": "30:5",
+              "text": " "
+            },
+            {
+              "start": "30:31",
+              "end": "31:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "31:33",
+              "end": "32:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "32:3",
+              "end": "33:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "33:0",
+              "end": "33:0",
+              "text": ""
+            },
+            {
+              "start": "33:0",
+              "end": "34:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "34:17",
+              "end": "35:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "35:2",
+              "end": "35:3",
+              "text": " "
+            },
+            {
+              "start": "35:16",
+              "end": "36:4",
+              "text": "\r\n    "
+            },
+            {
+              "start": "36:6",
+              "end": "36:7",
+              "text": " "
+            },
+            {
+              "start": "36:27",
+              "end": "37:1",
+              "text": "\r\n\t"
+            },
+            {
+              "start": "37:3",
+              "end": "37:4",
+              "text": " "
+            },
+            {
+              "start": "37:23",
+              "end": "38:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "38:30",
+              "end": "39:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "39:4",
+              "end": "39:5",
+              "text": " "
+            },
+            {
+              "start": "39:39",
+              "end": "40:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "40:10",
+              "end": "40:11",
+              "text": " "
+            },
+            {
+              "start": "40:21",
+              "end": "41:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "41:11",
+              "end": "41:12",
+              "text": " "
+            },
+            {
+              "start": "41:37",
+              "end": "42:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "42:6",
+              "end": "42:7",
+              "text": " "
+            },
+            {
+              "start": "42:31",
+              "end": "43:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "43:2",
+              "end": "43:2",
+              "text": ""
+            },
+            {
+              "start": "43:2",
+              "end": "44:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "44:3",
+              "end": "45:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "45:3",
+              "end": "45:4",
+              "text": " "
+            },
+            {
+              "start": "45:14",
+              "end": "46:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "46:4",
+              "end": "46:5",
+              "text": " "
+            },
+            {
+              "start": "46:30",
+              "end": "47:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "47:7",
+              "end": "47:8",
+              "text": " "
+            },
+            {
+              "start": "47:32",
+              "end": "48:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "48:3",
+              "end": "49:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "49:0",
+              "end": "49:0",
+              "text": ""
+            },
+            {
+              "start": "49:0",
+              "end": "50:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "50:1",
+              "end": "51:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "15:3",
+              "end": "15:33",
+              "text": "not ! tag after the first word"
+            },
+            {
+              "start": "31:3",
+              "end": "31:33",
+              "text": "not ? tag after the first word"
+            },
+            {
+              "start": "45:4",
+              "end": "45:14",
+              "text": "jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:30",
+              "text": ": jsdoc line with a colon"
+            },
+            {
+              "start": "47:3",
+              "end": "47:32",
+              "text": "not  tag after the first word"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": []
+    },
+    {
+      "histories": [
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "13:3",
+              "end": "13:15",
+              "text": "! jsdoc line"
+            },
+            {
+              "start": "14:5",
+              "end": "14:31",
+              "text": "!: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "29:3",
+              "end": "29:15",
+              "text": "? jsdoc line"
+            },
+            {
+              "start": "30:5",
+              "end": "30:31",
+              "text": "?: jsdoc line with a colon"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "0:26",
+              "end": "1:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "1:0",
+              "end": "1:0",
+              "text": ""
+            },
+            {
+              "start": "1:0",
+              "end": "2:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "2:18",
+              "end": "3:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "3:17",
+              "end": "4:4",
+              "text": "\r\n    "
+            },
+            {
+              "start": "4:28",
+              "end": "5:1",
+              "text": "\r\n\t"
+            },
+            {
+              "start": "5:24",
+              "end": "6:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "6:31",
+              "end": "7:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "7:3",
+              "end": "7:4",
+              "text": " "
+            },
+            {
+              "start": "7:40",
+              "end": "8:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "8:22",
+              "end": "9:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "9:38",
+              "end": "10:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "10:32",
+              "end": "11:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "11:3",
+              "end": "12:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "12:3",
+              "end": "13:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "13:15",
+              "end": "14:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "14:4",
+              "end": "14:5",
+              "text": " "
+            },
+            {
+              "start": "14:31",
+              "end": "15:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "15:33",
+              "end": "16:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "16:3",
+              "end": "17:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "17:0",
+              "end": "17:0",
+              "text": ""
+            },
+            {
+              "start": "17:0",
+              "end": "18:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "18:18",
+              "end": "19:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "19:17",
+              "end": "20:4",
+              "text": "\r\n    "
+            },
+            {
+              "start": "20:28",
+              "end": "21:1",
+              "text": "\r\n\t"
+            },
+            {
+              "start": "21:24",
+              "end": "22:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "22:31",
+              "end": "23:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "23:3",
+              "end": "23:4",
+              "text": " "
+            },
+            {
+              "start": "23:40",
+              "end": "24:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "24:22",
+              "end": "25:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "25:38",
+              "end": "26:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "26:32",
+              "end": "27:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "27:3",
+              "end": "28:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "28:3",
+              "end": "29:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "29:15",
+              "end": "30:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "30:4",
+              "end": "30:5",
+              "text": " "
+            },
+            {
+              "start": "30:31",
+              "end": "31:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "31:33",
+              "end": "32:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "32:3",
+              "end": "33:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "33:0",
+              "end": "33:0",
+              "text": ""
+            },
+            {
+              "start": "33:0",
+              "end": "34:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "34:17",
+              "end": "35:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "35:2",
+              "end": "35:3",
+              "text": " "
+            },
+            {
+              "start": "35:16",
+              "end": "36:4",
+              "text": "\r\n    "
+            },
+            {
+              "start": "36:6",
+              "end": "36:7",
+              "text": " "
+            },
+            {
+              "start": "36:27",
+              "end": "37:1",
+              "text": "\r\n\t"
+            },
+            {
+              "start": "37:3",
+              "end": "37:4",
+              "text": " "
+            },
+            {
+              "start": "37:23",
+              "end": "38:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "38:30",
+              "end": "39:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "39:4",
+              "end": "39:5",
+              "text": " "
+            },
+            {
+              "start": "39:39",
+              "end": "40:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "40:10",
+              "end": "40:11",
+              "text": " "
+            },
+            {
+              "start": "40:21",
+              "end": "41:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "41:11",
+              "end": "41:12",
+              "text": " "
+            },
+            {
+              "start": "41:37",
+              "end": "42:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "42:6",
+              "end": "42:7",
+              "text": " "
+            },
+            {
+              "start": "42:31",
+              "end": "43:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "43:2",
+              "end": "43:2",
+              "text": ""
+            },
+            {
+              "start": "43:2",
+              "end": "44:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "44:3",
+              "end": "45:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "45:3",
+              "end": "45:4",
+              "text": " "
+            },
+            {
+              "start": "45:14",
+              "end": "46:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "46:4",
+              "end": "46:5",
+              "text": " "
+            },
+            {
+              "start": "46:30",
+              "end": "47:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "47:7",
+              "end": "47:8",
+              "text": " "
+            },
+            {
+              "start": "47:32",
+              "end": "48:1",
+              "text": "\r\n "
+            },
+            {
+              "start": "48:3",
+              "end": "49:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "49:0",
+              "end": "49:0",
+              "text": ""
+            },
+            {
+              "start": "49:0",
+              "end": "50:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "50:1",
+              "end": "51:0",
+              "text": "\r\n"
+            },
+            {
+              "start": "15:3",
+              "end": "15:33",
+              "text": "not ! tag after the first word"
+            },
+            {
+              "start": "31:3",
+              "end": "31:33",
+              "text": "not ? tag after the first word"
+            },
+            {
+              "start": "45:4",
+              "end": "45:14",
+              "text": "jsdoc line"
+            },
+            {
+              "start": "46:5",
+              "end": "46:30",
+              "text": ": jsdoc line with a colon"
+            },
+            {
+              "start": "47:3",
+              "end": "47:32",
+              "text": "not  tag after the first word"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
