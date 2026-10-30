@@ -80,9 +80,32 @@ describe('finder', () => {
             assert.deepStrictEqual(line('// ! one\r\n// ? two\r\n'), ['!: // ! one', '?: // ? two']);
         });
 
-        it('pinned 8: ignoreFirstLine skips a match only at the very start of the text', () => {
-            assert.deepStrictEqual(find('# ! first\n# ! second\n', [['python', python]]), ['!: # ! second']);
-            assert.deepStrictEqual(find(' # ! first, indented\n', [['python', python]]), ['!: # ! first, indented']);
+        it('matches a comment on the first line, in every language (#246)', () => {
+            for (const language of ['python', 'elixir', 'tcl', 'shellscript']) {
+                assert.deepStrictEqual(find('# ! first\n# ! second\n', [[language, python]]), ['!: # ! first', '!: # ! second'], language);
+            }
+        });
+
+        it('skips a shebang, in every language (#364)', () => {
+            for (const language of ['python', 'shellscript', 'perl', 'bc-line']) {
+                const text = '#!/usr/bin/env bash\n# ! alert\n';
+                assert.deepStrictEqual(find(text, [[language, python]]), ['!: # ! alert'], language);
+            }
+            assert.deepStrictEqual(find('#! /bin/sh\n', [['shellscript', python]]), []);
+        });
+
+        it('skips the whole shebang line, as one match, but nothing after it', () => {
+            assert.deepStrictEqual(find('#!/bin/bash # ? on the shebang line\n#! alert on line two\n', [['shellscript', python]]), ['!: #! alert on line two']);
+        });
+
+        it('only treats #! as a shebang at the very start of the text', () => {
+            assert.deepStrictEqual(find(' #!/bin/bash\n', [['shellscript', python]]), ['!: #!/bin/bash']);
+            assert.deepStrictEqual(find('\n#!/bin/bash\n', [['shellscript', python]]), ['!: #!/bin/bash']);
+        });
+
+        it('keeps a line comment on a first line that starts with #! in a language whose delimiter is not #', () => {
+            // Rust's inner attributes start with #!, and its comments with //
+            assert.deepStrictEqual(find('#![allow(dead_code)] // ! note\n', [['bc-line', lineOnly]]), ['!: // ! note']);
         });
 
         it('matches tags at the start of each line for plaintext', () => {

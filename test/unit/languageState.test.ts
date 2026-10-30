@@ -25,19 +25,19 @@ describe('languageState', () => {
         assert.deepStrictEqual(initialLanguageState, {
             delimiter: '', blockCommentStart: '', blockCommentEnd: '',
             highlightSingleLineComments: true, highlightMultilineComments: false, highlightJSDoc: false,
-            isPlainText: false, matchLineStart: false, ignoreFirstLine: false, supportedLanguage: true,
+            isPlainText: false, matchLineStart: false, supportedLanguage: true,
         });
     });
 
     describe('beginLanguageSwitch', () => {
-        it('resets only supportedLanguage, ignoreFirstLine, isPlainText and matchLineStart', () => {
+        it('resets only supportedLanguage, isPlainText and matchLineStart', () => {
             const busy: LanguageState = {
                 delimiter: 'd', blockCommentStart: 's', blockCommentEnd: 'e',
                 highlightSingleLineComments: false, highlightMultilineComments: true, highlightJSDoc: true,
-                isPlainText: true, matchLineStart: true, ignoreFirstLine: true, supportedLanguage: true,
+                isPlainText: true, matchLineStart: true, supportedLanguage: true,
             };
             assert.deepStrictEqual(beginLanguageSwitch(busy), {
-                ...busy, supportedLanguage: false, ignoreFirstLine: false, isPlainText: false, matchLineStart: false,
+                ...busy, supportedLanguage: false, isPlainText: false, matchLineStart: false,
             });
         });
 
@@ -95,13 +95,6 @@ describe('languageState', () => {
             assert.strictEqual(state.highlightMultilineComments, true);
             assert.strictEqual(state.blockCommentStart, '');
             assert.strictEqual(state.blockCommentEnd, '');
-        });
-
-        it('pinned 8: sets ignoreFirstLine for Python, Elixir and Tcl only', () => {
-            for (const code of ['python', 'elixir', 'tcl']) {
-                assert.strictEqual(switchTo(initialLanguageState, code, shell).ignoreFirstLine, true, code);
-            }
-            assert.strictEqual(switchTo(after([['python', python]]), 'ruby', shell).ignoreFirstLine, false);
         });
 
         it('makes plaintext supported, and matched at line starts, only when highlightPlainText is on', () => {
