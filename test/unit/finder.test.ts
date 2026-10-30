@@ -11,7 +11,7 @@ const defaults: LanguageSettings = { multilineComments: true, highlightPlainText
 const lineOnly = { lineComment: '//' };
 const cStyle: CommentConfig = { lineComment: '//', blockComment: ['/*', '*/'] };
 const python = { lineComment: '#' };
-// As the built-in Makefile config has it in newer VS Code versions. The parser's types don't allow it (P1)
+// As the built-in Makefile config has it in newer VS Code versions
 const objectForm: CommentConfig = { lineComment: { comment: '#', noIndent: true } };
 
 /** The state after switching through these languages in turn */
@@ -96,9 +96,18 @@ describe('finder', () => {
             assert.deepStrictEqual(find('! alert\n\nplain\n', [['plaintext', undefined]], settings, withEmpty), ['!: ! alert', ': plain']);
         });
 
-        it('P3: steps past zero-length matches with the empty delimiter of an object-form lineComment', () => {
+        it('matches an object-form lineComment from its delimiter, not anywhere in the line (#566)', () => {
+            const text = 'curl http://example.com\nif (a != b) x = a ? 1 : 2 # ! real\n';
+            assert.deepStrictEqual(find(text, [['bc-object', objectForm]]), ['!: # ! real']);
+        });
+
+        it('finds no line comments with an empty delimiter, even with an empty tag', () => {
             const withEmpty = [...tags, { tag: '', escapedTag: '' }];
-            assert.deepStrictEqual(find('x != y\n\n', [['bc-object', objectForm]], defaults, withEmpty), [': x != y']);
+            assert.deepStrictEqual(find('x != y // ! z\n\n', [['bc-empty', { lineComment: [] }]], defaults, withEmpty), []);
+        });
+
+        it('ignores an empty delimiter alongside others (#566)', () => {
+            assert.deepStrictEqual(find('curl http://x # ! real\n', [['bc-mixed', { lineComment: ['', '#'] }]]), ['!: # ! real']);
         });
     });
 

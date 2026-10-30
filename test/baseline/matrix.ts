@@ -51,7 +51,7 @@ export const settingsVariants: SettingsVariant[] = [
 
 // Languages set on the parser before the target, in order. The parser carries state between them.
 export const noCommentSyntaxLanguage = 'bc-no-comment-syntax';
-// A fixture language with an object-form lineComment, which leaves the parser an empty delimiter (P1)
+// A fixture language with an object-form lineComment, as the built-in Makefile config has in newer VS Code (P1)
 export const objectLineCommentLanguage = 'bc-object-line-comment';
 export const histories: string[][] = [
     [],
@@ -92,7 +92,8 @@ export const targets: Target[] = [
         { kind: 'sample', file: 'unsupported/cobol.cbl' },
         { kind: 'generated', syntaxFrom: 'javascript', eol: 'LF', bareTags: true },
     ] },
-    // An empty delimiter, so tags match anywhere in a line, and an empty tag can match nothing (P3, the second route)
+    // Before the P1 fix: an empty delimiter, so tags matched anywhere in a line, and an empty tag could match nothing
+    // (P3, the second route)
     { languageId: objectLineCommentLanguage, inputs: [
         { kind: 'generated', syntaxFrom: 'python', eol: 'LF' },
         { kind: 'generated', syntaxFrom: 'python', eol: 'CRLF' },

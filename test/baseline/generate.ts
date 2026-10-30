@@ -1,7 +1,7 @@
 // Builds a document that puts every tag in every position we care about, from a language's comment syntax
 
 export interface CommentSyntax {
-    // Built-in configs use the object form only after VS Code 1.101.0 (P1)
+    // Built-in configs use the object form only after VS Code 1.101.0
     lineComment?: string | string[] | { comment: string; noIndent?: boolean };
     blockComment?: [string, string];
 }

@@ -20,7 +20,7 @@ describe('parseLanguageConfig', () => {
         assert.strictEqual(parseLanguageConfig('{ "brackets": [] }'), undefined);
     });
 
-    it('P1: passes an object-form lineComment through unchanged', () => {
+    it('passes an object-form lineComment through unchanged', () => {
         assert.deepStrictEqual(parseLanguageConfig('{ "comments": { "lineComment": { "comment": "#", "noIndent": true } } }'),
             { lineComment: { comment: '#', noIndent: true } });
     });
