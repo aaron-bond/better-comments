@@ -88,7 +88,8 @@
                         "properties": {
                             "tag": {
                                 "type": "string",
-                                "description": "The characters or word that mark a comment, such as \"!\" or \"todo\". It must be the first thing after the comment delimiter, and case doesn't matter"
+                                "minLength": 1,
+                                "description": "The characters or word that mark a comment, such as \"!\" or \"todo\". It must come first in a line comment, or first on its line in a block comment, and case doesn't matter"
                             },
                             "color": {
                                 "description": "The text colour: a hex colour, any CSS colour, or a theme colour such as { \"id\": \"editorError.foreground\" }",
