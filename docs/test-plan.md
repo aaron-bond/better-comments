@@ -314,11 +314,11 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 113 tests): every module in `src/core`. Each pinned behaviour has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Unit tests** (`test/unit/`, 114 tests): every module in `src/core`. Each pinned behaviour has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
 - **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own (stable, for the Makefile config), so 150 cases run twice. All of them agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
 - **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, settings changes (pinned 7, now fixed) and pinned 10, all through the real activated extension.
-- **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file.
+- **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file. The settings have a tag without a `tag` string before the alert tag: since 3.2.0 it's skipped (#552), while up to 3.1.1 it stopped the extension activating.
 - **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
 - **Coverage:** 99.9% of lines and 98.1% of branches across all suites. The only uncovered line is `extension.ts:43` (the handler for extensions being added or removed), which needs an extension installed during the run. The uncovered branches are that line and the zero-length skip in the block and JSDoc scans (`finder.ts:103` and `110`), which can't fire there: both patterns always match at least one character. The skip stays so every scan loop is safe the same way.
 - **Portability:** `.gitattributes` keeps the fixtures and snapshots byte-exact on Windows, and the test profile sets `files.eol` to `\n`. Neither has been tried on Windows yet: CI runs on Linux only.

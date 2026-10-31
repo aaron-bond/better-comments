@@ -43,18 +43,21 @@ describe('readSettings', () => {
         assert.strictEqual(tag({}).color, undefined);
     });
 
-    it('throws for a tag that is not a string, as the parser always has', () => {
-        assert.throws(() => readSettings({ tags: [{ tag: 5 }] }), TypeError);
-        assert.throws(() => readSettings({ tags: [{ color: '#fff' }] }), TypeError);
-        assert.throws(() => readSettings({ tags: [null] }), TypeError);
-        assert.throws(() => readSettings({ tags: ['!'] }), TypeError);
+    it('skips a tag that is not a string, and keeps the others in order (#552)', () => {
+        const tags = readSettings({ tags: [{ tag: 5 }, { tag: '!' }, { color: '#fff' }, null, '!', { tag: '?' }] }).tags;
+        assert.deepStrictEqual(tags.map(t => t.tag), ['!', '?']);
     });
 
-    it('throws for tags that are not a list, as the parser always has, except an empty string', () => {
-        assert.throws(() => readSettings({}), TypeError);
-        assert.throws(() => readSettings({ tags: { tag: '!' } }), TypeError);
-        assert.throws(() => readSettings({ tags: '!' }), TypeError);
-        // for...of over "" ran no iterations, so it gave no tags
-        assert.deepStrictEqual(readSettings({ tags: '' }).tags, []);
+    it('gives no tags for tags that are not a list', () => {
+        for (const tags of [undefined, null, { tag: '!' }, '!', '', 5]) {
+            assert.deepStrictEqual(readSettings({ tags }).tags, [], JSON.stringify(tags));
+        }
+        assert.deepStrictEqual(readSettings({}).tags, []);
+    });
+
+    it('never throws, whatever the settings hold', () => {
+        for (const raw of [undefined, null, 5, 'x', [], { tags: [[]] }, { tags: [{ tag: '!', color: { id: null } }] }]) {
+            assert.doesNotThrow(() => readSettings(raw), JSON.stringify(raw));
+        }
     });
 });
