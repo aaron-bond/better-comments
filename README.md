@@ -25,7 +25,7 @@ When true, a tag (defaults: `! * ? // todo`) is detected in a plain text file if
 
 `better-comments.tags`  
 The tags are the characters or sequences used to mark a comment for decoration.
-In code, a tag must be the first non-blank text after the comment delimiter, as in `// ! alert` or `#   TODO: later`.
+In a line comment, a tag must be the first non-blank text after the delimiter, as in `// ! alert` or `#   TODO: later`. In a block comment, it must start a line inside the block (after the leading `*` in a `/** … */` comment), not follow the opening `/*` on the same line.
 The default 5 can be modified to change the colors, and more can be added. Changes need a restart of VS Code to take effect.
 
 Each tag has these settings:
