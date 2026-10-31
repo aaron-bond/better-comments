@@ -25,19 +25,19 @@ describe('languageState', () => {
         assert.deepStrictEqual(initialLanguageState, {
             delimiter: '', blockCommentStart: '', blockCommentEnd: '',
             highlightSingleLineComments: true, highlightMultilineComments: false, highlightJSDoc: false,
-            isPlainText: false, matchLineStart: false, ignoreFirstLine: false, supportedLanguage: true,
+            isPlainText: false, matchLineStart: false, supportedLanguage: true,
         });
     });
 
     describe('beginLanguageSwitch', () => {
-        it('resets only supportedLanguage, ignoreFirstLine, isPlainText and matchLineStart', () => {
+        it('resets only supportedLanguage, isPlainText and matchLineStart', () => {
             const busy: LanguageState = {
                 delimiter: 'd', blockCommentStart: 's', blockCommentEnd: 'e',
                 highlightSingleLineComments: false, highlightMultilineComments: true, highlightJSDoc: true,
-                isPlainText: true, matchLineStart: true, ignoreFirstLine: true, supportedLanguage: true,
+                isPlainText: true, matchLineStart: true, supportedLanguage: true,
             };
             assert.deepStrictEqual(beginLanguageSwitch(busy), {
-                ...busy, supportedLanguage: false, ignoreFirstLine: false, isPlainText: false, matchLineStart: false,
+                ...busy, supportedLanguage: false, isPlainText: false, matchLineStart: false,
             });
         });
 
@@ -97,13 +97,6 @@ describe('languageState', () => {
             assert.strictEqual(state.blockCommentEnd, '');
         });
 
-        it('pinned 8: sets ignoreFirstLine for Python, Elixir and Tcl only', () => {
-            for (const code of ['python', 'elixir', 'tcl']) {
-                assert.strictEqual(switchTo(initialLanguageState, code, shell).ignoreFirstLine, true, code);
-            }
-            assert.strictEqual(switchTo(after([['python', python]]), 'ruby', shell).ignoreFirstLine, false);
-        });
-
         it('makes plaintext supported, and matched at line starts, only when highlightPlainText is on', () => {
             const off = switchTo(initialLanguageState, 'plaintext', undefined);
             assert.deepStrictEqual([off.isPlainText, off.supportedLanguage, off.matchLineStart], [true, false, false]);
@@ -125,11 +118,28 @@ describe('languageState', () => {
             assert.strictEqual(state.highlightMultilineComments, true);
         });
 
-        it('P1: an object-form lineComment gives an empty delimiter', () => {
+        it('reads the delimiter of an object-form lineComment, as the built-in Makefile config has it', () => {
             const makefile: CommentConfig = { lineComment: { comment: '#', noIndent: true } };
             const state = switchTo(initialLanguageState, 'makefile', makefile);
-            assert.strictEqual(state.delimiter, '');
+            assert.strictEqual(state.delimiter, '#');
             assert.strictEqual(state.supportedLanguage, true);
+        });
+
+        it('reads an object-form lineComment the same way as its comment string', () => {
+            const xml: CommentConfig['blockComment'] = ['<!--', '-->'];
+            for (const blockComment of [undefined, xml]) {
+                assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: { comment: '//' }, blockComment }).delimiter, '\\/\\/');
+            }
+            // An empty comment falls back to the block opener, as "" does (pinned 3)
+            assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: { comment: '' }, blockComment: xml }).delimiter, '<!--');
+            assert.strictEqual(switchTo(initialLanguageState, 'x', { lineComment: '', blockComment: xml }).delimiter, '<!--');
+        });
+
+        it('gives an empty delimiter, not pinned 2, for an object-form lineComment with nothing to fall back to', () => {
+            for (const lineComment of [{ comment: '' }, {} as LineCommentObject]) {
+                const state = switchTo(initialLanguageState, 'x', { lineComment });
+                assert.deepStrictEqual([state.delimiter, state.highlightSingleLineComments], ['', true], JSON.stringify(lineComment));
+            }
         });
 
         it('uses every delimiter of a language with several line comment formats', () => {
@@ -159,6 +169,19 @@ describe('languageState', () => {
         it('runs every scan for a JS-family language by default', () => {
             const state = after([['javascript', js]]);
             assert.deepStrictEqual([findsLineComments(state), findsBlockComments(state), findsJSDocComments(state)], [true, true, true]);
+        });
+
+        it('skips the line scan for an empty delimiter, without switching it off for the next language', () => {
+            for (const lineComment of [[], [''], { comment: '' }]) {
+                const empty = after([['bc-empty', { lineComment }]]);
+                assert.strictEqual(findsLineComments(empty), false, JSON.stringify(lineComment));
+                assert.strictEqual(findsLineComments(switchTo(empty, 'python', python)), true, JSON.stringify(lineComment));
+            }
+        });
+
+        it('runs the line scan for plaintext with highlightPlainText on, whatever the delimiter', () => {
+            const settings = { ...defaults, highlightPlainText: true };
+            assert.strictEqual(findsLineComments(after([['plaintext', undefined]], settings)), true);
         });
 
         it('runs the JSDoc scan without block comments once a JS-family language has been seen', () => {

@@ -3,7 +3,7 @@
     "displayName": "Better Comments",
     "icon": "icon.png",
     "description": "Improve your code commenting by annotating with alert, informational, TODOs, and more!",
-    "version": "3.1.1",
+    "version": "3.2.0",
     "publisher": "aaron-bond",
     "author": {
         "name": "Aaron Bond"
@@ -71,6 +71,96 @@
                 "better-comments.tags": {
                     "type": "array",
                     "description": "Tags which are used to color the comments. Changes require a restart of VS Code to take effect",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "tag"
+                        ],
+                        "defaultSnippets": [
+                            {
+                                "label": "New tag",
+                                "body": {
+                                    "tag": "$1",
+                                    "color": "${2:#FF2D00}"
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "tag": {
+                                "type": "string",
+                                "minLength": 1,
+                                "description": "The characters or word that mark a comment, such as \"!\" or \"todo\". It must come first in a line comment, or first on its line in a block comment, and case doesn't matter"
+                            },
+                            "color": {
+                                "description": "The text colour: a hex colour, any CSS colour, or a theme colour such as { \"id\": \"editorError.foreground\" }",
+                                "anyOf": [
+                                    {
+                                        "type": "string",
+                                        "format": "color"
+                                    },
+                                    {
+                                        "type": "string",
+                                        "description": "Any CSS colour, such as \"transparent\" or \"rgba(255, 0, 0, 0.5)\""
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "A colour from the current theme",
+                                        "required": [
+                                            "id"
+                                        ],
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "A theme colour id, such as \"editorError.foreground\""
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "backgroundColor": {
+                                "description": "The background colour, in the same forms as color",
+                                "anyOf": [
+                                    {
+                                        "type": "string",
+                                        "format": "color"
+                                    },
+                                    {
+                                        "type": "string",
+                                        "description": "Any CSS colour, such as \"transparent\" or \"rgba(255, 0, 0, 0.5)\""
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "A colour from the current theme",
+                                        "required": [
+                                            "id"
+                                        ],
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "A theme colour id, such as \"editorError.foreground\""
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "strikethrough": {
+                                "type": "boolean",
+                                "description": "Strike through the comment"
+                            },
+                            "underline": {
+                                "type": "boolean",
+                                "description": "Underline the comment"
+                            },
+                            "bold": {
+                                "type": "boolean",
+                                "description": "Make the comment bold"
+                            },
+                            "italic": {
+                                "type": "boolean",
+                                "description": "Make the comment italic"
+                            }
+                        }
+                    },
                     "default": [
                         {
                             "tag": "!",

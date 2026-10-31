@@ -1,5 +1,16 @@
 # Change Log
 
+## [3.2.0]
+### Features
+* Tag settings now have a schema, so `settings.json` offers completion, descriptions and warnings for each tag's fields, and a colour picker for hex colours ([#567](https://github.com/aaron-bond/better-comments/issues/567)). A tag with no `tag`, or an empty one, is underlined
+* Theme colours such as `{ "id": "editorError.foreground" }` are now documented and supported for a tag's `color` and `backgroundColor`
+* The README now explains where a tag goes: first after the delimiter in a line comment, or at the start of a line inside a block comment ([#414](https://github.com/aaron-bond/better-comments/issues/414))
+
+### Bug Fixes
+* Comments on the first line of a file are now highlighted in every language, including Python and notebook cells, and a shebang (`#!/bin/bash`) is never highlighted as a comment. Closes [#141](https://github.com/aaron-bond/better-comments/issues/141), [#166](https://github.com/aaron-bond/better-comments/issues/166), [#205](https://github.com/aaron-bond/better-comments/issues/205), [#214](https://github.com/aaron-bond/better-comments/issues/214), [#246](https://github.com/aaron-bond/better-comments/issues/246), [#322](https://github.com/aaron-bond/better-comments/issues/322), [#364](https://github.com/aaron-bond/better-comments/issues/364), [#370](https://github.com/aaron-bond/better-comments/issues/370), [#407](https://github.com/aaron-bond/better-comments/issues/407), [#419](https://github.com/aaron-bond/better-comments/issues/419), [#461](https://github.com/aaron-bond/better-comments/issues/461), [#514](https://github.com/aaron-bond/better-comments/issues/514), [#531](https://github.com/aaron-bond/better-comments/issues/531), [#542](https://github.com/aaron-bond/better-comments/issues/542) and [#570](https://github.com/aaron-bond/better-comments/issues/570)
+* Fixing tags being matched anywhere in a line in Makefiles on recent VS Code versions, such as `//` in `http://` ([#566](https://github.com/aaron-bond/better-comments/issues/566))
+* Better Comments no longer fails to start when a tag in the settings has no `tag`, or another extension's language list is malformed. Invalid entries are skipped. Closes [#552](https://github.com/aaron-bond/better-comments/issues/552)
+
 ## [3.1.1] (2026-10-29)
 ### House Keeping
 * Moved to TypeScript 6, with the extension now compiled for ES2022, which VS Code 1.101 and later fully support
