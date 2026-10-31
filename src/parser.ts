@@ -55,7 +55,7 @@ export class Parser {
     /**
      * Reads the better-comments settings again and replaces the decoration types, which removes the old ones from
      * every editor. Call SetLanguage afterwards, because the language state depends on the settings.
-     * Throws if the new settings can't be read, and keeps the current ones.
+     * Invalid tags are skipped, as at startup.
      */
     public UpdateSettings(): void {
         const contributions = readSettings(vscode.workspace.getConfiguration('better-comments'));

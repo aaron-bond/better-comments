@@ -47,7 +47,13 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeConfiguration(async event => {
         if (!event.affectsConfiguration('better-comments')) return;
 
-        parser.UpdateSettings();
+        // Nothing in the settings should make this throw, since invalid tags are skipped. If it does,
+        // keep the current tags rather than leave the promise rejected with nothing to handle it
+        try {
+            parser.UpdateSettings();
+        } catch (error) {
+            console.error('Better Comments: could not apply the new settings', error);
+        }
 
         // The new settings can change how the current language is matched, as well as the tags
         if (activeEditor) {

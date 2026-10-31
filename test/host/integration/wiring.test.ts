@@ -130,15 +130,13 @@ describe('extension wiring', () => {
             assert.ok(!decorates(doc, since, '// ! alert'), 'the removed alert tag was still decorated');
         });
 
-        it('keeps the current tags when the new settings are invalid', async () => {
-            const doc = await showDecorated('// ! alert\n');
-            await config().update('tags', [{ color: '#00FF00' }], vscode.ConfigurationTarget.Global);
-            await sleep(300);
-
-            // An edit still decorates with the tags from before
+        it('skips an invalid tag in the new settings and applies the valid ones (#552)', async () => {
+            const doc = await showDecorated('// @note added at runtime\n// ! alert\n');
             const since = recorder.editorCalls.length;
-            await vscode.window.activeTextEditor!.edit(b => b.insert(new vscode.Position(1, 0), '// ! second alert\n'));
-            await waitFor('the second alert to be decorated', () => decorates(doc, since, '// ! second alert'));
+            await config().update('tags', [{ color: '#00FF00' }, { tag: '@note', color: '#00FF00' }], vscode.ConfigurationTarget.Global);
+            await waitFor('@note to be decorated', () => decorates(doc, since, '// @note added at runtime'));
+            await sleep(300);
+            assert.ok(!decorates(doc, since, '// ! alert'), 'the alert tag from before was still decorated');
         });
     });
 
