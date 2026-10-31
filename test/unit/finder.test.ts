@@ -94,7 +94,9 @@ describe('finder', () => {
             assert.deepStrictEqual(find('#! /bin/sh\n', [['shellscript', python]]), []);
         });
 
-        it('skips the whole shebang line, as one match, but nothing after it', () => {
+        it('with the default tags, skips the whole shebang line, as one match, but nothing after it', () => {
+            // The ! tag matches #! at 0:0 and runs to the end of the line. Without a ! tag, nothing matches at 0:0,
+            // so a tag later on the shebang line is styled
             assert.deepStrictEqual(find('#!/bin/bash # ? on the shebang line\n#! alert on line two\n', [['shellscript', python]]), ['!: #! alert on line two']);
         });
 
