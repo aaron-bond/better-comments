@@ -86,6 +86,9 @@ export const targets: Target[] = [
     { languageId: 'javascript', inputs: [{ kind: 'sample', file: 'javascript.js' }, ...generatedInputs('javascript')] },
     { languageId: 'csharp', inputs: [{ kind: 'sample', file: 'csharp.cs' }, { kind: 'sample', file: 'nested.cs' }, ...generatedInputs('csharp')] },
     { languageId: 'python', inputs: [{ kind: 'sample', file: 'test.py' }, ...generatedInputs('python')] },
+    // A shebang on the first line isn't a comment (#364), in any language. Only the sample: generated input would repeat
+    // the "#" line comments that Python and Makefile already cover
+    { languageId: 'shellscript', inputs: [{ kind: 'sample', file: 'shellscript/shebang.sh' }] },
     // The built-in config is "#" on 1.101.0 and the object form on stable (P1), so the two only share snapshots while
     // both forms are read the same way (#566)
     { languageId: 'makefile', inputs: [{ kind: 'sample', file: 'makefile/Makefile' }, ...generatedInputs('makefile')] },

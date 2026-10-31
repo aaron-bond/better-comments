@@ -14,7 +14,7 @@ export function generateDocument(syntax: CommentSyntax | undefined, tags: string
         : Array.isArray(lineComment) ? lineComment : [lineComment.comment];
     const block = syntax?.blockComment;
 
-    // Line 0 matters for languages with ignoreFirstLine
+    // Line 0 matters for the shebang rule, which skips a match there only when the text starts with #!
     if (lineDelimiters.length && tags.length) {
         lines.push(`${lineDelimiters[0]} ${tags[0]} first line of the file`);
     }

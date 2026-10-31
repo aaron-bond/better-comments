@@ -1,0 +1,119 @@
+{
+  "settings": "plaintext-on",
+  "target": "shellscript",
+  "input": "sample-shellscript_shebang.sh",
+  "languageId": "shellscript",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "//",
+      "options": {
+        "color": "#474747",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "todo",
+      "options": {
+        "color": "#FF8C00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#98C379",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "1:0",
+              "end": "1:63",
+              "text": "# ! The shebang above is not a comment (#364), but this line is"
+            },
+            {
+              "start": "9:0",
+              "end": "9:31",
+              "text": "#! no space after the delimiter"
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "6:22",
+              "end": "6:41",
+              "text": "# ? after a command"
+            }
+          ]
+        },
+        {
+          "tag": "todo",
+          "ranges": [
+            {
+              "start": "4:0",
+              "end": "4:36",
+              "text": "# TODO: take the name as an argument"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "8:0",
+              "end": "8:15",
+              "text": "# * highlighted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": []
+    }
+  ]
+}

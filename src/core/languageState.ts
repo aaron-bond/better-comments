@@ -19,9 +19,6 @@ export interface LanguageState {
     // plaintext with highlightPlainText on. Set and reset with isPlainText
     matchLineStart: boolean;
 
-    // * this is used to prevent the first line of the file (specifically python) from coloring like other comments
-    ignoreFirstLine: boolean;
-
     // * this is used to trigger the events when a supported language code is found
     supportedLanguage: boolean;
 }
@@ -40,7 +37,6 @@ export const initialLanguageState: LanguageState = {
     highlightJSDoc: false,
     isPlainText: false,
     matchLineStart: false,
-    ignoreFirstLine: false,
     supportedLanguage: true,
 };
 
@@ -52,7 +48,6 @@ export function beginLanguageSwitch(state: LanguageState): LanguageState {
     return {
         ...state,
         supportedLanguage: false,
-        ignoreFirstLine: false,
         isPlainText: false,
         matchLineStart: false,
     };
@@ -90,12 +85,6 @@ export function applyLanguage(
         case "typescript":
         case "typescriptreact":
             next.highlightJSDoc = true;
-            break;
-
-        case "elixir":
-        case "python":
-        case "tcl":
-            next.ignoreFirstLine = true;
             break;
 
         case "plaintext":

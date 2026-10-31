@@ -36,7 +36,7 @@ These came from reading the code and probing the compiled `Parser` with a stubbe
 5. **`textDecoration` is built by joining strings.** Most tags get `""` (an empty string, not undefined), strikethrough gives `"line-through"`, and underline-only gives `" underline"` with a leading space.
 6. **Tag escaping is done twice, in two different ways.** `setTags` uses its own character class plus hardcoded `/` escaping, and `escapeRegExp` is used for delimiters. Without the `u` flag, `]`, `}` and `-` are literal outside a class, so they're probably fine. An **empty tag** gives an empty alternative, which may match every comment. All of these need pinning.
 7. **Settings changes need a restart**, because tags are read once at construction.
-8. **`ignoreFirstLine`** applies to Python, Elixir and Tcl, and only skips a match that starts at line 0, character 0.
+8. **`ignoreFirstLine`** applies to Python, Elixir and Tcl, and only skips a match that starts at line 0, character 0. **Fixed** on `task/shebang-first-line`, for 3.2.0: `ignoreFirstLine` and its language list are gone. In every language, a match at 0:0 is skipped only when the text starts with `#!`, so a shebang is never styled and any other first line is (#246, #364). With the default tags, the `!` tag's match covers the whole shebang line, so a tag later on that line isn't styled either. Without a `!` tag nothing matches at 0:0, so a tag later on the shebang line is styled as usual. `#!` anywhere else, or after leading whitespace, is matched as usual. There's no setting for it.
 9. **Overlapping language switches race.** `SetRegex` (now `SetLanguage`) is async and changes parser state shared by every editor. Two quick editor switches can overlap, leaving one language's regex applied to the other editor. *To fix, incrementally (Phase 5).*
 10. **Only the active editor is decorated.** Other visible editors in a split view are not decorated.
 11. **Plain text keeps the previous language's block delimiters.** No plain text language config exists, so `setCommentFormat` isn't called and the delimiters and `highlightMultilineComments` stay as the last language left them. With `highlightPlainText` on, the same generated `.txt` gives 89 ranges fresh, 114 after JavaScript or C#, 99 after Python, and 0 after a language that switched off single-line matching.
@@ -314,9 +314,9 @@ Each step is small enough to review in one sitting and can be released on its ow
 
 **Status (2026-10-26): done, except the test seam, which isn't needed.**
 
-- **Unit tests** (`test/unit/`, 114 tests): every module in `src/core`. Each pinned behaviour has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
-- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own (stable, for the Makefile config), so 150 cases run twice. All of them agree with the real host. A one-line change to `ignoreFirstLine` fails exactly the 34 Python cases.
-- **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build. The refactored code matches it exactly, and a version that resets state at the wrong point fails it.
+- **Unit tests** (`test/unit/`, 117 tests): every module in `src/core`. Each pinned behaviour has a named test (`pinned N: …`) asserting what the code does today, so a deliberate fix shows up as a failing, named test.
+- **Node baseline** (`test/node/baseline.test.ts`): the full host matrix in plain Node, compared read-only against the shared host snapshots, and again for each version that has files of its own (stable, for the Makefile config), so 156 cases run twice. All of them agree with the real host. Before the shebang rule replaced it, a one-line change to `ignoreFirstLine` failed exactly the 34 Python cases.
+- **Overlapping switches** (`test/node/overlap.test.ts`, pinned 9): 882 scenarios, recorded from the v3.0.2 build, then re-recorded for the shebang rule: the only change is Python's `# ! py` at 0:0, now styled, in the 136 scenarios that end with Python's state. The refactored code matched the v3.0.2 recording exactly, and a version that resets state at the wrong point fails it.
 - **Wiring** (`test/host/integration/wiring.test.ts`): switching editors, unsupported languages, the debounce, pinned 7 and pinned 10, all through the real activated extension.
 - **Activation** (`test/host/activation/`): VS Code launched with a file already open activates the extension, and the extension decorates that file. The settings have a tag without a `tag` string before the alert tag: since 3.2.0 it's skipped (#552), while up to 3.1.1 it stopped the extension activating.
 - **Config failures:** the fixture extension also contributes a language with a broken config and one whose config file is missing. Both are treated as having no config.
@@ -362,6 +362,7 @@ Each is its own PR and release, with the snapshot diff reviewed and described in
 - Pinned 5: clean `textDecoration`
 - Pinned 7: read settings live
 - P1: read the object-form `lineComment` (done)
+- Pinned 8: skip only a shebang on the first line, in every language (done)
 - P2, if verified
 
 ## Order of work and size
