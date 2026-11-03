@@ -19,9 +19,6 @@ export interface LanguageState {
     // plaintext with highlightPlainText on. Set and reset with isPlainText
     matchLineStart: boolean;
 
-    // * this is used to prevent the first line of the file (specifically python) from coloring like other comments
-    ignoreFirstLine: boolean;
-
     // * this is used to trigger the events when a supported language code is found
     supportedLanguage: boolean;
 }
@@ -40,7 +37,6 @@ export const initialLanguageState: LanguageState = {
     highlightJSDoc: false,
     isPlainText: false,
     matchLineStart: false,
-    ignoreFirstLine: false,
     supportedLanguage: true,
 };
 
@@ -52,7 +48,6 @@ export function beginLanguageSwitch(state: LanguageState): LanguageState {
     return {
         ...state,
         supportedLanguage: false,
-        ignoreFirstLine: false,
         isPlainText: false,
         matchLineStart: false,
     };
@@ -78,7 +73,7 @@ export function applyLanguage(
         const blockCommentStart = config.blockComment ? config.blockComment[0] : null;
         const blockCommentEnd = config.blockComment ? config.blockComment[1] : null;
 
-        next = setCommentFormat(next, settings, config.lineComment || blockCommentStart, blockCommentStart, blockCommentEnd);
+        next = setCommentFormat(next, settings, lineDelimiters(config.lineComment, blockCommentStart), blockCommentStart, blockCommentEnd);
 
         next.supportedLanguage = true;
     }
@@ -90,12 +85,6 @@ export function applyLanguage(
         case "typescript":
         case "typescriptreact":
             next.highlightJSDoc = true;
-            break;
-
-        case "elixir":
-        case "python":
-        case "tcl":
-            next.ignoreFirstLine = true;
             break;
 
         case "plaintext":
@@ -119,9 +108,10 @@ export function lineCommentExpression(state: LanguageState, escapedTags: string[
     return buildLineCommentExpression(escapedTags, state.delimiter, state.matchLineStart);
 }
 
-// If highlight single line comments is off, single line comments are not supported for this language
+// If highlight single line comments is off, single line comments are not supported for this language.
+// An empty delimiter (lineComment: [] or [""]) would match anywhere in a line, so it finds none either
 export function findsLineComments(state: LanguageState): boolean {
-    return state.highlightSingleLineComments;
+    return state.highlightSingleLineComments && (state.matchLineStart || state.delimiter !== "");
 }
 
 // If highlight multiline is off in package.json or doesn't apply to his language, block comments aren't searched
@@ -135,6 +125,22 @@ export function findsJSDocComments(state: LanguageState): boolean {
 }
 
 /**
+ * The single line comment delimiter(s) to match, or null if single line comments aren't supported.
+ * A missing or empty lineComment falls back to the block comment opener.
+ * The object form ({ comment, noIndent }) is read as its comment. noIndent is ignored, since it only changes where Toggle
+ * Comment puts the delimiter. An empty comment falls back the same way, but with no block comment either it gives an
+ * empty delimiter, which finds no line comments, rather than switching them off for later languages too (pinned 2)
+ */
+function lineDelimiters(lineComment: CommentConfig['lineComment'], blockCommentStart: string | null): string | string[] | null {
+    if (!lineComment || typeof lineComment === 'string' || Array.isArray(lineComment)) {
+        return lineComment || blockCommentStart;
+    }
+
+    const comment = typeof lineComment.comment === 'string' ? lineComment.comment : "";
+    return comment || blockCommentStart || [];
+}
+
+/**
  * Set up the comment format for single and multiline highlighting
  * @param singleLine The single line comment delimiter. If NULL, single line is not supported
  * @param start The start delimiter for block comments
@@ -143,7 +149,7 @@ export function findsJSDocComments(state: LanguageState): boolean {
 function setCommentFormat(
         state: LanguageState,
         settings: LanguageSettings,
-        singleLine: string | string[] | LineCommentObject | null,
+        singleLine: string | string[] | null,
         start: string | null = null,
         end: string | null = null): LanguageState {
 

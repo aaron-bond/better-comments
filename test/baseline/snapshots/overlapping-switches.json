@@ -27,12 +27,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | javascript then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | javascript then css | in order": [
@@ -111,12 +111,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | csharp then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | csharp then css | in order": [
@@ -170,79 +170,79 @@
   "multiline=true | plaintext=false | after=none | python then javascript | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then javascript | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then csharp | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then csharp | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then python | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then css | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then plaintext | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":false,\"applied\":[]}"
   ],
   "multiline=true | plaintext=false | after=none | python then plaintext | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then log | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then log | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then bc-no-comment-syntax | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | python then bc-no-comment-syntax | second finishes first": [
@@ -279,12 +279,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | css then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | css then css | in order": [
@@ -363,12 +363,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | plaintext then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":false,\"applied\":[]}"
   ],
   "multiline=true | plaintext=false | after=none | plaintext then css | in order": [
@@ -447,13 +447,13 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | log then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | log then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
@@ -536,7 +536,7 @@
   "multiline=true | plaintext=false | after=none | bc-no-comment-syntax then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=none | bc-no-comment-syntax then css | in order": [
@@ -615,12 +615,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | javascript then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | javascript then css | in order": [
@@ -699,12 +699,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | csharp then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | csharp then css | in order": [
@@ -758,79 +758,79 @@
   "multiline=true | plaintext=false | after=javascript | python then javascript | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then javascript | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then csharp | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then csharp | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then python | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then css | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then plaintext | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":false,\"applied\":[]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then plaintext | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then log | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then log | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then bc-no-comment-syntax | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | python then bc-no-comment-syntax | second finishes first": [
@@ -867,12 +867,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | css then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | css then css | in order": [
@@ -951,12 +951,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | plaintext then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":false,\"applied\":[]}"
   ],
   "multiline=true | plaintext=false | after=javascript | plaintext then css | in order": [
@@ -1035,13 +1035,13 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | log then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | log then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
@@ -1124,7 +1124,7 @@
   "multiline=true | plaintext=false | after=javascript | bc-no-comment-syntax then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=false | after=javascript | bc-no-comment-syntax then css | in order": [
@@ -1791,12 +1791,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | javascript then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | javascript then css | in order": [
@@ -1875,12 +1875,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | csharp then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | csharp then css | in order": [
@@ -1934,55 +1934,55 @@
   "multiline=false | plaintext=true | after=none | python then javascript | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then javascript | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then csharp | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then csharp | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then python | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then css | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then plaintext | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then plaintext | second finishes first": [
@@ -1994,19 +1994,19 @@
   "multiline=false | plaintext=true | after=none | python then log | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then log | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then bc-no-comment-syntax | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | python then bc-no-comment-syntax | second finishes first": [
@@ -2043,12 +2043,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | css then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | css then css | in order": [
@@ -2132,7 +2132,7 @@
   "multiline=false | plaintext=true | after=none | plaintext then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | plaintext then css | in order": [
@@ -2211,13 +2211,13 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | log then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | log then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
@@ -2300,7 +2300,7 @@
   "multiline=false | plaintext=true | after=none | bc-no-comment-syntax then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=none | bc-no-comment-syntax then css | in order": [
@@ -2379,12 +2379,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | javascript then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | javascript then css | in order": [
@@ -2463,12 +2463,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | csharp then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | csharp then css | in order": [
@@ -2522,55 +2522,55 @@
   "multiline=false | plaintext=true | after=javascript | python then javascript | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then javascript | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then csharp | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then csharp | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then python | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then css | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then plaintext | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then plaintext | second finishes first": [
@@ -2582,19 +2582,19 @@
   "multiline=false | plaintext=true | after=javascript | python then log | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then log | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then bc-no-comment-syntax | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | python then bc-no-comment-syntax | second finishes first": [
@@ -2631,12 +2631,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | css then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | css then css | in order": [
@@ -2720,7 +2720,7 @@
   "multiline=false | plaintext=true | after=javascript | plaintext then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | plaintext then css | in order": [
@@ -2799,13 +2799,13 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | log then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | log then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
@@ -2888,7 +2888,7 @@
   "multiline=false | plaintext=true | after=javascript | bc-no-comment-syntax then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=false | plaintext=true | after=javascript | bc-no-comment-syntax then css | in order": [
@@ -3555,12 +3555,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | javascript then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | javascript then css | in order": [
@@ -3639,12 +3639,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | csharp then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | csharp then css | in order": [
@@ -3698,55 +3698,55 @@
   "multiline=true | plaintext=true | after=none | python then javascript | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then javascript | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then csharp | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then csharp | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then python | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then css | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then plaintext | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then plaintext | second finishes first": [
@@ -3758,19 +3758,19 @@
   "multiline=true | plaintext=true | after=none | python then log | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then log | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then bc-no-comment-syntax | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | python then bc-no-comment-syntax | second finishes first": [
@@ -3807,12 +3807,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | css then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | css then css | in order": [
@@ -3896,7 +3896,7 @@
   "multiline=true | plaintext=true | after=none | plaintext then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | plaintext then css | in order": [
@@ -3975,13 +3975,13 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | log then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | log then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
@@ -4064,7 +4064,7 @@
   "multiline=true | plaintext=true | after=none | bc-no-comment-syntax then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=none | bc-no-comment-syntax then css | in order": [
@@ -4143,12 +4143,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | javascript then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | javascript then css | in order": [
@@ -4227,12 +4227,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | csharp then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | csharp then css | in order": [
@@ -4286,55 +4286,55 @@
   "multiline=true | plaintext=true | after=javascript | python then javascript | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then javascript | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then csharp | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then csharp | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"1:0-1:7,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then python | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then css | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then plaintext | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then plaintext | second finishes first": [
@@ -4346,19 +4346,19 @@
   "multiline=true | plaintext=true | after=javascript | python then log | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then log | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then bc-no-comment-syntax | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | python then bc-no-comment-syntax | second finishes first": [
@@ -4395,12 +4395,12 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | css then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"2:0-2:13,4:1-4:9,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | css then css | in order": [
@@ -4484,7 +4484,7 @@
   "multiline=true | plaintext=true | after=javascript | plaintext then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"4:0-4:9,9:0-9:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | plaintext then css | in order": [
@@ -4563,13 +4563,13 @@
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
     "after one resolves: {\"supported\":false,\"applied\":[]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | log then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
-    "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
+    "after both: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | log then css | in order": [
     "during first: {\"supported\":false,\"applied\":[]}",
@@ -4652,7 +4652,7 @@
   "multiline=true | plaintext=true | after=javascript | bc-no-comment-syntax then python | second finishes first": [
     "during first: {\"supported\":false,\"applied\":[]}",
     "during both: {\"supported\":false,\"applied\":[]}",
-    "after one resolves: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}",
+    "after one resolves: {\"supported\":true,\"applied\":[\"0:0-0:6,7:3-7:10\",\"\"]}",
     "after both: {\"supported\":true,\"applied\":[\"7:3-7:10\",\"\"]}"
   ],
   "multiline=true | plaintext=true | after=javascript | bc-no-comment-syntax then css | in order": [

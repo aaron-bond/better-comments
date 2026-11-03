@@ -46,6 +46,11 @@
           "tag": "!",
           "ranges": [
             {
+              "start": "0:0",
+              "end": "0:26",
+              "text": "# ! first line of the file"
+            },
+            {
               "start": "3:0",
               "end": "3:17",
               "text": "# ! start of line"

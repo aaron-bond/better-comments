@@ -81,8 +81,8 @@ function findLineComments(text: string, expression: string, state: LanguageState
     while ((match = regEx.exec(text)) !== null) {
         if (skipZeroLength(regEx, match)) continue;
 
-        // Required to ignore the first line of .py files (#61)
-        if (state.ignoreFirstLine && match.index === 0) {
+        // A shebang (#!/bin/bash) isn't a comment, in any language (#61, #364)
+        if (match.index === 0 && text.startsWith("#!")) {
             continue;
         }
 

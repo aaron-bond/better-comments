@@ -11,7 +11,7 @@ const defaults: LanguageSettings = { multilineComments: true, highlightPlainText
 const lineOnly = { lineComment: '//' };
 const cStyle: CommentConfig = { lineComment: '//', blockComment: ['/*', '*/'] };
 const python = { lineComment: '#' };
-// As the built-in Makefile config has it in newer VS Code versions. The parser's types don't allow it (P1)
+// As the built-in Makefile config has it in newer VS Code versions
 const objectForm: CommentConfig = { lineComment: { comment: '#', noIndent: true } };
 
 /** The state after switching through these languages in turn */
@@ -80,9 +80,34 @@ describe('finder', () => {
             assert.deepStrictEqual(line('// ! one\r\n// ? two\r\n'), ['!: // ! one', '?: // ? two']);
         });
 
-        it('pinned 8: ignoreFirstLine skips a match only at the very start of the text', () => {
-            assert.deepStrictEqual(find('# ! first\n# ! second\n', [['python', python]]), ['!: # ! second']);
-            assert.deepStrictEqual(find(' # ! first, indented\n', [['python', python]]), ['!: # ! first, indented']);
+        it('matches a comment on the first line, in every language (#246)', () => {
+            for (const language of ['python', 'elixir', 'tcl', 'shellscript']) {
+                assert.deepStrictEqual(find('# ! first\n# ! second\n', [[language, python]]), ['!: # ! first', '!: # ! second'], language);
+            }
+        });
+
+        it('skips a shebang, in every language (#364)', () => {
+            for (const language of ['python', 'shellscript', 'perl', 'bc-line']) {
+                const text = '#!/usr/bin/env bash\n# ! alert\n';
+                assert.deepStrictEqual(find(text, [[language, python]]), ['!: # ! alert'], language);
+            }
+            assert.deepStrictEqual(find('#! /bin/sh\n', [['shellscript', python]]), []);
+        });
+
+        it('with the default tags, skips the whole shebang line, as one match, but nothing after it', () => {
+            // The ! tag matches #! at 0:0 and runs to the end of the line. Without a ! tag, nothing matches at 0:0,
+            // so a tag later on the shebang line is styled
+            assert.deepStrictEqual(find('#!/bin/bash # ? on the shebang line\n#! alert on line two\n', [['shellscript', python]]), ['!: #! alert on line two']);
+        });
+
+        it('only treats #! as a shebang at the very start of the text', () => {
+            assert.deepStrictEqual(find(' #!/bin/bash\n', [['shellscript', python]]), ['!: #!/bin/bash']);
+            assert.deepStrictEqual(find('\n#!/bin/bash\n', [['shellscript', python]]), ['!: #!/bin/bash']);
+        });
+
+        it('keeps a line comment on a first line that starts with #! in a language whose delimiter is not #', () => {
+            // Rust's inner attributes start with #!, and its comments with //
+            assert.deepStrictEqual(find('#![allow(dead_code)] // ! note\n', [['bc-line', lineOnly]]), ['!: // ! note']);
         });
 
         it('matches tags at the start of each line for plaintext', () => {
@@ -96,9 +121,18 @@ describe('finder', () => {
             assert.deepStrictEqual(find('! alert\n\nplain\n', [['plaintext', undefined]], settings, withEmpty), ['!: ! alert', ': plain']);
         });
 
-        it('P3: steps past zero-length matches with the empty delimiter of an object-form lineComment', () => {
+        it('matches an object-form lineComment from its delimiter, not anywhere in the line (#566)', () => {
+            const text = 'curl http://example.com\nif (a != b) x = a ? 1 : 2 # ! real\n';
+            assert.deepStrictEqual(find(text, [['bc-object', objectForm]]), ['!: # ! real']);
+        });
+
+        it('finds no line comments with an empty delimiter, even with an empty tag', () => {
             const withEmpty = [...tags, { tag: '', escapedTag: '' }];
-            assert.deepStrictEqual(find('x != y\n\n', [['bc-object', objectForm]], defaults, withEmpty), [': x != y']);
+            assert.deepStrictEqual(find('x != y // ! z\n\n', [['bc-empty', { lineComment: [] }]], defaults, withEmpty), []);
+        });
+
+        it('ignores an empty delimiter alongside others (#566)', () => {
+            assert.deepStrictEqual(find('curl http://x # ! real\n', [['bc-mixed', { lineComment: ['', '#'] }]]), ['!: # ! real']);
         });
     });
 

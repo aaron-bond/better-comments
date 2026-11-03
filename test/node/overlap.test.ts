@@ -7,7 +7,8 @@ import { ParserLike, runUpdate, setLanguage } from '../parserUpdate';
 // Pinned 9: language switches are async and change state shared by every editor, so two switches can
 // overlap. The baseline only ever switches one language at a time, so this records what happens when
 // they overlap: every ordered pair of languages, finishing in either order, observed part way through.
-// The snapshot was recorded from v3.0.2 (BC_PARSER_PATH pointing at its build).
+// The snapshot was recorded from v3.0.2 (BC_PARSER_PATH pointing at its build), then re-recorded when the shebang
+// rule replaced ignoreFirstLine, which styled Python's first line in the scenarios that end with Python's state.
 
 const Parser = loadParser();
 

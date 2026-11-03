@@ -20,23 +20,19 @@ export function escapeRegExp(input: string): string {
 
 /**
  * Escapes the single line comment delimiter(s) of a language
- * @param singleLine One delimiter, several if the language has more than one single line comment format, or the
- * object form
+ * @param singleLine One delimiter, or several if the language has more than one single line comment format
  */
-export function escapeLineDelimiter(singleLine: string | string[] | LineCommentObject): string {
+export function escapeLineDelimiter(singleLine: string | string[]): string {
     if (typeof singleLine === 'string') {
         return escapeRegExp(singleLine).replace(/\//ig, "\\/");
     }
 
     // * if multiple delimiters are passed, the language has more than one single line comment format
-    if (Array.isArray(singleLine)) {
-        return singleLine
-            .map(s => escapeRegExp(s))
-            .join("|");
-    }
-
-    // ! P1: the object form ({ comment, noIndent }) isn't read, so its delimiter is empty
-    return "";
+    // ? empty ones are dropped, since an empty alternative would match anywhere in a line
+    return singleLine
+        .filter(s => s !== "")
+        .map(s => escapeRegExp(s))
+        .join("|");
 }
 
 /**

@@ -1,0 +1,238 @@
+{
+  "settings": "empty-tag",
+  "target": "makefile",
+  "input": "sample-makefile_Makefile",
+  "languageId": "makefile",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "",
+      "options": {
+        "color": "#ABCDEF",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:75",
+              "text": "# ! Makefile: tags in comments, and the same characters outside them (#566)"
+            },
+            {
+              "start": "10:8",
+              "end": "10:28",
+              "text": "# ! inside a string\""
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "5:11",
+              "end": "5:29",
+              "text": "# ? after a target"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "3:0",
+              "end": "3:23",
+              "text": "# TODO: pin the version"
+            },
+            {
+              "start": "9:47",
+              "end": "9:73",
+              "text": "# * after a recipe command"
+            },
+            {
+              "start": "13:4",
+              "end": "13:25",
+              "text": "# // indented comment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "javascript",
+        "csharp",
+        "python"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:75",
+              "text": "# ! Makefile: tags in comments, and the same characters outside them (#566)"
+            },
+            {
+              "start": "10:8",
+              "end": "10:28",
+              "text": "# ! inside a string\""
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "5:11",
+              "end": "5:29",
+              "text": "# ? after a target"
+            }
+          ]
+        },
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "3:0",
+              "end": "3:23",
+              "text": "# TODO: pin the version"
+            },
+            {
+              "start": "9:47",
+              "end": "9:73",
+              "text": "# * after a recipe command"
+            },
+            {
+              "start": "13:4",
+              "end": "13:25",
+              "text": "# // indented comment"
+            },
+            {
+              "start": "4:0",
+              "end": "5:0",
+              "text": "\n"
+            },
+            {
+              "start": "6:0",
+              "end": "7:0",
+              "text": "\n"
+            },
+            {
+              "start": "8:0",
+              "end": "8:1",
+              "text": "\t"
+            },
+            {
+              "start": "9:0",
+              "end": "9:1",
+              "text": "\t"
+            },
+            {
+              "start": "10:0",
+              "end": "10:1",
+              "text": "\t"
+            },
+            {
+              "start": "11:0",
+              "end": "12:0",
+              "text": "\n"
+            },
+            {
+              "start": "13:3",
+              "end": "13:4",
+              "text": " "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": []
+    },
+    {
+      "histories": [
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 3,
+      "applied": [
+        {
+          "tag": "",
+          "ranges": [
+            {
+              "start": "4:0",
+              "end": "5:0",
+              "text": "\n"
+            },
+            {
+              "start": "6:0",
+              "end": "7:0",
+              "text": "\n"
+            },
+            {
+              "start": "8:0",
+              "end": "8:1",
+              "text": "\t"
+            },
+            {
+              "start": "9:0",
+              "end": "9:1",
+              "text": "\t"
+            },
+            {
+              "start": "10:0",
+              "end": "10:1",
+              "text": "\t"
+            },
+            {
+              "start": "11:0",
+              "end": "12:0",
+              "text": "\n"
+            },
+            {
+              "start": "13:3",
+              "end": "13:4",
+              "text": " "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

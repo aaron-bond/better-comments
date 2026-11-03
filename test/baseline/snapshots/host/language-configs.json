@@ -21,6 +21,9 @@
     ]
   },
   "log": null,
+  "makefile": {
+    "lineComment": "#"
+  },
   "plaintext": null,
   "python": {
     "lineComment": "#",
@@ -28,5 +31,8 @@
       "\"\"\"",
       "\"\"\""
     ]
+  },
+  "shellscript": {
+    "lineComment": "#"
   }
 }

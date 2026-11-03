@@ -65,8 +65,9 @@ describe('regex', () => {
             assert.strictEqual(escapeLineDelimiter([]), '');
         });
 
-        it('P1: gives an empty delimiter for an object-form lineComment', () => {
-            assert.strictEqual(escapeLineDelimiter({ comment: '#', noIndent: true }), '');
+        it('drops empty delimiters, which would match anywhere in a line', () => {
+            assert.strictEqual(escapeLineDelimiter(['', '#']), '#');
+            assert.strictEqual(escapeLineDelimiter(['']), '');
         });
     });
 

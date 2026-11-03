@@ -1,0 +1,129 @@
+{
+  "settings": "plaintext-on",
+  "target": "makefile",
+  "input": "sample-makefile_Makefile",
+  "languageId": "makefile",
+  "eol": "LF",
+  "decorationTypes": [
+    {
+      "tag": "!",
+      "options": {
+        "color": "#FF2D00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "?",
+      "options": {
+        "color": "#3498DB",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "//",
+      "options": {
+        "color": "#474747",
+        "backgroundColor": "transparent",
+        "textDecoration": "line-through"
+      }
+    },
+    {
+      "tag": "todo",
+      "options": {
+        "color": "#FF8C00",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    },
+    {
+      "tag": "*",
+      "options": {
+        "color": "#98C379",
+        "backgroundColor": "transparent",
+        "textDecoration": ""
+      }
+    }
+  ],
+  "results": [
+    {
+      "histories": [
+        "none",
+        "javascript",
+        "csharp",
+        "python",
+        "plaintext",
+        "log"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": [
+        {
+          "tag": "!",
+          "ranges": [
+            {
+              "start": "0:0",
+              "end": "0:75",
+              "text": "# ! Makefile: tags in comments, and the same characters outside them (#566)"
+            },
+            {
+              "start": "10:8",
+              "end": "10:28",
+              "text": "# ! inside a string\""
+            }
+          ]
+        },
+        {
+          "tag": "?",
+          "ranges": [
+            {
+              "start": "5:11",
+              "end": "5:29",
+              "text": "# ? after a target"
+            }
+          ]
+        },
+        {
+          "tag": "//",
+          "ranges": [
+            {
+              "start": "13:4",
+              "end": "13:25",
+              "text": "# // indented comment"
+            }
+          ]
+        },
+        {
+          "tag": "todo",
+          "ranges": [
+            {
+              "start": "3:0",
+              "end": "3:23",
+              "text": "# TODO: pin the version"
+            }
+          ]
+        },
+        {
+          "tag": "*",
+          "ranges": [
+            {
+              "start": "9:47",
+              "end": "9:73",
+              "text": "# * after a recipe command"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "histories": [
+        "bc-no-comment-syntax",
+        "javascript>bc-no-comment-syntax"
+      ],
+      "supported": true,
+      "setDecorationsCalls": 5,
+      "applied": []
+    }
+  ]
+}

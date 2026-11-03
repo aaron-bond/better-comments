@@ -13,29 +13,25 @@ export interface Settings extends LanguageSettings {
  * - Flags are only ever tested for truthiness, so any value is read as a boolean.
  * - A colour is kept if it's a string or a theme colour ({ "id": "editorError.foreground" }), the shapes VS Code can
  *   use. Anything else is dropped.
- * - Tags that aren't a list of objects with a string tag have always stopped the parser, so they still throw.
+ * - A tag without a string tag is skipped, and tags that aren't a list give none. Up to 3.1.1 either stopped the
+ *   extension loading (#552). An incomplete tag is normal while settings.json is being edited, so nothing is reported.
  * @param raw The value of vscode.workspace.getConfiguration('better-comments')
  */
 export function readSettings(raw: unknown): Settings {
     const tags = property(raw, 'tags');
-
-    // ? the parser used for...of, which also accepts a string: each character then fails as a tag, so only "" passes
-    const list: unknown = typeof tags === 'string' ? [...tags] : tags;
-    if (!Array.isArray(list)) {
-        throw new TypeError('better-comments.tags is not a list');
-    }
+    const list: unknown[] = Array.isArray(tags) ? tags : [];
 
     return {
-        tags: list.map(readTag),
+        tags: list.map(readTag).filter(tag => tag !== undefined),
         multilineComments: Boolean(property(raw, 'multilineComments')),
         highlightPlainText: Boolean(property(raw, 'highlightPlainText')),
     };
 }
 
-function readTag(item: unknown): TagSetting {
+function readTag(item: unknown): TagSetting | undefined {
     const tag = property(item, 'tag');
     if (typeof tag !== 'string') {
-        throw new TypeError('A better-comments tag has no "tag" string');
+        return undefined;
     }
 
     return {
