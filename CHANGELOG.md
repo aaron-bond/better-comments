@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.2.0]
+## [3.2.0] (2026-11-03)
 ### Features
 * Tag settings now have a schema, so `settings.json` offers completion, descriptions and warnings for each tag's fields, and a colour picker for hex colours ([#567](https://github.com/aaron-bond/better-comments/issues/567)). A tag with no `tag`, or an empty one, is underlined
 * Theme colours such as `{ "id": "editorError.foreground" }` are now documented and supported for a tag's `color` and `backgroundColor`
