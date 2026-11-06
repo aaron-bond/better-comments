@@ -74,6 +74,15 @@ A tag without a `tag` is ignored.
     "italic": false
   },
   {
+    "tag": "fixme",
+    "color": "#FF6000",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": true,
+    "italic": false
+  },
+  {
     "tag": "*",
     "color": "#98C379",
     "strikethrough": false,
