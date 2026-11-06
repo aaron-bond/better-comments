@@ -87,6 +87,7 @@ A tag without a `tag` is ignored.
 
 ## Supported Languages
 
+* ActionScript
 * Ada
 * AL
 * Apex
