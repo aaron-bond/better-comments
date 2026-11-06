@@ -1,5 +1,7 @@
 # Better Comments
 
+_**NOTE: This extension is in maintenance mode due to the difficulty of preserving existing behavior when attempting to add new behavior, as per https://github.com/aaron-bond/better-comments/issues/544. For a fork of this extension which attemps to add new (potentially breaking) features, please see https://github.com/edwinhuish/better-comments-next.**_
+
 The Better Comments extension will help you create more human-friendly comments in your code.  
 With this extension, you will be able to categorise your annotations into:
 * Alerts
